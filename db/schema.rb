@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 2020_11_03_202440) do
     t.integer "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "passenger_id_id"
-    t.bigint "driver_id_id"
-    t.index ["driver_id_id"], name: "index_trips_on_driver_id_id"
-    t.index ["passenger_id_id"], name: "index_trips_on_passenger_id_id"
+    t.bigint "passenger_id"
+    t.bigint "driver_id"
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["passenger_id"], name: "index_trips_on_passenger_id"
   end
 
 end
