@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class DriversController < ApplicationController
+  has_many :trips
   def index
-    @drivers =
+    @drivers = Driver.all
   end
 
   def show
