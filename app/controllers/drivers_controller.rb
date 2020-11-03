@@ -8,7 +8,8 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: driver_id)
 
     if @driver.nil?
-      redirect_to root_path
+      head :not_found
+      # render :not_found, status: :not_found -->> WE CAN RENDER A TEMPLATE PAGE
     end
   end
 
@@ -17,7 +18,7 @@ class DriversController < ApplicationController
   end
 
   def create
-    @driver = Driver.new
+    @driver = Driver.new(driver_params)
 
     if @driver.save
       redirect_to driver_path(@driver.id)
@@ -36,7 +37,7 @@ class DriversController < ApplicationController
   def update
     @driver = Driver.find_by id: params[:id]
     if @driver.nil?
-      redirect_to root_path
+      head :not_found
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
