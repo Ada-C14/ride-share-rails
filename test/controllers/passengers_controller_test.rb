@@ -119,7 +119,7 @@ describe PassengersController do
       expect(passenger.name).must_equal new_passenger_hash[:passenger][:name]
       expect(passenger.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
 
-      
+
     end
 
     it "will show not_found if given invalid id" do
