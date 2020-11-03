@@ -13,6 +13,30 @@ class TripsController < ApplicationController
     end
   end
 
+  def new #check necessity
+    @trip = Trip.new
+  end
+
+  def create #check for accuracy
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    if passenger.nil?
+      head :not_found
+      return
+    else
+      cost = Trip.trip_cost #check this syntax if something goes wrong // create method
+      driver = Trip.assign_driver #create method?
+      trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: nil, cost: cost)
+      if trip.save
+        redirect_to trip_path(trip.id)
+        return
+      else
+        redirect_to passenger_path(passenger.id)
+        return
+      end
+    end
+  end
+
+
   def edit
     @trip = Trip.find_by(id: params[:id])
 
@@ -49,7 +73,6 @@ class TripsController < ApplicationController
     render trip_path
     return
     end
-
   end
 
   private
