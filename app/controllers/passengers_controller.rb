@@ -5,7 +5,7 @@ class PassengersController < ApplicationController
 
   def show
     passenger_id = params[:id].to_i
-    @passenger = passenger.find_by(id: passenger_id)
+    @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
       redirect_to passengers_path
