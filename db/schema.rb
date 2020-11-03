@@ -31,13 +31,15 @@ ActiveRecord::Schema.define(version: 2020_11_03_000109) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.integer "driver_id"
-    t.integer "passenger_id"
+    t.bigint "driver_id"
+    t.bigint "passenger_id"
     t.string "date"
     t.integer "rating"
     t.integer "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["passenger_id"], name: "index_trips_on_passenger_id"
   end
 
 end

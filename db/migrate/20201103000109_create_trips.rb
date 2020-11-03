@@ -1,8 +1,8 @@
 class CreateTrips < ActiveRecord::Migration[6.0]
   def change
     create_table :trips do |t|
-      t.integer :driver_id
-      t.integer :passenger_id
+      t.references :driver, index: true
+      t.references :passenger, index: true
       t.string :date
       t.integer :rating
       t.integer :cost
