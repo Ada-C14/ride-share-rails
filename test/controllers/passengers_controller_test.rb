@@ -2,7 +2,7 @@ require "test_helper"
 
 describe PassengersController do
   let (:passenger) {
-    Passenger.create(name: "Jane Doe", phone_number: "123-455-1234" )
+    Passenger.create(name: "Jane Doe", phone_num: "123-455-1234" )
   }
 
   describe "index" do
@@ -133,6 +133,28 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can delete a passenger from the database" do
+      passenger_to_delete = Passenger.create(name: "Susan Wells",
+                                             phone_num: "999-111-9999")
+
+      expect {
+        delete passenger_path(passenger_to_delete.id)
+      }.must_differ "Passenger.count", -1
+
+      deleted_passenger = Passenger.find_by(id: passenger_to_delete.id)
+      expect(deleted_passenger).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+
+    end
+
+    it "will show not_found for an invalid passenger" do
+      expect {
+        delete passenger_path(-1)
+      }.wont_differ "Passenger.count"
+
+      must_respond_with :not_found
+    end
   end
 end
