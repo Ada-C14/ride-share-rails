@@ -13,12 +13,14 @@
   <tbody>
     <% @drivers.each do |driver| %>
       <tr>
-        <td><%= driver.id %></td>
-        <td><%= driver.name %></td>
-        <td><%= driver.vin %></td>
-        <td><%= driver.available %></td>
+        <td><%= link_to "#{driver.id}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.name}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.vin}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.available}", driver_path(driver) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
 
