@@ -1,9 +1,0 @@
-<header>
-  <h1>Passenger Details</h1>
-</header>
-<main>
-  <p>Passenger Name: <%= @passenger.name %></p>
-  <p> Phone Number: <%= @passenger.phone_number %></p>
-  <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get, class: "btn btn-warning btn-sm" %>
-  <%= button_to "Return to Passenger List", passengers_path, method: :get, class: "btn btn-primary" %>
-</main>
