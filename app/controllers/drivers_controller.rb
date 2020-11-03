@@ -46,7 +46,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     else # update failed
-      render: edit
+      render :edit
       return
     end
   end
