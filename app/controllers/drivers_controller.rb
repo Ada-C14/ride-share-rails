@@ -29,7 +29,7 @@ class DriversController < ApplicationController
 
   def edit
     @driver = Driver.find_by(id: params[:id])
-    if driver.nil?
+    if @driver.nil?
       render :notfound, status: :not_found
       return
     end
