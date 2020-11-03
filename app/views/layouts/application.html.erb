@@ -13,12 +13,24 @@
 
   <header>
     <h1><%= link_to "Ride Share on Rails", homepages_path %></h1>
-    <h3><%= link_to "Driver Dashboard", drivers_path %></h3>
-    <h3><%= link_to "Add Driver", new_driver_path %></h3>
-    <h3><%= link_to "Passenger Dashboard", passengers_path %></h3>
-    <h3><%= link_to "Add Passenger", new_passenger_path %></h3>
   </header>
 
+  <div class="menu">
+    <nav>
+      <p><%= link_to "Driver Dashboard", drivers_path %></p>
+      <p><%= link_to "Add Driver", new_driver_path %></p>
+      <p><%= link_to "Passenger Dashboard", passengers_path %></p>
+      <p><%= link_to "Add Passenger", new_passenger_path %></p>
+    </nav>
+  </div>
+
+  <main>
     <%= yield %>
+  </main>
+
+  <footer>
+    <p>Copyright Kim & Sophie 2020</p>
+  </footer>
+
   </body>
 </html>

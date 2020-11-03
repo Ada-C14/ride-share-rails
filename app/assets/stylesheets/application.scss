@@ -16,3 +16,46 @@
 @import "bootstrap";
 
 @import "**/*";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 200px auto auto auto;
+  grid-template-rows: 70px auto 70px;
+  grid-template-areas:
+    "header header header header"
+    "menu yield yield yield"
+    "footer footer footer footer"
+  ;
+}
+
+header {
+  grid-area: header;
+  background: lightgreen;
+}
+
+.menu {
+  grid-area: menu;
+  background: red;
+}
+
+main {
+  grid-area: yield;
+  background: #0c5460;
+}
+
+footer {
+  grid-area: footer;
+  background: yellow;
+}
+
+header nav {
+  margin-right: auto;
+}
+
+header nav p{
+  display: inline;
+}
