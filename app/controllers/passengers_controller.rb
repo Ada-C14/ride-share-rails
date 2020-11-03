@@ -26,8 +26,4 @@ class PassengersController < ApplicationController
 
   end
 
-  def status
-
-  end
-
 end

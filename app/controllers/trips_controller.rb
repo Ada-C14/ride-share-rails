@@ -1,4 +1,4 @@
-class DriversController < ApplicationController
+class TripsController < ApplicationController
   def index
   end
 
@@ -24,5 +24,6 @@ class DriversController < ApplicationController
   def destroy
 
   end
+
 
 end
