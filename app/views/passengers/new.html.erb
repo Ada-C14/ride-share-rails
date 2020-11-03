@@ -1,0 +1,13 @@
+<h1> New Passenger </h1>
+
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+  <p>Please provide the following information to save your passenger:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "Save Passenger", class: "passenger-button" %>
+<% end %>
