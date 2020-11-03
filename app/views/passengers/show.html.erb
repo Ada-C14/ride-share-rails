@@ -1,3 +1,10 @@
-<p>passenger details</p>
+<h3>Passenger Details</h3>
+<br>
+<h2><%= @passenger.name %></h2>
+<p>ID: <%= @passenger.id %></p>
+<p>Phone: <%= @passenger.phone_num %></p>
 
-<h1><%= @passenger.name %></h1>
+<br>
+
+<%= button_to "Edit passenger", edit_passenger_path(@passenger.id), method: :get %>
+<%= button_to "Delete passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete passenger #{@passenger.name}?" }%>
