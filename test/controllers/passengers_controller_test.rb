@@ -67,9 +67,9 @@ describe PassengersController do
     end
 
     # to be filled in
-    xit "will not create a passenger with invalid params" do
-
-    end
+    # it "will not create a passenger with invalid params" do
+    #
+    # end
 
   end
 

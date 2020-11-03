@@ -11,9 +11,22 @@
 
   <body>
     <header>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "All Passenger", passengers_path  %>
+          </li>
+          <li>
+            <%= link_to "Create New Passenger", new_passenger_path %>
+          </li>
+        </ul>
+      </nav>
     </header>
+
     <main>
       <%= yield %>
     </main>
+
+  
   </body>
 </html>
