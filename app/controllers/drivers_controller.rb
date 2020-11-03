@@ -6,9 +6,9 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find_by(id: params[:id])
-
     if @driver.nil?
       render :notfound, status: :not_found
+      return
     end
   end
 
@@ -18,25 +18,48 @@ class DriversController < ApplicationController
 
   def create
     @driver = Driver.new(driver_params)
-
     if @driver.save
-      redirect_to driver_path(@driver)
-    else # save failed?
+      redirect_to drivers_path
+      return
+    else #save failed
       render :new
+      return
     end
-
   end
 
   def edit
-
+    @driver = Driver.find_by(id: params[:id])
+    if driver.nil?
+      render :notfound, status: :not_found
+      return
+    end
   end
 
   def update
+    @driver = Driver.find_by(id: params[:id])
 
+    # is this check necessary?
+    if @driver.nil?
+      render :notfound, status: :not_found
+      return
+    elsif @driver.update(driver_params)
+      redirect_to drivers_path
+      return
+    else # update failed
+      render: edit
+      return
+    end
   end
 
   def destroy
     @driver = Driver.find_by(id: params[:id])
+    if @driver
+      redirect_to drivers_path
+      return
+    else
+      render :notfound, status: :not_found
+      return
+    end
   end
 
   private
