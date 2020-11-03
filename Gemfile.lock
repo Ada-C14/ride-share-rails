@@ -200,13 +200,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.8.2)
-<<<<<<< HEAD
-    ruby-debug-ide (0.7.2)
-      rake (>= 0.8.1)
-=======
     ruby-debug-ide (2.3.0)
       debase (~> 2.3.0)
->>>>>>> d1e948d9e02faaf632c9bf92b07d42aba7b58807
     ruby-progressbar (1.10.1)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
