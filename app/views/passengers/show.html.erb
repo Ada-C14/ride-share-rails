@@ -1,0 +1,9 @@
+<h1>View Passenger</h1>
+<h3>Passenger #<%= @passenger.id  %></h3>
+<ul>
+  <li>Passenger Name: <%= @passenger.name %> </li>
+  <li>Passenger Phone Number: <%= @driver.phone_num %> </li>
+</ul>
+<p><%= link_to "Edit #{@passenger.name}", edit_passenger_path %></p>
+<p><%= link_to "Delete #{@passenger.name}", passenger_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
+<p><%= link_to "Home", passengers_path %></p>

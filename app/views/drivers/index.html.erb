@@ -1,2 +1,10 @@
-<h1>Drivers#index</h1>
-<p>Find me in app/views/drivers/index.html.erb</p>
+<h1>Drivers</h1>
+<% if @drivers.length > 0 %>
+  <ul>
+    <% @drivers.each do |driver| %>
+      <li> <%= driver.name %>, <%= driver.vin %>, <%= driver.available %> </li>
+    <% end %>
+  </ul>
+<% else %>
+    <p>No drivers in database</p>
+<% end %>
