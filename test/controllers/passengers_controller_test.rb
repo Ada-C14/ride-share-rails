@@ -74,7 +74,19 @@ describe PassengersController do
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing passenger" do
+      get edit_passenger_path(passenger.id)
+
+      must_respond_with :success
+
+    end
+
+    it "will show not_found when trying to edit invalid passenger" do
+
+      get edit_passenger_path(-1)
+
+      must_respond_with :not_found
+    end
   end
 
   describe "update" do
