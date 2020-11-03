@@ -2,14 +2,14 @@
 
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers =
   end
 
   def show
     driver_id = params[:id]
-    @task = Task.find_by(id: task_id)
-    if @task.nil?
-      redirect_to tasks_path
+    @driver = Task.find_by(id: driver_id)
+    if @driver.nil?
+      redirect_to drivers_path
       return
       head :not_found
       return
