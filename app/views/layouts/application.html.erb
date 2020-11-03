@@ -10,6 +10,15 @@
   </head>
 
   <body>
+
+  <header>
+    <h1><%= link_to "Ride Share on Rails", homepages_path %></h1>
+    <h3><%= link_to "Driver Dashboard", drivers_path %></h3>
+    <h3><%= link_to "Add Driver", new_driver_path %></h3>
+    <h3><%= link_to "Passenger Dashboard", passengers_path %></h3>
+    <h3><%= link_to "Add Passenger", new_passenger_path %></h3>
+  </header>
+
     <%= yield %>
   </body>
 </html>
