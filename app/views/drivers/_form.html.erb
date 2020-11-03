@@ -2,17 +2,20 @@
   <h1><%= header_title %></h1>
 </header>
 <main>
-  <%= form_with model: @passenger do |f| %>
+  <%= form_with model: @driver do |f| %>
 
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div>
-      <%= f.label :phone_number %>
-      <%= f.text_field :phone_number %>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
     </div>
-
+    <div>
+      <%= f.label :availability_status %>
+      <%= f.text_field :availability_status %>
+    </div>
     <%= f.submit action_name, class: "btn btn-success" %>
 
   <% end %>
