@@ -7,21 +7,25 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-
+      driver1 = Driver.create(name: "John Smith", vin: "SDFKJ9898DFJD34", available: true)
+      driver2 = Driver.create(name: "Daisy Johnson", vin: "DKJF2K3F9834JKJ9", available: false)
+      driver3 = Driver.create(name: "Phil Coulson", vin: "EWRIU8934DFD34892", available: true)
+      expect(Driver.count).wont_equal 0
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-
+      expect(Driver.count).must_equal 0
       # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :success
     end
   end
 
