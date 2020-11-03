@@ -90,7 +90,46 @@ describe PassengersController do
   end
 
   describe "update" do
-    # Your tests go here
+
+    before do
+      Passenger.create(name: "Testing passenger",
+                       phone_num: "000-111-4567"
+      )
+    end
+
+    let (:new_passenger_hash) {
+      {
+          passenger: {
+              name: "again testing name",
+              phone_num: "000-111-4567"
+          },
+      }
+    }
+
+    it "can update an existing passenger" do
+
+      id = Passenger.first.id
+      expect {
+        patch passenger_path(id), params: new_passenger_hash
+      }.wont_differ "Passenger.count"
+
+      must_redirect_to passengers_path
+
+      passenger = Passenger.find_by(id: id)
+      expect(passenger.name).must_equal new_passenger_hash[:passenger][:name]
+      expect(passenger.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
+
+      
+    end
+
+    it "will show not_found if given invalid id" do
+      id = -1
+      expect {
+        patch passenger_path(id), params: new_passenger_hash
+      }.wont_differ "Passenger.count"
+
+      must_respond_with :not_found
+    end
   end
 
   describe "destroy" do
