@@ -1,5 +1,14 @@
-<p>driver details</p>
+<h2>driver details</h2>
 
-<h1><%= @driver.name %></h1>
+<h3>Name: <%= @driver.name %></h3>
+<p>ID: <%= @driver.id %></p>
+<p>VIN: <%= @driver.vin %></p>
+<p>Status: <%= @driver.available ? "Available" : "Unavailable" %></p>
+
+<br>
+
+<%= button_to "Edit driver", edit_driver_path(@driver.id), method: :get %>
+<%= button_to "Delete driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete driver #{@driver.name}?" }%>
+
 
 

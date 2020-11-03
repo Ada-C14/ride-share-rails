@@ -1,4 +1,4 @@
 class TripsController < ApplicationController
-  belongs_to :driver, :passenger
+  # belongs_to :driver, :passenger
 
 end

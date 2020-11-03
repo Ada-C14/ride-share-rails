@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
 
-  has_many :trips
+  # has_many :trips
 
   def index
     @drivers = Driver.all
@@ -74,6 +74,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin, :available)
+    return params.require(:driver).permit(:name, :vin, :available).with_defaults(available: true)
   end
 end
