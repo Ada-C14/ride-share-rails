@@ -1,0 +1,10 @@
+<h2>Driver: <%= @driver[:name] %></h2>
+<h3>Vin: <%= @driver[:vin] %></h3>
+<% if @driver[:available] == "true" %>
+  <% availability = "yes" %>
+  <% else %>
+  <% availability = "no" %>
+  <% end %>
+<h4>Availability: <%= availability %></h4>
+
+</div>
