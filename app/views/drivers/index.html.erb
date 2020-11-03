@@ -1,1 +1,24 @@
 <p>this is a list of all drivers</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>VIN</th>
+      <th>Available</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= driver.id %></td>
+        <td><%= driver.name %></td>
+        <td><%= driver.vin %></td>
+        <td><%= driver.available %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
