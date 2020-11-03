@@ -1,0 +1,11 @@
+<h1><%= @driver.name %></h1>
+<p>Availability: <%= @driver.available %></p>
+<p>VIN: <%= @driver.vin %></p>
+<p>Total Earnings: <%=  %></p>
+<p>Total Earnings: <%=  %></p>
+<p>Average Rating: <%=  %></p>
+<p>List of Trips (probably a table?)</p>
+<%= link_to "Edit", edit_driver_path(@driver) %>
+<%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+
+<p><%= link_to "Return to Homepage", root_path %></p>
