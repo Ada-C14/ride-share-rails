@@ -1,32 +1,35 @@
-<h3>Rideshare Passengers </h3>
+<h3>Rideshare Passengers</h3>
 <section>
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Phone Number</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @passenger[:name] %></td>
-      <td><%= @passenger[:phone_num] %></td>
-    </tr>
-  </tbody>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @passenger[:name] %></td>
+        <td><%= @passenger[:phone_num] %></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
-  <button><a href="">Request Ride</a></button>
+
+<button><a href="">Request Ride</a></button>
+
 <section>
   <h3>Passenger trips</h3>
   <table>
     <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Drivers</th>
-      <th>Passenger</th>
-      <th>Cost</th>
-      <th>Rating</th>
-    </tr>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Drivers</th>
+        <th>Passenger</th>
+        <th>Cost</th>
+        <th>Rating</th>
+      </tr>
     </thead>
     <tbody>
 <!--    <tr>-->
@@ -38,4 +41,5 @@
 <!--      <td><%#= @trip[:rating] %></td>-->
 <!--    </tr>-->
     </tbody>
+  </table>
 </section>
