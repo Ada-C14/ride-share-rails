@@ -1,5 +1,19 @@
 <%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
-  <p>Please provide the following information to save your task to our database:</p>
+  <p>Please provide the following information to save your passenger to our database:</p>
+
+  <% if @passenger.errors.any? %>
+    <ul>
+      <% @passenger.errors.each do |column, message| %>
+        <div class="error-message">
+          <li>
+            <p><%= column %> <%= message %></p>
+          </li>
+        </div>
+
+      <% end %>
+    </ul>
+  <% end %>
+
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>

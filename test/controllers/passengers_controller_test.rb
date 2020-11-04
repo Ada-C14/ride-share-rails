@@ -63,14 +63,74 @@ describe PassengersController do
   end
 
   describe "edit" do
-    # Your tests go here
+    before do
+      Passenger.create(name: "Test", phone_num: "555-555-5555 x695959")
+    end
+
+    it "can get the edit page for an existing passenger" do
+      id = Passenger.first.id
+
+      #act
+      get edit_passenger_path(id)
+
+      #assert
+      must_respond_with :success
+    end
+
+    ###### DOESNT WORK: I think because it's failing the validation
+    # it "will respond with redirect when attempting to edit a nonexistant passenger" do
+    #   get passenger_path(-1)
+    #
+    #   must_respond_with :redirect
+    # end
   end
 
   describe "update" do
-    # Your tests go here
+    before do
+      Passenger.create(name: "Test", phone_num: "555-555-5555 x695959")
+    end
+    let (:edited_passenger_hash) {
+      {
+          passenger: {
+              name: "PASSENGER UPDATED", phone_num: "123"
+          }
+      }
+    }
+
+    it "can update an existing task" do
+      id = Passenger.first.id
+
+      expect {
+        patch passenger_path(id), params: edited_passenger_hash
+      }.wont_change "Passenger.count"
+
+      must_respond_with :redirect
+
+      passenger = Passenger.find_by(id: id)
+      expect(passenger.name).must_equal edited_passenger_hash[:passenger][:name]
+      expect(passenger.phone_num).must_equal edited_passenger_hash[:passenger][:phone_num]
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can destroy an Active Record instance" do
+      # Arrange
+      passenger = Passenger.create(name: "Passenger 1", phone_num: "123")
+      id = passenger.id
+
+      # Act
+      expect {
+        delete passenger_path(id)
+
+        # Assert
+      }.must_change 'Passenger.count', -1
+
+      passenger = Passenger.find_by(name: "Passenger 1")
+
+      expect(passenger).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
   end
 end
