@@ -8,6 +8,12 @@
         <th>VIN</th>
         <th>Total Earnings</th>
         <th>Average Rating</th>
+        <td>
+          <li>
+            <%= link_to "Edit", edit_driver_path(@driver.id) %>|
+            <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>
+          </li>
+        </td>
       </tr>
     </thead>
     <tbody>
