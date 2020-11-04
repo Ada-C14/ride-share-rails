@@ -49,7 +49,7 @@ a.nav-list:hover {
 }
 
 .link-button {
-    background-color: #e3a6a1;
+    background-color: #CAAD5F;
     border-radius: 3px;
 }
 
@@ -71,4 +71,41 @@ a.nav-list:hover {
 ul {
     text-align: left;
     list-style-type: none;
+}
+
+.passenger-list {
+    padding-top: 10px;
+}
+
+table {
+    border: 1px solid #1C6EA4;
+    width: 80%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+td, th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+
+th {
+    background: #0F4C3A;
+    font-size: 1.5em;
+    font-family: Verdana;
+    text-align: center;
+    border-bottom: 2px solid floralwhite;
+}
+
+tr:nth-child(even) {
+    background: #4F726C;
+}
+
+a:hover {
+    color: antiquewhite;
 }

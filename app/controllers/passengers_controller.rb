@@ -10,6 +10,8 @@ class PassengersController < ApplicationController
       head :not_found
       return
     end
+
+    @trips = @passenger.trips
   end
 
   def new
