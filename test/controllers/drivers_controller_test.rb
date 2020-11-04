@@ -6,8 +6,13 @@ describe DriversController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
+      driver = 1 #Driver.create(
+      #     name: "John Do",
+      #     vin: "ww234444",
+      #     available: false,
+      #)
       # Ensure that there is at least one Driver saved
-
+      expect(driver).must_equal 1
       # Act
 
       # Assert
@@ -79,7 +84,7 @@ describe DriversController do
 
     end
   end
-  
+
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
