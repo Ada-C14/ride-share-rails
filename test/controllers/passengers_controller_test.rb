@@ -196,6 +196,7 @@ describe PassengersController do
       expect(deleted_passenger).must_be_nil
       must_respond_with :redirect
       must_redirect_to passengers_path
+      
     end
 
     it "does not change the db when the passenger does not exist, then responds with " do
