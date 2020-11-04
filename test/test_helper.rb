@@ -5,6 +5,8 @@ require 'rails/test_help'
 require 'minitest/rails'
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'minitest/skip_dsl'
+
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 class ActiveSupport::TestCase
