@@ -19,8 +19,7 @@
     <th>Rating</th>
     <th>Cost</th>
     <th>Date</th>
-    <th>Passenger ID</th>
-    <th>Driver ID</th>
+    <th>Driver Name</th>
   </tr>
   </thead>
 
@@ -31,8 +30,7 @@
       <td><%= link_to "#{trip.rating}", trip_path(trip.id) %></td>
       <td><%= link_to "#{trip.cost}", trip_path(trip.id) %></td>
       <td><%= link_to "#{trip.date}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{trip.passenger_id}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{trip.driver_id}", trip_path(trip.id) %></td>
+      <td><%= link_to "#{Driver.find_by(id: trip.driver_id).name}", driver_path(trip.driver_id) %></td>
     </tr>
   <% end %>
   </tbody>
