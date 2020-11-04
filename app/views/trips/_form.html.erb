@@ -1,0 +1,34 @@
+<%= form_with model: @trip, class: 'create_trip' do |t| %>
+
+
+  <div class="form">
+    <p>
+      <%= t.label :Driver_ID %>
+      <%= t.text_field :driver_id %>
+    </p>
+
+    <p>
+      <%= t.label :Passenger_ID %>
+      <%= t.text_field :passenger_id %>
+    </p>
+
+    <p>
+      <%= t.label :date %>
+      <%= t.text_field :date %>
+    </p>
+
+    <p>
+      <%= t.label :rating %>
+      <%= t.text_field :rating %>
+    </p>
+
+    <p>
+      <%= t.label :cost %>
+      <%= t.text_field :cost %>
+    </p>
+
+    <%= t.submit "Create #{action_name} Trip", class: "submit_button" %>
+  </div>
+
+
+<% end %>

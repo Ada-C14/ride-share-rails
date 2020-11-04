@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   def index
-    @trip = Trip.all
+    @trips = Trip.all
   end
 
   def show
@@ -18,6 +18,10 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    if @trip.date == nil || @trip.date == ""
+      @trip.date = Date.today
+    end
+
     if @trip.save
       redirect_to trips_path
       return
@@ -27,7 +31,43 @@ class TripsController < ApplicationController
     end
   end
 
+  def edit
+    @trip = Trip.find_by(id: params[:id])
 
+    if @trip.nil?
+      head :not_found
+      return "Trip not found"
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return "Trip not found"
+    elsif @trip.update(trip_params)
+      redirect_to trips_path
+      return
+    else
+      render :edit
+      return
+    end
+  end
+
+  def destroy
+
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    @trip.destroy
+
+    redirect_to trips_path
+    return
+  end
 
 
 

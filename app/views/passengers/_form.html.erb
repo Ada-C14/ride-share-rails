@@ -1,10 +1,17 @@
 <%= form_with model: @passenger, class: 'create_passenger' do |p| %>
 
-  <%= p.label :name %>
-  <%= p.text_field :name %>
+  <div class="form">
+    <p>
+      <%= p.label :name %>
+      <%= p.text_field :name %>
+    </p>
 
-  <%= p.label :phone_num %>
-  <%= p.text_field :phone_num %>
+    <p>
+      <%= p.label :phone_num %>
+      <%= p.text_field :phone_num %>
+    </p>
 
-  <%= p.submit "#{action_name} Passenger", class: "passenger_button" %>
+    <%= p.submit "#{action_name} Passenger", class: "passenger_button" %>
+  </div>
+
 <% end %>
