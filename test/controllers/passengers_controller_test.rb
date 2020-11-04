@@ -209,5 +209,4 @@ describe PassengersController do
       must_respond_with :not_found
     end
   end
-  end
 end
