@@ -46,6 +46,7 @@ class DriversController < ApplicationController
   end
 
   def destroy
+    # TODO: how to handle the trips belonging to this driver
     @driver = Driver.find_by(id: params[:id])
 
     if @driver

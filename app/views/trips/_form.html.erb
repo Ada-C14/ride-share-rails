@@ -1,3 +1,11 @@
+<% if @trip.errors.any? %>
+  <ul>
+    <% @trip.errors.each do |column, message| %>
+      <li><%= column %> <%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @trip do |f| %>
   <p>Please enter trip information:</p>
 
@@ -5,7 +13,7 @@
   <%= f.text_field :date %>
 
   <%= f.label :rating %>
-  <%= f.select :rating, [1, 2, 3, 4, 5] %>
+  <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: true %>
 
   <%= f.label :cost %>
   <%= f.text_field :cost %>
