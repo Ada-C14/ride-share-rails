@@ -9,7 +9,7 @@ class DriversController < ApplicationController
   def show
     #find_driver
     if @driver.nil?
-      redirect_to tasks_path
+      redirect_to drivers_path
       return
     end
   end
