@@ -88,23 +88,15 @@ describe DriversController do
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      get edit_driver_path(driver.id)
 
-      # Act
-
-      # Assert
-
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      get edit_driver_path(-1)
 
-      # Act
-
-      # Assert
-
+      must_respond_with :redirect
     end
   end
 
