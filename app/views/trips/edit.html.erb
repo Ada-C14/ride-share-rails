@@ -1,0 +1,9 @@
+<h2>Edit Trip #<%= "#{@trip.id}" %></h2>
+
+<%= form_with  model: @trip do |f| %>
+  <div>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+  <%= f.submit "Edit Trip" %>
+<% end %>
