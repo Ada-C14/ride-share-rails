@@ -8,7 +8,10 @@ class Driver < ApplicationRecord
   end
 
   def show
-
+    @driver= Driver.find_by(driver.id) #(id: @driver.id)
+    if @driver.nil?
+      redirect_to :driver
+    end
   end
 
   def new
