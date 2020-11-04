@@ -50,11 +50,51 @@ describe PassengersController do
   end
 
   describe "new" do
-    # Your tests go here
+    it "responds with success" do
+      # Act
+      get new_passenger_path
+
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "create" do
-    # Your tests go here
+    it "can create a new passenger with valid information accurately, and redirect" do
+      # Arrange
+      passenger_hash = {
+          passenger: {
+              name: "New Passenger",
+              phone_num: "444-444-4444"
+          },
+      }
+      # Act-Assert
+      expect{
+        post passengers_path, params: passenger_hash
+      }.must_change "Passenger.count", 1
+
+      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+
+      expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
+    end
+
+    #TODO form validation tests?
+    it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
+      skip
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Driver validations
+
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+
+      # Assert
+      # Check that the controller redirects
+
+    end
   end
 
   describe "edit" do
