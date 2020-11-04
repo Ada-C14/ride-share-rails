@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a1573ed-6981-4f10-a97d-6f574eac8dbb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/drivers/index.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/drivers/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/drivers_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/drivers_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack/environment.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack/environment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/drivers/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/drivers/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/drivers/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/drivers/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
