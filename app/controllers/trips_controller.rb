@@ -34,11 +34,11 @@ class TripsController < ApplicationController
     end
   end
 
-  def passenger_params
+  def trip_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
 
-  def find_passenger
-    return Passenger.find_by(id: params[:id].to_i)
+  def find_trip
+    return Trip.find_by(id: params[:id].to_i)
   end
 end
