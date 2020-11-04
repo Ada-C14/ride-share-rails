@@ -2,6 +2,17 @@
   <h1><%= header_title %></h1>
 </header>
 <main>
+  <div>
+    <% if @driver.errors.any?%>
+      <ul class="error_messages" >
+      <% @driver.errors.each do |attribute, error_message| %>
+        <li>
+          Error: <%= attribute.capitalize %> <%= error_message %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   <%= form_with model: @driver do |f| %>
 
     <div>

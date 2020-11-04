@@ -116,13 +116,21 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      d = Driver.new
+      d.name = "Name only"
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect{
+        d.save
+      }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller redirects
+      must_respond_with :redi
 
+      #check that instance errors is populated
+      expect(d.errors).wont_be_empty
     end
   end
 
