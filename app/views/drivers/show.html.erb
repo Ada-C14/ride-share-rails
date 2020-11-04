@@ -10,5 +10,7 @@
 <%= button_to "Edit driver", edit_driver_path(@driver.id), method: :get %>
 <%= button_to "Delete driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete driver #{@driver.name}?" }%>
 
+<%= button_to "Show all trips", driver_trips_path(@driver.id), method: :get %>
+
 
 

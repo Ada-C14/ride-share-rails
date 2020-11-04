@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :drivers, :passengers
   resources :trips, except:[:new, :index]
   resources :homepages, only:[:index]
+
 end
