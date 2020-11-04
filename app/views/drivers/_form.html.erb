@@ -1,3 +1,13 @@
+<% if @driver.errors.any? %>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="form">
   <%= form_with model: @driver do |f| %>
     <p>Please the following information for a driver</p>
