@@ -3,20 +3,18 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <table>
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th>Name</th>-->
-<!--    <th>Phone Number</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
   <tbody>
-  <% @drivers.each do |driver| %>
-    <tr>
-      <td><a href="<%= driver_path(driver) %>"><%= driver[:name] %></a></td>
-      <td><%= driver.phone_num %></td>
-      <td> <%= link_to "Edit", edit_driver_path(driver.id) %>|
-        <%= link_to "Delete", driver_path(driver.id), method: :delete %></li></td>
-    </tr>
-  <% end %>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= link_to driver.name, driver_path(driver.id) %></td>
+        <td>Rating: </td>
+        <td>
+          <li>
+            <%= link_to "Edit", edit_driver_path(driver.id) %>|
+            <%= link_to "Delete", driver_path(driver.id), method: :delete %>
+          </li>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

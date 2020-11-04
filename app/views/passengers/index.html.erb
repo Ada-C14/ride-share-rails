@@ -14,8 +14,12 @@
       <tr>
         <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
         <td><%= passenger.phone_num %></td>
-        <td> <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
-        <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li></td>
+        <td>
+          <li>
+            <%= link_to "Edit", edit_passenger_path(passenger.id) %> |
+            <%= link_to "Delete", passenger_path(passenger.id), method: :delete %>
+          </li>
+        </td>
       </tr>
     <% end %>
   </tbody>
