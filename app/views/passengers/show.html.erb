@@ -3,6 +3,8 @@
   <h2>passenger information</h2>
   <h3><%= @passenger.name %></h3>
   <h3><%= @passenger.phone_num %></h3>
+  <%= link_to "Edit", edit_passenger_path(@passenger.id) %>
+  <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %>
 
   <table class="table table-striped">
     <thead>
@@ -17,15 +19,14 @@
     <tbody>
     <% @passenger.trips.each do |trip| %>
       <tr>
-        <th scope="row"><%= trip.id %></th>
-        <td><%= trip.passenger.name %></td>
-        <td><%= trip.driver.name %></td>
+
+        <th scope="row"><%= link_to "#{trip.id}", trip_path(trip.id) %></th>
+        <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
+        <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
         <td><%= trip.cost %></td>
         <td><%= trip.rating %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <%#= link_to "Edit", edit_task_path(@task) %>
-  <%#= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>

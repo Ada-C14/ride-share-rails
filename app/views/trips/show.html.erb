@@ -1,1 +1,30 @@
-<!--details of trip-->
+<!--each passenger info-->
+<div>
+  <h2>trip information</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Trip ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">passenger</th>
+      <th scope="col">driver</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th scope="row"><%= link_to "#{@trip.id}", trip_path(@trip.id) %></th>
+        <td><%= @trip.date %></td>
+        <td><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger_id)%></td>
+        <td><%= link_to "#{@trip.driver.name}", driver_path(@trip.driver_id)%></td>
+        <td><%= @trip.cost %></td>
+        <td><%= @trip.rating %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%#= link_to "Edit", edit_task_path(@task) %>
+  <%#= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>

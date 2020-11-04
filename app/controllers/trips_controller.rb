@@ -1,6 +1,12 @@
 class TripsController < ApplicationController
 
   def show
+    @trip_id = params[:id].to_i
+    @trip = Trip.find(@trip_id)
+    if @trip.nil?
+      redirect_to trips_path
+      return
+    end
   end
 
   def new
