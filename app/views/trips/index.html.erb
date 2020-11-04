@@ -1,0 +1,6 @@
+<h1>Trips</h1>
+<ul>
+  <% @trips.each do |trip| %>
+    <li>Date: <%= trip.date %>, Driver: <%= trip.driver_id %>, Passenger: <%= trip.passenger_id %></li>
+  <% end %>
+</ul>
