@@ -3,4 +3,13 @@ class TripsController < ApplicationController
     @trips = Trip.all
   end
 
+  def show
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to trip_path
+      return
+    end
+  end
+
 end
