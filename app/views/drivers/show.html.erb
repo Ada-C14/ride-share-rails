@@ -1,0 +1,12 @@
+<h1>Driver Details</h1>
+<ul>
+  <li><%= @driver.name %></li>
+  <li><%= @driver.vin %></li>
+  <li><%= @driver.available ? "available" : "not available" %></li>
+</ul>
+
+<ul>
+  <li><%= link_to "Edit Driver", edit_driver_path(@driver) %></li>
+  <li><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %></li>
+  <li><%= link_to "All Drivers", drivers_path %></li>
+</ul>
