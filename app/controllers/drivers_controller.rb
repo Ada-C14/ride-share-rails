@@ -7,7 +7,6 @@ class DriversController < ApplicationController
 
   def not_saved_error_notice
     flash[:notice] = "Uh oh! That did not save correctly."
-    render :new
   end
 
   #########################################################
@@ -50,6 +49,7 @@ class DriversController < ApplicationController
     end
 
     not_saved_error_notice
+    render :new
     return
   end
 
@@ -64,6 +64,7 @@ class DriversController < ApplicationController
       return
     else
       not_saved_error_notice
+      render :edit
       return
     end
   end
