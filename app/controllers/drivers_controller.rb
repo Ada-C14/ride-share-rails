@@ -25,4 +25,8 @@ class DriversController < ApplicationController
 
   end
 
+  def status
+
+  end
+
 end
