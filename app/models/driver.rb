@@ -6,7 +6,7 @@ class Driver < ApplicationRecord
   validates :vin, presence: true
 
   def trip_list
-    # self.trips = Driver.all
+    return self.trips.all
   end
 
   def average_rating

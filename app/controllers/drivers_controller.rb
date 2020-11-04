@@ -11,6 +11,7 @@ class DriversController < ApplicationController
       head :not_found
       # render :not_found, status: :not_found -->> WE CAN RENDER A TEMPLATE PAGE
     end
+    @trips = @driver.trip_list
   end
 
   def new
@@ -59,6 +60,7 @@ class DriversController < ApplicationController
     end
   end
 end
+
 
 private
 

@@ -1,0 +1,20 @@
+<p><%= link_to "Home", root_path %></p>
+<p><%= link_to "Drivers List", drivers_path %></p>
+<p><%= link_to "Passengers List", passengers_path %></p>
+<p><%= link_to "Add Driver Account", new_driver_path %></p>
+<p><%= link_to "Add Passenger Account", new_passenger_path %></p>
+
+<h1>View Trip</h1>
+<h3>Trip #<%= @trip.id  %></h3>
+<ul>
+  <li>Driver ID: <%= @trip.driver_id %> </li>
+  <li>Passenger ID: <%= @trip.passenger_id %> </li>
+  <li>Date: <%= @trip.date %> </li>
+  <li>Rating: <%= @trip.rating %> </li>
+  <li>Cost: <%= @trip.cost %> </li>
+  <% @trips.each do |trip| %>
+    <li> <%= link_to trip.id, trip_path(trip)%></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
