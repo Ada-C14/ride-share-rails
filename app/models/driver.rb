@@ -5,9 +5,9 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
-  def trip_list
-    return self.trips.all
-  end
+  # def trip_list
+  #   return self.trips.all
+  # end
 
   def average_rating
     sum_of_ratings = 0.00
@@ -37,13 +37,13 @@ class Driver < ApplicationRecord
         total_income +=
           if trip.cost.nil?
             0
-          elsif trip.cost <= 1.65
+          elsif trip.cost <= 165
             (trip.cost * 0.80).round(2)
           else
-            ((trip.cost.to_f - 1.65) * 0.80).round(2)
+            ((trip.cost.to_f - 165) * 0.80).round(2)
           end
       end
-      return  "$#{total_income.to_f.round(2)}"
+      return  "$#{(total_income / 100.0).round(2)}"
     end
   end
 

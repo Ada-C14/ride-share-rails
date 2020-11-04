@@ -1,17 +1,25 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:driver_id]
+      driver = Driver.find_by(id: params[:driver_id])
+      @trips = driver.trips
+    else
+      @trips = Trip.all
+    end
   end
 
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
+    @driver = @trip.driver
+
 
     if @trip.nil?
       head :not_found
       # render :not_found, status: :not_found -->> WE CAN RENDER A TEMPLATE PAGE
     end
-    # @trips = @driver.trip_list
+
+    @trips = @driver.trips if @driver
   end
 
   def new

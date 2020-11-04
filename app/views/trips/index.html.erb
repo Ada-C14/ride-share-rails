@@ -1,2 +1,16 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
+<p><%= link_to "Home", root_path %></p>
+<p><%= link_to "Drivers List", drivers_path %></p>
+<p><%= link_to "Passengers List", passengers_path %></p>
+<p><%= link_to "Add Driver", new_driver_path %></p>
+<p><%= link_to "Add Passenger", new_passenger_path %></p>
+
+<h1>Trips</h1>
+<% if @trips && @trips.length > 0 %>
+  <ul>
+    <% @trips.each do |trip| %>
+      <li> <%= link_to trip.id, trip_path(trip)%></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No trips in database</p>
+<% end %>
