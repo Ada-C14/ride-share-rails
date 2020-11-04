@@ -24,7 +24,7 @@ describe PassengersController do
   describe "show" do
     it "can get a valid passenger" do
       valid_passenger_id = @passenger.id
-      get passenger_path(valid_passsenger_id)
+      get passenger_path(valid_passenger_id)
       must_respond_with :success
     end
 
@@ -36,7 +36,7 @@ describe PassengersController do
 
   describe "new" do
     it "can get the new passenger page" do
-      get new_task_path
+      get new_passenger_path
       must_respond_with :success
     end
   end
@@ -45,7 +45,7 @@ describe PassengersController do
     it "requires a name to create a passenger, does not create passenger otherwise, and responds with redirect if no name is entered" do
       passenger_4_hash = {
           passenger: {
-              name: "",
+              #name: "",
               phone_num: "4444444444"
           }
       }
@@ -53,21 +53,26 @@ describe PassengersController do
         post passengers_path, params: passenger_4_hash
       }.wont_change "Passenger.count"
 
-      must_respond_with :redirect
+      #must_respond_with :redirect
+      #must_respond_with :bad_request
+      must_respond_with :not_found
     end
 
     it "requires a phone number to create a passenger, does not create passenger otherwise, and responds with redirect if no phone number is entered" do
       passenger_5_hash = {
           passenger: {
-              name: "Passenger 5",
-              phone_num: ""
+              name: "Passenger 5"
+              #,
+              #phone_num: ""
           }
       }
       expect{
         post passengers_path, params: passenger_5_hash
       }.wont_change "Passenger.count"
 
-      must_respond_with :redirect
+      #must_respond_with :redirect
+      #must_respond_with :bad_request
+      must_respond_with :not_found
     end
 
   end
@@ -104,8 +109,8 @@ describe PassengersController do
       must_redirect_to passengers_path
 
       updated_passenger = Passenger.find(@passenger.id)
-      expect(updated_passenger.name).must_equal @passenger_6_hash[:task][:name]
-      expect(updated_passenger.phone_num).must_equal @passenger_6_hash[:task][:phone_num]
+      expect(updated_passenger.name).must_equal @passenger_6_hash[:passenger][:name]
+      expect(updated_passenger.phone_num).must_equal @passenger_6_hash[:passenger][:phone_num]
 
     end
 
@@ -113,11 +118,11 @@ describe PassengersController do
       # Your code here
 
       expect {
-        patch task_path(-1), params: @task_hash
-      }.must_differ 'Task.count', 0
+        patch passenger_path(-1), params: @passenger_hash
+      }.must_differ 'Passenger.count', 0
 
-      must_redirect_to tasks_path
-      # must_respond_with :not_found
+      #must_redirect_to passengers_path
+      must_respond_with :not_found
     end
 
   end
@@ -136,7 +141,8 @@ describe PassengersController do
       passenger7 = Passenger.find_by(name: "Passenger 7")
       expect(passenger7).must_be_nil
 
-      must_respond_with :not_found
+      #must_respond_with :not_found
+      must_redirect_to passengers_path
     end
 
     it "will respond with not_found for invalid ids" do

@@ -44,7 +44,7 @@ class PassengersController < ApplicationController
 
   def destroy
     id = params[:id].to_i
-    @passenger = Task.find_by(id: id)
+    @passenger = Passenger.find_by(id: id)
 
     if @passenger
       @passenger.destroy
@@ -67,7 +67,8 @@ class PassengersController < ApplicationController
     if passenger.save
       redirect_to passenger_path(passenger.id)
     else
-      render :new, :bad_request
+      head :not_found
+      return
     end
   end
 
