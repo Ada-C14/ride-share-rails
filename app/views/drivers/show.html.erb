@@ -1,7 +1,7 @@
 
 <h2><%= @driver.name %></h2>
-<!--<h3>Average Rating: <%#= @driver.average_rating %></h3>-->
-<!--<h3>Total Earnings: <%#= @driver.total_earnings %></h3>-->
+<h3>Average Rating: <%= @driver.average_rating %></h3>
+<h3>Total Earnings: <%= @driver.total_earnings %></h3>
 <%= link_to "Edit Driver", edit_driver_path(@driver.id) %>
 <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %>
 
