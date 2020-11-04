@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_11_04_050523) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-  
 
   create_table "trips", force: :cascade do |t|
     t.integer "driver_id"

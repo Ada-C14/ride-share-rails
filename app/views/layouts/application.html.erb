@@ -11,5 +11,10 @@
 
   <body>
     <%= yield %>
+  <nav>
+    <%= link_to "Passengers", passengers_path %> |
+    <%= link_to "Drivers", drivers_path %> |
+    <%= link_to "Trip", trips_path %> |
+  </nav>
   </body>
 </html>
