@@ -1,3 +1,9 @@
+<nav>
+  <ul>
+    <li><button class="show"><a href="<%= passengers_path %>">Show passengers</a></button></li>
+    <li><button class="show"><a href="<%= new_passenger_path %>">Add a passenger</a></button></li>
+  </ul>
+</nav>
 <h3>Rideshare Passengers </h3>
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>

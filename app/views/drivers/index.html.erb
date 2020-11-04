@@ -1,3 +1,10 @@
+<nav>
+  <ul>
+    <li><button class="show"><a href="<%= drivers_path %>">Show drivers</a></button></li>
+    <li><button class="show"><a href="<%= new_driver_path %>">Add a driver</a></button></li>
+  </ul>
+</nav>
+
 <h3>Rideshare Drivers </h3>
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
