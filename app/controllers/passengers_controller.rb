@@ -1,5 +1,5 @@
 class PassengersController < ApplicationController
-  class DriversController < ApplicationController
+
 
     def index
       @passengers = Passenger.all
@@ -19,5 +19,5 @@ class PassengersController < ApplicationController
         return
       end
     end
-  end
+ 
 end

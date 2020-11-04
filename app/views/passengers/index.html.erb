@@ -5,7 +5,8 @@
 <%#= link_to "New passenger", new_passenger_path %>
 <!--</p>-->
 <ul>
-  <% @passengers.each do |passenger|%>
+
+  <%@passengers.each do |passenger|%>
     <li>
       <a href="/passengers/<%=passenger.id %>"><%= passenger.name %></a>
     </li>
