@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :drivers
   resources :passengers
 
+  get '/homes', to: 'homes#index', as: 'homes'
+  root to: 'homes#index'
+
   # verb 'path', to: 'controller#action'
   #  get '/drivers', to: 'drivers#index', as: 'drivers'
   #  root to: 'drivers#index'
