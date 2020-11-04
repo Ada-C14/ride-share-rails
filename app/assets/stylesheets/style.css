@@ -106,6 +106,12 @@ tr:nth-child(even) {
     background: #4F726C;
 }
 
+tr:hover td {
+    text-shadow: #7abaff;
+    color:#2d2d2d;
+    opacity: 70%;
+}
+
 a:hover {
     color: antiquewhite;
 }
