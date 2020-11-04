@@ -1,0 +1,16 @@
+<h1>PASSENGERS</h1>
+
+<table style="width:50%">
+  <tr>
+    <th>Name</th>
+    <th>Name</th>
+    <th>Phone Number</th>
+  </tr>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td><%= link_to "#{passenger.id}", passenger_path(passenger.id)%> </td>
+      <td><%=  "#{passenger.name}" %> </td>
+      <td><%=  "#{passenger.phone_num}" %> </td>
+    </tr>
+  <% end %>
+</table>
