@@ -1,0 +1,13 @@
+# Use View Partials
+
+<h1>Driver: <%= @driver.name %></h1>
+
+<ul>
+  <li> Driver: <%= @task.name %> </li>
+  <li> Vin: <%= @task.vin %> </li>
+  <li> Availability Status: <%= @task.available %> </li>
+
+  <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
+  <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete %></li>
+  <li> <%= link_to "Back to Driver List", drivers_path %></li>
+</ul>
