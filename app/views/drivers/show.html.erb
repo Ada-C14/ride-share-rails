@@ -1,3 +1,9 @@
+<p><%= link_to "Home", root_path %></p>
+<p><%= link_to "Drivers List", drivers_path %></p>
+<p><%= link_to "Passengers List", passengers_path %></p>
+<p><%= link_to "Add Driver", new_driver_path %></p>
+<p><%= link_to "Add Passenger", new_passenger_path %></p>
+
 <h1>View Driver</h1>
 <h3>Driver #<%= @driver.id  %></h3>
 <ul>
@@ -7,5 +13,6 @@
   <li>Driver Earnings: <%= @driver.total_earnings %> </li>
 </ul>
 <p><%= link_to "Edit #{@driver.name}", edit_driver_path %></p>
+<p><%= link_to "Add Driver", new_driver_path %></p>
 <p><%= link_to "Delete #{@driver.name}", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
 <p><%= link_to "Home", drivers_path %></p>

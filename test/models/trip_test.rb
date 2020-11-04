@@ -28,6 +28,14 @@ describe Trip do
       expect(new_trip.errors.messages[:driver_id]).must_equal ["can't be blank"]
       # expect(new_trip.errors.messages[:driver_id]).must_equal ["is not a number"] ASK ABOUT THIS
     end
+    #
+    # it "driver_id must be a number" do
+    #   new_trip.driver_id = nil
+    #
+    #   expect(new_trip.valid?).must_equal false
+    #   expect(new_trip.errors.messages).must_include :driver_id
+    #   expect(new_trip.errors.messages[:driver_id]).must_equal ["is not a number"]
+    # end
 
     it "must have a passenger_id" do
       # Arrange
