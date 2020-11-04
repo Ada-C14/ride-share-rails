@@ -1,2 +1,43 @@
-<h1>Drivers#show</h1>
-<p>Find me in app/views/drivers/show.html.erb</p>
+<h1>DETAILS for: <%= @driver.name %></h1>
+
+<button><%= link_to "Back to Drivers List", drivers_path %></button>
+<button><%= link_to "Edit Driver", edit_driver_path %></button>
+<button><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete #{@driver.name}?"}%></button>
+
+
+
+<ul class="driver-details">
+
+  <li>
+    DRIVER ID: <%= @driver.id %> </br>
+    NAME: <%= @driver.name %> </br>
+    VIN: <%= @driver.vin %> </br>
+    TOTAL EARNINGS:<!--  <%#= @driver.total_earnings? %>--> </br>
+    AVERAGE RATING: <!--<%#= @driver.avg_rating? %>--> </br>
+<!--    STATUS:-->
+    <%#= if @driver.available %>
+<!--      Available-->
+    <%# else %>
+<!--      Unavailable-->
+<!--    <%# end %></br>-->
+  </li>
+</ul>
+<!--ternary operator? -->
+<!--trip table here -->
+<!--add trip details when clicking on trip id link  :-->
+
+
+  <table>
+    <thead>
+    <tr>
+<!--      <th>TRIP ID <%#= link_to @driver.trips.id, trip_path(@trip) %> </th>-->
+      <th>DATE</th>
+      <th>PASSENGER ID </th>
+<!--      <th>PASSENGER NAME <%#= link_to @passenger.name, passenger_path(passenger) %></th>-->
+      <th>DRIVER ID</th>
+      <th>DRIVER NAME <%= link_to @driver.name, driver_path(@driver) %> </th>
+      <th>RATING</th>
+      <th>COST</th>
+    </tr>
+    </thead>
+  </table>

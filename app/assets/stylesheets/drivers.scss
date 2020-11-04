@@ -1,3 +1,35 @@
 // Place all the styles related to the Drivers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+table {
+  width: 100%;
+}
+
+th {
+  height: 50px;
+}
+
+th {
+tr:hover {background-color: lightpink;}
+
+  background-color: rebeccapurple;
+  color: white;
+}
+td {
+  height: 50px;
+  vertical-align: bottom;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+// td {
+//   text-align: center;
+// }
+// tr:nth-child(even) {background-color: lightblue;}

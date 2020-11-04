@@ -3,7 +3,7 @@ class DriversController < ApplicationController
   before_action :find_driver, except: [:index, :new, :create]
 
   def index
-    @driver = Driver.all
+    @drivers = Driver.all.order(:name)
   end
 
   def show
@@ -60,13 +60,13 @@ class DriversController < ApplicationController
   def destroy
     #find_driver
     if @driver
+      #also iterate through trips and destroy those
       @driver.destroy
       redirect_to drivers_path
     else
       head :not_found
     end
   end
-
 
 
   private
