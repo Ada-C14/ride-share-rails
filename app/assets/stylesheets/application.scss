@@ -16,3 +16,32 @@
 @import "bootstrap";
 
 @import "**/*";
+
+.title {
+  text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
+nav {
+  text-align: center;
+}
+
+.logos img {
+  width: 200px;
+  height: 200px;
+}
+
+.logos {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
