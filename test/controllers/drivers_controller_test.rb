@@ -27,22 +27,17 @@ describe DriversController do
 
   describe "show" do
     it "responds with success when showing an existing valid driver" do
-      # Arrange
-      # Ensure that there is a driver saved
+      id = driver.id
 
-      # Act
+      get driver_path(id)
 
-      # Assert
-
+      must_respond_with :success
     end
 
     it "responds with 404 with an invalid driver id" do
-      # Arrange
-      # Ensure that there is an id that points to no driver
+      get driver_path(-1)
 
-      # Act
-
-      # Assert
+      must_respond_with :not_found
 
     end
   end
