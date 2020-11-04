@@ -37,7 +37,7 @@ describe Trip do
       expect(new_trip.valid?).must_equal false
       expect(new_trip.errors.messages).must_include :passenger_id
       expect(new_trip.errors.messages[:passenger_id]).must_equal ["can't be blank"]
-      # expect(new_trip.errors.messages[:passenger_id]).must_be_type_of Integer ASK ABOUT THSI
+      # expect(new_trip.errors.messages[:passenger_id]).must_be_type_of Integer ASK ABOUT THIS
 
     end
 

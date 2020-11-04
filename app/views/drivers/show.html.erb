@@ -4,6 +4,7 @@
   <li>Driver Name: <%= @driver.name %> </li>
   <li>Driver VIN: <%= @driver.vin %> </li>
   <li>Driver Availability: <%= @driver.available %> </li>
+  <li>Driver Earnings: <%= @driver.total_earnings %> </li>
 </ul>
 <p><%= link_to "Edit #{@driver.name}", edit_driver_path %></p>
 <p><%= link_to "Delete #{@driver.name}", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
