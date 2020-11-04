@@ -244,25 +244,38 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      driver_id = new_driver.id
 
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
+      expect {
+        delete driver_path(driver_id)
+      }.must_differ Driver.count, -1
 
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
 
+      deleted_driver = Driver.find_by(id: driver_id)
+      expect(deleted_driver).must_be_nil
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      driver_id = -1
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        delete driver_path(driver_id)
+      }.wont_change Driver.count
 
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-
+      must_respond_with :redirect
     end
   end
 end
