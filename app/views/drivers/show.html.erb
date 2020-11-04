@@ -3,9 +3,15 @@
 <h1>Driver: <%= @driver.name %></h1>
 
 <ul>
-  <li> Driver: <%= @task.name %> </li>
-  <li> Vin: <%= @task.vin %> </li>
-  <li> Availability Status: <%= @task.available %> </li>
+  <li> Name: <%= @task.name %> </li>
+  <li> VIN: <%= @task.vin %> </li>
+  <li> Availability Status: <%=
+    if @task.available == true
+      puts "Yes"
+    else
+        puts "No"
+    end
+  %></li>
 
   <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
   <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete %></li>
