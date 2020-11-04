@@ -2,21 +2,50 @@ require "test_helper"
 
 xdescribe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  let (:driver) {
+    Driver.create name: 'test_driver0', vin:'ABCDEFGHIJKLMN0', available: true
+  }
 
   describe "index" do
+
+    it "can get the index path" do
+      # Act
+      get drivers_path
+      # Assert
+      must_respond_with :success
+    end
+
+    it "can get the root path" do
+      # Act
+      get root_path
+
+      # Assert
+      must_respond_with :success
+    end
+
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
+      drivers_arr_hsh =  [
+          {name: 'test_driver1', vin: 'ABCDEFGHIJKLMN1', available: true},
+          {name: 'test_driver2', vin: 'ABCDEFGHIJKLMN2', available: true},
+          {name: 'test_driver3', vin: 'ABCDEFGHIJKLMN3', available: false}
+      ]
 
-      # Act
 
-      # Assert
-
+      # Act-Assert
+      # :driver =>
+      drivers_arr_hsh.each do |driver|
+        expect{
+          post drivers_path, params: { driver: {name: driver[:name], vin: driver[:vin], available: driver[:available]} }
+        }.must_change "Driver.count", 1
+      end
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+      # when seeing index page with no drivers, no errors, can be re-direct to homepage
 
       # Act
 
@@ -29,26 +58,34 @@ xdescribe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-
       # Act
-
+      get driver_path(driver.id)
       # Assert
+      must_respond_with :success
 
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with a redirect for an invalid driver
+" do
       # Arrange
       # Ensure that there is an id that points to no driver
 
       # Act
+      get driver_path(-1)
 
       # Assert
+      must_respond_with :redirect
 
     end
   end
 
   describe "new" do
     it "responds with success" do
+      # Act
+      get new_driver_path
+
+      # Assert
+      must_respond_with :success
     end
   end
 

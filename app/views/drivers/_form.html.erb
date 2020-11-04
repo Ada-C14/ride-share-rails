@@ -1,0 +1,22 @@
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+
+  <div >
+    <%= f.label :name  %>
+    <%= f.text_field :name %> </br>
+
+    <%= f.label :vin %>
+    <%= f.text_field :vin %> </br>
+
+    <%= f.label :available  %>
+    <%= f.text_field :available, :value => true %>
+<!--    <%#= f.text_field :available, placeholder: "Available" %> </br>-->
+<!--    #put in drivers_param-->
+    <%= f.submit action_name %>
+
+  </div>
+
+
+<% end  %>
+
+<button><%= link_to "Back to Drivers List", drivers_path %></button>
+

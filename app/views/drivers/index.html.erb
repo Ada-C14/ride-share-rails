@@ -1,2 +1,34 @@
-<h1>Drivers#index</h1>
-<p>Find me in app/views/drivers/index.html.erb</p>
+<h1>DRIVERS</h1>
+<button><%= link_to "Create New Driver", new_driver_path %></button>
+
+<table>
+  <thead>
+  <tr>
+    <th>NAME</th>
+<!--    <th>RATING</th>    -->
+    <th>STATUS</th>
+
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @drivers.each do |driver| %>
+    <tr>
+      <td><%= link_to driver.name, driver_path(driver)%></td>
+<!--      <td><%#= driver.avg_ratings? %></td>-->
+      <td>
+        <% if driver.available%>
+          Available
+        <% else %>
+          Unavailable
+        <% end %>
+      </td>
+      <td><%= link_to "Edit", edit_driver_path(driver) %></td>
+      <td><%= link_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure you want to delete #{driver.name}?"}%><td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
