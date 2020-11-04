@@ -1,0 +1,13 @@
+<div class="passenger">
+  <h3>Passengers </h3>
+  <nav>
+    <ul>
+      <% @passengers.each do |passenger| %>
+        <a href="<%= passenger_path(passenger) %>"><%= passenger[:name] %></a>
+
+          <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
+          <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>

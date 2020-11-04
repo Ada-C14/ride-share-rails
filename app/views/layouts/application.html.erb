@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+  <header>
+    <div class="image-txt-container">
+<!--      <img src="/images/rideshare.png" alt="main" />-->
+      <h1>RIDE SHARE</h1>
+    </div>
+  </header>
+    <main>
+      <div class="row">
+        <div class="column">
+          <nav class="button">
+<!--            <img src="/images/ alt="tasks1" />-->
+            <ul>
+              <li><button class="show"><a href="<%= new_passenger_path %>">Add passengers</a></button></li>
+              <li><button class="show"><a href="<%= passengers_path %>">Show passengers</a></button></li>
+            </ul>
+          </nav>
+          <div>
+             <%= yield %>
+          </div>
+    </main>
+  <footer>&copy 2020</footer>
   </body>
 </html>
