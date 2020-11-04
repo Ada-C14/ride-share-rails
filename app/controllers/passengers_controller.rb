@@ -60,6 +60,11 @@ class PassengersController < ApplicationController
     end
   end
 
+  def total_spent
+    @passenger = Passenger.find_by(id: params[:id])
+
+  end
+
   private
 
   def passenger_params

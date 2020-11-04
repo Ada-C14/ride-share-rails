@@ -2,7 +2,13 @@ require "test_helper"
 
 describe TripsController do
   describe "show" do
-    # Your tests go here
+    it "can get a valid trip" do
+      # Your tests go here
+    end
+
+    it "will redirect for an invalid trip" do
+      # Your tests go here
+    end
   end
 
   describe "create" do

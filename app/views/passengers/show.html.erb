@@ -1,5 +1,12 @@
 <h2><%= @passenger.name %></h2>
-<%= @driver.phone_num %>
+<%= @passenger.phone_num %>
+<% sum = 0 %>
+<%= @passenger.trips.each do |trip| %>
+  <% sum += trip.cost %>
+<%# @passenger.trips.each do |trip| %>
+  <%# trip.driver.name %>
+<% end %>
+<%= puts sum %>
 
 
 
