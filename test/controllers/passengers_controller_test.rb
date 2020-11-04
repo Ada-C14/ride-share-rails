@@ -42,23 +42,6 @@ describe PassengersController do
   end
 
   describe "create" do
-    it "can create a new passenger" do
-      passenger_3_hash = {
-          passenger: {
-              name: "Passenger 3",
-              phone_num: "3333333333"
-          }
-      }
-      expect {
-        post passenger_path, params: passenger_3_hash
-      }.must_change "Passenger.count", 1
-
-      new_passenger = Passenger.find_by(name: passenger_3_hash[:passenger][:name])
-      expect(new_passenger.phone_num).must_equal passenger_3_hash[:passenger][:phone_num]
-      # must_respond_with :redirect
-      # must_redirect_to passenger_path(new_passenger.id)
-    end
-
     it "requires a name to create a passenger, does not create passenger otherwise, and responds with redirect if no name is entered" do
       passenger_4_hash = {
           passenger: {
@@ -90,7 +73,16 @@ describe PassengersController do
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing passenger" do
+      valid_passenger_id = @passenger.id
+      get edit_passenger_path(valid_passenger_id)
+      must_respond_with :success
+    end
+
+    it "will respond with not_found when attempting to edit a nonexistant passenger" do
+      get edit_passenger_path(-1)
+      must_respond_with :not_found
+    end
   end
 
   describe "update" do
