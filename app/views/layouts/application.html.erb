@@ -9,7 +9,24 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <h2>Ride Share on Rails</h2>
+  </header>
   <body>
-    <%= yield %>
+  <header>
+    <nav>
+      <%= link_to "View Passengers", passengers_path %>
+      <%= link_to "View Drivers", drivers_path %>
+      <%= link_to "Add Passenger", new_passenger_path %>
+      <%= link_to "Add Driver", new_driver_path %>
+    </nav>
+  </header>
+
+  <%= yield %>
   </body>
+
+  <footer>
+    Copyright Group 1 2020
+  </footer>
+
 </html>
