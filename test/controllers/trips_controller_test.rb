@@ -2,28 +2,24 @@ require "test_helper"
 
 describe TripsController do
   before do
-    @driver = Driver.create(name: "Dr. Kenton Berge", vin: "SXMMLZX8XGDN7L7TL", available: true)
+    @driver = Driver.create(name: "Dr. Kenton Berge", vin: "SSSSSSSSSSSSSSSSSSSS", available: true)
     @passenger = Passenger.create(name: "Nina Hintz Sr.", phone_num: "560.815.3059")
-    @trip = Trip.create(date: "2020-11-03", rating: "4", cost: 3423, driver_id: @driver.id, passenger_id: @passenger.id )
+    @trip = Trip.create(date: "2020-11-03", rating: "4", cost: "3423", driver_id: @driver.id, passenger_id: @passenger.id )
   end
 
   describe "show" do
     it "responds with success when showing an existing valid trip" do
       # Act
-      trip = Trip.create(date: "2020-11-03", rating: "4", cost: 3423, driver_id: @driver.id, passenger_id: @passenger.id )
-      get trip_path(trip)
+      get trip_path(@trip.id)
       # Assert
       must_respond_with :success
-
     end
 
     it "responds with 404 with an invalid trip id" do
       # Arrange
       invalid_id = -1
-
       # Act
       get trip_path(invalid_id)
-
       # Assert
       must_respond_with :not_found
     end
@@ -35,12 +31,12 @@ describe TripsController do
       # Arrange
       # Set up the form data
       new_trip_info = {
-          trip: {
-          driver_id: @driver.id,
-          passenger_id: @passenger.id,
-          cost: 2343,
-          date: "2020-11-03",
-          rating: 4
+        trip: {
+        driver_id: @driver.id,
+        passenger_id: @passenger.id,
+        cost: 2343,
+        date: "2020-11-03",
+        rating: 4
         }
       }
       # Act-Assert
@@ -60,29 +56,29 @@ describe TripsController do
       must_redirect_to passenger_path(@passenger.id)
     end
 
-    # not sure if we need this test, since the trip will be created internally?
-    it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-
-      invalid_input = {
-        trip: {
-          driver_id: -1,
-          passenger_id: 5,
-          cost: 2394,
-          date: "2020-11-11",
-          rating: 25
-        }
-      }
-
-      expect {
-        post trips_path, params: invalid_input
-      }.wont_change "Trip.count"
-
-      # Assert
-      # Check that the controller redirects, render or something
-      # todo: update after validation lesson
-        must_respond_with :bad_request
-    end
+    # # not sure if we need this test, since the trip will be created internally?
+    # it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
+    #   # Note: This will not pass until ActiveRecord Validations lesson
+    #
+    #   invalid_input = {
+    #     trip: {
+    #       driver_id: -1,
+    #       passenger_id: 5,
+    #       cost: 2394,
+    #       date: "2020-11-11",
+    #       rating: 25
+    #     }
+    #   }
+    #
+    #   expect {
+    #     post trips_path, params: invalid_input
+    #   }.wont_change "Trip.count"
+    #
+    #   # Assert
+    #   # Check that the controller redirects, render or something
+    #   # todo: update after validation lesson
+    #     must_respond_with :bad_request
+    # end
   end
 
   describe "edit" do
@@ -102,13 +98,13 @@ describe TripsController do
   describe "update" do
     before do
       @update_info = {
-          trip: {
-              driver_id: @driver.id,
-              passenger_id: @passenger.id,
-              cost: 2550,
-              date: "2020-11-04",
-              rating: 5
-          }
+        trip: {
+          driver_id: @driver.id,
+          passenger_id: @passenger.id,
+          cost: 2550,
+          date: "2020-11-04",
+          rating: 5
+        }
       }
     end
 
@@ -150,11 +146,7 @@ describe TripsController do
         patch trip_path(valid_id), params: invalid_input
       }.wont_change "Trip.count"
 
-      # Assert
-      # Check that the controller redirects
-      # todo: update after validation lesson
       must_respond_with :bad_request
-
     end
   end
 
@@ -171,6 +163,5 @@ describe TripsController do
         delete trip_path(invalid_id)
       }.wont_change "Trip.count"
     end
-
   end
 end

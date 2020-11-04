@@ -1,7 +1,7 @@
 class Driver < ApplicationRecord
-  validates :vin, presence: true, length: { is: 17 }
-  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :available, presence: true
+  validates :vin, presence: true
+  validates :name, presence: true
+  # validates :available, presence: true
 
   has_many :trips
 
