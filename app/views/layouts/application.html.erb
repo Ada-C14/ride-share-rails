@@ -17,10 +17,10 @@
       </div>
       <nav>
         <ul>
-          <li><button class="show"><a href="<%= passengers_path %>">Show passengers</a></button></li>
-          <li><button class="show"><a href="<%= drivers_path %>">Show drivers</a></button></li>
-          <li><button class="show"><a href="<%= new_passenger_path %>">Add a passenger</a></button></li>
-          <li><button class="show"><a href="<%= new_driver_path %>">Add a driver</a></button></li>
+          <li><button class="show"><%= link_to "Show passengers", passengers_path %></button></li>
+          <li><button class="show"><%= link_to "Show drivers", drivers_path %></button></li>
+          <li><button class="show"><%= link_to "Add a passenger", new_passenger_path %></button></li>
+          <li><button class="show"><%= link_to "Add a driver", new_driver_path %></button></li>
         </ul>
       </nav>
     </header>
