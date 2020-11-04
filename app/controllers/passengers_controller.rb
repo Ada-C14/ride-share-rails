@@ -5,12 +5,13 @@ class PassengersController < ApplicationController
 
   def show
     @passenger = Passenger.find_by(id: params[:id])
-    #@trips = Trip.find_by()?????????
 
     if @passenger.nil?
       head :not_found
       return
     end
+
+    @trips = @passenger.trips
   end
 
   def new
