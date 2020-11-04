@@ -3,7 +3,7 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let (:driver) {
-    Driver.create name: 'test_driver0', vin:'ABCDEFGHIJKLMN0', available: true
+    Driver.create name: 'test_driver0', vin: 'ABCDEFGHIJKLMN0', available: true
   }
 
   describe "index" do
@@ -65,8 +65,7 @@ describe DriversController do
 
     end
 
-    it "responds with a redirect for an invalid driver
-" do
+    it "responds with a redirect for an invalid driver" do
       # Arrange
       # Ensure that there is an id that points to no driver
 
@@ -90,20 +89,44 @@ describe DriversController do
   end
 
   describe "create" do
+
+    # let (:driver) {
+    #   Driver.create name: 'test_driver4', vin: 'ABCDEFGHIJKLMN4', available: true
+    # }
+    # pp driver.name
+
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      new_driver_hsh = {
+          driver: {
+              name: 'test driver',
+              vin: 'ABC1234',
+              available: true }
+      }
 
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
+       expect {
+            post drivers_path, params: new_driver_hsh
+          }.must_change "Driver.count", 1
 
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
+      new_driver_check = Driver.find_by(name: new_driver_hsh[:driver][:name])
+
+      expect(new_driver_check.vin).must_equal new_driver_hsh[:driver][:vin]
+      expect(new_driver_check.available).must_equal new_driver_hsh[:driver][:available]
+
+      #Check that the controller redirected the user
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver_check.id)
+
 
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      skip
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
@@ -121,9 +144,10 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-
       # Act
+      get edit_driver_path(driver.id)
 
+      must_respond_with :success
       # Assert
 
     end
@@ -133,8 +157,10 @@ describe DriversController do
       # Ensure there is an invalid id that points to no driver
 
       # Act
+      get edit_driver_path(-1)
 
       # Assert
+      must_respond_with :redirect
 
     end
   end
@@ -145,30 +171,48 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
+      newest_driver_id = Driver.last.id
 
+      updated_newest_driver = {
+          driver: {
+              name: 'test driver again',
+              vin: 'ABC123456',
+              available: false
+          }
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(newest_driver_id), params: updated_newest_driver
+      }.wont_change 'Driver.count'
 
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
+      after_updating = Driver.find_by(id: newest_driver_id)
 
+      expect( after_updating.name ).must_equal updated_newest_driver[:driver][:name]
+      expect( after_updating.vin ).must_equal updated_newest_driver[:driver][:vin]
+      expect( after_updating.available ).must_equal updated_newest_driver[:driver][:available]
+
+      must_respond_with :redirect
     end
 
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "does not update any driver if given an invalid id, and responds with a redirect" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      patch driver_path(-1)
       # Assert
-      # Check that the controller gave back a 404
-
+      # Check that the controller gave back a 404 >>redirect
+      must_respond_with :redirect
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      skip
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved

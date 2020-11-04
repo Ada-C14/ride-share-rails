@@ -24,7 +24,7 @@ class DriversController < ApplicationController
     # save returns true if the database insert succeeds
     if @driver.save
       # go to the index so we can see the driver in the list, send them back to '/drivers' path
-      redirect_to driver_path(@driver)
+      redirect_to driver_path(@driver.id)
       return
     else                              # save failed
     render :new, :bad_request         # show the new driver form view again
@@ -66,6 +66,14 @@ class DriversController < ApplicationController
     else
       head :not_found
     end
+  end
+
+  def total_earnings
+
+  end
+
+  def avg_rating
+
   end
 
 
