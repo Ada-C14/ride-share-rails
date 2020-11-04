@@ -19,4 +19,9 @@ class Driver < ApplicationRecord
   def single_trip_earnings(trip)
     return (trip.cost * 0.8 - 1.65).round(2)
   end
+
+  def self.get_available_driver
+    drivers = Driver.all.select {|driver| driver.available = true}
+    return drivers.first
+  end
 end
