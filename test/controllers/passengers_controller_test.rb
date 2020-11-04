@@ -86,7 +86,40 @@ describe PassengersController do
   end
 
   describe "update" do
-    # Your tests go here
+
+    before do
+      @passenger_6_hash = {
+          passenger: {
+              name: "Passenger 6",
+              phone_num: "6666666666"
+          }
+      }
+    end
+
+    it "can update an existing passenger" do
+      expect {
+        patch passenger_path(@passenger.id), params: @passenger_6_hash
+      }.must_differ 'Passenger.count', 0
+
+      must_redirect_to passengers_path
+
+      updated_passenger = Passenger.find(@passenger.id)
+      expect(updated_passenger.name).must_equal @passenger_6_hash[:task][:name]
+      expect(updated_passenger.phone_num).must_equal @passenger_6_hash[:task][:phone_num]
+
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      # Your code here
+
+      expect {
+        patch task_path(-1), params: @task_hash
+      }.must_differ 'Task.count', 0
+
+      must_redirect_to tasks_path
+      # must_respond_with :not_found
+    end
+
   end
 
   describe "destroy" do
