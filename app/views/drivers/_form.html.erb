@@ -1,0 +1,10 @@
+<%= form_with model: @driver, class: 'create_driver' do |p| %>
+
+    <%= p.label :name %>
+    <%= p.text_field :name %>
+  
+    <%= p.label :vin %>
+    <%= p.text_field :vin %>
+  
+    <%= p.submit "#{action_name} Driver", class: "passenger_button" %>
+  <% end %>

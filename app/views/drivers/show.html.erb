@@ -1,11 +1,12 @@
 <div>
   <h1><%= @driver.name %></h1>
+  <h4>Vin: <%= @driver.vin %></h4>
     <% if @driver.available %>
-        <h3>Status: Available</h3>
+        <h4>Status: Available</h4>
     <% else %>
-        <h3>Status: Unavailable</h3>
+        <h4>Status: Unavailable</h4>
     <% end %>
-  <h3>Total Earnings: $<%= @driver.total_earnings %></h3>
+  <h4>Total Earnings: $<%= @driver.total_earnings %></h4>
 
 
   <%= link_to "Edit", edit_driver_path(@driver), class: "link-button" %>
