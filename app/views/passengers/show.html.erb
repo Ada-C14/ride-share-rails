@@ -1,9 +1,9 @@
 <h3>Passenger Details</h3>
 <br>
-<h2><%= @passenger.name %></h2>
-<p>ID: <%= @passenger.id %></p>
-<p>Phone: <%= @passenger.phone_num %></p>
-
+  <h2><%= @passenger.name %></h2>
+  <p>ID: <%= @passenger.id %></p>
+  <p>Phone: <%= @passenger.phone_num %></p>
+  <p>Total spending: $<%= @passenger.total_spending %></p>
 <br>
 
 <%= button_to "Edit passenger", edit_passenger_path(@passenger.id), method: :get %>
