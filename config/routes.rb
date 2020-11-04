@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :drivers
+  resources :passengers
 
   # verb 'path', to: 'controller#action'
   #  get '/drivers', to: 'drivers#index', as: 'drivers'

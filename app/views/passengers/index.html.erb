@@ -1,0 +1,13 @@
+<h2> Passengers list page </h2>
+<h3> List of passengers</h3>
+
+<!--<p>-->
+<%#= link_to "New passenger", new_passenger_path %>
+<!--</p>-->
+<ul>
+  <% @passengers.each do |passenger|%>
+    <li>
+      <a href="/passengers/<%=passenger.id %>"><%= passenger.name %></a>
+    </li>
+  <% end %>
+</ul>
