@@ -8,7 +8,7 @@
   </tr>
   <% @passengers.each do |passenger| %>
     <tr>
-      <td><%=  "#{passenger.id}"%> </td>
+      <td><%= link_to "#{passenger.id}", passenger_path(passenger)%> </td>
       <td><%=  "#{passenger.name}" %> </td>
       <td><%=  "#{passenger.phone_num}" %> </td>
     </tr>

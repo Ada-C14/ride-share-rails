@@ -2,8 +2,8 @@
 
 <ul>
   <li>ID: <%= @trip.id %> </li>
-  <li>PASSENGER ID: <%= @trip.passenger_id %> </li>
-  <li>DRIVER ID: <%= @trip.driver_id %> </li>
+  <li>PASSENGER ID: <%= link_to "#{@trip.passenger_id}", passenger_path(@trip.passenger_id)  %></li>
+  <li>DRIVER ID: <%= link_to "#{@trip.driver_id}", driver_path(@trip.driver_id) %> </li>
   <li>DATE: <%= @trip.date %> </li>
   <li>RATING: <%= @trip.rating %> </li>
   <li>COST: <%= @trip.cost %> </li>

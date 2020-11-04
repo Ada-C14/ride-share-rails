@@ -20,9 +20,9 @@
 
   <% @driver.trips.each do |trip| %>
     <tr>
-      <td><%= "#{trip.id}" %> </td>
-      <td><%= "#{trip.passenger_id}" %> </td>
-      <td><%=  "#{trip.date}" %> </td>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %> </td>
+      <td><%= link_to "#{trip.passenger_id}", passenger_path(trip.passenger_id) %> </td>
+      <td><%= "#{trip.date}" %> </td>
       <td><%= "#{trip.rating}" %> </td>
       <td><%= "#{trip.cost}" %> </td>
     </tr>
