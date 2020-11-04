@@ -5,3 +5,9 @@
 <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %></p>
 <p><%= button_to "Add trip for #{@passenger.name}", passenger_trips_path(@passenger.id) %></p>
 
+<h3><%= @passenger.name %>'s Trips</h3>
+<ul>
+  <% @passenger.trips.each do |trip| %>
+    <li><%= link_to "Trip ##{trip.id} | Date: #{trip.date}", trip_path(trip.id) %></li>
+  <% end %>
+</ul>
