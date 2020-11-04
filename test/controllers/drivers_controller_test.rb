@@ -4,7 +4,7 @@ describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
   let (:driver) {
-    Driver.create name: "Shane Doe", vin: "HKJS12345HJGS"
+    Driver.create(name: "Shane Doe", vin: "HKJS12345HJGS", availability_status: true)
   }
 
   describe "index" do
@@ -67,8 +67,17 @@ describe DriversController do
   describe "create" do
     it "when new driver is created, availability status is true" do
 
-      d = driver
-      p d.availability_status
+      driver_hash = {
+          driver: {
+              name: "Sally Sombody",
+              vin: "HKJHSIU3467854",
+          }
+      }
+
+      post drivers_path, params: driver_hash
+
+      d = Driver.last
+
       expect(d.availability_status).must_equal true
 
     end
@@ -80,7 +89,6 @@ describe DriversController do
           driver: {
               name: "Sally Sombody",
               vin: "HKJHSIU3467854",
-              # availability_status: true
           }
       }
       # Act-Assert
@@ -98,7 +106,7 @@ describe DriversController do
 
       expect(new_driver.name).must_equal driver_hash[:driver][:name]
       expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
-      expect(new_driver.availability_status).must_equal driver_hash[:driver][:availability_status]
+      expect(new_driver.availability_status).must_equal true
 
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver.id)
