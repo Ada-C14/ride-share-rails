@@ -1,13 +1,13 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers =Driver.all
   end
 
   def show
     driver_id = params[:id]
     @driver = Driver.find_by(id: driver_id)
     if @driver.nil?
-      redirect_to drivers_path
+      redirect_to root_path
       return
     end
   end
@@ -16,5 +16,54 @@ class DriversController < ApplicationController
     @driver = Driver.new
   end
 
+  def create
+    @driver = Driver.new(
+        name: params[:driver][:name],
+        vin: params[:driver][:vin],
+        available: params[:driver][:available]
+    )
+    if @driver.save
+      redirect_to driver_path(@driver)
+      return
+    else
+      render :new
+      return
+    end
+  end
 
+  def edit
+    driver_id = params[:id]
+    @driver = Driver.find_by(id: driver_id)
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    end
+  end
+
+  def update
+    @driver = Driver.find(params[:id])
+    result = @driver.update({
+                                name: params[:driver][:name],
+                                vin: params[:driver][:vin],
+                                available: params[:driver][:available]
+                          })
+
+    if result
+      redirect_to driver_path(@driver.id)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def delete
+    driver = Driver.find(params[:id])
+    if driver.destroy
+      redirect_to root_path
+    end
+  end
+
+
+  def count
+    count = Driver.count
+  end
 end
