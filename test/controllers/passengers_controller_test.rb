@@ -123,6 +123,29 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can destroy a model" do
+      passenger7 = Passenger.new name: "Passenger 7", phone_num: "7777777777"
+
+      passenger7.save
+      id = passenger7.id
+
+      expect {
+        delete passenger_path(id)
+      }.must_change 'Passenger.count', -1
+
+      passenger7 = Passenger.find_by(name: "Passenger 7")
+      expect(passenger7).must_be_nil
+
+      must_respond_with :not_found
+    end
+
+    it "will respond with not_found for invalid ids" do
+      expect{
+        delete passenger_path(-1)
+      }.wont_change "Passenger.count"
+
+      must_respond_with :not_found
+    end
+
   end
 end
