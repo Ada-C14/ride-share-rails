@@ -27,7 +27,7 @@ class TripsController < ApplicationController
     trip = Trip.new(trip_params)
 
     if trip.save
-      redirect_to passenger_path(passenger.id)
+      redirect_to passenger_path(trip.passenger)
       return
     else
       # what should we render now that we don't have new view?
