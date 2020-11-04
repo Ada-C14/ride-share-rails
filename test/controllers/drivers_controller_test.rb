@@ -46,13 +46,12 @@ describe DriversController do
     end
 
     it "responds with 404 with an invalid driver id" do
-      skip
       # Arrange
       # Ensure that there is an id that points to no driver
       # Act
       get driver_path(-1)
       # Assert
-      must_respond_with :redirect
+      must_respond_with :not_found
     end
   end
 
