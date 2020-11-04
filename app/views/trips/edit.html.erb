@@ -1,4 +1,24 @@
 <h1>update trip</h1>
 
-<!--do we need for?-->
-<%= @trip.id %>
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
+  <p>Please provide the following information to edite your trip to our database:</p>
+
+
+  <%= f.label :date %>
+  <%= f.text_field :date %>
+
+  <%= f.label :driver_name %>
+  <%= f.text_field :title %>
+
+  <%= f.label :passenger_name %>
+  <%= f.text_field :passenger_name %>
+
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+
+  <%= f.submit "update trip", class: "submit-button" %>
+<% end %>
+

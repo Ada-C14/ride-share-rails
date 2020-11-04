@@ -1,2 +1,4 @@
 <h1>edit driver</h1>
-<%= @driver.name %>
+
+<%= render partial: "form", locals: { action_name: "Edit" } %>
+<%= link_to "Back", driver_path(@driver.id)%>

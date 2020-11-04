@@ -1,3 +1,5 @@
 <h1>edit passenger</h1>
 
-<%= @passenger.name %>
+
+<%= render partial: "form", locals: { action_name: "Edit" } %>
+<%= link_to "Back", passenger_path(@passenger.id)%>

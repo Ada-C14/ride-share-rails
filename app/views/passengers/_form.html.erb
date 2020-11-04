@@ -1,0 +1,27 @@
+
+<%= form_with model: @passenger do |f|%>
+  <% if @passenger.errors.any? %>
+    <ul>
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+  <p>Please provide the following information to add your trip to our database:</p>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :phone_num %>
+    <%= f.text_area :phone_num %>
+  </div>
+
+  <%= f.submit "#{action_name} Submit", class: "task-button" %>
+
+<% end %>
