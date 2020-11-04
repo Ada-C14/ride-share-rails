@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :drivers
+  resources :passengers
 
   # verb 'path', to: 'controller#action'
   #  get '/drivers', to: 'drivers#index', as: 'drivers'
@@ -13,4 +14,11 @@ Rails.application.routes.draw do
   #  get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
   #  patch '/drivers/:id', to: 'drivers#update'
   #  delete '/drivers/:id', to: 'drivers#destroy'
+  #
+
+ # get '/passengers', to: 'passengers#index', as: 'passengers'
+ #   root to: 'passengers#index'
+
+  #get '/passengers/:id', to: 'passengers#show', as: 'passenger'
+
 end
