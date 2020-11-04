@@ -26,4 +26,14 @@ class Driver < ApplicationRecord
     net_comission = sum_net_fee * 0.8
     return net_comission.round(2)
   end
+
+  def self.select_driver
+    available_driver = Driver.find_by(available: true)
+    if available_driver.nil?
+      return nil
+    else
+      available_driver.available = false
+      return available_driver
+    end
+  end
 end
