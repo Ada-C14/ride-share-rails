@@ -12,7 +12,7 @@
 <%= button_to "Delete driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete driver #{@driver.name}?" }%>
 
 <br>
-<h3>Trips</h3>
+<h3>Trips for <%= @driver.name %></h3>
 
 <table class="table table-striped table-bordered">
   <thead>
