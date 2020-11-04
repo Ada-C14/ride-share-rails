@@ -2,6 +2,7 @@ require "test_helper"
 
 describe TripsController do
   describe "show" do
+<<<<<<< HEAD
     before do
       @trip = Trip.create(driver_id: 1, passenger_id: 2, date: "2016-04-05", rating: 3, cost: 1293)
     end
@@ -26,6 +27,14 @@ describe TripsController do
       
       # Assert
       must_respond_with :not_found
+=======
+    it "can get a valid trip" do
+      # Your tests go here
+    end
+
+    it "will redirect for an invalid trip" do
+      # Your tests go here
+>>>>>>> cef4b601b5c386a757a7363193b22c15d4b426d9
     end
   end
 

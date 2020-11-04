@@ -1,6 +1,12 @@
 class TripsController < ApplicationController
+
   def index
-    @trips = Trip.all
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = passenger.trips
+    else
+      @trips.Trip.all # or not_found
+    end
   end
 
   def show
