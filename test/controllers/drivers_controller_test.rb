@@ -13,7 +13,8 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      driver = Driver.create(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
 
       # Act
       get drivers_path
@@ -23,77 +24,106 @@ describe DriversController do
     end
 
     it "responds with success when there are no drivers saved" do
-      skip
       # Arrange
       # Ensure that there are zero drivers saved
 
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
   end
 
   describe "show" do
-    skip
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      driver_id = new_driver.id
 
       # Act
+      get driver_path(driver_id)
 
       # Assert
-
+      must_respond_with :success
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "redirects for an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
+      invalid_id = 800
 
       # Act
+      get driver_path(invalid_id)
 
       # Assert
-
+      must_respond_with :redirect
     end
   end
 
   describe "new" do
-    skip
     it "responds with success" do
+      get new_book_path
+
+      must_respond_with :success
     end
   end
 
   describe "create" do
-    skip
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      valid_driver = {
+          driver: {
+              name: "Clara Bow",
+              vin: "SKDO2938GHEK29385",
+              available: false
+          }
+      }
 
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post drivers_path, params: valid_driver
+      }.must_differ "Driver.count", 1
 
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
+      saved_driver = Driver.find_by(name: valid_driver[:driver][:name])
 
+      expect(saved_driver.name).must_equal valid_driver[:driver][:name]
+      expect(saved_driver.vin).must_equal valid_driver[:driver][:vin]
+      expect(saved_driver.available).must_equal valid_driver[:driver][:vin]
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      invalid_driver = {
+          driver: {
+              name: "",
+              vin: "123",
+              available: "false"
+          }
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: invalid_driver
+      }.wont_change Driver.count
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :redirect
     end
   end
   
   describe "edit" do
-    skip
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -116,7 +146,6 @@ describe DriversController do
   end
 
   describe "update" do
-    skip
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -162,7 +191,6 @@ describe DriversController do
   end
 
   describe "destroy" do
-    skip
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
