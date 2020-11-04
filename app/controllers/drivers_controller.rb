@@ -55,6 +55,7 @@ class DriversController < ApplicationController
     end
   end
 
+
   def delete
     driver = Driver.find(params[:id])
     if driver.destroy
@@ -66,4 +67,5 @@ class DriversController < ApplicationController
   def count
     count = Driver.count
   end
+
 end
