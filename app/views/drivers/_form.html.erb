@@ -1,5 +1,16 @@
 <%= form_with model: @driver, class: 'create_driver' do |p| %>
 
+    <% if @driver.errors.any? %>
+        <ul>
+            <% @driver.errors.each do |column, message| %>
+                <li>
+                    Error: <%= column %> <%= message %>
+                </li>
+            <% end %>
+            <li> Please enter the correct information below:</li>
+        </ul>
+    <% end %>
+
     <%= p.label :name %>
     <%= p.text_field :name %>
   
