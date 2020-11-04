@@ -52,28 +52,36 @@ describe DriversController do
 
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
-      # Arrange
-      # Set up the form data
+      driver_hash = {driver: {
+          name: "Driver 1",
+          vin: "12345"
+      }}
 
-      # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_differ "Driver.count", 1
 
-      # Assert
-      # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
+      must_respond_with :redirect
+      must_redirect_to driver_path(Driver.last.id)
+      expect(Driver.last.name).must_equal driver_hash[:driver][:name]
+      expect(Driver.last.vin).must_equal driver_hash[:driver][:vin]
+      expect(Driver.last.available).must_equal true
 
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+      no_name = {driver: {name: "", vin: "12345"}}
+      no_vin = {driver: {name: "Driver Extraordinaire", vin: ""}}
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: no_name
+      }.wont_change "Driver.count"
+      expect {
+        post drivers_path, params: no_vin
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller redirects
+      must_respond_with :redirect
+      must_redirect_to new_driver_path
 
     end
   end
