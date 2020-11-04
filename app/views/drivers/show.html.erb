@@ -8,12 +8,7 @@
         <th>VIN</th>
         <th>Total Earnings</th>
         <th>Average Rating</th>
-        <td>
-          <li>
-            <%= link_to "Edit", edit_driver_path(@driver.id) %>|
-            <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>
-          </li>
-        </td>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -21,8 +16,43 @@
         <td><%= @driver[:name] %></td>
         <td><%= @driver[:available] == 'true' ? 'Available' : "Trip in-progress" %></td>
         <td><%= @driver[:vin] %></td>
+        <td><%= @driver[:cost] %></td>
+        <td><%= @driver[:rating] %></td>
+        <td><%= link_to "Edit", edit_driver_path(@driver.id) %> |
+          <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %> |
+          <%= link_to "Back", drivers_path %>
+        </td>
       </tr>
     </tbody>
   </table>
+<section>
+
+<section>
+  <h3>Drivers trips</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Drivers</th>
+      <th>Passenger</th>
+      <th>Total Earnings</th>
+      <th>Average Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--    <tr>-->
+    <!--      <td><%#= @trip[:id] %></td>-->
+    <!--      <td><%#= @trio[:date] %></td>-->
+    <!--      <td><%#= @trip[:driver_id] %></td>-->
+    <!--      <td><%#= @trio[:passenger_id] %></td>-->
+    <!--      <td><%#= @trip[:cost] %></td>-->
+    <!--      <td><%#= @trip[:rating] %></td>-->
+    <!--    </tr>-->
+    </tbody>
+  </table>
+
+  </table>
 </section>
+
 

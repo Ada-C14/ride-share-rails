@@ -63,7 +63,7 @@ footer{
   margin_top: 100px;
 }
 
-.passenger{
+.form{
   background-color: lightgray;
   float: left;
   width: 450px;
@@ -104,4 +104,19 @@ img{
   height: 100px;
   width: 300px;
   justify: right;
+}
+
+table, th, td {
+  border: 1px solid gray;
+}
+
+th{
+
+}
+table{
+ width: 80%;
+}
+
+tr:nth-child(even) {
+  background-color: lightgray;
 }

@@ -1,4 +1,4 @@
-<div class="passenger">
+<div class="form">
   <%= form_with model: @passenger do |f| %>
     <p>Please enter the following information for a passenger:</p>
     <div class="label">
@@ -7,8 +7,10 @@
     </div>
     <div class="label">
       <%= f.label :phone_num %>
-      <%= f.text_area :phone_num %>
+      <%= f.text_field :phone_num %>
     </div>
     <%= f.submit action_name %>
+    <button><%= link_to "Back", passengers_path %></button>
   <% end %>
 </div>
+

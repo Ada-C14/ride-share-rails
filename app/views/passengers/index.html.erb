@@ -1,30 +1,22 @@
 <nav>
   <ul>
-    <li><button class="show"><a href="<%= passengers_path %>">Show passengers</a></button></li>
+    <li><button class="show"><a href="<%= new_driver_path %>">Add a driver</a></button></li>
     <li><button class="show"><a href="<%= new_passenger_path %>">Add a passenger</a></button></li>
   </ul>
 </nav>
+
 <h3>Rideshare Passengers </h3>
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone Number</th>
-    </tr>
-  </thead>
   <tbody>
     <% @passengers.each do |passenger| %>
       <tr>
         <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
-        <td><%= passenger.phone_num %></td>
         <td>
-          <li>
             <%= link_to "Edit", edit_passenger_path(passenger.id) %> |
             <%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: { confirm: "Please confirm deletion." } %>
-          </li>
         </td>
       </tr>
     <% end %>

@@ -1,4 +1,4 @@
-<div class="driver">
+<div class="form">
   <%= form_with model: @driver do |f| %>
     <p>Please the following information for a driver</p>
     <div class="label">
@@ -10,5 +10,6 @@
       <%= f.text_field :vin %>
     </div>
     <%= f.submit action_name %>
+    <button><%= link_to "Back", drivers_path %></button>
   <% end %>
 </div>
