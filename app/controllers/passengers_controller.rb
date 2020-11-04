@@ -41,7 +41,9 @@ class PassengersController < ApplicationController
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
-      render :new, :bad_request
+      flash[:notice] = "Uh oh! That did not save correctly."
+      render :new
+      return
     end
   end
 
