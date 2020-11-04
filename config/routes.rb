@@ -3,8 +3,12 @@ Rails.application.routes.draw do
 
   root to: 'homepages#index'
 
-  resources :trips, except: [:index, :new]
-  resources :drivers
-  resources :passengers
 
+  resources :drivers
+  # don't we need trips :index and :new for the nested routes?
+  resources :passengers do
+    resources :trips, only: [:index, :new]
+  end
+
+  resources :trips, except: [:index, :new]
 end

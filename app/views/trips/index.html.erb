@@ -1,0 +1,13 @@
+<h1>Trip List</h1>
+<ul>
+  <% @trips.each do |trip|  %>
+    <li>
+      <%= link_to "Trip ID: #{trip.id}", trip_path(trip) %>
+      <%= "Driver: #{trip.driver.name}"%>
+      <%= "Rating: #{trip.rating}"%>
+      <%= link_to "Edit Trip", edit_trip_path(trip.id) %>
+      <%= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link' %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Add Trip", new_passenger_trip_path %>

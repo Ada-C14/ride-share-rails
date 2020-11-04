@@ -1,5 +1,18 @@
 class TripsController < ApplicationController
 
+  # need to include index in our nested routes
+  def index
+    if params[:passenger_id]
+      # this is the nested route, /passengers/:passenger_id/trips
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = passenger.trips
+    else
+      @trips = Trip.all
+    end
+
+
+  end
+
   def show
     @trip = Trip.find_by(id: params[:id])
 
@@ -26,11 +39,16 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
   end
 
   def update
 
-    trip = trip.find_by(id: params[:id])
+    trip = Trip.find_by(id: params[:id])
 
     if trip.nil?
       head :not_found
@@ -38,7 +56,7 @@ class TripsController < ApplicationController
     else
       if trip.update(trip_params)
         # redirecting to passenger details page
-        redirect_to passenger_path(passenger.id)
+        redirect_to passenger_path(trip.passenger)
         return
       else
         render :edit, :bad_request
@@ -49,6 +67,8 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    #
+    # passenger = Passenger.find_by(id: params[:passenger_id])
     trip = Trip.find_by(id: params[:id])
 
     if trip.nil?
@@ -56,7 +76,9 @@ class TripsController < ApplicationController
       return
     else
       trip.destroy
-      redirect_to passenger_path(passenger.id)
+      # where to redirect this path to?
+      # redirect_to passenger_trips_path(trip.passenger.id)
+      redirect_to passenger_path(trip.passenger)
     end
 
   end
