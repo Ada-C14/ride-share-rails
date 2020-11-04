@@ -2,11 +2,19 @@ require "test_helper"
 
 describe PassengersController do
   describe "index" do
-    # Your tests go here
+    # Act
+    get passengers_path
+
+    # Assert
+    must_respond_with :success
   end
 
   describe "show" do
-    # Your tests go here
+    passenger_id = Passenger.first.id
+    get passenger_path(passenger_id)
+
+    # Assert
+    must_respond_with :success
   end
 
   describe "new" do
