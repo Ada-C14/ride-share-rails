@@ -3,10 +3,24 @@
 
 
 <!--See the total amount the passenger has been charged-->
+<p>Total amount charged: </p>
 <!--See a list of trips that passenger went on-->
+<strong><p>Trips List:</p></strong>
+<ul>
+  <% @passenger.trips.each do |trip| %>
+    <li>
+      <%= link_to "Trip ID: #{trip.id}", trip_path(trip.id) %>
+      <%= "Date: #{trip.date}" %>
+      <%= "Driver: #{trip.driver}" %>
+      <%= "Rating: #{trip.rating}" %>
+    </li>
+
+  <% end %>
+</ul>
 <!--Click on an individual trip from the list of trips, which will take me to a detail page for that trip-->
 
 <%= link_to "Edit", edit_passenger_path(@passenger) %>
 <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
 
 <!--Click a button to add a new trip for that passenger-->
+<%#= link_to "Add new trip", trips_path %>
