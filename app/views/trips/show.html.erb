@@ -1,7 +1,7 @@
 <h1><%= @trip.id %></h1>
-<p>Cost: <%= @driver.cost %></p>
-<p>Passenger: <%= @trip.passenger.name %></p>
-<p>Driver: <%= @trip.driver.name %></p>
+<p>Cost: <%= @trip.cost %></p>
+<p>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></p>
+<p>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></p>
 <p>Rating: <%= @trip.rating %></p>
 
 <%= link_to "Edit", edit_trip_path(@trip) %>
