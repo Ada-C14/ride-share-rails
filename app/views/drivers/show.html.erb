@@ -1,0 +1,13 @@
+<div>
+  <h1><%= @driver.name %></h1>
+  <h5>VIN#: <%= @driver.vin %></h5>
+  <% if @driver.available %>
+      <h5>Driver availability: available </h5>
+  <% else %>  
+      <h5>Driver availability: unavailable </h5>
+  <% end %>
+  <%= link_to "Edit", edit_driver_path(@driver) %> |
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>
+
+
