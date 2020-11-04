@@ -5,11 +5,9 @@ class PassengersController < ApplicationController
 
   def show
     passenger_id = params[:id].to_i
-    if passenger_id >= 0
-      @passenger = Passenger.find_by_id(passenger_id)
-    end
+    @passenger = Passenger.find_by(id: passenger_id)
+
     if @passenger.nil?
-      redirect_to action: :index
       return
     end
   end
