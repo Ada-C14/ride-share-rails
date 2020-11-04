@@ -1,13 +1,31 @@
-<div class="passenger">
-  <h3>Passengers </h3>
-  <nav>
-    <ul>
-      <% @passengers.each do |passenger| %>
-        <a href="<%= passenger_path(passenger) %>"><%= passenger[:name] %></a>
+<!--<div class="passenger">-->
 
-          <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
-          <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li>
-      <% end %>
-    </ul>
-  </nav>
+<!--  <nav>-->
+<!--    <ul>-->
+      <%# @passengers.each do |passenger| %>
+<!--        <a href="<%#= passenger_path(passenger) %>"><%#= passenger[:name] %></a>-->
+<!--          <%#= link_to "Edit", edit_passenger_path(passenger.id) %>|-->
+<!--          <%#= link_to "Delete", passenger_path(passenger.id), method: :delete %></li>-->
+      <%# end %>
+<!--    </ul>-->
+<!--  </nav>-->
 </div>
+
+<h3>Rideshare Passengers </h3>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Phone Number</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td><a href="<%= passenger_path(passenger) %>"><%= passenger[:name] %></a></td>
+      <td><%= passenger.phone_num %></td>
+      <td> <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
+      <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li></td>
+    </tr>
+  <% end %>
+  </tbody>

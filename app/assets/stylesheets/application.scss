@@ -78,8 +78,8 @@ a:hover {
   color: blue;
 }
 
-.show {
-  margin-top :30px }
+// .show {
+//   margin-top :30px }
 
 h3{
   text-align: center;
@@ -96,9 +96,12 @@ p{
 
 li{
   list-style-type: none;
+  display: inline;
+  justify: left;
 }
 
 img{
-  height: 200px;
-  width: 600px;
+  height: 100px;
+  width: 300px;
+  justify: right;
 }
