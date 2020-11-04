@@ -7,12 +7,26 @@ class Driver < ApplicationRecord
     @drivers =Driver.all
   end
 
-  def create
-    @driver=Driver.new(
-        name: params[:driver][:name],
-        vin: params[:driver][:vin]
-    )
+  def show
+
   end
+
+  def new
+    @driver=Driver.new
+  end
+
+  def create
+    @driver=Driver.new(driver_params)
+    )
+    if @driver.save
+      head :success
+      return
+    else
+      render :new
+      return
+    end
+  end
+
 
   def update
 
@@ -22,9 +36,6 @@ class Driver < ApplicationRecord
 
   end
 
-  def show
-
-  end
 
   def destroy
 
