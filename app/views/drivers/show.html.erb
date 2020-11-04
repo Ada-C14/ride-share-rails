@@ -4,7 +4,17 @@
 <p>Total Earnings: <%=  %></p>
 <p>Total Earnings: <%=  %></p>
 <p>Average Rating: <%=  %></p>
-<p>List of Trips (probably a table?)</p>
+<h3>List of Trips</h3>
+<ul>
+  <% @driver.trips.each do |trip| %>
+  <li>
+    <%= link_to "Trip id: #{trip.id}", trip_path(trip) %>
+  </li>
+  <% end %>
+</ul>
+
+
+
 <%= link_to "Edit", edit_driver_path(@driver) %>
 <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
 
