@@ -1,0 +1,28 @@
+<h1>PASSENGER INFORMATION</h1>
+
+<ul>
+  <li>ID: <%= "#{@passenger.id}"%></li>
+  <li>NAME: <%= "#{@passenger.name}"%></li>
+  <li>PHONE NUMBER: <%= @passenger.phone_num %> </li>
+</ul>
+
+<h2>Trips taken:</h2>
+<table style="width:50%">
+  <tr>
+    <th>Trip ID</th>
+    <th>Driver ID</th>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
+
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %> </td>
+      <td><%= link_to "#{trip.driver_id}", driver_path(trip.driver_id) %> </td>
+      <td><%= "#{trip.date}" %> </td>
+      <td><%= "#{trip.rating}" %> </td>
+      <td><%= "#{trip.cost}" %> </td>
+    </tr>
+
+  <% end %>
