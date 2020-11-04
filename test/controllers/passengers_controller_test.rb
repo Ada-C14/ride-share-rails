@@ -49,7 +49,7 @@ describe PassengersController do
               phone_num: "4444444444"
           }
       }
-      expect{
+      expect {
         post passengers_path, params: passenger_4_hash
       }.wont_change "Passenger.count"
 
@@ -66,7 +66,7 @@ describe PassengersController do
               #phone_num: ""
           }
       }
-      expect{
+      expect {
         post passengers_path, params: passenger_5_hash
       }.wont_change "Passenger.count"
 
@@ -146,7 +146,7 @@ describe PassengersController do
     end
 
     it "will respond with not_found for invalid ids" do
-      expect{
+      expect {
         delete passenger_path(-1)
       }.wont_change "Passenger.count"
 

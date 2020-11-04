@@ -1,0 +1,26 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Avg Rating</th>
+    <th>Total Earnings</th>
+    <th>Status</th>
+  </tr>
+  <% @drivers.each do |driver| %>
+    <tr>
+      <td>
+        <%= link_to "#{driver.name}", driver_path(driver.id)%>
+      </td>
+      <td>
+        <%= driver.average_rating %>
+      </td>
+      <td>
+        <%= driver.total_earnings %>
+      </td>
+      <% if driver.available %>
+        <td>Available</td>
+      <% else %>
+        <td>Unavailable</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
