@@ -4,7 +4,7 @@
 <% if @drivers.length > 0 %>
   <ol>
     <% @drivers.each do |driver| %>
-      <li>  <%= link_to driver.name, passenger_path(driver.id)%></li>
+      <li>  <%= link_to driver.name, driver_path(driver.id)%></li>
     <% end  %>
   </ol>
 <% else %>
