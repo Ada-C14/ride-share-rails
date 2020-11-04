@@ -1,36 +1,48 @@
 <%#index.html.erb%>
 
 <header>
-  <h1>PASSENGERS</h1>
+
+  <div>
+    <div><h1>PASSENGERS</h1></div>
+    <div><button><%= link_to "Create New Passenger", new_passenger_path %></button></div>
+  </div>
+
 </header>
 
 <main>
-  <section>
-    <h2>List of Passengers</h2>
 
-    <ul>
 
-      <% @passengers.each do |passenger| %>
+  <table>
+    <thead>
 
-        <li>
+    <tr>
+      <th>NAME</th>
 
-            <div>
-              <%= link_to passenger.name, passenger_path(passenger.id), class:"text", id:"passenger-link" %>
-            </div>
+      <th>PHONE NUMBER</th>
 
-        </li>
+      <th colspan="3"></th>
+    </tr>
 
-      <% end %>
+    </thead>
 
-    </ul>
+    <tbody>
 
-  </section>
+    <% @passengers.each do |passenger| %>
+      <tr>
+        <td><%= link_to passenger.name, passenger_path(passenger)%></td>
 
-  <section>
-    <div><%= button_to  "ADD PASSENGER", new_passenger_path, method: :get, :class => 'button' %></div>
+        <td>
+          <%= passenger.phone_num %>
+        </td>
 
-  </section>
+        <td><%= link_to "Edit", edit_passenger_path(passenger) %></td>
+        <td><%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete #{passenger.name}?"}%><td>
+      </tr>
+    <% end %>
 
+    </tbody>
+
+  </table>
 </main>
 
 <footer>
