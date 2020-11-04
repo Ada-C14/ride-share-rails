@@ -14,7 +14,7 @@ describe DriversController do
       # Arrange
       # Ensure that there is at least one Driver saved
       # instantiate driver from let block
-      driver_id = driver.id
+      driver
 
       # Act
       get drivers_path
@@ -39,21 +39,23 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
+      # instantiate driver from let block
+      driver
 
       # Act
-
+      get driver_path(driver.id)
       # Assert
-
+      must_respond_with :success
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "will redirect when passed an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
 
       # Act
-
+      get driver_path(-1)
       # Assert
-
+      must_respond_with :redirect
     end
   end
 
