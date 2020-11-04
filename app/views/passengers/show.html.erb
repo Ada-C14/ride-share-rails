@@ -1,3 +1,9 @@
+<p><%= link_to "Home", root_path %></p>
+<p><%= link_to "Drivers List", drivers_path %></p>
+<p><%= link_to "Passengers List", passengers_path %></p>
+<p><%= link_to "Add Driver", new_driver_path %></p>
+<p><%= link_to "Add Passenger", new_passenger_path %></p>
+
 <h1>View Passenger</h1>
 <h3>Passenger #<%= @passenger.id  %></h3>
 <ul>
@@ -6,4 +12,3 @@
 </ul>
 <p><%= link_to "Edit #{@passenger.name}", edit_passenger_path %></p>
 <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
-<p><%= link_to "Home", passengers_path %></p>

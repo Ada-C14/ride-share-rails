@@ -1,3 +1,9 @@
+<p><%= link_to "Home", root_path %></p>
+<p><%= link_to "Drivers List", drivers_path %></p>
+<p><%= link_to "Passengers List", passengers_path %></p>
+<p><%= link_to "Add Driver", new_driver_path %></p>
+<p><%= link_to "Add Passenger", new_passenger_path %></p>
+
 <h2>Edit Passenger</h2>
 <%= form_with model: @passenger, class: 'create-passenger' do |f|%>
   <p>Please provide the following information to edit passenger information in our database:</p>
