@@ -53,7 +53,7 @@ describe DriversController do
     it "redirects for an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
-      invalid_id = 800
+      invalid_id = -1
 
       # Act
       get driver_path(invalid_id)
@@ -127,21 +127,27 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      driver_id = new_driver.id
 
       # Act
+      get driver_path(driver_id)
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      driver_id = (-1)
 
       # Act
+      get driver_path(driver_id)
 
       # Assert
-
+      must_respond_with :redirect
     end
   end
 
@@ -151,27 +157,57 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      new_driver.reload
+      driver_id = new_driver.id
+      new_info = {
+          driver: {
+              name: "Lillian Gish",
+              vin: "GFEDCBA0987654321",
+              available: false
+          }
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: new_info
+      }.wont_change Driver.count
 
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
+      updated_driver = Driver.find_by(driver_id)
 
+      expect(updated_driver.name).must_equal new_info[:driver][:name]
+      expect(updated_driver.vin).must_equal new_info[:driver][:vin]
+      expect(updated_driver.available).must_equal new_info[:driver][:available]
+
+      must_respond_with :redirect
     end
 
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "does not update any driver if given an invalid id, and redirects" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
+      driver_id = -1
+      new_info = {
+          driver: {
+              name: "Lillian Gish",
+              vin: "GFEDCBA0987654321",
+              available: false
+          }
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: new_info
+      }.wont_change Driver.count
 
       # Assert
-      # Check that the controller gave back a 404
-
+      # Check that the controller redirected
+      must_respond_with :redirect
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -180,13 +216,27 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      new_driver.reload
+      driver_id = new_driver.id
+      bad_info = {
+          driver: {
+              name: "",
+              vin: "GFED",
+              available: "yes"
+          }
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: bad_info
+      }.wont_change Driver.count
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :redirect
     end
   end
 
