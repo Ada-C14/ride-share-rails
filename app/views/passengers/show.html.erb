@@ -1,1 +1,31 @@
 <!--each passenger info-->
+<div>
+  <h2>passenger information</h2>
+  <h3><%= @passenger.name %></h3>
+  <h3><%= @passenger.phone_num %></h3>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Trip ID</th>
+      <th scope="col">passenger</th>
+      <th scope="col">driver</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @passenger.trips.each do |trip| %>
+      <tr>
+        <th scope="row"><%= trip.id %></th>
+        <td><%= trip.passenger.name %></td>
+        <td><%= trip.driver.name %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%#= link_to "Edit", edit_task_path(@task) %>
+  <%#= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>

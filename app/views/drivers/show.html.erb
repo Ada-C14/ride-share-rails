@@ -1,2 +1,33 @@
 
 <!--each driver data-->
+<h1>All Drivers</h1>
+
+<div>
+  <h2>driver information</h2>
+  <h3><%= @driver.name %></h3>
+  <h3><%= @driver.vin %></h3>
+  <h3><%= @driver.available ? "Available" : "Unavailable" %></h3>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Trip ID</th>
+      <th scope="col">passenger</th>
+      <th scope="col">driver</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <th scope="row"><%= trip.id %></th>
+        <td><%= trip.passenger.name %></td>
+        <td><%= trip.driver.name %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

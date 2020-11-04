@@ -1,1 +1,10 @@
 <h1>All Drivers</h1>
+
+
+<%= link_to "Create new Driver Account",  new_driver_path %>
+
+<% @drivers.each do |driver|%>
+  <li>
+    <%= driver.name %> | <%= link_to "Details", driver_path(driver.id) %>
+  </li>
+<% end %>
