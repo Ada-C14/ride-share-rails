@@ -44,6 +44,9 @@ describe DriversController do
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+
+      must_respond_with :success
     end
   end
 
