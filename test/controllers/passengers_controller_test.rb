@@ -131,7 +131,7 @@ describe PassengersController do
         patch passenger_path(-1), params: passenger_hash
       }.must_differ "Passenger.count", 0
 
-      must_respond_with :not_found
+      must_respond_with :redirect
     end
   end
 
@@ -155,7 +155,7 @@ describe PassengersController do
       expect(passenger).must_be_nil
 
       must_respond_with :redirect
-      must_redirect_to passenger_path
+      must_redirect_to passengers_path
     end
 
     it "will respond with not_found for invalid ids" do
@@ -164,7 +164,7 @@ describe PassengersController do
         delete passenger_path(-1)
       }.wont_change 'Passenger.count'
 
-      must_respond_with :not_found
+      must_respond_with :redirect
     end
   end
 end
