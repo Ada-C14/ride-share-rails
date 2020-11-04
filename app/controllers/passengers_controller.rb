@@ -5,7 +5,8 @@ class PassengersController < ApplicationController
 
   def show
     id = params[:id].to_i
-    @passenger = Task.find_by(id: id)
+    @passenger = Passenger.find_by(id: id)
+
     if @passenger.nil?
       head :not_found
       return
@@ -13,10 +14,11 @@ class PassengersController < ApplicationController
   end
 
   def update
-    @passenger = Passenger.find_by(id: params[:id])
+    id = params[:id].to_i
+    @passenger = Passenger.find_by(id: id)
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     elsif @passenger.update(
         name: params[:passenger][:name],
@@ -31,23 +33,25 @@ class PassengersController < ApplicationController
   end
 
   def edit
-    @passenger = Passenger.find_by(id: params[:id])
+    id = params[:id].to_i
+    @passenger = Passenger.find_by(id: id)
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     end
   end
 
   def destroy
-    task_id = params[:id]
-    @passenger = Task.find_by(id: task_id)
+    id = params[:id].to_i
+    @passenger = Task.find_by(id: id)
 
     if @passenger
       @passenger.destroy
       redirect_to passengers_path
     else
       head :not_found
+      return
     end
   end
 

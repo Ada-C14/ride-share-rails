@@ -1,12 +1,13 @@
 <h2>Passenger: <%= @passenger.name %></h2>
-
-<%@passengers.each do |passenger| %>
-  <li>
-    <%= link_to(passenger.name, passenger_path(passenger.id)) %>,
-    Phone Number: <%= passenger.phone_num %>,
-    <p>Total amount charged: $<%= @passenger.total_amount_charged %></p>
-    <%= link_to "Edit #{passenger.name}", passenger_path(passenger.id) %>
-    <%= link_to "Delete #{passenger.name}", passenger_path(passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %>,
-    <%= button_to "Add trip for #{passenger.name}", passenger_trips_path(passenger.id) %>
+<ul><%@passengers.each do |passenger| %>
+    <li>
+      <%= link_to(passenger.name, passenger_path(passenger.id)) %>,
+      Phone Number: <%= passenger.phone_num %>,
+      <p>Total amount charged: $<%= @passenger.total_amount_charged %></p>
+      <%= link_to "Edit #{passenger.name}", passenger_path(passenger.id) %>
+      <%= link_to "Delete #{passenger.name}", passenger_path(passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %>,
+      <%= button_to "Add trip for #{passenger.name}", passenger_trips_path(passenger.id) %>
     </li>
   <% end %>
+</ul>
+
