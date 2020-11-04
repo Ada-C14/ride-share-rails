@@ -1,0 +1,11 @@
+<h2>Passengers</h2>
+<ul>
+  <%@passengers.each do |passenger| %>
+    <li>
+      <%= link_to(passenger.name, passenger_path(passenger.id)) %>,
+      phone_num: <%= passenger.phone_num %>
+      <%= link_to "Delete #{passenger.name}", passenger_path(passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Add Passenger", new_pasenger_path %>
