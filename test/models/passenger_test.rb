@@ -67,6 +67,17 @@ describe Passenger do
     describe "complete trip" do
       # Your code here
     end
+
+    it "total cost method" do
+      diff_passenger = Passenger.new(name: "Mary", phone_num: "222-111-1211")
+
+      diff_passenger.save
+      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: diff_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: diff_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+      expect(diff_passenger.passenger_cost).must_be_close_to 75.68
+      end
     # You may have additional methods to test here
+    end
   end
-end
