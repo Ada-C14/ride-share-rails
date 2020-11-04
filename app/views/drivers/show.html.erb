@@ -3,7 +3,22 @@
 <ul>
   <li>Name: <%= @driver.name %></li>
   <li>VIN: <%= @driver.vin %></li>
-  <li>Available? <%= @driver.available %> </li>
+  <li>Available? <%= @driver.available %></li>
+  <li>Total earnings: $<%= sprintf('%.2f', @driver.total_earnings/100) %></li>
+  <li>Average rating: <%= @driver.avg_rating %></li>
 </ul>
 
 <%= link_to "Edit Driver Details", edit_driver_path(@driver.id) %>
+
+<h4> Trips: </h4>
+
+<ul>
+  <% @driver.trips.each do |trip| %>
+    <li> ID: <%= trip.id %> --
+      Driver: <%= trip.driver.name %> --
+      Passenger: <%= trip.passenger.name %> --
+      Cost: $<%= sprintf('%.2f', trip.cost/100) %> --
+      Rating: <%= trip.rating %>
+    </li>
+  <% end %>
+</ul>

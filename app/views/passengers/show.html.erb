@@ -3,21 +3,20 @@
 <ul>
   <li>Name: <%= @passenger.name %></li>
   <li>Phone number: <%= @passenger.phone_num %></li>
+  <li>Total charges: $<%= sprintf('%.2f', @passenger.total_cost/100) %></li>
 </ul>
 
 <%= link_to "Edit Passenger Details", edit_passenger_path(@passenger.id) %>
 
-<h4> Trips: </h4>
+<h4>Trips: </h4>
 
 <ul>
   <% @passenger.trips.each do |trip| %>
   <li> ID: <%= trip.id %> --
-    Driver Name: <%= trip.driver.name%> --
-    Passenger Name: <%= trip.passenger.name %> --
-    Cost: $<%= trip.cost/100 %> --
+    Driver: <%= trip.driver.name %> --
+    Passenger: <%= trip.passenger.name %> --
+    Cost: $<%= sprintf('%.2f', trip.cost/100) %> --
     Rating: <%= trip.rating %>
   </li>
   <% end %>
-
-
 </ul>
