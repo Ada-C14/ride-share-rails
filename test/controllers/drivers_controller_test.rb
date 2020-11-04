@@ -45,6 +45,7 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+      # when seeing index page with no drivers, no errors, can be re-direct to homepage
 
       # Act
 
