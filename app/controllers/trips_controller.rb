@@ -14,8 +14,7 @@ class TripsController < ApplicationController
     trip = Trip.new(trip_params)
 
     if trip.save
-      # where should we redirect to?
-      redirect_to trip_path(trip.id)
+      redirect_to passenger_path(passenger.id)
       return
     else
       # what should we render now that we don't have new view?
@@ -34,8 +33,8 @@ class TripsController < ApplicationController
     trip = trip.find_by(id: params[:id])
 
     if trip.nil?
-      # where should this lead to?
-      redirect_to root_path
+      head :not_found
+      return
     else
       if trip.update(trip_params)
         # redirecting to passenger details page
