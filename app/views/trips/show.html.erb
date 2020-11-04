@@ -1,0 +1,13 @@
+<div>
+  <h1><%= @trip.name %></h1>
+  <h6>Driver: <%=  %></h6>
+  <h6>Passenger: <%= %></h6>
+  <h6>Cost: <%=  %></h6>
+  <h6>Rating: <%= %></h6>
+
+  <%= link_to "Edit", edit_trip_path(@trip) %>
+  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
+</div>
+
+
+<p><%= link_to "Return to trips Database", trips_path %></p>

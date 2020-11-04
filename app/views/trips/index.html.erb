@@ -1,0 +1,13 @@
+<h1>Trips Database</h1>
+<ul>
+  <% @trips.each do |trip| %>
+  <li>
+    <%= link_to trip.name, trip_path(trip) %> |
+    <%= link_to "Edit", edit_trip_path(trip) %> |
+    <%= link_to "Delete", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %>
+  </li>
+  <% end %>
+</ul>
+
+<button><%= link_to "Add trip", new_trip_path %></button>
+<footer>copyright 2020</footer>

@@ -1,0 +1,11 @@
+<%= form_with model: @trip, class: 'trip-form' do |f| %>
+  <p>Please fill in the form to update our database:</p>
+
+  <p><%= f.label :rating %>
+    <%= f.text_field :rating %></p>
+
+  <p><%= f.label :cost %>
+    <%= f.text_field :cost %></p>
+
+  <p> <%= f.submit action_name, class: 'trip-button' %></p>
+<% end %>
