@@ -19,5 +19,5 @@ class PassengersController < ApplicationController
         return
       end
     end
- 
+
 end
