@@ -11,7 +11,6 @@ class Passenger < ApplicationRecord
     total_amount_charged = trips_with_cost.trips.map{ |trip| trip.cost}
     # return first_book.publication_date
     return total_amount_charged
-
   end
 
 end
