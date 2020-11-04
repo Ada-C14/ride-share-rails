@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
 
-  # has_many :trips
+  has_many :trips
 
   def index
     @drivers = Driver.all
