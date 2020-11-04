@@ -8,6 +8,8 @@
 <% end %>
 <%= puts sum %>
 
-
+<% @passenger.trips.each do |trip| %>
+  <%= link_to trip.date, trip_path(trip.id) %>
+<% end %>
 
 
