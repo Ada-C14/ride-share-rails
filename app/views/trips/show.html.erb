@@ -15,7 +15,7 @@
   <tr>
     <td><%= @trip.date %></td>
     <td><%= link_to "#{@trip.driver.name}", driver_path(@trip.driver.id) %></td>
-    <td><%= link_to "#{@trip.passenger.id}", passenger_path(@trip.passenger.id) %></td>
+    <td><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger.id) %></td>
     <td><%= @trip.cost %></td>
     <% if @trip.rating.nil? %>
       <td><%= link_to "Edit Rating", edit_trip_path(@trip.id) %></td>
