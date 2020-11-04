@@ -6,3 +6,18 @@
 </ul>
 
 <%= link_to "Edit Passenger Details", edit_passenger_path(@passenger.id) %>
+
+<h4> Trips: </h4>
+
+<ul>
+  <% @passenger.trips.each do |trip| %>
+  <li> ID: <%= trip.id %> --
+    Driver Name: <%= trip.driver.name%> --
+    Passenger Name: <%= trip.passenger.name %> --
+    Cost: $<%= trip.cost/100 %> --
+    Rating: <%= trip.rating %>
+  </li>
+  <% end %>
+
+
+</ul>
