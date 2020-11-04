@@ -1,0 +1,9 @@
+<h1><%= @trip.id %></h1>
+<p>Cost: <%= @driver.cost %></p>
+<p>Passenger: <%= @trip.passenger.name %></p>
+<p>Driver: <%= @trip.driver.name %></p>
+<p>Rating: <%= @trip.rating %></p>
+
+<%= link_to "Edit", edit_trip_path(@trip) %>
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
+
