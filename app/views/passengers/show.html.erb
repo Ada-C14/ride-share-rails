@@ -1,0 +1,6 @@
+<h1>PASSENGER SHOW PAGE</h1>
+
+<%= link_to "All Passengers", passengers_path, method: :get %>
+<br /><br />
+<%= @passenger.name + " - " + @passenger.phone_num %>
+<%= button_to "Edit", edit_passenger_path(@passenger.id), method: :get %>
