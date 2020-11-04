@@ -7,6 +7,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
       head :not_found
+      # render :file => "driver_path/public/404.html",  layout: false, status: :not_found
       return
     end
   end
@@ -30,7 +31,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      head :not_found
+      redirect_to drivers_path 
       return
     end
   end
@@ -41,7 +42,7 @@ class DriversController < ApplicationController
       head :not_found
       return
     elsif @driver.update(driver_params)
-      redirect_to drivers_path 
+      redirect_to driver_path 
       return
     else 
       render :edit 
