@@ -1,9 +1,13 @@
-<h2>Rideshare Drivers</h2>
+<h2>Drivers</h2>
 <ul>
 <% @drivers.each do |driver| %>
     <li>
-        <%= driver.id %>
-        <%= driver.name %>
+        <%= driver.id %> -
+        <%= link_to driver.name, driver_path(driver) %> |
+        Vin: <%= driver.vin %> |
+         Rating: <%= driver.average_rating %> |
+        <%= link_to "Edit", edit_driver_path(driver) , class: "link-button"%> | 
+        <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
     </li>
 <% end %>
 </ul>
