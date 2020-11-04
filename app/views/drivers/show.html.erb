@@ -9,6 +9,12 @@
 <h4>Availability: <%= availability %></h4>
 
 <h4> <%= @driver[:name] %>'s average rating is
-<%= @driver.average_rating(@driver) %></h4>
+<%= @driver.average_rating(@driver) %> and their total money made is <%= @driver.total_money(@driver) %> </h4>
 
-</div>
+<!--<tr>-->
+<%#trips = @driver.list_all_trips(@driver) %>
+  <%#trips.each do |trip| %>
+
+<!--</tr>-->
+
+<p><%= @driver.list_all_trips(@driver) %></p>
