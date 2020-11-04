@@ -3,6 +3,7 @@
     <th>Name</th>
     <th>Avg Rating</th>
     <th>Total Earnings</th>
+    <th>Status</th>
   </tr>
   <% @drivers.each do |driver| %>
     <tr>
@@ -15,6 +16,11 @@
       <td>
         <%= driver.total_earnings %>
       </td>
+      <% if driver.available %>
+        <td>Available</td>
+      <% else %>
+        <td>Unavailable</td>
+      <% end %>
     </tr>
   <% end %>
 </table>
