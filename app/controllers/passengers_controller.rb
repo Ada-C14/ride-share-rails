@@ -18,10 +18,10 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
-      redirect_to passengers_path
+      redirect_to root_path
       return
     else
-      render :new
+      redirect_to passengers_path # for now
       return
     end
   end
@@ -29,7 +29,7 @@ class PassengersController < ApplicationController
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      head :not_found
+      redirect_to passengers_path
       return
     end
   end
@@ -58,11 +58,6 @@ class PassengersController < ApplicationController
       redirect_to root_path
       return
     end
-  end
-
-  def total_spent
-    @passenger = Passenger.find_by(id: params[:id])
-
   end
 
   private
