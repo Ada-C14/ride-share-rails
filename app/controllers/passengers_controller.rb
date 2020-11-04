@@ -27,10 +27,10 @@ class PassengersController < ApplicationController
 
   def edit
     passenger_id = params[:id].to_i
-    @passenger = Passenger.find_by_id(passenger_id)
+    @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
-      head :not_found
+      error_notice
       return
     end
   end
