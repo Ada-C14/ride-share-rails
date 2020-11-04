@@ -1,33 +1,81 @@
 class DriversController < ApplicationController
+
+  before_action :find_driver, except: [:index, :new, :create]
+
   def index
     @driver = Driver.all
   end
 
   def show
+    #find_driver
+    if @driver.nil?
+      redirect_to tasks_path
+      return
+    end
   end
 
   def new
-
+    @driver = Driver.new
   end
 
   def create
+    @driver = Driver.new(driver_params)
 
+    # save returns true if the database insert succeeds
+    if @driver.save
+      # go to the index so we can see the driver in the list, send them back to '/drivers' path
+      redirect_to driver_path(@driver)
+      return
+    else                              # save failed
+    render :new, :bad_request         # show the new driver form view again
+    return
+    end
   end
 
   def edit
-
+    #find_driver
+    if @driver.nil?
+      redirect_to edit_driver_path
+      # we can redirect to drivers_path index
+      # or back to edit with friendly error message
+      return
+    end
   end
 
   def update
-
+    #find_driver
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    elsif @driver.update(driver_params)
+      redirect_to driver_path(@driver.id)
+      #stays on specific driver page to show update. Otherwise will have to find driver in list to see changes
+      return
+    else                # save failed
+    render :edit      # show the new task form view again
+    return
+    end
   end
 
   def destroy
-
+    #find_driver
+    if @driver
+      @driver.destroy
+      redirect_to drivers_path
+    else
+      head :not_found
+    end
   end
 
-  def status
 
+
+  private
+
+  def find_driver
+    @driver = Driver.find_by(id: params[:id])
   end
 
+  def driver_params
+    return params.require(:driver).permit(:name, :vin, :available)
+  end
 end
