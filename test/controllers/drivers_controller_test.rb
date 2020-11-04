@@ -101,47 +101,54 @@ describe DriversController do
   end
 
   describe "update" do
+    let (:driver_hash) {
+      {driver: {
+          name: "Driver A",
+          vin: "56789"
+      }}
+    }
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
+      id = driver.id
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id), params: driver_hash
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
+      must_redirect_to driver_path(id)
+
+      test_driver = Driver.find_by(id: id)
+
+      expect(test_driver.name).must_equal "Driver A"
+      expect(test_driver.vin).must_equal "56789"
+      expect(test_driver.available).must_equal true
 
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
+      id = -1
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id), params: driver_hash
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller gave back a 404
+      must_respond_with :not_found
 
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+      id = driver.id
+      bad_data = {
+          driver: {
+              name: nil,
+              vin: nil
+          }
+      }
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id), params: bad_data
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller redirects
-
+      must_redirect_to edit_driver_path(id)
     end
   end
 
