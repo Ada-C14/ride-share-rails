@@ -3,18 +3,27 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
+  # TODO RINGO delete this later
+  # There is a helper method for each HTTP verb,
+  # and each helper method takes the path as an argument.
+  # Every controller test we write will call
+  # at least one of these helper methods
+
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
+      driver = Driver.create(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
 
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
+      skip
       # Arrange
       # Ensure that there are zero drivers saved
 
@@ -26,6 +35,7 @@ describe DriversController do
   end
 
   describe "show" do
+    skip
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
@@ -48,11 +58,13 @@ describe DriversController do
   end
 
   describe "new" do
+    skip
     it "responds with success" do
     end
   end
 
   describe "create" do
+    skip
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
@@ -81,6 +93,7 @@ describe DriversController do
   end
   
   describe "edit" do
+    skip
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -103,6 +116,7 @@ describe DriversController do
   end
 
   describe "update" do
+    skip
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -148,6 +162,7 @@ describe DriversController do
   end
 
   describe "destroy" do
+    skip
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved

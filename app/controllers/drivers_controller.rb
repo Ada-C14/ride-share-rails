@@ -34,7 +34,7 @@ class DriversController < ApplicationController
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
       redirect_to drivers_path and return
