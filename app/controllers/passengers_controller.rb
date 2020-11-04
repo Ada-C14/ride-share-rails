@@ -1,6 +1,7 @@
 class PassengersController < ApplicationController
 
   def index
+    @passenger = Passenger.new
   end
 
   def show
