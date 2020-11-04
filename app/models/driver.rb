@@ -6,34 +6,34 @@ class Driver < ApplicationRecord
   validates :vin, presence: true
 
   def trip_list
-    skip
+    # self.trips = Driver.all
   end
 
   def average_rating
     sum_of_ratings = 0.00
     average = 0.00
-    if @trips.empty?
+    if self.trips.nil?
       average
     else
-      @trips.map do |trip|
+      self.trips.map do |trip|
         if trip.rating.nil?
           next
         else
           sum_of_ratings += trip.rating.to_f
         end
       end
-      average = (sum_of_ratings / @trips.length).to_f.round(2)
+      average = (sum_of_ratings / trips.length).to_f.round(2)
       average
     end
   end
 
   def total_earnings
-    if @trips.empty?
+    if self.trips.nil?
       return 0
     else
       total_income = 0
 
-      @trips.each do |trip|
+      self.trips.each do |trip|
         total_income +=
           if trip.cost.nil?
             0
@@ -43,7 +43,7 @@ class Driver < ApplicationRecord
             ((trip.cost.to_f - 1.65) * 0.80).round(2)
           end
       end
-      return total_income
+      return  "$#{total_income.to_f.round(2)}"
     end
   end
 
