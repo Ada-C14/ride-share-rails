@@ -23,7 +23,8 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     else # save failed
-      render :new
+      render :new, status: :bad_request
+      return
     end
 
   end
@@ -48,7 +49,7 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     else # save failed
-      render  :edit
+      render  :edit, status: :bad_request
       return
     end
 
