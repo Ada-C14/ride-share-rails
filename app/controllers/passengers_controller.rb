@@ -7,7 +7,7 @@ class PassengersController < ApplicationController
     id = params[:id].to_i
     @passenger = Task.find_by(id: id)
     if @passenger.nil?
-      head: not_found
+      head :not_found
       return
     end
   end
