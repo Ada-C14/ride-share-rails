@@ -1,4 +1,12 @@
 class PassengersController < ApplicationController
+  # Helper Methods
+  def error_notice
+    flash[:notice] = "Uh oh! That passenger does not exist..."
+    redirect_to passengers_path
+  end
+
+  #########################################################
+
   def index
     @passengers = Passenger.all.order(:name)
   end
@@ -8,6 +16,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
+      error_notice
       return
     end
   end
