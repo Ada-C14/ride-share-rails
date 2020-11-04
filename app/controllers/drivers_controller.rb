@@ -8,10 +8,11 @@ class DriversController < ApplicationController
     @driver_id = params[:id].to_i
     @driver = Driver.find(@driver_id)
     if @driver.nil?
-      redirect_to drivers_path
+      head :not_found
       return
     end
   end
+
 
   def new
   end
@@ -48,5 +49,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
+    return params.require(:driver).permit(:name, :vin, :available)
   end
 end
