@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :drivers
+
+  # verb 'path', to: 'controller#action'
+  #  get '/drivers', to: 'drivers#index', as: 'drivers'
+  #  root to: 'drivers#index'
+  #  get '/drivers/new', to: 'drivers#new', as: 'new-driver'
+  #  post '/drivers', to: 'drivers#create'
+
+  #  #routes that operates on individual driver
+  #  get '/drivers/:id', to: 'drivers#show', as: 'driver'
+  #  get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
+  #  patch '/drivers/:id', to: 'drivers#update'
+  #  delete '/drivers/:id', to: 'drivers#destroy'
 end
