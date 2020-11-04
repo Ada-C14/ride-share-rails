@@ -2,10 +2,15 @@
 <h2><%= @driver.name %></h2>
 <h3>Average Rating: <%= @driver.average_rating %></h3>
 <h3>Total Earnings: <%= @driver.total_earnings %></h3>
+  <% if @driver.available %>
+    <h3>Current Status: Available</h3>
+  <% else %>
+    <h3>Current Status: Unavailable</h3>
+  <% end %>
 <%= link_to "Edit Driver", edit_driver_path(@driver.id) %>
 <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %>
 
-<h3>Driver Trips</h3>
+<h3><%= @driver.name %>'s Trips</h3>
 <table>
   <tr>
     <th>Trip ID</th>

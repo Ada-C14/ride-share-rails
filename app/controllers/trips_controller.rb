@@ -25,17 +25,19 @@ class TripsController < ApplicationController
     if driver.nil?
       redirect_to passenger_path(params[:passenger_id])
     else
-      @trip = Trip.new(
-          passenger_id: params[:passenger_id],
-          driver_id: driver.id,
-          date: Date.today,
-          cost: rand(5000),
-          rating: nil
-      )
+      @trip = Trip.new
+      @trip.date = Date.today
+      @trip.driver = driver
+      @trip.passenger_id = params[:passenger_id]
+      @trip.rating = nil
+      @trip.cost = rand(9999)
+
       if @trip.save
         redirect_to passenger_path(params[:passenger_id])
+        return
       else
         render :new
+
       end
     end
   end
