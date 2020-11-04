@@ -1,0 +1,18 @@
+<%= form_with model: @trip, class: 'trip-form' do |f| %>
+  <p> Please provide the following information:</p>
+  <div>
+    <%= f.label :driver %>
+      <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+
+    <%= f.label :passenger %>
+      <%= f.select :passenger, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+
+    <%= f.submit "#{action_name} Trip", class: "trip-button" %>
+  </div>
+<% end %>
