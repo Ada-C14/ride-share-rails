@@ -1,0 +1,74 @@
+.container {
+    min-height: 800px;
+    min-width: 800px;
+    max-width: 2000px;
+    display: grid;
+    grid-template-rows: [nav-start] 50px [nav-end content-start] auto [content-end footer-start] 50px[footer-end];
+    grid-template-columns: [content-start] 40% [nav-start] 15% 15% 15% 15% [content-end nav-end];
+}
+
+.header{
+    background-color: #0b3c5d;
+    color: white;
+    grid-column: 1 /2;
+    font-family: "Source Code Pro", Monaco, monospace;
+    font-size: xx-large;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.nav {
+    background-color: #0b3c5d;
+    color: white;
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-list {
+    color: white;
+    font-family: "Source Code Pro", Monaco, monospace;
+    font-size: 1em;
+    text-align: center;
+    padding: 10px 5px 10px 10px;
+    min-width: 100px;
+}
+[href="/"] {background-color: #d9b310;}
+[href="/drivers"] {background-color: #f7882f}
+[href="/drivers/new"] {background-color: #58A4B0}
+[href="/passengers"] {background-color: #328cc1}
+[href="/passengers/new"] {background-color: #286da8}
+
+.nav-list, a {
+    color: white;
+    text-decoration: none;
+}
+
+a.nav-list:hover {
+    filter: brightness(1.2);
+}
+
+.link-button {
+    background-color: #e3a6a1;
+    border-radius: 3px;
+}
+
+.content {
+    background-color: #2E5C6E;
+    color: white;
+    grid-area: content;
+    padding: 10px 10px 10px 10px;
+}
+
+.footer {
+    background-color: #0b3c5d;
+    color: white;
+    grid-row: footer;
+    grid-column: 1 / -1;
+    text-align: right;
+    padding: 5px 5px;
+}
+ul {
+    text-align: left;
+    list-style-type: none;
+}
