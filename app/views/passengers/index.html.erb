@@ -1,0 +1,18 @@
+<h1>Drivers</h1>
+<ul>
+  <% @passengers.each do |passenger| %>
+    <li>
+
+      <div>
+        Passenger: <%= passenger.name %>
+      </div>
+      <div>
+        <%= link_to "Show", passenger_path(passenger.id) %> |
+        <%= link_to "Edit", edit_passenger_path(passenger) %> |
+        <%= link_to "Delete", passenger_path(passenger.id), method: :delete,
+                    data: {confirm: 'Are you sure you would like to delete?'} %> |
+      </div>
+    </li>
+
+  <% end %>
+</ul>
