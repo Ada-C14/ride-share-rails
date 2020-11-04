@@ -13,6 +13,8 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
+      # instantiate driver from let block
+      driver_id = driver.id
 
       # Act
       get drivers_path
@@ -26,9 +28,10 @@ describe DriversController do
       # Ensure that there are zero drivers saved
 
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
   end
 
