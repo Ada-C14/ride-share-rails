@@ -10,6 +10,9 @@ class TripsController < ApplicationController
       head :not_found
       return
     end
+
+    @passenger = Passenger.find_by(id: @trip.passenger_id)
+    @driver = Driver.find_by(id: @trip.driver_id)
   end
 
   def new
