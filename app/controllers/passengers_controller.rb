@@ -15,7 +15,7 @@ class PassengersController < ApplicationController
   end
 
   def new
-    @passengers = Passenger.new
+    @passenger = Passenger.new
   end
 
   def edit
@@ -31,7 +31,8 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(
         name: params[:passenger][:name],
-        phone_num: params[:passenger][:phone_num])
+        phone_num: params[:passenger][:phone_num]
+    )
 
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
