@@ -116,21 +116,21 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-      d = Driver.new
-      d.name = "Name only"
+      invalid_driver_hash = {
+          driver: {
+              name: "Name only"
+          }
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect{
-        d.save
+        post drivers_path, params: invalid_driver_hash
       }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redi
-
-      #check that instance errors is populated
-      expect(d.errors).wont_be_empty
+      must_respond_with :success
     end
   end
 
@@ -220,14 +220,31 @@ describe DriversController do
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
+
+      found_driver = Driver.find_by(name: "Anna Bobby")
+
       # Set up the form data so that it violates Driver validations
+
+      invalid_driver_hash = {
+        driver: {
+            vin: "Vin only"
+        }
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect{
+        patch driver_path(found_driver.id), params: invalid_driver_hash
+      }.wont_change "Driver.count"
 
       # Assert
-      # Check that the controller redirects
+      # Check that the controller redirect
+      must_respond_with :redirect
+      must_redirect_to driver_path(found_driver.id)
 
+      #check to make sure attempted save with invalid params did not overwrite previously saved object
+      refound_driver = Driver.find_by(name: "Anna Bobby")
+      expect(refound_driver).must_equal found_driver
     end
   end
 
