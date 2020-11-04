@@ -24,7 +24,18 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = Trip.new(trip_params)
+    # how to get server to assign a driver?
+    # how to set the same passenger id
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+
+    trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
+                    driver_id: 1 ,
+                    # how to set the same passenger id?
+                    passenger_id: @passenger.id,
+                    rating: nil,
+                    # get a random number
+                    cost: rand(10..200)
+    )
 
     if trip.save
       redirect_to passenger_path(trip.passenger)
