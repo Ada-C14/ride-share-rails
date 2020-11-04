@@ -1,8 +1,13 @@
 class PassengersController < ApplicationController
   # Helper Methods
-  def error_notice
+  def not_found_error_notice
     flash[:notice] = "Uh oh! That passenger does not exist..."
     redirect_to passengers_path
+  end
+
+  def not_saved_error_notice
+    flash[:notice] = "Uh oh! That did not save correctly."
+    render :new
   end
 
   #########################################################
@@ -16,7 +21,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
-      error_notice
+      not_found_error_notice
       return
     end
   end
@@ -30,7 +35,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
-      error_notice
+      not_found_error_notice
       return
     end
   end
@@ -41,26 +46,22 @@ class PassengersController < ApplicationController
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
-      flash[:notice] = "Uh oh! That did not save correctly."
-      render :new
+      not_saved_error_notice
       return
     end
   end
 
   def update
-    passenger_id = params[:id].to_i
-    if passenger_id >= 0
-      @passenger = Passenger.find_by_id(passenger_id)
-    end
+    @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      head :not_found
+      not_found_error_notice
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path
       return
     else
-      render :edit
+      not_saved_error_notice
       return
     end
   end
