@@ -6,4 +6,6 @@ class Driver < ApplicationRecord
   def total_earned
     return self.trips.map { |trip| 0.8 * (trip.cost/100.0 - 1.65) }.sum
   end
+
+
 end

@@ -4,7 +4,7 @@ class Trip < ApplicationRecord
   validates :date, presence: true
   validates :cost, presence: true
 
-  def select_driver
+  def assign_driver
     driver = Driver.all.select {|driver| driver.available == true }.sample
     driver.available = false
     driver.save

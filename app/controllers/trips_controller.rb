@@ -23,8 +23,8 @@ class TripsController < ApplicationController
       head :not_found
       return
     else
-      cost = Trip.trip_cost #check this syntax if something goes wrong // create method
-      driver = Trip.assign_driver #create method?
+      cost = Trip.trip_cost
+      driver = Trip.assign_driver
       trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: nil, cost: cost)
       if trip.save
         redirect_to trip_path(trip.id)
