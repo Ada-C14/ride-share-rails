@@ -33,6 +33,7 @@ class Driver < ApplicationRecord
       return nil
     else
       available_driver.available = false
+      available_driver.save
       return available_driver
     end
   end
