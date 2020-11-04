@@ -9,23 +9,27 @@
       <%# end %>
 <!--    </ul>-->
 <!--  </nav>-->
-</div>
+<!--</div>-->
 
 <h3>Rideshare Passengers </h3>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <table>
   <thead>
-  <tr>
-    <th>Name</th>
-    <th>Phone Number</th>
-  </tr>
+    <tr>
+      <th>Name</th>
+      <th>Phone Number</th>
+    </tr>
   </thead>
   <tbody>
-  <% @passengers.each do |passenger| %>
-    <tr>
-      <td><a href="<%= passenger_path(passenger) %>"><%= passenger[:name] %></a></td>
-      <td><%= passenger.phone_num %></td>
-      <td> <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
-      <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li></td>
-    </tr>
-  <% end %>
+    <% @passengers.each do |passenger| %>
+      <tr>
+        <td><a href="<%= passenger_path(passenger) %>"><%= passenger[:name] %></a></td>
+        <td><%= passenger.phone_num %></td>
+        <td> <%= link_to "Edit", edit_passenger_path(passenger.id) %>|
+        <%= link_to "Delete", passenger_path(passenger.id), method: :delete %></li></td>
+      </tr>
+    <% end %>
   </tbody>
+</table>

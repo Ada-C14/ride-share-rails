@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see c
-  root to: 'trips#index'
+  # root to: 'homepages#index'
 
   resources :drivers
   resources :passengers
