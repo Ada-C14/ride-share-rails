@@ -13,12 +13,12 @@ class DriversController < ApplicationController
   #########################################################
 
   def index
-    @drivers = driver.all.order(:name)
+    @drivers = Driver.all.order(:name)
   end
 
   def show
     driver_id = params[:id].to_i
-    @driver = driver.find_by(id: driver_id)
+    @driver = Driver.find_by(id: driver_id)
 
     if @driver.nil?
       not_found_error_notice
@@ -27,12 +27,12 @@ class DriversController < ApplicationController
   end
 
   def new
-    @driver = driver.new
+    @driver = Driver.new
   end
 
   def edit
     driver_id = params[:id].to_i
-    @driver = driver.find_by(id: driver_id)
+    @driver = Driver.find_by(id: driver_id)
 
     if @driver.nil?
       not_found_error_notice
@@ -41,7 +41,7 @@ class DriversController < ApplicationController
   end
 
   def create
-    @driver = driver.new(driver_params)
+    @driver = Driver.new(driver_params)
 
     if @driver.save
       redirect_to driver_path(@driver.id)
@@ -52,7 +52,7 @@ class DriversController < ApplicationController
   end
 
   def update
-    @driver = driver.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
       not_found_error_notice
@@ -67,7 +67,7 @@ class DriversController < ApplicationController
   end
 
   def destroy
-    @driver = driver.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
       not_found_error_notice
