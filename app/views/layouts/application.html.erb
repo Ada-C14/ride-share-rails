@@ -9,7 +9,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <h1>Welcome to RideShareRails</h1>
+  </header>
   <body>
+    <header>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <%= link_to "New Driver", new_driver_path %>
+      </nav>
+    </header>
     <%= yield %>
   </body>
+  <footer>
+    <p>Copyright 2020 @Ada Devlopers Academy</p>
+  </footer>
 </html>
