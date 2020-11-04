@@ -12,4 +12,8 @@ class TripsController < ApplicationController
     end
   end
 
+  def new
+    @trip = Trip.new
+  end
+
 end
