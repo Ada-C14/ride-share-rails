@@ -4,7 +4,7 @@ describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
   let (:driver) {
-    Driver.create name: "Shane Doe", vin: "HKJS12345HJGS", availability_status: true
+    Driver.create name: "Shane Doe", vin: "HKJS12345HJGS"
   }
 
   describe "index" do
@@ -34,6 +34,7 @@ describe DriversController do
       # Arrange
       # Ensure that there is a driver saved
       d = driver
+      p d
       # Act
       get driver_path(d.id)
       # Assert
@@ -64,6 +65,14 @@ describe DriversController do
   end
 
   describe "create" do
+    it "when new driver is created, availability status is true" do
+
+      d = driver
+      p d.availability_status
+      expect(d.availability_status).must_equal true
+
+    end
+
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
@@ -71,7 +80,7 @@ describe DriversController do
           driver: {
               name: "Sally Sombody",
               vin: "HKJHSIU3467854",
-              availability_status: true
+              # availability_status: true
           }
       }
       # Act-Assert
