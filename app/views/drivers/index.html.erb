@@ -1,0 +1,9 @@
+<h2>Rideshare Drivers</h2>
+<ul>
+<% @drivers.each do |driver| %>
+    <li>
+        <%= driver.id %>
+        <%= driver.name %>
+    </li>
+<% end %>
+</ul>
