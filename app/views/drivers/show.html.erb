@@ -1,17 +1,43 @@
 <h1><%= @driver.name %></h1>
-<p>Availability: <%= @driver.available %></p>
-<p>VIN: <%= @driver.vin %></p>
-<p>Total Earnings: <%=  %></p>
-<p>Total Earnings: <%=  %></p>
-<p>Average Rating: <%=  %></p>
-<h3>List of Trips</h3>
-<ul>
-  <% @driver.trips.each do |trip| %>
-  <li>
-    <%= link_to "Trip id: #{trip.id}", trip_path(trip) %>
-  </li>
+<% if @driver.available %>
+  <p><strong>AVAILABLE</strong></p>
+  <% else %>
+  <p><strong>NOT AVAILABLE</strong></p>
   <% end %>
-</ul>
+<p>VIN: <%= @driver.vin %></p>
+
+<h3>List of Trips</h3>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Earnings</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @driver.trips.each do |trip| %>
+  <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip) %></td>
+      <td><%= trip.date %></td>
+      <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger) %></td>
+      <td><%= trip.rating %></td>
+      <td><%= @driver.single_trip_earnings(trip) %></td>
+  </tr>
+  <% end %>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Average: <%= @driver.average_rating %></td>
+      <td>Total: $<%= @driver.total_earnings %></td>
+    </tr>
+  </tfoot>
+  </tbody>
+</table>
 
 
 
