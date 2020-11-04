@@ -1,9 +1,34 @@
 <h3>Trip Details</h3>
 <br>
-<h2><%= @trip.name %></h2>
-<p>ID: <%= @trip.id %></p>
-<p>Driver: <%= @trip.driver_id %></p>
-<p>Passenger: <%= @trip.passenger_id %></p>
+
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Trip ID</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Date</th>
+    <th>Passenger Name</th>
+    <th>Passenger ID</th>
+    <th>Driver Name</th>
+    <th>Driver ID</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @trip.id %></td>
+      <td><%= @trip.rating %></td>
+      <td><%= @trip.cost %></td>
+      <td><%= @trip.date %></td>
+      <td><%= link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id) %></td>
+      <td><%= link_to @trip.passenger_id, passenger_path(@trip.passenger_id) %></td>
+      <td><%= link_to "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id) %></td>
+      <td><%= link_to @trip.driver_id, driver_path(@trip.driver_id) %></td>
+
+    </tr>
+  </tbody>
+</table>
 
 <br>
 

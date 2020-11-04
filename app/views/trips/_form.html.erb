@@ -1,0 +1,29 @@
+<%= form_with model: @trip do |f| %>
+
+  <div>
+    <%= f.label :cost %>
+    <br>
+    <%= f.text_field :cost %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :rating %>
+    <br>
+    <%= f.text_field :rating %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :driver %>
+    <br>
+    <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :passenger %>
+    <br>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+  </div>
+  <br>
+  <%= f.submit action_name %>
+
+<% end %>

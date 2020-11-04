@@ -28,11 +28,6 @@ class PassengersController < ApplicationController
     end
   end
 
-  def find_by_id
-    passenger_id = params[:id].to_i
-    passenger = Passenger.find_by(id: passenger_id)
-  end
-
   def edit
     @passenger = find_by_id
 
@@ -67,6 +62,11 @@ class PassengersController < ApplicationController
       @passenger.destroy
       redirect_to passengers_path
     end
+  end
+
+  def find_by_id
+    passenger_id = params[:id].to_i
+    passenger = Passenger.find_by(id: passenger_id)
   end
 
   private
