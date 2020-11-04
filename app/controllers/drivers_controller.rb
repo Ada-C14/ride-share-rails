@@ -42,13 +42,15 @@ class DriversController < ApplicationController
 
   def create
     @driver = Driver.new(driver_params)
+    @driver.available = 'true'
 
     if @driver.save
       redirect_to driver_path(@driver.id)
-    else
-      not_saved_error_notice
       return
     end
+
+    not_saved_error_notice
+    return
   end
 
   def update

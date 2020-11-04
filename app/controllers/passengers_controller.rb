@@ -45,6 +45,7 @@ class PassengersController < ApplicationController
 
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
+      return
     else
       not_saved_error_notice
       return
