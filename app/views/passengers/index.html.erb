@@ -1,2 +1,40 @@
-<h1>Passengers#index</h1>
-<p>Find me in app/views/passengers/index.html.erb</p>
+<%#index.html.erb%>
+
+<header>
+  <h1>PASSENGERS</h1>
+</header>
+
+<main>
+  <section>
+    <h2>List of Passengers</h2>
+
+    <ul>
+
+      <% @passengers.each do |passenger| %>
+
+        <li>
+
+            <div>
+              <%= link_to passenger.name, passenger_path(passenger.id), class:"text", id:"passenger-link" %>
+            </div>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  </section>
+
+  <section>
+    <div><%= button_to  "ADD PASSENGER", new_passenger_path, method: :get, :class => 'button' %></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div id="footer">
+    <h2>&#169; Kalki and Schanen 2020</h2>
+  </div>
+</footer>
