@@ -120,6 +120,7 @@ describe TripsController do
     end
 
     it "responds with redirect when getting the edit page for a non-existing trip" do
+
       # Arrange
       # Ensure there is an invalid id that points to no trip
       get edit_trip_path(-1)
@@ -150,6 +151,7 @@ describe TripsController do
       }
     }
     it "can update an existing trip with valid information accurately, and redirect" do
+      
       # Arrange
       # Ensure there is an existing trip saved
       # Assign the existing trip's id to a local variable
@@ -229,50 +231,46 @@ describe TripsController do
     end
   end
 
-  # describe "destroy" do
-  #   it "destroys the trip instance in db when trip exists, then redirects" do
-  #     # Arrange
-  #     # Ensure there is an existing trip saved
-  #
-  #     driver = Driver.create(name: "sample driver", vin: "ghbgdsrklp2347bC9", available: true)
-  #     passenger = Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
-  #     trip_to_delete = Trip.create(
-  #         passenger_id: passenger.id,
-  #         driver_id: driver.id,
-  #         date: DateTime.now,
-  #         rating: nil,
-  #         cost: rand(1...1000)
-  #     )
-  #
-  #     # Act-Assert
-  #     # Ensure that there is a change of -1 in trip.count
-  #     expect {
-  #       delete trip_path(trip_to_delete.id)
-  #     }.must_differ "Trip.count", -1
-  #
-  #     # deleted_trip = trip.find_by(name: trip_cost_to_delete)
-  #     # expect(deleted_trip).must_be_nil
-  #
-  #     must_respond_with :redirect
-  #     must_redirect_to trips_path
-  #   end
-  #
-  #   it "does not change the db when the trip does not exist, then responds with " do
-  #     # Arrange
-  #     # Ensure there is an invalid id that points to no trip
-  #
-  #     # Act-Assert
-  #     # Ensure that there is no change in trip.count
-  #
-  #     # Assert
-  #     # Check that the controller responds or redirects with whatever your group decides
-  #     expect {
-  #       delete trip_path(-1)
-  #     }.wont_change "Trip.count"
-  #
-  #     must_respond_with :not_found
-  #   end
-  # end
+  describe "destroy" do
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      # Arrange
+      # Ensure there is an existing trip saved
+      driver = Driver.create(name: "sample driver", vin: "ghbgdsrklp2347bC9", available: true)
+      passenger = Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
+      trip_to_delete = Trip.create(
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          date: DateTime.now,
+          rating: nil,
+          cost: rand(1...1000)
+      )
+
+      # Act-Assert
+      # Ensure that there is a change of -1 in trip.count
+      expect {
+        delete trip_path(trip_to_delete.id)
+      }.must_differ "Trip.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to trips_path
+    end
+
+    it "does not change the db when the trip does not exist, then responds with " do
+      # Arrange
+      # Ensure there is an invalid id that points to no trip
+
+      # Act-Assert
+      # Ensure that there is no change in trip.count
+
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+      expect {
+        delete trip_path(-1)
+      }.wont_change "Trip.count"
+
+      must_respond_with :not_found
+    end
+  end
 end
 
 
