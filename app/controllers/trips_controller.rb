@@ -6,7 +6,7 @@ class TripsController < ApplicationController
       @driver = Driver.find_by(id: params[:driver_id])
     elsif params[:passenger_id]
       @trips = Passenger.find_by(id: params[:passenger_id]).trips
-      @driver = Passenger.find_by(id: params[:passenger_id])
+      @passenger = Passenger.find_by(id: params[:passenger_id])
     else
       @trips = Trip.all
     end

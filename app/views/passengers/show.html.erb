@@ -12,28 +12,5 @@
 <%= button_to "Request Trip" %>
 
 <br>
-<h3>Trips for <%= @passenger.name %></h3>
 
-<table class="table table-striped table-bordered">
-  <thead>
-  <tr>
-    <th>Trip ID</th>
-    <th>Rating</th>
-    <th>Cost</th>
-    <th>Date</th>
-    <th>Driver Name</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @passenger.trips.each do |trip| %>
-    <tr>
-      <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{trip.rating}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{trip.cost}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{trip.date}", trip_path(trip.id) %></td>
-      <td><%= link_to "#{Driver.find_by(id: trip.driver_id).name}", driver_path(trip.driver_id) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<strong><%= link_to "Trips for #{@passenger.name}", passenger_trips_path(@passenger.id) %></strong>
