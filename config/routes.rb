@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get '/passengers/:id/edit', to: 'passengers#edit', as: :edit_passenger
   get '/trips/:id/edit', to: 'trips#edit', as: :edit_trip
 
-
   get '/drivers/:id', to: 'drivers#show', as: :driver
   get '/passengers/:id', to: 'passengers#show', as: :passenger
   get '/trips/:id', to: 'trips#show', as: :trip
@@ -28,5 +27,7 @@ Rails.application.routes.draw do
   put '/drivers/:id', to: 'drivers#update'
   patch '/passengers/:id', to: 'passengers#update'
   put '/passengers/:id', to: 'passengers#update'
+  patch '/trips/:id', to: 'trips#update'
+  put '/trips/:id', to: 'trips#update'
 
 end
