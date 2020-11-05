@@ -82,14 +82,6 @@ class DriversController < ApplicationController
     end
   end
 
-  def calc_earnings
-
-  end
-
-  def calc_avg_rating
-
-  end
-
   private
 
   def driver_params
