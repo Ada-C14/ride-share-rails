@@ -1,0 +1,14 @@
+<%=form_with model: @passenger, class: 'passenger_form' do |f| %>
+  <p>Please update Passenger Information here:</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+  <div>
+    <%= f.label :phone_num %>
+    <%= f.text_area :phone_num %>
+  </div>
+
+  <%= f.submit "Update Passenger!" %>
+<% end %>
