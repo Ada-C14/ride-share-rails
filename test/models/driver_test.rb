@@ -63,7 +63,28 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+      it "correctly finds average for driver with multiple trips" do
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: nil, cost: 6334)
+        trip_1.save
+        trip_2.save
+        trip_3.save
+
+        average = new_driver.average_rating
+
+        expect(average).must_equal 4.0
+      end
+
+      it "returns zero for driver with no rated trips" do
+        new_driver.save
+
+        average = new_driver.average_rating
+
+        expect(average).must_equal 0
+      end
     end
 
     describe "total earnings" do
