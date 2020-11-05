@@ -156,8 +156,6 @@ describe PassengersController do
 
       post passengers_path, params: @passenger_hash
 
-      p Passenger.first
-      puts "**************************************************************"
 
       original_passenger = Passenger.find_by(name: @passenger_hash[:passenger][:name])
       passenger_id = original_passenger.id
@@ -167,9 +165,10 @@ describe PassengersController do
         patch passenger_path(passenger_id), params: @updating_hash
       }.wont_change "Passenger.count"
 
-      expect(original_passenger.name).must_equal @updating_hash[:passenger][:name]
+      updated_passenger = Passenger.find_by(id: passenger_id)
+      expect(updated_passenger.name).must_equal @updating_hash[:passenger][:name]
 
-      must_redirect_to passenger_path(Passenger.first.id)
+      must_redirect_to passenger_path(updated_passenger)
     end
 
     it "will redirect to the root page if given an invalid id" do

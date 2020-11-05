@@ -8,10 +8,38 @@
   <section>
     <h2><%= @passenger.name %></h2>
 
-<!--    # Trips ****** with trip selection -->
-<!--    # Money Spent-->
+    <table>
 
+      <thead>
 
+      <tr>
+        <th>TRIP ID</th>
+        <th>DRIVER ID</th>
+        <th>DATE</th>
+        <th>RATING</th>
+        <th>COST</th>
+        <th colspan="5"></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+        <% @passenger.trips.each do |trip| %>
+          <tr>
+            <td><% link_to trip.id, passenger_trip_path(trip) %></td>
+
+            <td><% link_to trip.driver_id, driver_path(trip.driver_id) %></td>
+
+            <td><%= trip.date %></td>
+
+            <td><%= trip.rating %></td>
+
+            <td><%= trip.cost %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
   </section>
 
   <div>
