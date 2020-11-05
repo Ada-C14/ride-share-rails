@@ -52,11 +52,11 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       driver_hash = {
-          driver: {
-              name: "John Do",
-              vin: "ww234444112345651",
-              available: false
-          },
+        driver: {
+          name: "John Do",
+            vin: "ww234444112345651",
+            available: false
+        },
       }
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
@@ -81,11 +81,11 @@ describe DriversController do
       # Arrange
       # Set up the form data so that it violates Driver validations
       driver_hash = {
-          driver: {
-              name: "John Do",
-              vin: "ww234",
-              available: false
-          },
+        driver: {
+          name: "John Do",
+            vin: "ww234",
+            available: false
+        },
       }
 
       # Act-Assert
@@ -94,7 +94,7 @@ describe DriversController do
         post drivers_path, params: driver_hash
       }.wont_change "Driver.count"
 
-      must_respond_to :error?
+      assert_template :new
 
     end
   end
@@ -132,15 +132,16 @@ describe DriversController do
         available: true )
     end
 
-    let (:update_driver_hash) do {
+    let (:update_driver_hash) do
+      {
         driver:{
-            name: "John Doe",
-            vin: "ww234444112345651",
-            available: false
+          name: "John Doe",
+          vin: "ww234444112345651",
+          available: false
         }
-    }
+      }
     end
-    
+
     it "can update an existing driver with valid information accurately, and redirect" do
       driver_id = Driver.first.id
       expect {
@@ -175,11 +176,11 @@ describe DriversController do
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
 
       driver_hash = {
-          driver: {
-              name: "John Do",
-              vin: "ww234",
-              available: false
-          },
+        driver: {
+          name: "John Do",
+            vin: "ww234",
+            available: false
+        },
       }
 
       # Act-Assert
@@ -188,12 +189,11 @@ describe DriversController do
         post drivers_path, params: driver_hash
       }.wont_change "Driver.count"
 
-      must_respond_to :error?
+      assert_template :new
 
     end
-
     end
-  end
+
 
   describe "destroy" do
     before do
@@ -226,7 +226,8 @@ describe DriversController do
     it "does not change the db when the driver does not exist, then responds with " do
 
       delete driver_path(-1)
-      must_redirect_to driver_path
+      must_redirect_to drivers_path
 
     end
   end
+ end

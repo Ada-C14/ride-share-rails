@@ -5,3 +5,5 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
 end
+
+
