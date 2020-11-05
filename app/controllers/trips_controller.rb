@@ -1,6 +1,16 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:driver_id]
+      #nested route: prefix driver_trips (/drivers/:driver_id/trips)
+      driver = Driver.find_by(id: params[:driver_id])
+      @trips = driver.trips
+    elsif params[:passenger_id]
+      #nested route: prefix passenger_trips (/passengers/:passenger_id/trips)
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = passenger.trips
+    else
+      @trips = Trip.all
+    end
   end
 
   def show

@@ -5,6 +5,7 @@
 <%= @passenger.name + " - " + @passenger.phone_num %>
 <%= button_to "Edit", edit_passenger_path(@passenger.id), method: :get %>
 <%= button_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?" } %>
+<%#= button_to "New Trip", new_passenger_trip_path, method: :get %>
 
 <h3>TRIPS:</h3>
 <p>TOTAL SPENT ON ALL TRIPS: $<%= @passenger.total_charged %></p>
