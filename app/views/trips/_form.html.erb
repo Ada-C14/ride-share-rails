@@ -22,7 +22,7 @@
     <%= f.text_field :cost %>
 
     <%= f.label :rating  %>
-    <%= f.text_field :rating %>
+    <%= f.select :Rating, options_for_select(["1", "2", "3"]) %>
 
     <%= f.submit action_name %>
 
@@ -31,5 +31,5 @@
 <% end  %>
 
 
-<button><%= link_to "Home", root_path %></button>
+<button><%= link_to "Home", passengers_path %></button>
 
