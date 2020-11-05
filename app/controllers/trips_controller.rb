@@ -4,9 +4,6 @@ class TripsController < ApplicationController
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
       @passenger = passenger.trips
-    elsif params[:driver_id]
-      driver = Driver.find_by(id: params[:driver_id])
-      @driver = driver.trips
     else
       @trip_id = params[:id].to_i
       @trip = Trip.find(@trip_id)
@@ -20,10 +17,6 @@ class TripsController < ApplicationController
   def new
     if params[:passenger_id]
       # nested route, /passenger/:passenger_id/trips/new
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = passenger.trips.new
-    elsif params[:driver_id]
-      # nested route, /driver/:driver_id/trips/new
       passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = passenger.trips.new
     else
