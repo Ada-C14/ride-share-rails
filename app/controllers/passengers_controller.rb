@@ -27,11 +27,12 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
-      # @passenger.errors.messages.each do |column, message|
-      #   puts column.capitalize
-      #   puts message
-      # end
-      render :new
+      puts @passenger.errors.to_a.length
+      @passenger.errors.each do |column, message|
+        puts column.capitalize
+        puts message
+      end
+      render :new, status: :bad_request
       return
     end
 
@@ -65,14 +66,14 @@ class PassengersController < ApplicationController
     @passenger = find_by
 
     if @passenger.nil?
-        redirect_to passengers_path
         head :not_found
+        return
+    else
+        @passenger.destroy
+        redirect_to passengers_path
+        return
     end
 
-    @passenger.destroy
-
-    redirect_to passengers_path
-    return
   end
 
   private

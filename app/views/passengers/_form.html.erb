@@ -1,9 +1,11 @@
 
+
+
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
 
   <p>PLEASE FILL IN THE FOLLOWING PASSENGER INFORMATION:</p>
 
-  <% if @passenger.errors.any? %>
+  <% unless @passenger.errors.empty? %>
     <ul class="errors">
     <% @passenger.errors.each do |column, message| %>
       <li>
@@ -12,7 +14,6 @@
     <% end %>
     </ul>
   <% end %>
-
 
   <%= f.label :name %>
   <%= f.text_field :name %>
