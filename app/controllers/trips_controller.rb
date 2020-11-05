@@ -23,6 +23,10 @@ class TripsController < ApplicationController
 
   end
 
+  def new
+    
+  end
+
   def create
     # how to get server to assign a driver?
     # how to set the same passenger id

@@ -6,19 +6,45 @@
 <p>Total amount charged: <%= "$#{@passenger.total_cost}" %></p>
 <!--See a list of trips that passenger went on-->
 <strong><p>Trips List:</p></strong>
-<ul>
-  <% @passenger.trips.each do |trip| %>
-    <li>
-      <%= link_to "Trip ID: #{trip.id}", trip_path(trip.id) %>
-      <%= "Date: #{trip.date}" %>
-      <%= "Driver: #{trip.driver.name}" %>
-      <%= "Cost: $#{trip.cost}" %>
-      <%= "Rating: #{trip.rating}" %>
-      <%= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link', data: {confirm: "Are you sure?"} %>
-    </li>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Price</th>
+    <th>Rating</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip) %></td>
+      <td><%= trip.date %></td>
+      <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver) %></td>
+      <td><%= trip.cost %></td>
+      <td><%= trip.rating %></td>
+      <td><%= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link', data: {confirm: "Are you sure?"} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  <% end %>
-</ul>
+
+<!--<ul>-->
+  <%# @passenger.trips.each do |trip| %>
+<!--    <li>-->
+      <%#= link_to "Trip ID: #{trip.id}", trip_path(trip.id) %>
+      <%#= "Date: #{trip.date}" %>
+      <%#= "Driver: #{trip.driver.name}" %>
+      <%#= "Cost: $#{trip.cost}" %>
+      <%#= "Rating: #{trip.rating}" %>
+      <%#= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link', data: {confirm: "Are you sure?"} %>
+<!--    </li>-->
+
+  <%# end %>
+<!--</ul>-->
 
 <%#= link_to "#{@passenger.name}'s Trips", passenger_trips_path(@passenger.id) %>
 <!--Click on an individual trip from the list of trips, which will take me to a detail page for that trip-->
