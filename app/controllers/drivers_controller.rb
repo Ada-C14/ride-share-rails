@@ -57,6 +57,12 @@ class DriversController < ApplicationController
     end
   end
 
+  def toggle_available
+    @driver = Driver.find_by(id: params[:id])
+
+    @driver.toggle_available
+  end
+
   private
 
   def driver_params

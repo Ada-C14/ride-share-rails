@@ -2,7 +2,18 @@
 <ul>
   <li><%= @driver.name %></li>
   <li><%= @driver.vin %></li>
-  <li><%= @driver.available ? "available" : "not available" %></li>
+  <li><%= @driver.available ? "available" : "not available" %> - <%= button_to "Change Status?", toggle_available_path(@driver), method: :patch %></li>
+  <li>Average Rating: <%= @driver.average_rating %></li>
+  <li>Total Earnings: $<%= @driver.total_earnings %></li>
+</ul>
+
+<p>Trips by <%= @driver.name %></p>
+<ul>
+  <% @driver.trips.each do |trip| %>
+  <li>
+    <%= link_to trip.date, trip_path(trip) %> trip with passenger <%= trip.passenger_id %>
+  </li>
+  <% end %>
 </ul>
 
 <ul>

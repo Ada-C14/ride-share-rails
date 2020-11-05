@@ -127,7 +127,7 @@ describe Driver do
       it "changes unavailable driver's status to available" do
         offline_driver = Driver.new(name: "Gloria Swanson", vin: "12345678909876543", available: false)
         offline_driver.save
-        
+
         offline_driver.toggle_available
 
         expect(offline_driver.available).must_equal true
