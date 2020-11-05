@@ -2,11 +2,16 @@
 <h2>Driver List:</h2>
 
 <% if @drivers.length > 0 %>
-  <ol>
+  <ul class="driver_list">
     <% @drivers.each do |driver| %>
-      <li>  <%= link_to driver.name, driver_path(driver.id)%></li>
+      <li><i class="fa fa-user" aria-hidden="true"></i></> <%= link_to driver.name, driver_path(driver.id)%></li>
+      <div class="sub_line">Average Rating: <%= driver.average_rating %>
+        <%= link_to 'Edit Driver', edit_driver_path(driver.id) %> |
+        <%= link_to 'Delete Driver', driver_path(driver.id), method: :delete, data: {confirm: "WARNING: YOU HAVE ASKED TO DELETE THIS DRIVER. THIS ACTION CANNOT BE UNDONE. PRESS OK TO CONFIRM YOU WOULD LIKE TO DELETE"} %></div>
     <% end  %>
-  </ol>
+
+  </ul>
+
 <% else %>
   <h3>No drivers to display </h3>
 <%end %>
