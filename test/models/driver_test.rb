@@ -61,7 +61,7 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+
     end
 
     describe "total earnings" do
