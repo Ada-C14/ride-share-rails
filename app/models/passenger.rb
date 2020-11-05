@@ -11,4 +11,6 @@ class Passenger < ApplicationRecord
     return total_amount_charged.sum
   end
 
+  paginates_per 15
+
 end

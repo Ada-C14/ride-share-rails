@@ -37,4 +37,6 @@ class Driver < ApplicationRecord
       return available_driver
     end
   end
+
+  paginates_per 15
 end
