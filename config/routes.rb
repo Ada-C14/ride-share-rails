@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :trips, only: [:show, :edit, :update, :destroy, :new]
 
     resources :passengers do
-      resources :trips, only: [:create, :new, :show]
+      resources :trips, only: [:create, :new]
     end
 
     resources :drivers do

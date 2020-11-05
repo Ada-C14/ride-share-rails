@@ -20,7 +20,7 @@
 <% end %>
 
 
-  <%= button_to "Request Trip", passenger_trip_path(@passenger.id),
+  <%= button_to "Request Trip", new_passenger_trip_path(@passenger.id),
                 method: :get, class: 'button'
   %>
 

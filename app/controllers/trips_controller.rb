@@ -13,10 +13,6 @@ class TripsController < ApplicationController
     end
   end
 
-  def new #check necessity
-    @trip = Trip.new
-  end
-
   def create #check for accuracy
     passenger = Passenger.find_by(id: params[:passenger_id])
     if passenger.nil?
