@@ -39,7 +39,7 @@ class TripsController < ApplicationController
     end
 
     if @trip.save
-      redirect_to trips_path
+      redirect_to trip_path(@trip)
       return
     else
       render :new

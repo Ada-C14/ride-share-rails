@@ -1,34 +1,39 @@
-<%= form_with model: @trip, class: 'create_trip' do |t| %>
+<div class="create-page-flex">
 
-
-  <div class="form">
-    <p>
-      <%= t.label :Driver_ID %>
-      <%= t.text_field :driver_id %>
-    </p>
-
-    <p>
-      <%= t.label :Passenger_ID %>
-      <%= t.text_field :passenger_id %>
-    </p>
-
-    <p>
-      <%= t.label :date %>
-      <%= t.text_field :date %>
-    </p>
-
-    <p>
-      <%= t.label :rating %>
-      <%= t.text_field :rating %>
-    </p>
-
-    <p>
-      <%= t.label :cost %>
-      <%= t.text_field :cost %>
-    </p>
-
-    <%= t.submit "Create #{action_name} Trip", class: "submit_button" %>
+  <div>
+    <% if @trip.errors.any? %>
+      <ul class="errors">
+        <% @trip.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 
+    <%= form_with model: @trip, class: 'create_trip' do |t| %>
 
-<% end %>
+      <dl>
+        <dt><%= t.label :Driver_ID %></dt>
+        <dd><%= t.text_field :driver_id %></dd>
+        <dt><%= t.label :Passenger_ID %></dt>
+        <dd><%= t.text_field :passenger_id %></dd>
+        <dt><%= t.label :date %></dt>
+        <dd><%= t.text_field :date %></dd>
+        <dt><%= t.label :rating %></dt>
+        <dd><%= t.text_field :rating %></dd>
+        <dt><%= t.label :cost %></dt>
+        <dd><%= t.text_field :cost %></dd>
+
+        <%= t.submit "Create #{action_name} Trip", class: "submit_button" %>
+      </dl>
+    <% end %>
+
+  <div> </div>
+
+</div>
+
+
+
+

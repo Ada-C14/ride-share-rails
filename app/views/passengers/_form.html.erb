@@ -1,17 +1,46 @@
-<%= form_with model: @passenger, class: 'create_passenger' do |p| %>
 
-  <div class="form">
-    <p>
-      <%= p.label :name %>
-      <%= p.text_field :name %>
-    </p>
-
-    <p>
-      <%= p.label :phone_num %>
-      <%= p.text_field :phone_num %>
-    </p>
-
-    <%= p.submit "#{action_name} Passenger", class: "passenger_button" %>
+<div class="create-page-flex">
+  <div>
+    <% if @passenger.errors.any? %>
+      <ul class="errors">
+        <% @passenger.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 
-<% end %>
+  <div>
+    <%= form_with model: @passenger, class: 'create_passenger' do |p| %>
+
+      <div class="form">
+        <p>
+          <%= p.label :name %>
+          <%= p.text_field :name %>
+        </p>
+
+        <p>
+          <%= p.label :phone_num %>
+          <%= p.text_field :phone_num %>
+        </p>
+
+        <%= p.submit "#{action_name} Passenger", class: "passenger_button" %>
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <div> </div>
+
+</div>
+
+
+
+
+
+
+
+
