@@ -38,7 +38,7 @@ class TripsController < ApplicationController
     # how to set the same passenger id
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @driver = Driver.get_available_driver
-    @driver.update(available: false)
+
 
     @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
                     driver_id: @driver.id ,
@@ -51,6 +51,7 @@ class TripsController < ApplicationController
 
     if @trip.save
       redirect_to passenger_path(@trip.passenger)
+      @driver.update(available: false)
       return
     else
       # what should we render now that we don't have new view?
