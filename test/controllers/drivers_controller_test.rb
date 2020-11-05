@@ -3,7 +3,12 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let(:fake_driver) {
-    Driver.create(name: "Daisy Johnson", vin: "12345678901234567", available: false)
+    Driver.create(name: "Daisy Johnson", vin: "12345678901234567", available: true)
+  }
+
+  let(:fake_trip) {
+    driver = fake_driver
+    Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: fake_driver.id, passenger_id: @passenger.id )
   }
 
   describe "index" do
@@ -202,11 +207,11 @@ describe DriversController do
       valid_id = driver.id
       # Set up the form data so that it violates Driver validations
       invalid_input = {
-          driver: {
-              name: "",
-              vin: "12345678901234567",
-              available: true
-          }
+        driver: {
+          name: "",
+          vin: "12345678901234567",
+          available: true
+        }
       }
 
       # Act-Assert
@@ -223,17 +228,22 @@ describe DriversController do
   end
 
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
+    it "destroys the driver instance in db when driver exists & all trips associated with that driver, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
       driver = fake_driver
+      passenger = Passenger.create(name: "Jasmine Lopez", phone_num: "2534321362")
+      trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: driver.id, passenger_id: passenger.id )
 
+      expect(passenger.trips.include? trip).must_equal true
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
       expect {
         delete driver_path(driver.id)
       }.must_differ "Driver.count", -1
 
+      # expect that the trip was deleted from the passenger's list
+      expect(passenger.trips.include? trip).must_equal false
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect

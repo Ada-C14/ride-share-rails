@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  validates :vin, presence: true, length: {is: 17}
+  validates :vin, length: {is: 17}
   validates :name, presence: true
   # validates :available, presence: true
 
