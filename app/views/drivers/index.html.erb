@@ -13,6 +13,7 @@
 
 <table>
   <thead>
+  <th>Id</th>
   <th>Name</th>
   <th>VIN number</th>
   <th>Options</th>
@@ -20,6 +21,7 @@
   <tbody>
     <% @drivers.each do |driver| %>
       <tr>
+        <td><%= driver.id %></td>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
         <td><%= driver.vin %></td>
         <td>

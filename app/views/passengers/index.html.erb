@@ -9,10 +9,11 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= paginate @passengers%>
+<%= paginate @passengers, class:"page"%>
 
 <table>
   <thead>
+  <th>Id</th>
   <th>Name</th>
   <th>Phone number</th>
   <th>Options</th>
@@ -20,6 +21,7 @@
   <tbody>
     <% @passengers.each do |passenger| %>
       <tr>
+        <td><%= link_to passenger.id, passenger_path(passenger.id) %></td>
         <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
         <td><%= link_to passenger.phone_num, passenger_path(passenger.id) %></td>
         <td>
