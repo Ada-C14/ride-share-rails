@@ -112,30 +112,27 @@ describe DriversController do
       must_respond_with :bad_request
     end
   end
-#
-#   describe "edit" do
-#     it "responds with success when getting the edit page for an existing, valid driver" do
-#       skip
-#       # Arrange
-#       # Ensure there is an existing driver saved
-#
-#       # Act
-#
-#       # Assert
-#
-#     end
-#
-#     it "responds with redirect when getting the edit page for a non-existing driver" do
-#       skip
-#       # Arrange
-#       # Ensure there is an invalid id that points to no driver
-#
-#       # Act
-#
-#       # Assert
-#
-#     end
-#   end
+
+  describe "edit" do
+    it "responds with success when getting the edit page for an existing, valid driver" do
+
+      # Arrange
+      # Ensure there is an existing driver saved
+
+      get edit_driver_path(driver.id)
+
+      # Assert
+      must_respond_with :success
+    end
+
+    it "responds with redirect when getting the edit page for a non-existing driver" do
+      # Arrange
+      # Ensure there is an invalid id that points to no driver
+      get edit_driver_path(-1)
+
+      must_redirect_to root_path
+    end
+  end
 #
 #   describe "update" do
 #     it "can update an existing driver with valid information accurately, and redirect" do
