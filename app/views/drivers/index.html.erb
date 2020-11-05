@@ -1,7 +1,12 @@
 <h3> List of all Drivers </h3>
 
-<ul>
-  <li>
 
-  </li>
-</ul>
+
+<% @drivers.each do |driver|  %>
+  </ul>
+    <li><%= driver[:name] %></li>
+  </ul>
+<% end %>
+
+
+

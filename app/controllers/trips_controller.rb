@@ -1,4 +1,9 @@
 class TripsController < ApplicationController
+  def homepage
+    
+  end
+
+
   def index
 
   end
@@ -18,7 +23,6 @@ class TripsController < ApplicationController
   def show
 
   end
-
 
 
   def destroy

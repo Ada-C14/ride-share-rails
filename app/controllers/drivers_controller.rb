@@ -5,15 +5,14 @@ class DriversController < ApplicationController
     @drivers =Driver.all
   end
 
-  def show
-
-  end
-
   def new
     @driver=Driver.new
   end
 
-  def create
+  def create #can we use the driver params here?
+    #@driver=Drive.new(
+    #   name: params[:driver][:name]
+    #   vin: params[:driver]:[vin])
     @driver=Driver.new(driver_params)
     if @driver.save
       head :success
@@ -23,7 +22,6 @@ class DriversController < ApplicationController
       return
     end
   end
-
 
   def show
     @driver= Driver.find_by(driver.id) #(id: @driver.id)
@@ -37,7 +35,9 @@ class DriversController < ApplicationController
   end
 
   def edit
+    @driver=Task.find_by(id:params[:id])
 
+    if @driver.nil?
   end
 
 
@@ -46,6 +46,12 @@ class DriversController < ApplicationController
   end
 
   private
+
+  # params = {id: 1, driver: {name: "hello world", author: becca}}
+  #
+  # params[:id]
+  # params[:driver][:name]
+
   def driver_params
     return params.require(:driver).permit(:name, :vin, :available)
   end
