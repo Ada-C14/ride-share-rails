@@ -4,10 +4,10 @@
 <% if @drivers.length > 0 %>
   <ul class="driver_list">
     <% @drivers.each do |driver| %>
-      <li><i class="fa fa-user" aria-hidden="true"></i></> <%= link_to driver.name, driver_path(driver.id)%></li>
-      <div class="sub_line">Average Rating: <%= driver.average_rating %>
-        <%= link_to 'Edit Driver', edit_driver_path(driver.id) %> |
-        <%= link_to 'Delete Driver', driver_path(driver.id), method: :delete, data: {confirm: "WARNING: YOU HAVE ASKED TO DELETE THIS DRIVER. THIS ACTION CANNOT BE UNDONE. PRESS OK TO CONFIRM YOU WOULD LIKE TO DELETE"} %></div>
+      <li><i class="fa fa-user" aria-hidden="true"></i><strong> <%= link_to driver.name, driver_path(driver.id)%></strong></li>
+      <div class="sub_line"><em>Average Rating: <%= driver.average_rating %></em> |
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <%= link_to 'Edit Driver', edit_driver_path(driver.id) %> |
+        <i class="fa fa-user-times" aria-hidden="true"></i> </i> <%= link_to 'Delete Driver', driver_path(driver.id), method: :delete, data: {confirm: "WARNING: YOU HAVE ASKED TO DELETE THIS DRIVER. THIS ACTION CANNOT BE UNDONE. PRESS OK TO CONFIRM YOU WOULD LIKE TO DELETE"} %></div>
     <% end  %>
 
   </ul>
