@@ -18,7 +18,7 @@ class Driver < ApplicationRecord
       end
     end
     if count == 0
-      return nil
+      return 0
     else
       return ratings / count
     end
