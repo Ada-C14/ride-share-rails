@@ -8,19 +8,26 @@
   </ul>
 <% end %>
 
-<div class="form">
+<div class="container">
   <%= form_with model: @passenger do |f| %>
     <p>Please enter the following information for a passenger:</p>
-    <div class="label">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="label">
-      <%= f.label :phone_num %>
-      <%= f.text_field :phone_num %>
-    </div>
-    <%= f.submit action_name %>
-    <button><%= link_to "Back", passengers_path %></button>
+    <div class="row">
+      <div class="col-25">
+        <%= f.label :name %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :name %>
+      </div>
+      <div class="col-25">
+        <%= f.label :phone_num %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :phone_num %>
+      </div>
+      <div class="submit">
+        <%= f.submit action_name %>
+      </div>
   <% end %>
+  </div>
 </div>
-
+<%= link_to "Return do passengers list", passengers_path %>

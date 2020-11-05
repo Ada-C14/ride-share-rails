@@ -1,4 +1,4 @@
-<nav xmlns="http://www.w3.org/1999/html">
+<nav>
   <ul>
     <li><button class="show"><a href="<%= new_driver_path %>">Add a driver</a></button></li>
     <li><button class="show"><a href="<%= new_passenger_path %>">Add a passenger</a></button></li>
@@ -14,8 +14,8 @@
   <thead>
     <th>ID</th>
     <th>Date</th>
-    <th>Driver</th>
-    <th>Passenger</th>
+<!--    <th>Driver</th>-->
+<!--    <th>Passenger</th>-->
     <th>Price</th>
     <th>Rating</th>
     <th></th>
@@ -25,8 +25,10 @@
     <tr>
       <td><%= link_to trip.id, trip_path(trip.id) %></td>
       <td><%= trip.date.strftime("%m/%d/%Y") %></td>
-      <td><%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id) %></td>
-      <td><%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id) %></td>
+<!--      <td><%#= trip.driver_id %></td>-->
+<!--      <td><%#= trip.passenger_id %></td>-->
+    <!--  <td><%#= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id) %></td>-->
+    <!--  <td><%#= link_to , passenger_path(trip.passenger_id) %></td>-->
       <td><%= number_to_currency(trip.cost) %></td>
       <td><%= trip.rating %></td>
       <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %></td>

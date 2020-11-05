@@ -8,18 +8,33 @@
   </ul>
 <% end %>
 
-<div class="form">
+<div class="container">
   <%= form_with model: @driver do |f| %>
     <p>Please the following information for a driver</p>
-    <div class="label">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="label">
-      <%= f.label :vin %>
-      <%= f.text_field :vin %>
-    </div>
-    <%= f.submit action_name %>
-    <button><%= link_to "Back", drivers_path %></button>
+    <div class="row">
+      <div class="col-25">
+        <%= f.label :name %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :name %>
+      </div>
+      <div class="col-25">
+        <%= f.label :vin %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :vin %>
+      </div>
+      <div class="col-25">
+        <%= f.label :available %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :available %>
+      </div>
+      <div class="submit">
+        <%= f.submit action_name %>
+      </div>
   <% end %>
+  </div>
 </div>
+
+<a class="return"><%= link_to "Return to drivers list", drivers_path %></a>
