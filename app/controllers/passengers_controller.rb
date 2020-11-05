@@ -8,6 +8,7 @@ class PassengersController < ApplicationController
   end
 
   def show
+    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -26,6 +27,10 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
+      # @passenger.errors.messages.each do |column, message|
+      #   puts column.capitalize
+      #   puts message
+      # end
       render :new
       return
     end
@@ -33,6 +38,7 @@ class PassengersController < ApplicationController
   end
 
   def edit
+    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -41,6 +47,7 @@ class PassengersController < ApplicationController
   end
 
   def update
+    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -55,6 +62,7 @@ class PassengersController < ApplicationController
   end
 
   def destroy
+    @passenger = find_by
 
     if @passenger.nil?
         redirect_to passengers_path
