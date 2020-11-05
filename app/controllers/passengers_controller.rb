@@ -63,6 +63,7 @@ class PassengersController < ApplicationController
       return
     else
       @passenger.destroy
+      @passenger.trips.each {|trip| trip.destroy}
       redirect_to passengers_path
       return
     end
