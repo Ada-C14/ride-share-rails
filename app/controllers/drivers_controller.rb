@@ -68,15 +68,6 @@ class DriversController < ApplicationController
     end
   end
 
-  def total_earnings
-
-  end
-
-  def avg_rating
-
-  end
-
-
   private
 
   def find_driver

@@ -3,12 +3,12 @@ class TripsController < ApplicationController
   before_action :find_trip, except: [:index, :new, :create]
 
   def index
-    @trips = Driver.all.order(:date)
+    @trips = Trip.all.order(:date)
   end
 
   def show
-    if @trips.nil?
-      redirect_to trips_path
+    if @trip.nil?
+      redirect_to root_path
       return
     end
   end
@@ -33,18 +33,33 @@ class TripsController < ApplicationController
 
   def edit
     if @trip.nil?
-      redirect_to edit_trip_path
-      # we can redirect to drivers_path index
-      # or back to edit with friendly error message
+      redirect_to trips_path
       return
     end
   end
 
   def update
-
+    if @trip.nil?
+      redirect_to trips_path
+      return
+    elsif @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
+      #stays on specific driver page to show update. Otherwise will have to find driver in list to see changes
+      return
+    else                # save failed
+    render :edit      # show the new task form view again
+    return
+    end
   end
 
+  #if wwe delete driver, will it delete trip so that passenger cant access it
   def destroy
+    if @trip
+      @trip.destroy
+      redirect_to trips_path
+    else
+      head :not_found
+    end
 
   end
 

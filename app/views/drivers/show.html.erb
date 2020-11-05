@@ -12,32 +12,47 @@
     DRIVER ID: <%= @driver.id %> </br>
     NAME: <%= @driver.name %> </br>
     VIN: <%= @driver.vin %> </br>
-    TOTAL EARNINGS:<!--  <%#= @driver.total_earnings? %>--> </br>
-    AVERAGE RATING: <!--<%#= @driver.avg_rating? %>--> </br>
-<!--    STATUS:-->
-    <%#= if @driver.available %>
-<!--      Available-->
-    <%# else %>
-<!--      Unavailable-->
-<!--    <%# end %></br>-->
+    TOTAL EARNINGS:<%= @driver.total_earnings %> </br>
+    AVERAGE RATING: <%= @driver.avg_rating %> </br>
+    STATUS:
+    <% if @driver.available %>
+      <button><%= link_to "AVAILABLE", driver_path(@driver.id), method: :put %></button>
+  <% else %>
+      <button><%= link_to "UNAVAILABLE", driver_path(@driver.id), method: :put %></button>
+    <% end %>
   </li>
 </ul>
 <!--ternary operator? -->
-<!--trip table here -->
-<!--add trip details when clicking on trip id link  :-->
 
-
+<h2> TRIPS TAKEN </h2>
   <table>
     <thead>
     <tr>
-<!--      <th>TRIP ID <%#= link_to @driver.trips.id, trip_path(@trip)? %> </th>-->
-      <th>DATE</th>
+      <th>TRIP ID </th>
+      <th>TRIP DATE</th>
       <th>PASSENGER ID </th>
-<!--      <th>PASSENGER NAME <%#= link_to @passenger.name, passenger_path(passenger)? %></th>-->
+      <th>PASSENGER NAME </th>
       <th>DRIVER ID</th>
-      <th>DRIVER NAME <%= link_to @driver.name, driver_path(@driver) %> </th>
-      <th>RATING</th>
+      <th>DRIVER NAME</th>
       <th>COST</th>
+      <th>RATING</th>
     </tr>
     </thead>
+
+    <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to trip.id, driver_trip_path(trip)%></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.passenger_id %></td>
+        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger)%></td>
+        <td><%= trip.driver_id %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver)%></td>
+        <td><%= trip.cost%></td>
+        <td><%= trip.rating %></td>
+
+      </tr>
+    <% end %>
+    </tbody>
+
   </table>

@@ -1,0 +1,35 @@
+
+<%= form_with model: @trip, class: 'trip-form' do |f| %>
+
+
+  <div >
+    <%= f.label :trip_id  %>
+    <%= f.text_field :trip_id %> </br>
+
+    <%= f.label :date %>
+    <%= f.text_field :date %> </br>
+
+    <%= f.label :driver_id  %>
+    <%= f.text_field :driver_id %>
+
+    <%= f.label :driver_name  %>
+    <%= f.text_field :driver_name %>
+
+    <%= f.label :passenger_id  %>
+    <%= f.text_field :passenger_id %>
+
+    <%= f.label :cost  %>
+    <%= f.text_field :cost %>
+
+    <%= f.label :rating  %>
+    <%= f.text_field :rating %>
+
+    <%= f.submit action_name %>
+
+  </div>
+
+<% end  %>
+
+
+<button><%= link_to "Home", root_path %></button>
+
