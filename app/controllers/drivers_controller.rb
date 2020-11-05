@@ -20,7 +20,7 @@ class DriversController < ApplicationController
     @driver = Driver.new(driver_params)
 
     if @driver.save
-      redirect_to driver_path(@driver)
+      redirect_to driver_path(@driver.id)
       return
     else
       render :new, status: :bad_request
