@@ -42,7 +42,6 @@ describe DriversController do
 
       # Assert
       must_respond_with :success
-
     end
 
     it "responds with 404 with an invalid driver id" do
@@ -55,41 +54,64 @@ describe DriversController do
     end
   end
 
-#   describe "new" do
-#     it "responds with success" do
-#       skip
-#     end
-#   end
-#
-#   describe "create" do
-#     it "can create a new driver with valid information accurately, and redirect" do
-#       skip
-#       # Arrange
-#       # Set up the form data
-#
-#       # Act-Assert
-#       # Ensure that there is a change of 1 in Driver.count
-#
-#       # Assert
-#       # Find the newly created Driver, and check that all its attributes match what was given in the form data
-#       # Check that the controller redirected the user
-#
-#     end
-#
-#     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-#       skip
-#       # Note: This will not pass until ActiveRecord Validations lesson
-#       # Arrange
-#       # Set up the form data so that it violates Driver validations
-#
-#       # Act-Assert
-#       # Ensure that there is no change in Driver.count
-#
-#       # Assert
-#       # Check that the controller redirects
-#
-#     end
-#   end
+  describe "new" do
+    it "responds with success" do
+      driver
+      get new_driver_path
+
+      must_respond_with :success
+    end
+  end
+
+  describe "create" do
+    it "can create a new driver with valid information accurately, and redirect" do
+      # Arrange
+      # Set up the form data
+      driver_hash = {
+          driver: {
+              name: "new task",
+              vin: 'ghbgdsrklp2347bC9'
+          },
+      }
+
+      # Act-Assert
+      # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
+
+      # Assert
+      # Find the newly created Driver, and check that all its attributes match what was given in the form data
+      new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+      # Check that the controller redirected the user
+      must_respond_with :redirect
+      must_redirect_to drivers_path(new_driver.id)
+      expect(new_driver.name).must_equal driver_hash[:driver][:name]
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
+    end
+
+    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Driver validations
+      driver_hash = {
+          driver: {
+              name: nil,
+              vin: nil
+          }
+      }
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_differ "Driver.count", 0
+
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :bad_request
+    end
+  end
 #
 #   describe "edit" do
 #     it "responds with success when getting the edit page for an existing, valid driver" do

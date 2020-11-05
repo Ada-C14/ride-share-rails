@@ -14,9 +14,18 @@ class DriversController < ApplicationController
 
 
   def new
+    @driver = Driver.new
   end
 
   def create
+    @driver = Driver.new(driver_params)
+    if @driver.save
+      redirect_to drivers_path(@driver.id) #send the user to the /tasks path
+      return
+    else
+      render :new, status: :bad_request
+      return
+    end
   end
 
   def edit
@@ -28,6 +37,16 @@ class DriversController < ApplicationController
   end
 
   def update
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      head :not_found
+      return
+    elsif @driver.update(driver_params)
+      redirect_to driver_path(@driver.id)
+      return
+    else #save failed
+    render :edit  # show the new book from view again
+    end
   end
 
   def destroy
