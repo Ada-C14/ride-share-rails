@@ -9,8 +9,8 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
-    if @task.save # save returns true if the database insert succeeds
-      redirect_to task_path(@task.id)
+    if @trip.save # save returns true if the database insert succeeds
+      redirect_to trip_path(@trip.id)
       return
     else
       render :new
@@ -19,24 +19,24 @@ class TripsController < ApplicationController
   end
 
   def edit
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
 
-    if @task.nil?
-      redirect_to tasks_path
+    if @trip.nil?
+      redirect_to trip_path
       return
     end
   end
 
   def update
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
 
-    if @task.nil?
-      redirect_to root_path
+    if @trip.nil?
+      redirect_to trip_path
       return
-    elsif @task.update(task_params)
-      redirect_to root_path # go to the index so we can see the book in the list
+    elsif @trip.update(trip_params)
+      redirect_to trips_path # go to the index so we can see the book in the list
       return
     else
       # save failed :(
@@ -46,33 +46,17 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
-    @task.destroy
-    redirect_to root_path
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+    @trip.destroy
+    redirect_to trips_path
   end
 
-  def mark_complete
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
-    @task.completed_at = Time.now.to_s
-    @task.save
-    redirect_to root_path
-  end
-
-  def mark_incomplete
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
-    @task.completed_at = nil
-    @task.save
-    redirect_to root_path
-  end
 
   private
 
-  def task_params
-    return params.require(:task).permit(:name, :description, :started_at, :completed_at)
+  def trip_params
+    return params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end
-end
 
 end

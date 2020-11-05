@@ -13,6 +13,12 @@
     end
   %></li>
 
+  <li>
+    Driver's Trips
+    <%= @driver.trips.map { |trip| trip.date} %>
+  </li>
+
+
   <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
   <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete,
                    data: {confirm: 'Are you sure you would like to delete?'} %></li>

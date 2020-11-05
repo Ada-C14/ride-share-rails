@@ -17,7 +17,7 @@ class DriversController < ApplicationController
   end
 
   def create
-    @driver = Driver.new(task_params)
+    @driver = Driver.new(driver_params.merge({ available: true }))
     if @driver.save # save returns true if the database insert succeeds
       redirect_to driver_path(@driver.id)
       return
