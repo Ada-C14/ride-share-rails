@@ -1,14 +1,10 @@
 # frozen_string_literal: true
-# require 'money'
 
 class Driver < ApplicationRecord
   has_many :trips
   validates :name, presence: true
   validates :vin, presence: true
-  # validates :available, presence: true
-  # def trip_list
-  #   return self.trips.all
-  # end
+  validates :available, presence: true
 
   def average_rating
     sum_of_ratings = 0.00
@@ -24,7 +20,7 @@ class Driver < ApplicationRecord
         end
       end
       average = (sum_of_ratings / trips.length).to_f.round(2)
-      average
+      return average
     end
   end
 
@@ -49,6 +45,4 @@ class Driver < ApplicationRecord
       # number_to_currency((total_income / 100.0).round(2))
     end
   end
-
-
 end

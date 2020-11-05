@@ -18,7 +18,6 @@ class Passenger < ApplicationRecord
   end  
 
   def request_trip
-
     available_drivers = Driver.where(:available => true)
 
     raise ArgumentError, 'No drivers available' if available_drivers.empty?

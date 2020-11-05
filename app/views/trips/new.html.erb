@@ -24,7 +24,7 @@
   <%= f.label :passenger_id %>
   <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
   <%= f.label :date %>
-  <%= f.date_field :date %>
+  <%= f.date_field :date, :value => Date.today %>
   <%= f.label :rating %>
   <%= f.text_field :rating %>
   <%= f.label :cost %>
