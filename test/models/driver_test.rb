@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "12345678901234567", available: true)
   }
   it "can be instantiated" do
     # Assert
@@ -54,7 +54,7 @@ describe Driver do
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
-      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:vin]).must_equal ["is the wrong length (should be 17 characters)"]
     end
   end
 
