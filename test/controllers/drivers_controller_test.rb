@@ -179,13 +179,34 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
+      driver = Driver.create(
+          {
+              name: "Lady Gaga",
+              vin: "GFDHRTG4353453DS",
+              available: true
+          }
+      )
+
+      driver_id = Driver.find_by(name: "Lady Gaga").id
+
+      driver_hash = {
+          driver: {
+              name: "Lady Gaga",
+              vin: "GFDHRTG4353453DS"
+          }
+      }
+
+      driver_hash[:driver][:name] = nil
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: driver_hash
+      }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :redirect
     end
   end
 
