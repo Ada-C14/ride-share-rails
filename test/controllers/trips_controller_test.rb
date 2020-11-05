@@ -20,9 +20,16 @@ describe TripsController do
     end
   end
 #
-#   describe "create" do
-#     # Your tests go here
-#   end
+ describe "create" do
+    it "can create a new trip with valid information accurately, and redirect" do
+      # Arrange
+      # Set up the form data
+
+      # Act-Assert
+      # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post trips_path, params: trip_hash
+      }.must_change "Trip.count", 1
 #
 #   describe "edit" do
 #     # Your tests go here

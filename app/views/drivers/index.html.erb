@@ -8,17 +8,18 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
+
+<%= paginate @drivers %>
+
 <table>
   <thead>
-  <th>ID</th>
   <th>Name</th>
   <th>VIN number</th>
   <th>Options</th>
   </thead>
   <tbody>
-    <% Driver.order('id').each do |driver| %>
+    <% @drivers.each do |driver| %>
       <tr>
-        <td><%= driver.id %></td>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
         <td><%= driver.vin %></td>
         <td>
@@ -29,3 +30,4 @@
     <% end %>
   </tbody>
 </table>
+

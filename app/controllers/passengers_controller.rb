@@ -12,7 +12,7 @@ class PassengersController < ApplicationController
   #########################################################
 
   def index
-    @passengers = Passenger.all.order(:name)
+    @passengers = Passenger.order(:name).page(params[:page])
   end
 
   def show

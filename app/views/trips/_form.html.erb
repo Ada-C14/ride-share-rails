@@ -6,8 +6,8 @@
   </ul>
 <% end %>
 
-<div class="container">
   <%= form_with model: @trip do |f| %>
+  <div class="container">
     <p>Please enter the following information for a trip:</p>
     <div class="row">
       <div class="col-25">
@@ -16,34 +16,45 @@
       <div class="col-75">
         <input type="date" id="start" name="trip-start">
       </div>
+    </div>
+    <div class="row">
       <div class="col-25">
         <%= f.label :driver_id%>
       </div>
       <div class="col-75">
         <%= f.text_field :driver_id %>
       </div>
+    </div>
+    <div class="row">
       <div class="col-25">
         <%= f.label :passenger_id %>
       </div>
       <div class="col-75">
         <%= f.text_field :passenger_id %>
       </div>
+    </div>
+    <div class="row">
       <div class="col-25">
         <%= f.label :price %>
       </div>
       <div class="col-75">
         <%= f.text_field :cost%>
       </div>
+    </div>
+    <div class="row">
       <div class="col-25">
         <%= f.label :rating%>
       </div>
       <div class="col-75">
         <%= f.text_field :rating %>
       </div>
+    </div>
+    <div class="row">
       <div class="submit">
         <%= f.submit action_name %>
       </div>
-  <% end %>
+    </div>
   </div>
+  <% end %>
 </div>
-  <%= link_to "Return to trips list", passengers_path %>
+  <%= link_to "Return to trips list", passengers_path, class:"return"%>

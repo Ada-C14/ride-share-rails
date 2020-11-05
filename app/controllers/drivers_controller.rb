@@ -12,7 +12,7 @@ class DriversController < ApplicationController
   #########################################################
 
   def index
-    @drivers = Driver.all.order(:name)
+    @drivers = Driver.order(:name).page(params[:page])
   end
 
   def show

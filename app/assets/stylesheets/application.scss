@@ -33,6 +33,8 @@ main {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10em;
+   margin-top: 5em;
 }
 
 footer {
@@ -40,10 +42,8 @@ footer {
   text-align: center;
   bottom: 0;
   width: 100%;
-  height: 2px;
   position: fixed;
-  padding: 20px;
-  vertical-align: bottom
+  padding: 15px;
 }
 
 .show {
@@ -80,7 +80,7 @@ img{
 }
 
 table {
-  width: 100%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   padding: 10px
@@ -113,21 +113,6 @@ color: black;
   box-sizing: border-box;
 }
 
-input[type=text] textarea {
-   width: 100%;
-   padding: 12px 20px;
-   margin: 8px 0;
-   display: inline-block;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-   box-sizing: border-box;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
 input[type=submit]{
   background-color: lightgray;
   color: black;
@@ -137,10 +122,6 @@ input[type=submit]{
   float: left;
   padding: 10px;
   text-align: center;
-}
-
-.return {
-float: left;
 }
 
 input[type=submit]:hover {
@@ -153,32 +134,40 @@ input[type=submit]:hover {
   padding: 20px;
   width: 60%;
   margin: auto;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+display: flex;
+width: 100%;
+}
+
+.row input[type="text"]{
+width: 100%;
 }
 
 .col-25 {
-  float: left;
   width: 25%;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 .col-75 {
-  float: left;
   width: 75%;
-  margin-top: 6px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
     margin-top: 0;
-    padding: 20px;
   }
+}
+
+.return {
+display: block;
+text-align: right;
 }
 
 back{
@@ -194,4 +183,8 @@ back{
 p{
   text-align: center;
   padding: 20px;
+}
+
+.nav-list{
+display: flex;
 }
