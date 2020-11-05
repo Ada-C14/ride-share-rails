@@ -33,11 +33,13 @@
     padding: 10px 5px 10px 10px;
     min-width: 100px;
 }
+
 [href="/"] {background-color: #d9b310;}
-[href="/drivers"] {background-color: #f7882f}
-[href="/drivers/new"] {background-color: #58A4B0}
-[href="/passengers"] {background-color: #328cc1}
-[href="/passengers/new"] {background-color: #286da8}
+nav > [href="/drivers"] {background-color: #f7882f}
+nav > [href="/drivers/new"] {background-color: #58A4B0}
+nav > [href="/passengers"] {background-color: #328cc1}
+nav > [href="/passengers/new"] {background-color: #286da8}
+nav > [href="/trips"] {background-color: #1c4a77}
 
 .nav-list, a {
     color: white;
@@ -52,6 +54,7 @@ a.nav-list:hover {
     background-color: #CAAD5F;
     border-radius: 3px;
 }
+
 
 .content {
     background-color: #2E5C6E;
@@ -143,4 +146,23 @@ ul.errors {
     width: 20%;
 }
 
+.homepage-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+}
+.homepage-button1 {background-color: #02c39a}
+.homepage-button2 {background-color: #00a896}
+.homepage-button3 {background-color: #028090}
+.homepage-button4 {background-color: #05668d}
 
+.homepage-button > p {
+    height: 2em;
+    width: 25em;
+    border-radius: 5px;
+}
+
+.request-button {
+    background-color: #f7882f;
+}
