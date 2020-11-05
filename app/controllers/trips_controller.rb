@@ -67,18 +67,23 @@ class TripsController < ApplicationController
   end
 
   def update
+    # raise
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
       not_found_error_notice
       return
-    elsif @trip.update(trip_params)
-      redirect_to trip_path(@trip.id)
-      return
     else
+      @trip.update(trip_params)
+    end
+
+    unless @trip.valid?
       render :edit
       return
     end
+
+    redirect_to trip_path(@trip.id)
+    return
   end
 
   def destroy
