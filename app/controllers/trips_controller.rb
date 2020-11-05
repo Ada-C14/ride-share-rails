@@ -45,7 +45,9 @@ class TripsController < ApplicationController
     @trip = Trip.new(create_params)
 
     if @trip.save
-      Driver.find_by(id: @trip.driver_id).available = 'false'
+      driver = Driver.find_by(id: @trip.driver_id)
+      driver.available = 'false'
+      driver.save
       redirect_to trip_path(@trip.id)
       return
     else
