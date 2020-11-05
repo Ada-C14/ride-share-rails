@@ -34,10 +34,14 @@ class TripsController < ApplicationController
 
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
+    driver = Driver.find_by(available: true)
     @trip = passenger.trips.new(
-        driver_id: Driver.find_by(available: true),
+        date: Date.today.to_s,
+        rating: nil,
         cost: rand(1000..9000),
-        rating: nil )
+        passenger_id: passenger.id,
+        driver_id: driver.id
+        )
 
     if @trip.save
       @trip.driver.available = false
