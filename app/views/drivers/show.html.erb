@@ -1,0 +1,30 @@
+<h1>Driver Details</h1>
+
+<ul>
+  <li>Id: <%= @driver.id %></li>
+  <li>Name: <%= @driver.name %></li>
+  <li>VIN: <%= @driver.vin %></li>
+  <li>Available: <%= @driver.available %></li>
+  <li>Total Earnings: $<%= @driver.total_earned %></li>
+  <li>Average Rating: <%= @driver.average_rating.nil? ? "Rating score not available" : @driver.average_rating %></li>
+  <li>Trip Dates:
+    <% if @driver.trips.empty? %>
+      No Trips
+    <% else %>
+      <% @driver.trips.each do |trip| %>
+        <%= link_to "#{trip.date}", trip_path(trip.id) %> /
+      <% end %>
+    <% end %>
+  </li>
+  <li><%= link_to "Trip Details", driver_trips_path(@driver.id) %></li>
+</ul>
+
+<%= button_to "Edit", edit_driver_path(@driver),
+              method: "get", class: "button" %>
+
+<%= button_to "Delete", driver_path(@driver),
+              method: :delete, class: "button",
+              data: {confirm: "Are you sure?"} %>
+
+<%= button_to "Return to Driver List", drivers_path,
+              method: "get", class: "button" %>
