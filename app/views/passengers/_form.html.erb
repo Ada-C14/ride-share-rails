@@ -2,6 +2,18 @@
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
   <p>PLEASE FILL IN THE FOLLOWING PASSENGER INFORMATION:</p>
 
+  <% if @passenger.errors.any? %>
+    <ul>
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <p><%= column %> <%= message %></p>
+      </li>
+    <% end %>
+    </ul>
+
+  <% end %>
+
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 

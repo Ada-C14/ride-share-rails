@@ -9,7 +9,6 @@ class PassengersController < ApplicationController
 
     if @passenger.nil?
       redirect_to passengers_path
-      head :not_found
       return
     end
   end
@@ -25,7 +24,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
-      render :new, :bad_request
+
       return
     end
 
@@ -36,7 +35,6 @@ class PassengersController < ApplicationController
 
     if @passenger.nil?
       redirect_to passengers_path
-      head :not_found
       return
     end
   end
@@ -72,7 +70,7 @@ class PassengersController < ApplicationController
 
   private
 
-  def find_by # is this a private method?
+  def find_by
     passenger_id = params[:id].to_i
     passenger = Passenger.find_by(id: passenger_id)
   end
