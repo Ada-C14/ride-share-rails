@@ -81,18 +81,27 @@ describe PassengersController do
       must_redirect_to passenger_path(new_passenger.id)
     end
 
-    #TODO form validation tests?
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
-      skip
-      # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
+      passenger_hash = {
+          passenger: {
+              name: "Lady Gaga",
+              phone_num: "444-444-4444"
+          },
+      }
+
       # Set up the form data so that it violates Passenger validations
+      passenger_hash[:passenger][:name] = nil
 
       # Act-Assert
       # Ensure that there is no change in Passenger.count
+      expect{
+        post passengers_path, params: passenger_hash
+      }.wont_change "Passenger.count"
 
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
     end
   end
 
@@ -162,20 +171,40 @@ describe PassengersController do
       must_respond_with :not_found
     end
 
-    it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
-      skip
+    it "does not update a passenger if the form data violates Passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing passenger saved
       # Assign the existing passenger's id to a local variable
       # Set up the form data so that it violates Passenger validations
 
+      passenger = Passenger.create(
+          {
+              name: "Lady Gaga",
+              phone_num: "444-444-4444"
+          }
+      )
+
+      passenger_id = Passenger.find_by(name: "Lady Gaga").id
+
+      passenger_hash = {
+          passenger: {
+              name: "Lady Gaga",
+              phone_num: "444-444-4444"
+          }
+      }
+
+      passenger_hash[:passenger][:name] = nil
+
       # Act-Assert
       # Ensure that there is no change in Passenger.count
+      expect {
+        patch passenger_path(passenger_id), params: passenger_hash
+      }.wont_change "Passenger.count"
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :redirect
     end
   end
 

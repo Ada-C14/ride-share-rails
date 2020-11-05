@@ -101,7 +101,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :bad_request
+      must_respond_with :redirect
 
     end
   end
