@@ -1,13 +1,5 @@
 <h1>Edit Passenger</h1>
 
-<%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
-  <p>Please provide the following information to update your passenger:</p>
+<p>Please provide the following information to update your passenger:</p>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
-
-  <%= f.submit "Save Changes", class: "passenger-button" %>
-<% end %>
+<%= render partial: "form", locals: { action_name: "Edit" } %>

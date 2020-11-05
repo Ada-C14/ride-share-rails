@@ -1,4 +1,5 @@
 <h1>New Trip</h1>
 
-<%= form_with model: @trip, class: 'create-trip' do |f| %>
-<% end %>
+<p>Please provide the following information to make a new trip:</p>
+
+<%= render partial: "form", locals: { action_name: "New" } %>

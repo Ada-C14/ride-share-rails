@@ -12,7 +12,7 @@
 
 <ul>
   <% @passenger.trips.each do |trip| %>
-  <li> ID: <%= trip.id %> --
+  <li> ID: <%= link_to trip.id, trip_path(trip) %> --
     Driver: <%= trip.driver.name %> --
     Passenger: <%= trip.passenger.name %> --
     Cost: $<%= sprintf('%.2f', trip.cost/100) %> --
