@@ -25,8 +25,10 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     if @trip.save
       available_driver = Driver.find_by_id(@trip.driver_id)
-      available_driver.available = false
-      available_driver.save!
+      # available_driver.toggle!(:available)
+      available_driver.update!({available: false})
+      #available_driver.available = false
+      # available_driver.save!
       redirect_to trip_path(@trip.id)
     else
       render :new

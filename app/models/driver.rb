@@ -5,7 +5,7 @@ class Driver < ApplicationRecord
   has_many :trips
   validates :name, presence: true
   validates :vin, presence: true
-
+  # validates :available, presence: true
   # def trip_list
   #   return self.trips.all
   # end
