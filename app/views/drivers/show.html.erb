@@ -23,7 +23,7 @@
         <td><%= link_to trip.id, trip_path(trip) %></td>
         <td><%= trip.date %></td>
         <td><%= @driver.name %></td>
-        <td><%=  %></td>
+        <td><%= trip.passenger.name %></td>
         <td>$<%= trip.cost/100%></td>
         <td><%= trip.rating %></td>
       </tr>
