@@ -51,7 +51,7 @@ class DriversController < ApplicationController
       head :not_found
       return
     elsif @driver.update(driver_params)
-      redirect_to driver_path(@driver)
+      render :new
       return
     else
       render :edit, status: :bad_request
