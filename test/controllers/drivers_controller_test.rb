@@ -44,13 +44,19 @@ describe DriversController do
 
     it "responds with success when there are no drivers saved" do
       # Arrange
+      if Driver.count > 0
+        drivers = Driver.all
+        drivers.each do |driver|
+          driver.delete
+        end
+      end
+
       # Ensure that there are zero drivers saved
-      # when seeing index page with no drivers, no errors, can be re-direct to homepage
+      expect(Driver.count).must_equal 0
+      # when seeing index page with no drivers, no errors
 
-      # Act
-
-      # Assert
-
+      # Act-Assert
+      #### what else do we need here????????????????????????????????????
     end
   end
 
@@ -125,18 +131,26 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
+    it "does not create a driver if the form data violates Driver validations" do
+
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-
+      new_driver_hsh = {
+          driver: {
+              name: "",
+              vin: 'invalid driver no name',
+              available: true }
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: new_driver_hsh
+      }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :bad_request
     end
   end
   
@@ -213,6 +227,7 @@ describe DriversController do
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       skip
+      # schanen - i don't think we need two tests for using the same form in update and new **********
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -229,28 +244,43 @@ describe DriversController do
   end
 
   describe "destroy" do
+    before do
+    @driver = Driver.new name: 'test driver', vin: 'ABC123456', available: false
+    end
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
 
+      @driver.save
+      id = @driver.id
+
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
+      expect {
+        delete driver_path(id)
+      }.must_change 'Driver.count', -1
 
-      # Assert
+      deleted_driver = Driver.find_by(name: 'test driver')
+      expect(deleted_driver).must_be_nil
       # Check that the controller redirects
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
       # Arrange
+      @driver.save
       # Ensure there is an invalid id that points to no driver
-
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
+      expect {
+        delete driver_path(-1)
+      }.wont_change 'Driver.count'
 
+      must_respond_with :not_found
     end
   end
 end

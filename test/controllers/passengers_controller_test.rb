@@ -110,6 +110,29 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
+
+    it "does not create a passenger if the form data violates Passenger validations" do
+
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Driver validations
+      new_passenger_hsh = {
+          passenger: {
+              name: "",
+              phone_num: "411"
+          }
+      }
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      expect {
+        post passengers_path, params: new_passenger_hsh
+      }.wont_change "Passenger.count"
+
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :bad_request
+    end
+
   end
 
   describe "edit" do
@@ -182,25 +205,42 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    it "can destroy a model" do
+    before do
+      @passenger = Passenger.new name: 'test passenger', phone_num: 'ABC123456'
+    end
+    it "destroys the driver instance in db when passenger exists, then redirects" do
       # Arrange
-      passenger_to_delete = Passenger.new name: "passenger to delete", phone_num: '911'
 
-      passenger_to_delete.save
-      id = passenger_to_delete.id
+      @passenger.save
+      id = @passenger.id
 
-      # Act
+      # Act-Assert
       expect {
         delete passenger_path(id)
-        # Assert
       }.must_change 'Passenger.count', -1
 
-      deleted_passenger = Passenger.find_by(name: "passenger to delete")
+      deleted_passenger = Passenger.find_by(name: 'test passenger')
 
       expect(deleted_passenger).must_be_nil
 
       must_respond_with :redirect
       must_redirect_to passengers_path
+    end
+
+    it "does not change the db when the driver does not exist, then responds with " do
+      # Arrange
+      @passenger.save
+      # Ensure there is an invalid id that points to no driver
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+      expect {
+        delete passenger_path(-1)
+      }.wont_change 'Passenger.count'
+
+      must_respond_with :not_found
     end
   end
 end

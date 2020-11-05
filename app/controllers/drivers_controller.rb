@@ -26,8 +26,8 @@ class DriversController < ApplicationController
       # go to the index so we can see the driver in the list, send them back to '/drivers' path
       redirect_to driver_path(@driver.id)
       return
-    else                              # save failed
-    render :new, :bad_request         # show the new driver form view again
+    else # save failed
+    render :new, status: :bad_request         # show the new driver form view again
     return
     end
   end
@@ -66,6 +66,7 @@ class DriversController < ApplicationController
     else
       head :not_found
     end
+    return
   end
 
   private
