@@ -1,0 +1,26 @@
+<%= form_with model: @trip do |f| %>
+
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.order(:name).map { |pass| [pass.name, pass.id] } %>
+  <br>
+  <%= f.label :driver_id %>
+  <%= f.select :driver_id, Driver.order(:name).map { |driver| [driver.name, driver.id] } %>
+  <br>
+  <%= f.label :date %>
+  <%= select_date Date.today, prefix: :date %>
+  <br>
+  <%= f.label :rating %>
+  <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]] %>
+  <br>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <br>
+  <%= f.submit "#{button_name}" %>
+<% end %>
+
+<!--<li>ID: <%#= @trip.id %> </li>-->
+<!--<li>PASSENGER ID: <%#= link_to "#{@trip.passenger_id}", passenger_path(@trip.passenger_id)  %></li>-->
+<!--<li>DRIVER ID: <%#= link_to "#{@trip.driver_id}", driver_path(@trip.driver_id) %> </li>-->
+<!--<li>DATE: <%#= @trip.date %> </li>-->
+<!--<li>RATING: <%#= @trip.rating %> </li>-->
+<!--<li>COST: <%#= @trip.cost %> </li>-->
