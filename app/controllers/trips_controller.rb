@@ -1,27 +1,48 @@
 class TripsController < ApplicationController
 
   def index
-    @trips = Trip.all
+
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips= passenger.trips
+    else
+      @trips = Trip.all
+    end
+
   end
 
-  def create
-
-  end
 
   def new
-    @trip = Trip.new
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      driver = find_driver
+      driver.toggle_available
+      @trip = passenger.trips.new(date: Date.current, cost: rand(100..9999), driver_id: find_driver.id)
+    else
+      @trips = Trip.new
+    end
   end
 
   def edit
+    @trip = find_trip
 
+    redirect_to trips_path and return if @trip.nil?
   end
 
   def update
+    trip = find_trip
 
+    redirect_to trips_path and return if trip.nil?
+
+    action_success_check(trip.update(trip_params), trip_path)
   end
 
   def destroy
+    trip = find_trip
 
+    redirect_to trips_path and return if trip.nil?
+
+    action_success_check(trip.destroy, trips_path)
   end
 
   private
@@ -35,10 +56,14 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    return params.require(:passenger).permit(:name, :phone_num)
+    return params.require(:trip).permit(:date, :rating, :cost)
   end
 
   def find_trip
     return Trip.find_by(id: params[:id].to_i)
+  end
+
+  def find_driver
+    return Driver.find_by(available: true)
   end
 end
