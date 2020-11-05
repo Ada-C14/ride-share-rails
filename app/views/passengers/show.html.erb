@@ -53,4 +53,4 @@
 <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
 
 <!--Click a button to add a new trip for that passenger-->
-<%= link_to "Add new trip", trips_path, method: :post %>
+<%= link_to "Add new trip", passenger_trips_path(@passenger), method: :post %>
