@@ -2,16 +2,16 @@ class DriversController < ApplicationController
 
   def index
     #give us all drivers
-    @drivers =Driver.all
+    @drivers = Driver.all
   end
 
   def new
-    @driver=Driver.new
+    @driver = Driver.new
   end
 
   def show
-    driver_id= params[:id].to_i
-    @driver= Driver.find_by(id:driver_id)
+    driver_id = params[:id].to_i
+    @driver = Driver.find_by(id:driver_id)
 
     if @driver.nil?
       head :not_found # would a redirect be better here? Does it matter? It it my decision?
@@ -20,7 +20,7 @@ class DriversController < ApplicationController
   end
 
   def edit
-    @driver=Task.find_by(id:params[:id])
+    @driver = Driver.find_by(id:params[:id])
 
     if @driver.nil?
       redirect_to driver_path(@driver.id) #Vs. Head :not_found
@@ -29,7 +29,7 @@ class DriversController < ApplicationController
   end
 
   def update
-    @driver =Driver.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
       redirect_to driver_path(@driver.id) # vs Head :not_found
@@ -44,8 +44,10 @@ class DriversController < ApplicationController
   end
 
   def create
+    driver_params_results = driver_params
+    driver_params_results[:available] = true
 
-    @driver=Driver.new(driver_params)
+    @driver = Driver.new(driver_params_results)
 
     if @driver.save
       redirect_to driver_path(@driver.id)

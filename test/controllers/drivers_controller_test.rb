@@ -29,7 +29,8 @@ describe DriversController do
     end
   end
 
-  describe "show" do
+  xdescribe "show" do
+
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
@@ -51,12 +52,12 @@ describe DriversController do
     end
   end
 
-  describe "new" do
+  xdescribe "new" do
     it "responds with success" do
     end
   end
 
-  describe "create" do
+  xdescribe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
@@ -84,7 +85,7 @@ describe DriversController do
     end
   end
   
-  describe "edit" do
+  xdescribe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -106,7 +107,7 @@ describe DriversController do
     end
   end
 
-  describe "update" do
+  xdescribe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -151,7 +152,7 @@ describe DriversController do
     end
   end
 
-  describe "destroy" do
+  xdescribe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
