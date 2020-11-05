@@ -16,7 +16,12 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    if @trip.passenger_id.nil?
+      @trip = Trip.new
+    else
+
+    end
+
   end
 
   def create
