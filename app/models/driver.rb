@@ -46,8 +46,5 @@ class Driver < ApplicationRecord
   #   new_hash = trips_hash.delete(:created_at)
   #   # new_hash = trips_hash.delete(:updated_at)
   #   return new_hash
-
-
-
   # end
 end
