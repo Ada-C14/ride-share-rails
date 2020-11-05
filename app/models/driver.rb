@@ -15,7 +15,15 @@ class Driver < ApplicationRecord
     total = 0
     costs.each do |cost|
       total += cost
+      total = total.to_f / 100
     end
+    return total.round(2)
+  end
+
+  def after_fee(driver)
+    total = total_money(driver)
+    fee = 1.65
+    total = (total - fee) * 0.8
     return total
 
   end

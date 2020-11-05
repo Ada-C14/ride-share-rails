@@ -1,0 +1,15 @@
+<%= form_with model: @driver do |f| %>
+  <h3>Please provide the following information to create a new Driver account.</h3>
+  <div>
+    <label>Name</label>:
+    <%= f.text_field :name %>
+    <p><label>Vin</label>:</p>
+    <%= f.text_field :vin %>
+  </div>
+  <br>
+  <%= f.submit "Create New Driver" %>
+  <!--  <p><%#= link_to "Add a new task", {action: :new }%></p>-->
+
+<% end %>
+<br>
+<hr />

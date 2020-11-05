@@ -1,6 +1,6 @@
 <h2>Driver: <%= @driver[:name] %></h2>
 <h3>Vin: <%= @driver[:vin] %></h3>
-<h3> Driver Id is <%=@driver[:id] %></h3>
+<h3> Driver Id: <%=@driver[:id] %></h3>
 <% if @driver[:available] == "true" %>
   <% availability = "yes" %>
   <% else %>
@@ -9,7 +9,10 @@
 <h4>Availability: <%= availability %></h4>
 
 <h4> <%= @driver[:name] %>'s average rating is
-<%= @driver.average_rating(@driver) %> and their total money made is <%= @driver.total_money(@driver) %> </h4>
+<%= @driver.average_rating(@driver) %>. </h4>
+<h4>
+    Their trips totaled to $<%= @driver.total_money(@driver)%> and they made $<%= @driver.after_fee(@driver) %>.
+</h4>
 
 <!--<tr>-->
 <%#trips = @driver.list_all_trips(@driver) %>
