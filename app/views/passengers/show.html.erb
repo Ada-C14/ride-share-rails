@@ -3,8 +3,40 @@
 </header>
 <main>
   <p>Passenger Name: <%= @passenger.name %></p>
-  <p> Phone Number: <%= @passenger.phone_number %></p>
-  <p> Total Charged: $<%= '%.2f' %@passenger.total_charged %></p>
+  <p>Phone Number: <%= @passenger.phone_number %></p>
+  <p>Total Charged: $<%= '%.2f' %@passenger.total_charged %></p>
+  <% if @passenger.trips.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Trip ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @passenger.trips.each do |trip| %>
+        <tr>
+          <th scope="row"><%= trip.id %></th>
+          <td>
+            <%= trip.date %>
+          </td>
+          <td>
+            <%= trip.driver.name %>
+          </td>
+          <td>
+            $<%= '%.2f' %trip.cost %>
+          </td>
+          <td>
+            <%= trip.rating %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
   <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get, class: "btn btn-warning btn-sm" %>
   <%= button_to "Return to Passenger List", passengers_path, method: :get, class: "btn btn-primary" %>
 </main>
