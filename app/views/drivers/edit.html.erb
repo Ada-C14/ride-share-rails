@@ -1,0 +1,15 @@
+<%= form_with model: @drivers, class: 'edit-passenger' do |f| %>
+  <p>Please provide the following information to edit your task:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%#= f.label :available %>
+  <%#= f.text_field :availible %>
+
+  <%= f.submit "Edit Driver", class: "driver-button" %>
+<% end %>
+<p><%= link_to "Return Home", drivers_path %></p>
