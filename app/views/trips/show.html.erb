@@ -8,3 +8,6 @@
   <li>RATING: <%= @trip.rating %> </li>
   <li>COST: <%= @trip.cost %> </li>
 </ul>
+
+<%= button_to "Edit", edit_trip_path(@trip.id), method: :get%>
+<%= button_to "Delete", trip_path(@trip.id), method: :delete %>
