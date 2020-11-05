@@ -2,11 +2,13 @@ class Driver < ApplicationRecord
   has_many :trips
   validates :name, :vin, presence: true
 
+  PER_TRIP_FEE = 1.65
+  DRIVER_PCT_TAKE_HOME = 0.8
+
   def total_earnings
-    per_trip_fee = 1.65
     total_earnings = self.trips.sum(:cost)
-    total_earnings_net_fees = total_earnings - per_trip_fee * self.trips.count
-    net_earnings = total_earnings_net_fees * 0.8
+    total_earnings_net_fees = total_earnings - PER_TRIP_FEE * self.trips.count
+    net_earnings = total_earnings_net_fees * DRIVER_PCT_TAKE_HOME
 
     return net_earnings
   end
