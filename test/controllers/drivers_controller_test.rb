@@ -173,17 +173,23 @@ describe DriversController do
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      skip
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      id = -1
       # Set up the form data
+
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id), params: new_driver_hash
+      }.wont_change "Driver.count"
 
+      
       # Assert
       # Check that the controller gave back a 404
-
+      must_respond_with :not_found
+      # must_redirect_to root_path
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -192,6 +198,7 @@ describe DriversController do
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
+
       # Set up the form data so that it violates Driver validations
 
       # Act-Assert
@@ -199,35 +206,55 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
+      new_driver_hash[:driver][:vin] = nil
+      driver = Driver.first
 
+      expect {
+        patch driver_path(driver.id), params: new_driver_hash
+      }.wont_change "Driver.count"
+
+      driver.reload # refresh the book from the database
+      must_respond_with :bad_request
+      expect(driver.vin).wont_be_nil
     end
   end
 
-#   describe "destroy" do
-#     it "destroys the driver instance in db when driver exists, then redirects" do
-#       skip
-#       # Arrange
-#       # Ensure there is an existing driver saved
-#
-#       # Act-Assert
-#       # Ensure that there is a change of -1 in Driver.count
-#
-#       # Assert
-#       # Check that the controller redirects
-#
-#     end
-#
-#     it "does not change the db when the driver does not exist, then responds with " do
-#       skip
-#       # Arrange
-#       # Ensure there is an invalid id that points to no driver
-#
-#       # Act-Assert
-#       # Ensure that there is no change in Driver.count
-#
-#       # Assert
-#       # Check that the controller responds or redirects with whatever your group decides
-#
-#     end
-#   end
+  describe "destroy" do
+    it "destroys the driver instance in db when driver exists, then redirects" do
+      # Arrange
+      # Ensure there is an existing driver saved
+
+      # Act-Assert
+      # Ensure that there is a change of -1 in Driver.count
+
+      # Assert
+      # Check that the controller redirects
+      driver_name_to_delete = "Test driver"
+      driver_to_delete = Driver.create(name: driver_name_to_delete, vin: "hjkytfd4567fdserv", available: true)
+
+      # Act
+      expect {
+        delete driver_path(driver_to_delete.id)
+      }.must_change "Driver.count", -1
+
+      deleted_driver = Driver.find_by(name: driver_name_to_delete)
+      expect(deleted_driver).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
+
+    it "does not change the db when the driver does not exist, then responds with " do
+      skip
+      # Arrange
+      # Ensure there is an invalid id that points to no driver
+
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+
+    end
+  end
 end
