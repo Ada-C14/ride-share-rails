@@ -4,10 +4,10 @@
   <%= f.select :passenger_id, Passenger.order(:name).map { |pass| [pass.name, pass.id] } %>
   <br>
   <%= f.label :driver_id %>
-  <%= f.select :driver_id, Driver.order(:name).map { |driver| [driver.name, driver.id] } %>
+  <%= f.select :driver_id, Driver.order(:id).map { |driver| [driver.id, driver.id] } %>
   <br>
   <%= f.label :date %>
-  <%= select_date Date.today, prefix: :date %>
+  <%= date_select :trip, :date %>
   <br>
   <%= f.label :rating %>
   <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]] %>
@@ -17,10 +17,3 @@
   <br>
   <%= f.submit "#{button_name}" %>
 <% end %>
-
-<!--<li>ID: <%#= @trip.id %> </li>-->
-<!--<li>PASSENGER ID: <%#= link_to "#{@trip.passenger_id}", passenger_path(@trip.passenger_id)  %></li>-->
-<!--<li>DRIVER ID: <%#= link_to "#{@trip.driver_id}", driver_path(@trip.driver_id) %> </li>-->
-<!--<li>DATE: <%#= @trip.date %> </li>-->
-<!--<li>RATING: <%#= @trip.rating %> </li>-->
-<!--<li>COST: <%#= @trip.cost %> </li>-->

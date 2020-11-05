@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/passengers/', to: 'passengers#index', as: :passengers
   get '/trips/', to: 'trips#index', as: :trips
 
-  get '/trips/new', to: "trips#new", as: :new_trip
+  # get '/trips/new', to: "trips#new", as: :new_trip
   get '/passengers/new', to: 'passengers#new', as: :new_passenger
   get '/drivers/new', to: 'drivers#new', as: :new_driver
 
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   post '/drivers', to: "drivers#create"
   post '/passengers', to: "passengers#create"
-  post '/trips', to: "trips#create"
+  # post '/trips', to: "trips#create"
 
   patch '/drivers/:id', to: 'drivers#update'
   put '/drivers/:id', to: 'drivers#update'
@@ -29,5 +29,9 @@ Rails.application.routes.draw do
   put '/passengers/:id', to: 'passengers#update'
   patch '/trips/:id', to: 'trips#update'
   put '/trips/:id', to: 'trips#update'
+
+  delete '/drivers/:id', to: 'drivers#destroy'
+  delete '/passengers/:id', to: 'passengers#destroy'
+  delete '/trips/:id', to: 'trips#destroy'
 
 end
