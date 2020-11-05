@@ -12,6 +12,16 @@ class PassengersController < ApplicationController
     end
 
     @trips = @passenger.trips
+
+    @total_trips = 0
+    @total_cost = 0
+    if @trips != nil || @trips != []
+      @trips.each do |trip|
+        @total_cost += trip.cost
+      end
+      @total_trips = @trips.length
+    end
+    return
   end
 
   def new

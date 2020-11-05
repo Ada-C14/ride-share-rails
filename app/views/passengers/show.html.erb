@@ -1,7 +1,10 @@
 <div>
   <h1><%= @passenger.name %></h1>
   <h2><%= @passenger.phone_num %></h2>
+  <h4>Total Trips: <%= @total_trips%> </h4>
+  <h4>Total Cost: <%= @total_cost%> </h4>
 
+  <%= link_to "Request A Trip", new_passenger_trip_path(@passenger), class: "request-button" %>
   <%= link_to "Edit", edit_passenger_path(@passenger), class: "link-button" %>
   <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
 </div>
