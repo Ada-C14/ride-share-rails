@@ -10,11 +10,15 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <table>
+  <thead>
+  <th>Name</th>
+  <th>Vin number</th>
+  </thead>
   <tbody>
     <% @drivers.each do |driver| %>
       <tr>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
-
+        <td><%= link_to driver.vin, driver_path(driver.id) %></td>
         <td>
             <%= link_to "Edit", edit_driver_path(driver.id) %> |
             <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>

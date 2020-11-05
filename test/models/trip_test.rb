@@ -1,14 +1,5 @@
 # require "test_helper"
 #
-# describe Trip do
-#   it "can be instantiated" do
-#     # Your code here
-#   end
-#
-#   it "will have the required fields" do
-#     # Your code here
-#   end
-#
 #   describe "relationships" do
 #     # Your tests go here
 #   end

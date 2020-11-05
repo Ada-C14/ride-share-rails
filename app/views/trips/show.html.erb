@@ -1,0 +1,8 @@
+<div>
+  <h1><%= @trip.date %></h1>
+  <%= link_to "Edit", edit_trip_path(@trip) %>
+  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
+</div>
+
+
+<p><%= link_to "Return to trip List", trips_path %></p>
