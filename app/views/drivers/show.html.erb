@@ -1,1 +1,10 @@
-<h2><%= @drivers[:id]%></h2>
+<h2><%= @drivers.name%></h2>
+
+<h4>List of Trips:</h4>
+<ul>
+  <% @drivers.trips.each do |trip| %>
+    <li>Trip ID: <%= link_to trip.id, trip_path(trip.id) %> Trip Date: <%= trip.date %></li>
+  <% end %>
+</ul>
+
+<div><%= link_to "Back to Drivers", drivers_path %></div>

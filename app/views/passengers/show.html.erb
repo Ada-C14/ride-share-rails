@@ -1,3 +1,10 @@
-<h2><%= @passengers[:name]%></h2>
+<h2><%= @passengers.name%></h2>
 
-<h3><%= @passengers[:phone_num]%></h3>
+<h3><%= @passengers.phone_num %></h3>
+
+<h4>List of Trips:</h4>
+<ul>
+  <% @passengers.trips.each do |trip| %>
+  <li>Trip ID: <%= link_to trip.id, trip_path(trip.id) %> Trip Date: <%= trip.date %></li>
+  <% end %>
+</ul>

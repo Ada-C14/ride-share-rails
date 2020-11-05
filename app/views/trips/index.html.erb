@@ -1,10 +1,9 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
+<h1>Trips</h1>
+
 <ul>
   <% @trips.each do |trip|  %>
     <li>
-      <%= trip[:id] %>  <%= trip[:driver_id] %>  <%= trip[:passenger_id] %>
-       <%= trip[:date] %>  <%= trip[:rating] %>  <%= trip[:cost] %>
+      <%= link_to trip.id, trip_path(trip.id) %>
     </li>
   <% end %>
 </ul>

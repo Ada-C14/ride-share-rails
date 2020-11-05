@@ -1,6 +1,11 @@
 <h2>Trip: <%= @trips[:id]%></h2>
 
 <ul>
-  <li>Rating: <%= @trips[:rating] %></li>
-  <li>Rating: <%= @trips[:rating] %></li>
+  <li>Driver ID: <%= @trips.driver_id %></li>
+  <li>Passenger ID: <%= @trips.passenger_id %></li>
+  <li>Date: <%= @trips.date %></li>
+  <li>Rating: <%= @trips.rating %></li>
+  <li>Cost: <%= @trips.cost %></li>
 </ul>
+
+<div><%= link_to "Back to Trips", trips_path %></div>
