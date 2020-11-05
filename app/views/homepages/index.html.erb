@@ -4,11 +4,23 @@
   <meta charset="UTF-8">
   <title>RideShareRails</title>
 </head>
+<body>
 <div>
   <nav class="nav">
     <ul class="menu">
-      <li> <a href="app/views/drivers/index.html.erb">Drivers</a> </li>
+      <li> <%= link_to "Riders", passengers_path%>
+      </li>
+      <li> <%= link_to "Drivers", drivers_path%>
       </li>
     </ul>
   </nav>
+  <header>
+    <h1>
+      Welcome to the Rideshare App!
+    </h1>
+  </header>
+</body>
+<footer>
+  Sandy and Rachael (c) 2020
+</footer>
 </html>
