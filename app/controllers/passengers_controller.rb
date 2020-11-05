@@ -38,7 +38,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     elsif @passenger.update(passenger_params)
       redirect_to passengers_path
@@ -53,7 +53,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     end
 

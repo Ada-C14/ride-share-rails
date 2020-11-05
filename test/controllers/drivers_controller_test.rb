@@ -46,7 +46,7 @@ describe DriversController do
       must_respond_with :success
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with redirect with an invalid driver id" do
       # Arrange
       invalid_driver_id = -1
       # Ensure that there is an id that points to no driver
@@ -210,6 +210,12 @@ describe DriversController do
 
     end
 
-    it "does not change the db when the driver does not exist, then responds with 404"
+    it "does not change the db when the driver does not exist, then responds with 404" do
+    expect {
+      delete driver_path(-1)
+    }.wont_change "Driver.count"
+    must_respond_with :not_found
+    end
+
   end
 end
