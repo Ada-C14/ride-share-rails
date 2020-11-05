@@ -21,7 +21,7 @@ class Driver < ApplicationRecord
   end
 
   def self.get_available_driver
-    drivers = Driver.all.select {|driver| driver.available = true}
-    return drivers.first
+    return Driver.all.find {|driver| driver.available == true}
+
   end
 end

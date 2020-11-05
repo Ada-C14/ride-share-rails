@@ -37,10 +37,11 @@ class TripsController < ApplicationController
     # how to get server to assign a driver?
     # how to set the same passenger id
     @passenger = Passenger.find_by(id: params[:passenger_id])
-
+    @driver = Driver.get_available_driver
+    @driver.update(available: false)
 
     @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
-                    driver_id: 1 ,
+                    driver_id: @driver.id ,
                     # how to set the same passenger id?
                     passenger_id: @passenger.id,
                     rating: nil,

@@ -35,22 +35,21 @@ describe TripsController do
         driver_id: @driver.id,
         passenger_id: @passenger.id,
         cost: 2343,
-        date: "2020-11-03",
-        rating: 4
+        date: Time.now.strftime("%Y-%m-%d"),
+        rating: nil
         }
       }
       # Act-Assert
       expect {
-        post trips_path, params: new_trip_info
+        post passenger_trips_path(@passenger), params: new_trip_info
       }.must_differ "Trip.count", 1
 
       # Assert
       new_trip = Trip.last
       expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
-      expect(new_trip.cost).must_equal new_trip_info[:trip][:cost]
       expect(new_trip.date).must_equal new_trip_info[:trip][:date]
-      expect(new_trip.rating).must_equal new_trip_info[:trip][:rating]
+      expect(new_trip.rating).must_be_nil
 
       must_respond_with :redirect
       must_redirect_to passenger_path(@passenger.id)
