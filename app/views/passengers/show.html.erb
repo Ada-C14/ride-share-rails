@@ -1,5 +1,21 @@
+<strong><%= @passenger.name %></strong>
+
 <ul>
-  <li>Id: <%= @passenger.id %></li>
-  <li>Name: <%= @passenger.name %></li>
+  <br>
+  <li>Passenger Id: <%= @passenger.id %></li>
   <li>Phone Number: <%= @passenger.phone_num %></li>
+  <li>Total Charged: $<%= @passenger.total_spent %></li>
 </ul>
+
+<p>List of Trips:</p>
+
+<ol>
+<% if @passenger.trips.empty? %>
+  "Woops! This passenger has no trips!"
+<% else %>
+  <% @passenger.trips.each do |trip| %>
+      <li><%= link_to "#{trip.date}", trip_path(trip.id) %></li>
+  <% end %>
+    </ol>
+<% end %>
+
