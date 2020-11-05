@@ -54,8 +54,8 @@
 
 <!--Click a button to add a new trip for that passenger-->
 <!--to do : add conditional to display a message if there are no available driver-->
-<%# if @driver.get_available_driver.nil? %>
-<!--  <p>No available driver</p>-->
-<%# else %>
+<% if Driver.get_available_driver.nil? %>
+  <p>No available driver</p>
+<% else %>
   <%= link_to "Add new trip", passenger_trips_path(@passenger), method: :post %>
-<%# end %>
+<% end %>
