@@ -1,5 +1,4 @@
 class DriversController < ApplicationController
-
   def index
     #give us all drivers
     @drivers = Driver.all
@@ -32,7 +31,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to driver_path(@driver.id) # vs Head :not_found
+      head :not_found #redirect_to driver_path(@driver.id) # vs Head :not_found
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
@@ -47,9 +46,8 @@ class DriversController < ApplicationController
     driver_params_results = driver_params
     driver_params_results[:available] = true
 
-    @driver = Driver.new(driver_params_results)
-
-    if @driver.save
+    @drivers = Driver.new(driver_params_results)
+    if @drivers.save
       redirect_to driver_path(@driver.id)
       return
     else
