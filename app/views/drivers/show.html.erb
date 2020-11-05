@@ -1,17 +1,9 @@
-# Use View Partials
-
-<h1>Driver: <%= @driver.name %></h1>
-
+<h1>Driver Details</h1>
+<br>
 <ul>
   <li> Name: <%= @driver.name %> </li>
   <li> VIN: <%= @driver.vin %> </li>
-  <li> Availability Status: <%=
-    if @driver.available == true
-      puts "Yes"
-    else
-        puts "No"
-    end
-  %></li>
+  <li> Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
 
   <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
   <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete %></li>
