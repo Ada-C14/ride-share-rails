@@ -23,8 +23,10 @@ class PassengersController < ApplicationController
 
     if @passenger.save
       redirect_to passenger_path(@passenger)
+      return
     else
-      redirect_to new_passenger_path
+      render :new
+      return
     end
   end
 
@@ -47,7 +49,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger)
       return
     else
-      render :bad_request
+      render :edit
       return
     end
   end
