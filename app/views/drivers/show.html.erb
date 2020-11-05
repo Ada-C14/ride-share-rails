@@ -7,7 +7,11 @@
 
 
 <div class="mini-title">
-  <p>Average Rating: <%= @driver.average_rating %></p>
+  <% if @driver.average_rating.nil? %>
+    <p>0</p>
+  <% else %>
+    <p>Average Rating: <%= @driver.average_rating %></p>
+  <% end %>
   <p>Total Earnings: $<%= sprintf("%.2f", @driver.total_earnings) %></p>
   <% if @driver.available %>
     <p>Current Status: Available</p>
@@ -18,7 +22,7 @@
   <p><%= @driver.name %>'s Trips</p>
 </div>
 
-<table>
+<table id="trip-table">
   <tr>
     <th>Trip ID</th>
     <th>Date</th>
@@ -37,7 +41,11 @@
       <% else %>
         <td><%= trip.passenger.name %></td>
       <% end %>
-      <td><%= trip.rating %></td>
+      <% if trip.rating.nil? %>
+        <td>no rating</td>
+      <% else %>
+        <td><%= trip.rating %></td>
+      <% end %>
       <td>$<%= sprintf("%.2f", trip.cost) %></td>
     </tr>
   <% end %>
