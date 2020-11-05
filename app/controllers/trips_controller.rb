@@ -67,7 +67,6 @@ class TripsController < ApplicationController
   end
 
   def update
-    # raise
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
