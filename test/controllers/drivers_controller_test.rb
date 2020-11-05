@@ -34,6 +34,8 @@ describe DriversController do
     end
 
     it "responds with success when showing an existing valid driver" do
+      #TODO
+      skip
       # Act
       get driver_path(@driver1.id)
 
@@ -81,7 +83,7 @@ describe DriversController do
       must_redirect_to driver_path(new_driver.id)
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds with a bad request" do
       # Arrange
       driver_hash = {
           driver: {
@@ -101,7 +103,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
 
     end
   end
