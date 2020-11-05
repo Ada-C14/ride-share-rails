@@ -2,9 +2,9 @@ require "test_helper"
 
 describe TripsController do
   before do
-    @driver = Driver.create(name: "Dr. Kenton Berge", vin: "SSSSSSSSSSSSSSSSSSSS", available: true)
+    @driver = Driver.create(name: "Dr. Kenton Berge", vin: "12345678901234567", available: true)
     @passenger = Passenger.create(name: "Nina Hintz Sr.", phone_num: "560.815.3059")
-    @trip = Trip.create(date: "2020-11-03", rating: "4", cost: "3423", driver_id: @driver.id, passenger_id: @passenger.id )
+    @trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: @driver.id, passenger_id: @passenger.id )
   end
 
   describe "show" do
@@ -34,7 +34,7 @@ describe TripsController do
         trip: {
         driver_id: @driver.id,
         passenger_id: @passenger.id,
-        cost: 2343,
+        cost: 23.43,
         date: Time.now.strftime("%Y-%m-%d"),
         rating: nil
         }
@@ -100,7 +100,7 @@ describe TripsController do
         trip: {
           driver_id: @driver.id,
           passenger_id: @passenger.id,
-          cost: 2550,
+          cost: 25.50,
           date: "2020-11-04",
           rating: 5
         }
