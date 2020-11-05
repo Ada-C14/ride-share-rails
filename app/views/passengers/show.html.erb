@@ -1,4 +1,7 @@
-<h1>Task: <%= @passengers.name %></h1>
-<h2>Description: <%= @passengers.phone_num %></h2>
+<h2> Passenger Details </h2>
 
-<p><%= link_to "Return to Home", passengers_path %></p>
+<p> Passenger Name: <%= @passengers.name %></p>
+<p> Passenger Phone Number: <%= @passengers.phone_num %></p>
+
+<p><%= link_to "Return to Home", passenger_path %></p>
+
