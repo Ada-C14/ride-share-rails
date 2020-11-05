@@ -1,15 +1,27 @@
 <h2><%= @passenger.name %></h2>
-<%= @passenger.phone_num %>
-<% sum = 0 %>
-<%= @passenger.trips.each do |trip| %>
-  <% sum += trip.cost %>
-<%# @passenger.trips.each do |trip| %>
-  <%# trip.driver.name %>
-<% end %>
-<%= puts sum %>
+<h4>Phone Number: <%= @passenger.phone_num %></h4>
 
+<% sum = 0 %>
 <% @passenger.trips.each do |trip| %>
-  <%= link_to trip.date, trip_path(trip.id) %>
+  <% sum += trip[:cost] %>
 <% end %>
+
+<h4>Total spent on all trips: $<%= sum / 100 %></h4>
+
+<h4><%= @passenger.name %>'s Trips:</h4>
+<ul>
+<% @passenger.trips.each do |trip| %>
+  <li>
+  <%= link_to trip.date, trip_path(trip.id) %>
+  </li>
+<% end %>
+</ul>
+
+<%= form_with model: @trip, class: 'new_trip', url: new_trip_path(@passenger) do  %>
+  <% f.submit "Request Trip" %>
+<% end %>
+
+<%= link_to "Edit", edit_passenger_path(@passenger) %>
+<%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
 
 

@@ -1,0 +1,11 @@
+<%= form_with model: @trip do |f| %>
+  <p>Please provide the following information to <%= action_name %> passenger in our database:</p>
+
+  <%# :date = Time.now %>
+
+  <% rand(1000..3500) %>
+
+  <%# rating set to nil %>
+
+  <%= f.submit "#{ action_name } Trip" %>
+<% end %>
