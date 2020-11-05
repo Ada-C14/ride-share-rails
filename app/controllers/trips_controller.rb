@@ -51,7 +51,8 @@ class TripsController < ApplicationController
 
     if @trip.save
       redirect_to passenger_path(@trip.passenger)
-      @driver.update(available: false)
+      # @driver.update(available: false)
+      @driver.set_unavailable
       return
     else
       # what should we render now that we don't have new view?
@@ -80,6 +81,7 @@ class TripsController < ApplicationController
     else
       if trip.update(trip_params)
         # redirecting to passenger details page
+        trip.complete_trip
         redirect_to passenger_path(trip.passenger)
         return
       else

@@ -4,4 +4,12 @@ class Trip < ApplicationRecord
 
   belongs_to :driver
   belongs_to :passenger
+
+  def complete_trip
+    if self.rating
+      driver = Driver.find_by(id: self.driver_id)
+      driver.set_available
+    end
+  end
+
 end

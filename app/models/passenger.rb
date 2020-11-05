@@ -20,4 +20,8 @@ class Passenger < ApplicationRecord
     # return sum
   end
 
+  def request_trip
+
+  end
+
 end
