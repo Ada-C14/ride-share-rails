@@ -39,7 +39,6 @@ class TripsController < ApplicationController
     else
       render :new, status: :bad_request
       return
-
     end
   end
 
