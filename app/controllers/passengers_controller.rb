@@ -14,6 +14,12 @@ class PassengersController < ApplicationController
 
   def new
     @passenger = Passenger.new
+    if params[:passenger_id].nil?
+      @trip = Trip.new
+    else
+      passenger = passenger.find_by(id: params[:id])
+      passenger.trips.new
+    end
   end
 
   def create
