@@ -3,6 +3,7 @@
 <div class="edit-delete">
   <p><%= link_to "Edit Driver", edit_driver_path(@driver.id) %></p>
   <p><%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
+  <p><%= link_to "Return to Drivers list", drivers_path %></p>
 </div>
 
 
