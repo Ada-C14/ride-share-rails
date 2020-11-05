@@ -8,6 +8,9 @@
 
 </ul>
 
+<%= button_to "Edit", edit_driver_path(@driver.id), method: :get%>
+<%= button_to "Delete", driver_path(@driver.id), method: :delete %>
+
 <h1>TRIPS DRIVEN:</h1>
 
 <table style="width:50%">
