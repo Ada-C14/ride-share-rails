@@ -7,7 +7,6 @@ class PassengersController < ApplicationController
 
   def not_saved_error_notice
     flash[:notice] = "Uh oh! That did not save correctly."
-    render :new
   end
 
   #########################################################
@@ -48,6 +47,7 @@ class PassengersController < ApplicationController
       return
     else
       not_saved_error_notice
+      render :new
       return
     end
   end
@@ -63,6 +63,7 @@ class PassengersController < ApplicationController
       return
     else
       not_saved_error_notice
+      render :edit
       return
     end
   end
