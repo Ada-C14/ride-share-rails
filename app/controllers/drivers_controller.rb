@@ -7,24 +7,24 @@ class DriversController < ApplicationController
 
   def show
     driver_id = params[:id].to_i
-    @driver = Driver.find_by(id:driver_id)
+    @drivers = Driver.find_by(id:driver_id)
 
-    if @driver.nil?
+    if @drivers.nil?
       head :not_found # would a redirect be better here? Does it matter? It it my decision?
       return
     end
   end
 
   def new
-    @driver = Driver.new
+    @drivers = Driver.new
   end
 
   def create
     # driver_params_results = driver_params
     # driver_params_results[:available] = true
     # @driver = Driver.new(driver_params_results
-    @driver = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin])
-    if @driver.save
+    @drivers = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin])
+    if @drivers.save
       redirect_to drivers_path(@driver.id)
       return
     else
@@ -34,10 +34,10 @@ class DriversController < ApplicationController
   end
 
   def edit
-    @driver = Driver.find_by(id:params[:id])
+    @drivers = Driver.find_by(id:params[:id])
 
-    if @driver.nil?
-      redirect_to driver_path(@driver.id) #Vs. Head :not_found
+    if @drivers.nil?
+      redirect_to driver_path(@drivers.id) #Vs. Head :not_found
       return
     end
   end
