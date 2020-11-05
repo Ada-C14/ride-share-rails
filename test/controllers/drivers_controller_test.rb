@@ -6,69 +6,75 @@ describe DriversController do
     Driver.create name: "driver name", vin: "vin number", available: true
   }
   describe "index" do
-
     it "responds with success when there are many drivers saved" do
       # Arrange
       get drivers_path
       # Ensure that there is at least one Driver saved
-
       # Act
       must_respond_with :success
       # Assert
-
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-
       # Act
-
       # Assert
 
     end
   end
 
-  xdescribe "show" do
-
+  describe "show" do
     it "responds with success when showing an existing valid driver" do
       # Arrange
+      get driver_path(driver.id)
       # Ensure that there is a driver saved
-
+      must_respond_with :success
       # Act
-
       # Assert
-
     end
 
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
-
+      get driver_path(-12)
       # Act
-
+      must_respond_with :not_found
       # Assert
-
     end
   end
 
-  xdescribe "new" do
+  describe "new" do
+
     it "responds with success" do
     end
   end
 
-  xdescribe "create" do
+  describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
-
+      new_driver_hash = {
+          driver:{
+              name: "new driver name",
+              vin: "driver vin info",
+              available: true,
+          }
+      }
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
-
+      expect {
+        post driver_path, params: new_driver_hash
+      }.must_change "Driver.count", 1
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
+      new_driver = Driver.find_by(name:new_driver_hash[:driver][:name])
+      expect(new_driver.vin).must_equal new_driver_hash[:driver][:vin]
+      expect(new_driver).must_equal new_driver_hash[:driver][:available]
 
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver.id)
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -85,7 +91,7 @@ describe DriversController do
     end
   end
   
-  xdescribe "edit" do
+  describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -107,7 +113,7 @@ describe DriversController do
     end
   end
 
-  xdescribe "update" do
+  describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -152,7 +158,7 @@ describe DriversController do
     end
   end
 
-  xdescribe "destroy" do
+  describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
