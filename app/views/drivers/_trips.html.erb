@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Passenger</th>
+      <th>Cost</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% Trip.where("driver_id = #{@driver.id}").order(date: :desc).each do |trip| %>
+        <td><%= link_to trip.id, trip_path(trip.id) %></td>
+        <td><%= trip.date.strftime("%m/%d/%Y") %></td>
+        <td><%= Driver.find_by(id: trip.driver_id).name %></td>
+        <td><%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id) %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

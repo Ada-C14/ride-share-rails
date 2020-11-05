@@ -29,28 +29,5 @@
 
 <section>
   <h3>Drivers trips</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Drivers</th>
-      <th>Passenger</th>
-      <th>Total Earnings</th>
-      <th>Average Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--    <tr>-->
-    <!--      <td><%#= @trip[:id] %></td>-->
-    <!--      <td><%#= @trio[:date] %></td>-->
-    <!--      <td><%#= @trip[:driver_id] %></td>-->
-    <!--      <td><%#= @trio[:passenger_id] %></td>-->
-    <!--      <td><%#= @trip[:cost] %></td>-->
-    <!--      <td><%#= @trip[:rating] %></td>-->
-    <!--    </tr>-->
-    </tbody>
-  </table>
+  <%= render partial: "trips" %>
 </section>
-
-
