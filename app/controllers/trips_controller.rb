@@ -36,8 +36,7 @@ class TripsController < ApplicationController
         redirect_to passenger_path(params[:passenger_id])
         return
       else
-        render :new
-
+        redirect_to passenger_path(params[:passenger_id]), status: :bad_request
       end
     end
   end
@@ -60,11 +59,12 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
-    passenger_id = @trip.passenger.id
+
     if @trip.nil?
       head :not_found
       return
     else
+      passenger_id = @trip.passenger.id
       @trip.destroy
       redirect_to passenger_path(passenger_id)
       return

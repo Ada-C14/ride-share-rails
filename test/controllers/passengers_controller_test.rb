@@ -45,7 +45,7 @@ describe PassengersController do
     it "requires a name to create a passenger, does not create passenger otherwise, and responds with redirect if no name is entered" do
       passenger_4_hash = {
           passenger: {
-              #name: "",
+              name: nil,
               phone_num: "4444444444"
           }
       }
@@ -53,26 +53,21 @@ describe PassengersController do
         post passengers_path, params: passenger_4_hash
       }.wont_change "Passenger.count"
 
-      #must_respond_with :redirect
-      #must_respond_with :bad_request
-      must_respond_with :not_found
+      must_respond_with :bad_request
     end
 
     it "requires a phone number to create a passenger, does not create passenger otherwise, and responds with redirect if no phone number is entered" do
       passenger_5_hash = {
           passenger: {
-              name: "Passenger 5"
-              #,
-              #phone_num: ""
+              name: "Passenger 5",
+              phone_num: nil
           }
       }
       expect {
         post passengers_path, params: passenger_5_hash
       }.wont_change "Passenger.count"
 
-      #must_respond_with :redirect
-      #must_respond_with :bad_request
-      must_respond_with :not_found
+      must_respond_with :bad_request
     end
 
   end

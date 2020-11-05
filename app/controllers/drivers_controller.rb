@@ -22,7 +22,7 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-      render :new
+      render :new, status: :bad_request
       return
     end
   end
@@ -44,7 +44,7 @@ class DriversController < ApplicationController
       redirect_to driver_path
       return
     else
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end

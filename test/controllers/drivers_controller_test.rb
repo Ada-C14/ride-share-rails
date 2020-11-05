@@ -80,8 +80,7 @@ describe DriversController do
         post drivers_path, params: no_vin
       }.wont_change "Driver.count"
 
-      must_respond_with :redirect
-      must_redirect_to new_driver_path
+      must_respond_with :bad_request
 
     end
   end
@@ -148,7 +147,7 @@ describe DriversController do
         patch driver_path(id), params: bad_data
       }.wont_change "Driver.count"
 
-      must_redirect_to edit_driver_path(id)
+      must_respond_with :bad_request
     end
   end
 
