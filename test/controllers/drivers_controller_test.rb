@@ -65,7 +65,7 @@ describe DriversController do
 
   describe "new" do
     it "responds with success" do
-      get new_book_path
+      get new_driver_path
 
       must_respond_with :success
     end
@@ -96,7 +96,7 @@ describe DriversController do
 
       expect(saved_driver.name).must_equal valid_driver[:driver][:name]
       expect(saved_driver.vin).must_equal valid_driver[:driver][:vin]
-      expect(saved_driver.available).must_equal valid_driver[:driver][:vin]
+      expect(saved_driver.available).must_equal valid_driver[:driver][:available]
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -119,7 +119,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
     end
   end
   
@@ -159,7 +159,6 @@ describe DriversController do
       # Set up the form data
       new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
       new_driver.save
-      new_driver.reload
       driver_id = new_driver.id
       new_info = {
           driver: {
@@ -177,7 +176,7 @@ describe DriversController do
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
-      updated_driver = Driver.find_by(driver_id)
+      updated_driver = Driver.find_by(id: driver_id)
 
       expect(updated_driver.name).must_equal new_info[:driver][:name]
       expect(updated_driver.vin).must_equal new_info[:driver][:vin]
@@ -236,7 +235,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
     end
   end
 
@@ -252,12 +251,24 @@ describe DriversController do
       # Ensure that there is a change of -1 in Driver.count
       expect {
         delete driver_path(driver_id)
-      }.must_differ Driver.count, -1
+      }.must_differ "Driver.count", -1
 
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect
+    end
 
+    it "destroys the correct driver" do
+      # Arrange
+      # Ensure there is an existing driver saved
+      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+      new_driver.save
+      driver_id = new_driver.id
+
+      # Act
+      delete driver_path(driver_id)
+
+      # Assert
       deleted_driver = Driver.find_by(id: driver_id)
       expect(deleted_driver).must_be_nil
     end

@@ -21,7 +21,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver) and return
     else
-      render :new and return
+      render :new, status: :bad_request
     end
   end
 
@@ -41,7 +41,7 @@ class DriversController < ApplicationController
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver) and return
     else
-      render :edit and return
+      render :edit, status: :bad_request
     end
   end
 
