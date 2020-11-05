@@ -4,7 +4,7 @@
   <li>Name: <%= @driver.name %></li>
   <li>VIN: <%= @driver.vin %></li>
   <li>Available? <%= @driver.available %></li>
-  <li>Total earnings: $<%= sprintf('%.2f', @driver.total_earnings/100) %></li>
+  <li>Total earnings: <%= number_to_currency(@driver.total_earnings/100) %></li>
   <li>Average rating: <%= @driver.avg_rating %></li>
 </ul>
 
@@ -17,7 +17,7 @@
     <li> ID: <%= link_to trip.id, trip_path(trip) %> --
       Driver: <%= trip.driver.name %> --
       Passenger: <%= trip.passenger.name %> --
-      Cost: $<%= sprintf('%.2f', trip.cost/100) %> --
+      Cost: <%= number_to_currency(trip.cost/100) %> --
       Rating: <%= trip.rating %>
     </li>
   <% end %>

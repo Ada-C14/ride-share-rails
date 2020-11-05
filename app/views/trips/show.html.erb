@@ -4,7 +4,7 @@
   <li>ID: <%= @trip.id %></li>
   <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
   <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
-  <li>Cost: $<%= sprintf('%.2f', @trip.cost/100) %></li>
+  <li>Cost: <%= number_to_currency(@trip.cost/100) %></li>
   <li>Rating: <%= @trip.rating %></li>
 </ul>
 

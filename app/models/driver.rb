@@ -5,7 +5,7 @@ class Driver < ApplicationRecord
   validates :vin, presence: true, uniqueness: true, length: { is: 17 }
 
   def total_earnings
-    costs = self.trips.filter.sum { |trip| ! trip.cost.nil? && trip.cost > 1.65 ? 0.8 * (trip.cost - 1.65) : 0 }
+    costs = self.trips.filter.sum { |trip| ! trip.cost.nil? && trip.cost > 165 ? 0.8 * (trip.cost - 165) : 0 }
     return costs
   end
 
