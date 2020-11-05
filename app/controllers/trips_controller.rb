@@ -1,13 +1,15 @@
 class TripsController < ApplicationController
 
   def index
-    # if !params[:driver_id].nil?
-    #   @trips = Driver.find_by(id: params[:@driver_id])
-    # elsif !params[:passenger_id].nil?
-    #   @trips = Passenger.find_by(id: params[:@passenger_id]).trips
-    # else
+    if params[:driver_id]
+      @trips = Driver.find_by(id: params[:driver_id]).trips
+      @driver = Driver.find_by(id: params[:driver_id])
+    elsif params[:passenger_id]
+      @trips = Passenger.find_by(id: params[:passenger_id]).trips
+      @driver = Passenger.find_by(id: params[:passenger_id])
+    else
       @trips = Trip.all
-    # end
+    end
   end
 
   def show
@@ -25,8 +27,10 @@ class TripsController < ApplicationController
 
     if @trip.save
       redirect_to trip_path(@trip)
+      return
     else
-      redirect_to new_trip_path
+      render :new, status: :bad_request
+      return
     end
   end
 
@@ -49,7 +53,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip)
       return
     else
-      render :bad_request
+      render :edit, status: :bad_request
       return
     end
   end
