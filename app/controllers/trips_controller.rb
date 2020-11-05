@@ -8,7 +8,8 @@ class TripsController < ApplicationController
 
   def show
     if @trip.nil?
-      redirect_to passenger_path(params[:passenger_id])
+      # redirect_to passenger_path(params[:passenger_id])
+      head :not_found
       return
     end
   end
@@ -20,12 +21,13 @@ class TripsController < ApplicationController
 
   def create
     driver = Driver.find_by(available: true)
+
     new_trip = Trip.create(
                        date: Time.now,
                        cost: rand(20..100),
                        passenger_id: params[:passenger_id],
-                       driver_id: driver,
-                       rating :nil
+                       driver: driver,
+                       rating: nil
                      )
     if new_trip.save
       redirect_to trip_path(new_trip.id)
@@ -50,8 +52,8 @@ class TripsController < ApplicationController
       return
     end
 
-    trip.update(trip_params)
-    redirect_to trip_path(trip.id)
+    @trip.update(trip_params)
+    redirect_to trip_path(@trip.id)
 
   end
 
