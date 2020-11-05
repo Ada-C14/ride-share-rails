@@ -4,7 +4,7 @@ class PassengersController < ApplicationController
   before_action :find_by, except: [:index, :new, :create]
 
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.all.order(:name)
   end
 
   def show
