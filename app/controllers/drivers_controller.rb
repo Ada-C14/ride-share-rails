@@ -28,11 +28,11 @@ class DriversController < ApplicationController
   end
 
   def edit
-    task_id = params[:id]
-    @task = Task.find_by(id: task_id)
+    driver_id = params[:id]
+    @driver = Task.find_by(id: driver_id)
 
-    if @task.nil?
-      redirect_to tasks_path
+    if @driver.nil?
+      redirect_to driver_path
       return
     end
   end
