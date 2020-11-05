@@ -14,19 +14,16 @@ class TripsController < ApplicationController
     end
   end
 
-  def new
+  def create
     if params[:passenger_id]
       # nested route, /passenger/:passenger_id/trips/new
       passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = passenger.trips.new
     else
       # route /trips/new
-      @trip = Trip.new
+      @trip = Trip.new(trip_params)
     end
-  end
 
-  def create
-    @trip = Trip.new(trip_params)
     if @trip.save
       redirect_to trips_path(@trip.id) #send the user to the /tasks path
       return

@@ -63,6 +63,7 @@ class DriversController < ApplicationController
   end
 
   def set_available
+    # @available_driver = Driver.is_available?
   end
 
   private
