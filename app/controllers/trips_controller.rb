@@ -8,55 +8,58 @@ class TripsController < ApplicationController
 
   def show
     if @trip.nil?
-      redirect_to root_path
+      redirect_to passenger_path(params[:passenger_id])
       return
     end
   end
 
+  #do i need this method? bc only passenger can do that?
   def new
     @trip = Trip.new
   end
 
   def create
-    @trip = Trip.new(trip_params)
-
-    # save returns true if the database insert succeeds
-    if @trip.save
-      # go to the index so we can see the trip in the list, send them back to '/trips' path
-      redirect_to trip_path(@trip.id)
-      return
+    driver = Driver.find_by(available: true)
+    new_trip = Trip.create(
+                       date: Time.now,
+                       cost: rand(20..100),
+                       passenger_id: params[:passenger_id],
+                       driver_id: driver,
+                       rating :nil
+                     )
+    if new_trip.save
+      redirect_to trip_path(new_trip.id)
     else
-    render :new, :bad_request
-    return
+      redirect_to passenger_path(params[:passenger_id])   #passsenger show page
     end
   end
 
+  # need edit and show page for trips
+
   def edit
     if @trip.nil?
-      redirect_to trips_path
+      head :not_found
       return
     end
   end
 
   def update
+    # @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      redirect_to trips_path
+      head :not_found
       return
-    elsif @trip.update(trip_params)
-      redirect_to trip_path(@trip.id)
-      #stays on specific driver page to show update. Otherwise will have to find driver in list to see changes
-      return
-    else                # save failed
-    render :edit      # show the new task form view again
-    return
     end
+
+    trip.update(trip_params)
+    redirect_to trip_path(trip.id)
+
   end
 
-  #if wwe delete driver, will it delete trip so that passenger cant access it
+  #if we delete driver, will it delete trip so that passenger cant access it
   def destroy
     if @trip
       @trip.destroy
-      redirect_to trips_path
+      redirect_to passenger_path(@trip.passenger_id)
     else
       head :not_found
     end
