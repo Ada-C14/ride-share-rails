@@ -10,12 +10,12 @@
 
 <%= form_with model: @driver do |f| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
   </div>
   <div>
-    <%= f.label :vin %>
-    <%= f.text_field :vin %>
+    <p><%= f.label :vin %></p>
+    <p><%= f.text_field :vin %></p>
   </div>
   <%= f.hidden_field :available, :value => true %>
   <%= f.submit "#{action_name} Driver" %>

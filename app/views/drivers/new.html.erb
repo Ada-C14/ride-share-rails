@@ -1,17 +1,5 @@
 
-<!--<p><%#= render partial: "form", locals: { action_name: "Create" } %></p>-->
+<h2>Add Driver</h2>
 
-<%= form_with model: @driver, class: 'driver-form' do |f| %>
-  <p>Please provide the following information to save a new passenger to our database:</p>
-  <div>
-    <p><%= f.label :name %></p>
-    <p><%= f.text_field :name %></p>
-  </div>
+<%= render partial: "form", locals: { action_name: "Create" } %>
 
-  <div>
-    <p><%= f.label :vin %></p>
-    <p><%= f.text_field :vin %></p>
-  </div>
-
-  <p><%= f.submit "Add driver to the database!" %></p>
-<% end %>
