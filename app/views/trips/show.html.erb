@@ -1,4 +1,18 @@
 <h4>Date: <%= @trip.date %></h4>
 <h4>Cost: $<%= @trip.cost / 100 %></h4> <%# sprintf to round to two deciaml places %>
-<h4>Rating: <%= @trip.rating %></h4>
+
+<% if @trip.rating.nil? == false %>
+  <h4>Rating: <%= @trip.rating %></h4>
+<% else %>
+  <h4>This trip has not been rated yet, would you like to add a rating?</h4>
+  <%= form_for @trip do |f| %>
+    <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
+    <%= f.submit "Add Rating" %>
+  <% end %>
+<% end %>
+
 <h4>Driver: <%= @trip.driver.name %></h4>
+<h4>Passenger: <%= @trip.passenger.name %></h4>
+
+<%= link_to "Edit Trip", edit_trip_path(@trip) %>
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
