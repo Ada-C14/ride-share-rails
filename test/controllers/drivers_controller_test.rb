@@ -210,19 +210,6 @@ describe DriversController do
 
     end
 
-    it "does not change the db when the driver does not exist, then responds with 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-
-      # Act-Assert
-      expect {
-        delete driver_path(-1)
-      }.wont_change "Driver.count"
-      must_respond_with :not_found
-
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
-
-    end
+    it "does not change the db when the driver does not exist, then responds with 404"
   end
 end
