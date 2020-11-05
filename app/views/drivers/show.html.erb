@@ -1,28 +1,39 @@
-<div>
-  <h1><%= @driver.name %></h1>
-  <h6>Vin: <%= @driver.vin %></h6>
-  <h6>Status:
-    <% if @driver.available == true %>
-      Available
-    <% else %>
-      Unavailable
-    <% end %>
-  </h6>
-  <h6>Total Earnings: <%=  %></h6>
-  <h6>Average Rating: <%= %></h6>
-  <h6>Trips:
-    <ul>
-    <% @driver.trips.each do |trip|%>
-      <li>
-        <%= link_to trip.id, trip_path(trip) %>
-      </li>
-      <% end %>
-    </ul>
-    </h6>
+<h1><%= @driver.name %></h1>
 
-  <%= link_to "Edit", edit_driver_path(@driver) %>
-  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
-</div>
+<ul>
+  <li>Vin: <%= @driver.vin %></li>
+  <li>STATUS: <%= @driver.available ? "AVAILABLE" : "UNAVAILABLE" %></li>
+  <li>Total Earnings: <%= @driver.total_earnings.round(2) %></li>
+  <li>Average Rating: <%= @driver.average_rating.round(2) %></li>
+</ul>
+
+<h6>
+  <table style="width:50%">
+    <thead>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Cost</th>
+    <th>Rating</th>
+    </thead>
+    <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip) %></td>
+        <td><%= trip.date %></td>
+        <td><%= @driver.name %></td>
+        <td><%=  %></td>
+        <td>$<%= trip.cost/100%></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <button><%= link_to "Edit Driver", edit_driver_path(@driver) %></button>
+  <button><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%></button>
+  </h6>
 
 
 <p><%= link_to "Return to Drivers Database", drivers_path %></p>

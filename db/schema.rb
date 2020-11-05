@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_224846) do
+ActiveRecord::Schema.define(version: 2020_11_05_032008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_224846) do
   create_table "drivers", force: :cascade do |t|
     t.string "name"
     t.string "vin"
-    t.boolean "available"
+    t.boolean "available", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_224846) do
   create_table "trips", force: :cascade do |t|
     t.integer "passenger_id"
     t.string "date"
-    t.string "rating"
+    t.integer "rating"
     t.float "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
