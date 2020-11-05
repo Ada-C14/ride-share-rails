@@ -124,11 +124,24 @@ describe Driver do
     end
 
     describe "can go online" do
-      # Your code here
+      it "changes unavailable driver's status to available" do
+        offline_driver = Driver.new(name: "Gloria Swanson", vin: "12345678909876543", available: false)
+        offline_driver.save
+        
+        offline_driver.toggle_available
+
+        expect(offline_driver.available).must_equal true
+      end
     end
 
     describe "can go offline" do
-      # Your code here
+      it "changes available driver's status to unavailable" do
+        new_driver.save
+
+        new_driver.toggle_available
+
+        expect(new_driver.available).must_equal false
+      end
     end
 
     # You may have additional methods to test

@@ -29,4 +29,12 @@ class Driver < ApplicationRecord
     total = trip_income.sum / 100
     return total.round(2)
   end
+
+  def toggle_available
+    if self.available
+      self.available = false
+    else
+      self.available = true
+    end
+  end
 end
