@@ -44,8 +44,8 @@ class DriversController < ApplicationController
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
       return
-    else #save failed
-    render :edit  # show the new book from view again
+    else
+    render :edit
     end
   end
 
