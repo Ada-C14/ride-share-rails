@@ -1,7 +1,7 @@
 class Driver < ApplicationRecord
   has_many :trips
   validates :name, presence: true
-  validates :vin, presence: true
+  validates :vin, presence: true format: { with: \b[a-zA-Z0-9]{17}/ }
 
   def total_earned
     return self.trips.map { |trip| 0.8 * (trip.cost/100.0 - 1.65) }.sum
