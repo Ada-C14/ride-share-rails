@@ -1,0 +1,18 @@
+<%= form_with model: @passenger do |f| %>
+  <h3>Please provide the following information to create a new Rider account.</h3>
+  <div>
+    <label>Name</label>:
+    <%= f.text_field :name %>
+    <p><label>Phone</label>:</p>
+    <%= f.text_field :phone_number %>
+  </div>
+  <br>
+  <%= f.submit "Create New Rider" %>
+<!--  <p><%#= link_to "Add a new task", {action: :new }%></p>-->
+
+<% end %>
+<br>
+<hr />
+
+
+

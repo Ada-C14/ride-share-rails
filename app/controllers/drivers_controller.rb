@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class DriversController < ApplicationController
   def index
     @drivers = Driver.all
@@ -15,9 +14,11 @@ class DriversController < ApplicationController
       return
     end
   end
+
   def new
     @driver = Driver.new
   end
+
   def create
     @driver = Driver.new(driver_params)
 
@@ -31,9 +32,7 @@ class DriversController < ApplicationController
   end
 
   private
-
   def driver_params
     return params.require(:driver).permit(:name, :vin, :available)
   end
-
 end
