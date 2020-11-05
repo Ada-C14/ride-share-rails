@@ -9,35 +9,51 @@ class DriversController < ApplicationController
     @driver=Driver.new
   end
 
-  def create #can we use the driver params here?
-    #@driver=Drive.new(
-    #   name: params[:driver][:name]
-    #   vin: params[:driver]:[vin])
-    @driver=Driver.new(driver_params)
-    if @driver.save
-      head :success
-      return
-    else
-      render :new
-      return
-    end
-  end
-
   def show
-    @driver= Driver.find_by(driver.id) #(id: @driver.id)
+    driver_id= params[:id].to_i
+    @driver= Driver.find_by(id:driver_id)
+
     if @driver.nil?
-      redirect_to :driver
+      head :not_found # would a redirect be better here? Does it matter? It it my decision?
+      return
     end
-  end
-
-  def update
-
   end
 
   def edit
     @driver=Task.find_by(id:params[:id])
 
     if @driver.nil?
+      redirect_to driver_path(@driver.id) #Vs. Head :not_found
+      return
+    end
+  end
+
+  def update
+    @driver =Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      redirect_to driver_path(@driver.id) # vs Head :not_found
+      return
+    elsif @driver.update(driver_params)
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      render :edit
+      return
+      end
+  end
+
+  def create
+
+    @driver=Driver.new(driver_params)
+
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      render :new
+      return
+    end
   end
 
 
