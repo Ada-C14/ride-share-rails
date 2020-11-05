@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homepages#index'
 
   resources :passengers do
-    resources :trips, only: [:index, :new]
+    resources :trips, only: [:index, :new, :create]
   end
 
   resources :drivers do
