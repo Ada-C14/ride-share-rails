@@ -1,9 +1,9 @@
 <div>
-  <h2>Driver: <%= @driver%></h2>
-  <h2>Passenger: <%= @passenger%></h2>
+  <h2>Driver: <%= link_to @driver.name, driver_path(@driver) %></h2>
+  <h2>Passenger: <%= link_to @passenger.name, passenger_path(@passenger) %></h2>
 
-  <%= link_to "Edit", edit_passenger_path(@passenger), class: "link-button" %>
-  <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+  <%= link_to "Edit", edit_trip_path(@trip) , class: "link-button"%>
+  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
 </div>
 <div>
 
@@ -16,17 +16,16 @@
       <th>Rating</th>
       <th>Cost</th>
     </tr>
-    <% @trips.each do |trip|  %>
 
     <tr>
-      <td><%= link_to trip.id, trip_path(trip) %></td>
-      <td><%= link_to trip.driver_id, driver_path(trip.driver_id) %></td>
-      <td><%= link_to @passenger.name, passenger_path(trip.passenger_id) %></td>
-      <td><%= trip.date %></td>
-      <td><%= trip.rating %></td>
-      <td><%= trip.cost %></td>
+      <td><%= link_to @trip.id, trip_path(@trip) %></td>
+      <td><%= link_to @driver.name, driver_path(@driver) %></td>
+      <td><%= link_to @passenger.name, passenger_path(@trip.passenger_id) %></td>
+      <td><%= @trip.date %></td>
+      <td><%= @trip.rating %></td>
+      <td><%= @trip.cost %></td>
     </tr>
-    <% end %>
+
   </table>
 
 </div>

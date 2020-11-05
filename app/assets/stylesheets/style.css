@@ -107,9 +107,7 @@ tr:nth-child(even) {
 }
 
 tr:hover td {
-    text-shadow: #7abaff;
-    color:#2d2d2d;
-    opacity: 70%;
+    background-color: #0f80aa;
 }
 
 a:hover {
