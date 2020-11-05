@@ -20,4 +20,22 @@ class Driver < ApplicationRecord
       return earning.round(2)
     end
   end
+
+  def average_rating
+    ratings = self.trips.map{ |trip| trip.rating.to_f }
+    unless ratings.empty?
+      return (ratings.sum/ratings.length).round(1)
+    end
+    return 0
+  end
+
+  def change_status
+    if self.available == false
+      self.available = true
+    else
+      self.available = false
+    end
+  end
+
+
 end

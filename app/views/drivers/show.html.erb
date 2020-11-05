@@ -9,6 +9,8 @@
         <li>Available: <%= @driver.available %></li>
         <br>
         <li>Revenue: <%= @driver.total_revenue %></li>
+        <br>
+        <li>Average Rating: <%= @driver.average_rating %></li>
     </ul>
     <div><%= link_to "Edit #{@driver.name}", edit_driver_path(@driver.id) %></div>
     <br>
