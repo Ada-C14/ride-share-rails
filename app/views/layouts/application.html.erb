@@ -7,18 +7,61 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   </head>
 
   <body>
-  <h1 class="title">Ride Share Control Panel</h1>
-  <nav>
-    <%= link_to "Homepage", root_path %>
-    <%= link_to "Trips List", trips_path %>
-    <%= link_to "Passengers List", passengers_path %>
-    <%= link_to "Drivers List", drivers_path %>
-    <%= link_to "Add New Passenger", new_passenger_path %>
-    <%= link_to "Add New Driver", new_driver_path %>
-  </nav>
-    <%= yield %>
+    <div class="parallax">
+    <h1 class="title">🛸Ride Share Control Panel🛸</h1>
+    <nav>
+      <%= link_to "Homepage", root_path %>
+      <%= link_to "Trips List", trips_path %>
+      <%= link_to "Passengers List", passengers_path %>
+      <%= link_to "Drivers List", drivers_path %>
+      <%= link_to "Add New Passenger", new_passenger_path %>
+      <%= link_to "Add New Driver", new_driver_path %>
+    </nav>
+     <br>
+     <br>
+      <%= yield %>
+
+      <div class="parallax__layer parallax__layer--back">
+        <div class="starfield">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--back2">
+        <div class="starfield">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--back3">
+        <div class="starfield">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+        <div class="starfield">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
   </body>
+  <footer>
+    &copy; 2020 | Beatrice x Kalkidan Rides, Inc.
+  </footer>
 </html>
+
