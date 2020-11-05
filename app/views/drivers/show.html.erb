@@ -1,4 +1,34 @@
 <ul>
   <li>Name: <%= @driver.name %></li>
   <li>Vin: <%= @driver.vin %></li>
-</ul>
+  <li>Driver is currently available: <%= @driver.available %></li>
+  <li>Average Rating: <%= @driver.average_rating %></li>
+<!--  <li>Total Earnings: <%#= @driver.total_earnings %></li>-->
+
+<% trips = @driver.trips %>
+  <br>
+
+<%= @driver.name %>'s Trips:
+
+<ul>
+  <% trips.each do |trip| %>
+
+    <li> Trip id: <%= link_to "#{trip.id}", trip_path(trip.id) %> </li>
+    <li> Trip date:  <%= trip.date %></li>
+    <li> Trip rating: <%= trip.rating %></li>
+    <li> Trip cost: $<%= trip.cost/100.00 %></li>
+    <li> Trip Driver ID <%= trip.driver_id %></li>
+    <li> Trip Passenger ID <%= trip.passenger_id %></li><br>
+
+  <% end %>
+
+
+<!--<%# trips.each do |trip| %>'-->
+<!--  <p>tript</p>-->
+<!--  <p>Trip id: <%#= link_to "#{trip.id}", trip_path(trip.id) %></p>-->
+<!--<li>Trip date: <%#= trip.date %></li>-->
+<!--<p> Trip rating: <%#= trip.rating %></p>-->
+<!--<li> Trip cost: <%#= trip.cost %>-->
+<!--<li> Trip Driver ID <%#= trip.driver.id %></li>-->
+<!--<li> Trip Passenger ID <%#= trip.passenger_id %></li>-->
+<%#= end %>
