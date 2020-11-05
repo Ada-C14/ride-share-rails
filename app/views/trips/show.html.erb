@@ -1,5 +1,4 @@
-<%= @trip.date %>
-<%= @trip.cost / 100 %>
-<%= @trip.rating %>
-<% driver_name = Driver.find_by(id: params[:driver_id]).name %>
-<%= driver_name %>
+<h4>Date: <%= @trip.date %></h4>
+<h4>Cost: $<%= @trip.cost / 100 %></h4> <%# sprintf to round to two deciaml places %>
+<h4>Rating: <%= @trip.rating %></h4>
+<h4>Driver: <%= @trip.driver.name %></h4>
