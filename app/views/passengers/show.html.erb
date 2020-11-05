@@ -27,7 +27,7 @@
       <td><%=trip.passenger.name %></td>
       <td><%=trip.driver.name %></td>
       <td><%=trip.rating%></td>
-      <td><%=trip.cost%></td>
+      <td><%=number_to_currency(trip.cost)%></td>
       <td><%=trip.date%></td>
     </tr>
   <% end %>
