@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :trips, only: [:index, :create]
   end
 
-  resources :trips, except: [:new]
+  resources :trips, except: [:new, :create]
 end

@@ -16,14 +16,13 @@
           <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Please confirm deletion." } %> |
           <%= link_to "Back", passengers_path %>
         </td>
-
       </tr>
     </tbody>
   </table>
 </section>
 
 <section>
-  <button><a href="">Request Ride</a></button>
+  <button><%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post %></button>
   <h3>Passenger trips</h3>
 
   <table>

@@ -33,6 +33,28 @@ class TripsController < ApplicationController
     end
   end
 
+  def create
+    create_params = {
+        trip: {
+            driver_id: Trips.assign_driver,
+            passenger_id: params[:passenger_id],
+            date: Time.now.strftime("%m/%d/%Y"),
+            rating: nil,
+            cost: rand(8.0..35.0).round(2)
+        }
+    }
+
+    @trip = Trip.new(create_params)
+
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :new
+      return
+    end
+  end
+
   private
 
   def trip_params
