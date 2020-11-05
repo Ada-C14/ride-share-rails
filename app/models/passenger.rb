@@ -15,7 +15,7 @@ class Passenger < ApplicationRecord
       # self.trips.each do |trip|
       #   sum += trip.cost
       # end
-      return self.trips.map{|trip| trip.cost}.sum
+      return '%.2f' % self.trips.map{|trip| trip.cost}.sum
     end
     # return sum
   end
