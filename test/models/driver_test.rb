@@ -88,7 +88,39 @@ describe Driver do
     end
 
     describe "total earnings" do
-      # Your code here
+      it "correctly totals the earnings of a driver with multiple trips" do
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: nil, cost: 786)
+        trip_1.save
+        trip_2.save
+        trip_3.save
+
+        payday = new_driver.total_earnings
+
+        expect(payday).must_equal 62.87
+      end
+
+      it "accounts for trips costing less than fee" do
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 100)
+        trip_1.save
+
+        payday = new_driver.total_earnings
+
+        expect(payday).must_equal 0.80
+      end
+
+      it "returns 0 for a driver with no trips" do
+        new_driver.save
+
+        payday = new_driver.total_earnings
+
+        expect(payday).must_equal 0
+      end
     end
 
     describe "can go online" do
