@@ -1,32 +1,59 @@
-<div>
-  <h1><%= @driver.name %></h1>
-  <h5>VIN#: <%= @driver.vin %></h5>
-  <% if @driver.available %>
-      <h5>Driver availability: available </h5>
-  <% else %>  
-      <h5>Driver availability: unavailable </h5>
-  <% end %>
-
-  <table class="list-table">
-      <tr>
-          <th>Trip ID</th>
-          <th>Passenger</th>
-          <th>Driver</th>
-          <th>Cost</th>
-          <th>Rating</th>
-      </tr>
-      <% @driver.trips.each do |trip| %>
+<section>
+  <article>
+    <h1><%= @driver.name %></h1>
+    <table class="driver-table">
         <tr>
-            <th><%= link_to trip.id, trip_path(trip.id) %></th>
-            <th><%= link_to trip.passenger.name,passenger_path(trip.passenger_id) %></th>
-            <th><%= @driver.name %></th>
-            <th><%= trip.cost / 100 %></th>
-            <th><%= trip.rating %></th>
+            <th>Driver ID</th>
+            <th>VIN#</th>
+            <th>Driver availability</th>
+            <th>Total Revenue</th>
+            <th>Average Rating</th>
+            <th>Edit</th>
         </tr>
-      <% end %>
-  </table>
-  <%= link_to "Edit", edit_driver_path(@driver) %> |
-  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
-</div>
+        <tr>
+            <th><%= @driver.id %></th>
+            <th><%= @driver.vin %></th>
+            <th>
+                <% if @driver.available %>
+                    available 
+                <% else %>  
+                    unavailable 
+                <% end %>
+            </th>    
+            <th>
+                <%= @driver.total_earnings.nil? ? "No data": "$ #{@driver.total_earnings}" %>
+            </th>
+            <th>
+                <%= @driver.ave_rating.nil? ? "No data": @driver.ave_rating %>
+            </th>
+            <th>
+                <%= link_to "Edit", edit_driver_path(@driver) %> |
+                <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+            </th> 
+            </tr>   
+      </table>  
+  </article>
+  <br/>
+  <article>
+    <table class="trip-table">
+        <tr>
+            <th>Trip ID</th>
+            <th>Passenger</th>
+            <th>Driver</th>
+            <th>Cost</th>
+            <th>Rating</th>
+        </tr>
+        <% @driver.trips.each do |trip| %>
+            <tr>
+                <th><%= link_to trip.id, trip_path(trip.id) %></th>
+                <th><%= link_to trip.passenger.name,passenger_path(trip.passenger_id) %></th>
+                <th><%= @driver.name %></th>
+                <th>$ <%= trip.cost / 100 %></th>
+                <th><%= trip.rating %></th>
+            </tr>
+        <% end %>
+    </table>
+  </article>
+</section>
 
 
