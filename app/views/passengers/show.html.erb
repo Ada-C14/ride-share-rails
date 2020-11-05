@@ -4,6 +4,7 @@
 <main>
   <p>Passenger Name: <%= @passenger.name %></p>
   <p> Phone Number: <%= @passenger.phone_number %></p>
+  <p> Total Charged: $<%= '%.2f' %@passenger.total_charged %></p>
   <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get, class: "btn btn-warning btn-sm" %>
   <%= button_to "Return to Passenger List", passengers_path, method: :get, class: "btn btn-primary" %>
 </main>
