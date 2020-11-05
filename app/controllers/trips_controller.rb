@@ -26,7 +26,7 @@ class TripsController < ApplicationController
 
   def create
     @drivers = Driver.all
-    # change status to unavailable // similar to mark complete
+
     available_driver = nil
     @drivers.each do |driver|
       if driver.available == true
@@ -51,7 +51,7 @@ class TripsController < ApplicationController
       redirect_to passenger_path(params[:passenger_id])
       return
     else
-      redirect_to passengers_path
+      redirect_to passenger_path(params[:passenger_id])
       return
     end
   end
