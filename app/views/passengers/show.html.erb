@@ -3,3 +3,32 @@
 <h3>This is <%= @passenger.name %> passenger page</h3>
 <p>Passenger's name: <%= @passenger.name %></p>
 <p>Passenger's phone number: <%= @passenger.phone_num %></p>
+<p>Total revenue: ...</p>
+
+
+<table id='trips-table' class="table table-hover">
+  <thead class="thead-light">
+  <tr>
+    <th>Trip id</th>
+    <th>Passenger name</th>
+    <th>Driver name</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%=trip.id %></td>
+      <td><%=trip.passenger.name %></td>
+      <td><%=trip.driver.name %></td>
+      <td><%=trip.rating%></td>
+      <td><%=trip.cost%></td>
+      <td><%=trip.date%></td>
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>
