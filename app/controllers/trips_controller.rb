@@ -45,12 +45,52 @@ class TripsController < ApplicationController
     @trip = Trip.new(create_params)
 
     if @trip.save
+      Driver.find_by(id: @trip.driver_id).available = 'false'
       redirect_to trip_path(@trip.id)
       return
     else
       render :new
       return
     end
+  end
+
+  def edit
+    trip_id = params[:id].to_i
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      not_found_error_notice
+      return
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      not_found_error_notice
+      return
+    elsif @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :edit
+      return
+    end
+  end
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      not_found_error_notice
+      return
+    else
+      @trip.destroy
+    end
+
+    redirect_to trips_path
+    return
   end
 
   private

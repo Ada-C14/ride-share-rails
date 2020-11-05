@@ -22,6 +22,6 @@
   </table>
 </section>
 
-<%= link_to "Add a Rating", edit_trip_path(@trip.id) %> |
+<%= link_to "Edit", edit_trip_path(@trip.id) %> |
 <%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %> |
 <%= link_to "All Trips", trips_path %>
