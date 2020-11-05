@@ -4,13 +4,11 @@
   <li>ID: <%= "#{@driver.id}"%></li>
   <li>VIN: <%= "#{@driver.vin}"%></li>
   <li>STATUS: <%= @driver.available ? "AVAILABLE" : "UNAVAILABLE" %> </li>
-
-
 </ul>
 
 <h1>TRIPS DRIVEN:</h1>
 
-<table style="width:50%">
+<table>
   <tr>
     <th>Trip ID</th>
     <th>Passenger ID</th>
@@ -27,6 +25,5 @@
       <td><%= "#{trip.rating}" %> </td>
       <td><%= "#{trip.cost}" %> </td>
     </tr>
-
 <% end %>
-
+</table>
