@@ -2,6 +2,17 @@
   <h1><%= header_title %></h1>
 </header>
 <main>
+  <section class="error_messages">
+    <% if @passenger.errors.any?%>
+      <ul >
+      <% @passenger.errors.each do |attribute, error_message| %>
+        <li>
+          Error: <%= attribute.capitalize.to_s.gsub('_', ' ') %> <%= error_message %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
   <%= form_with model: @passenger do |f| %>
 
     <div>

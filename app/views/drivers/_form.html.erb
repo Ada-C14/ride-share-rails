@@ -2,9 +2,9 @@
   <h1><%= header_title %></h1>
 </header>
 <main>
-  <div>
+  <section class="error_messages">
     <% if @driver.errors.any?%>
-      <ul class="error_messages" >
+      <ul >
       <% @driver.errors.each do |attribute, error_message| %>
         <li>
           Error: <%= attribute.capitalize %> <%= error_message %>
@@ -12,7 +12,8 @@
         <% end %>
       </ul>
     <% end %>
-  </div>
+  </section>
+
   <%= form_with model: @driver do |f| %>
 
     <div>
