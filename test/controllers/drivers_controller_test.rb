@@ -34,7 +34,6 @@ describe DriversController do
       # Arrange
       # Ensure that there is a driver saved
       d = driver
-      p d
       # Act
       get driver_path(d.id)
       # Assert

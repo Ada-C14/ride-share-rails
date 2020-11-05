@@ -1,85 +1,52 @@
 require "test_helper"
 
 describe PassengersController do
-  describe "index" do
-    # Your tests go here
-  end
-
-  describe "show" do
-    # Your tests go here
-  end
-
-  describe "new" do
-    # Your tests go here
-  end
-
-  describe "create" do
-    # Your tests go here
-  end
-
-  describe "edit" do
-    # Your tests go here
-  end
-
-  describe "update" do
-    # Your tests go here
-  end
-
-  describe "destroy" do
-    # Your tests go here
-  end
-end
-
-require "test_helper"
-
-describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
-  let (:driver) {
-    Driver.create(name: "Shane Doe", vin: "HKJS12345HJGS", availability_status: true)
+  let (:passenger) {
+    Passenger.create(name: "Shane Doe", phone_number: "HKJS12345HJGS")
   }
 
   describe "index" do
-    it "responds with success when there are many drivers saved" do
+    it "responds with success when there are many passengers saved" do
       # Arrange
-      # Ensure that there is at least one Driver saved
-      d = driver
+      # Ensure that there is at least one passenger saved
+      p = passenger
       # Act
-      get drivers_path
+      get passengers_path
       # Assert
       must_respond_with :success
     end
 
-    it "responds with success when there are no drivers saved" do
+    it "responds with success when there are no passengers saved" do
       # Arrange
-      # Ensure that there are zero drivers saved
+      # Ensure that there are zero passengers saved
 
       # Act
-      get drivers_path
+      get passengers_path
       # Assert
       must_respond_with :success
     end
   end
 
   describe "show" do
-    it "responds with success when showing an existing valid driver" do
+    it "responds with success when showing an existing valid passenger" do
       # Arrange
-      # Ensure that there is a driver saved
-      d = driver
-      p d
+      # Ensure that there is a passenger saved
+      p = passenger
       # Act
-      get driver_path(d.id)
+      get passenger_path(p.id)
       # Assert
       must_respond_with :success
 
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with 404 with an invalid passenger id" do
       # Arrange
-      # Ensure that there is an id that points to no driver
+      # Ensure that there is an id that points to no passenger
 
       # Act
-      get driver_path(100)
+      get passenger_path(-1)
       # Assert
       must_respond_with :not_found
     end
@@ -89,7 +56,7 @@ describe DriversController do
     it "responds with success" do
 
       # Act
-      get new_driver_path
+      get new_passenger_path
 
       # Assert
       must_respond_with :success
@@ -97,68 +64,50 @@ describe DriversController do
   end
 
   describe "create" do
-    it "when new driver is created, availability status is true" do
-
-      driver_hash = {
-          driver: {
-              name: "Sally Sombody",
-              vin: "HKJHSIU3467854",
-          }
-      }
-
-      post drivers_path, params: driver_hash
-
-      d = Driver.last
-
-      expect(d.availability_status).must_equal true
-
-    end
-
-    it "can create a new driver with valid information accurately, and redirect" do
+    it "can create a new passenger with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
-      driver_hash = {
-          driver: {
+      passenger_hash = {
+          passenger: {
               name: "Sally Sombody",
-              vin: "HKJHSIU3467854",
+              phone_number: "HKJHSIU3467854",
           }
       }
       # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
+      # Ensure that there is a change of 1 in passenger.count
       expect {
-        post drivers_path, params: driver_hash
-      }. must_differ "Driver.count", 1
+        post passengers_path, params: passenger_hash
+      }. must_differ "Passenger.count", 1
 
       # Assert
-      # Find the newly created Driver, and check that all its attributes match what was given in the form data
+      # Find the newly created passenger, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
 
 
-      new_driver = Driver.last
+      new_passenger = Passenger.last
 
-      expect(new_driver.name).must_equal driver_hash[:driver][:name]
-      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
-      expect(new_driver.availability_status).must_equal true
+      expect(new_passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(new_passenger.phone_number).must_equal passenger_hash[:passenger][:phone_number]
 
       must_respond_with :redirect
-      must_redirect_to driver_path(new_driver.id)
+      must_redirect_to passenger_path(new_passenger.id)
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Set up the form data so that it violates Driver validations
-      invalid_driver_hash = {
-          driver: {
+      # Set up the form data so that it violates passenger validations
+      invalid_passenger_hash = {
+          passenger: {
               name: "Name only"
           }
       }
 
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
       expect{
-        post drivers_path, params: invalid_driver_hash
-      }.wont_change "Driver.count"
+        post passengers_path, params: invalid_passenger_hash
+      }.wont_change "Passenger.count"
 
       # Assert
       # Check that the controller redirects
@@ -167,35 +116,34 @@ describe DriversController do
   end
 
   before do
-    Driver.create(name: "Anna Bobby", vin: "BFJHD2345654", availability_status: true)
+    Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
   end
-  let(:new_driver) {
+  let(:new_passenger) {
     {
-        driver: {
+        passenger: {
             name: "Sarah Copper",
-            vin: "CKJEU3245765KJBK",
-            availability_status: true,
+            phone_number: "CKJEU3245765KJBK",
         },
     }
   }
 
   describe "edit" do
-    it "responds with success and redirect when getting the edit page for an existing, valid driver" do
+    it "responds with success and redirect when getting the edit page for an existing, valid passenger" do
       # Arrange
-      # Ensure there is an existing driver saved
-      driver = Driver.find_by(name: "Anna Bobby")
+      # Ensure there is an existing passenger saved
+      passenger = Passenger.find_by(name: "Anna Bobby")
       # Act
-      get edit_driver_path(driver.id)
+      get edit_passenger_path(passenger.id)
       # Assert
       must_respond_with :success
     end
 
-    it "responds with redirect when getting the edit page for a non-existing driver" do
+    it "responds with redirect when getting the edit page for a non-existing passenger" do
       # Arrange
-      # Ensure there is an invalid id that points to no driver
+      # Ensure there is an invalid id that points to no passenger
 
       # Act
-      get edit_driver_path(-1)
+      get edit_passenger_path(-1)
       # Assert
       must_respond_with :not_found
 
@@ -203,113 +151,112 @@ describe DriversController do
   end
 
   describe "update" do
-    it "can update an existing driver with valid information accurately, and redirect" do
+    it "can update an existing passenger with valid information accurately, and redirect" do
       # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
+      # Ensure there is an existing passenger saved
+      # Assign the existing passenger's id to a local variable
       # Set up the form data
 
-      found_driver = Driver.find_by(name: "Anna Bobby")
+      found_passenger = Passenger.find_by(name: "Anna Bobby")
 
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
 
       expect{
-        patch driver_path(found_driver.id), params: new_driver
-      }. wont_change "Driver.count"
+        patch passenger_path(found_passenger.id), params: new_passenger
+      }. wont_change "Passenger.count"
 
-      must_redirect_to driver_path(found_driver.id)
+      must_redirect_to passenger_path(found_passenger.id)
 
       # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
+      # Use the local variable of an existing passenger's id to find the passenger again, and check that its attributes are updated
       # Check that the controller redirected the user
 
-      found_driver.reload
-      expect(found_driver.name).must_equal new_driver[:driver][:name]
-      expect(found_driver.vin).must_equal new_driver[:driver][:vin]
-      expect(found_driver.availability_status).must_equal new_driver[:driver][:availability_status]
+      found_passenger.reload
+      expect(found_passenger.name).must_equal new_passenger[:passenger][:name]
+      expect(found_passenger.phone_number).must_equal new_passenger[:passenger][:phone_number]
 
     end
 
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "does not update any passenger if given an invalid id, and responds with a 404" do
       # Arrange
-      # Ensure there is an invalid id that points to no driver
+      # Ensure there is an invalid id that points to no passenger
       # Set up the form data
 
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
       expect{
-        patch driver_path(-1), params: new_driver
-      }. wont_change "Driver.count"
+        patch passenger_path(-1), params: new_passenger
+      }. wont_change "Passenger.count"
 
       # Assert
       # Check that the controller gave back a 404
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
+      # Ensure there is an existing passenger saved
+      # Assign the existing passenger's id to a local variable
 
-      found_driver = Driver.find_by(name: "Anna Bobby")
+      found_passenger = Passenger.find_by(name: "Anna Bobby")
 
-      # Set up the form data so that it violates Driver validations
+      # Set up the form data so that it violates passenger validations
 
-      invalid_driver_hash = {
-          driver: {
-              vin: "Vin only"
+      invalid_passenger_hash = {
+          passenger: {
+              phone_number: "phone number only"
           }
       }
 
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
       expect{
-        patch driver_path(found_driver.id), params: invalid_driver_hash
-      }.wont_change "Driver.count"
+        patch passenger_path(found_passenger.id), params: invalid_passenger_hash
+      }.wont_change "Passenger.count"
 
       # Assert
       # Check that the controller redirect
       must_respond_with :redirect
-      must_redirect_to driver_path(found_driver.id)
+      must_redirect_to passenger_path(found_passenger.id)
 
       #check to make sure attempted save with invalid params did not overwrite previously saved object
-      refound_driver = Driver.find_by(name: "Anna Bobby")
-      expect(refound_driver).must_equal found_driver
+      refound_passenger = Passenger.find_by(name: "Anna Bobby")
+      expect(refound_passenger).must_equal found_passenger
     end
   end
 
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
+    it "destroys the passenger instance in db when passenger exists, then redirects" do
       # Arrange
-      # Ensure there is an existing driver saved
-      driver_to_delete = Driver.find_by(name: "Anna Bobby")
+      # Ensure there is an existing passenger saved
+      passenger_to_delete = Passenger.find_by(name: "Anna Bobby")
       # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      # Ensure that there is a change of -1 in passenger.count
       expect {
-        delete driver_path(driver_to_delete.id)
-      }.must_differ "Driver.count", -1
+        delete passenger_path(passenger_to_delete.id)
+      }.must_differ "Passenger.count", -1
       # Assert
       # Check that the controller redirects
 
-      driver_to_delete = Driver.find_by(name: "Anna Bobby")
+      passenger_to_delete = Passenger.find_by(name: "Anna Bobby")
 
-      expect(driver_to_delete).must_be_nil
+      expect(passenger_to_delete).must_be_nil
 
-      must_redirect_to drivers_path
+      must_redirect_to passengers_path
 
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the passenger does not exist, then responds with " do
       # Arrange
-      # Ensure there is an invalid id that points to no driver
+      # Ensure there is an invalid id that points to no passenger
 
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
       expect{
-        delete driver_path(-1)
-      }.wont_change "Driver.count"
+        delete passenger_path(-1)
+      }.wont_change "Passenger.count"
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
 
