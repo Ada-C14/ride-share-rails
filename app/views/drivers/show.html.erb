@@ -6,6 +6,8 @@
   <li>Number of Trips Driven: <%= @driver.trips.count %></li>
   <li>Average Rating: <%= @driver.average_rating %></li>
   <li>Total Earnings: $<%= @driver.total_earnings %></li>
+  <li><%= link_to "#{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %></li>
+
 </ul>
 
 <p>Trips by <%= @driver.name %></p>

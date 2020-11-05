@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :trips, only: [:index]
   end
   resources :passengers do
-    resources :trips, only: [:index, :new]
+    resources :trips, only: [:index, :new] #should be create instead of new?
   end
   resources :trips
 
