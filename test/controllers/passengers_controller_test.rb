@@ -60,7 +60,7 @@ describe PassengersController do
       }
 
       # Act-Assert
-      expect {
+      expect{
         post passengers_path, params: passenger_hash
       }.must_change "Passenger.count", 1
 
@@ -103,7 +103,7 @@ describe PassengersController do
 
     it "can update an existing passenger" do
       id = Passenger.first.id
-      expect {
+      expect{
         patch passenger_path(id), params: edit_passenger_hash
       }.wont_change "Passenger.count"
 
@@ -133,7 +133,7 @@ describe PassengersController do
       id = Passenger.first.id
 
       # Act
-      expect {
+      expect{
         delete passenger_path(id)
       }.must_change 'Passenger.count', -1
 
