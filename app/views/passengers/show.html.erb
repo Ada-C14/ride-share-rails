@@ -17,7 +17,7 @@
 <% end %>
 </ul>
 
-<%= form_with model: @passenger, class: 'new_passenger_trip', url: new_passenger_trip_path(@passenger.id) do |f|  %>
+<%= form_with model: @trip, class: 'new_passenger_trip', url: passenger_trips_path(@passenger.id) do |f|  %>
   <% f.submit "Request Trip" %>
 <% end %>
 
