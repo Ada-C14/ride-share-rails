@@ -1,11 +1,6 @@
 class TripsController < ApplicationController
   def index
-    if params[:driver_id]
-      driver = Driver.find_by(id: params[:driver_id])
-      @trips = driver.trips
-    else
       @trips = Trip.all
-    end
   end
 
   def show
@@ -27,7 +22,13 @@ class TripsController < ApplicationController
   end
 
   def create
+    @trip = Trip.new(trip_params)
 
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -41,4 +42,9 @@ class TripsController < ApplicationController
   def destroy
 
   end
+
+end
+private
+def trip_params
+  return params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
 end

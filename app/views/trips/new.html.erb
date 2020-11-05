@@ -5,17 +5,19 @@
 <p><%= link_to "Add Passenger Account", new_passenger_path %></p>
 
 <%= form_with model: @trip, class: 'create-trip' do |f|%>
-  <p>Please provide the following information to add a new trip to our database:</p>
+  <h3>Please provide the following information to add a new trip to our database:</h3>
+
   <%= f.label :driver_id %>
-  <%= f.text_field :driver_id %>
+    <%= f.select :driver_id, Driver.where(:available => true).map { |driver| driver.name} %>
   <%= f.label :passenger_id %>
-  <%= f.text_field :passenger_id %>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| passenger.name } %>
   <%= f.label :date %>
-  <%= f.text_field :date %>
+  <%= f.text_field Date.today%>
   <%= f.label :rating %>
   <%= f.text_field :rating %>
   <%= f.label :cost %>
   <%= f.text_field :cost %>
-  <%= f.submit "Add Passenger", class: "Passenger-button" %>
+  <%= f.submit "Add Trip", class: "Trip-button" %>
+
 <% end %>
 
