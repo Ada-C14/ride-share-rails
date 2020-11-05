@@ -105,7 +105,7 @@ describe DriversController do
 
       # Check that the controller redirected the user
       must_respond_with  :redirect
-      must_redirect_to root_path
+      must_redirect_to drivers_path
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
