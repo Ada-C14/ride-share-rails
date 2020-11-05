@@ -6,10 +6,10 @@ class TripsController < ApplicationController
 
   def show
     trip_id = params[:id].to_i
-    @trip= Trip.find_by(id: Trip_id)
+    @trip= Trip.find_by(id: trip_id)
 
-    if@trip.nil?
-      redirect_to Trips_path
+    if @trip.nil?
+      redirect_to trips_path
       return
     end
   end
@@ -19,18 +19,18 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip= Trip.new(Trip_params)
+    @trip= Trip.new(trip_params)
 
     if @trip.save
-      redirect_to Trip_path(@trip.id)
+      redirect_to trip_path(@trip.id)
     end
   end
 
   def edit
     @trip= Trip.find_by(id: params[:id])
 
-    if@trip.nil?
-      redirect_to Trips_path
+    if @trip.nil?
+      redirect_to trips_path
       return
     end
   end
@@ -38,11 +38,11 @@ class TripsController < ApplicationController
   def update
     @trip= Trip.find_by(id: params[:id])
 
-    if@trip.nil?
-      redirect_to Trips_path
+    if @trip.nil?
+      redirect_to trips_path
       return
-    elsif@trip.update(Trip_params)
-      redirect_to Trips_path
+    elsif @trip.update(trip_params)
+      redirect_to trips_path
       return
     else
       render :edit
@@ -53,20 +53,20 @@ class TripsController < ApplicationController
   def destroy
     @trip= Trip.find_by(id: params[:id])
 
-    if@trip.nil?
-      redirect_to Trips_path
+    if @trip.nil?
+      redirect_to trips_path
       return
     end
     @trip.destroy
 
-    redirect_to Trips_path
+    redirect_to trips_path
     return
   end
 
   private
 
-  def Trip_params
-    return params.require(:Trip).permit(:id, :name, :vin, :available)
+  def trip_params
+    return params.require(:trip).permit(:date, :rating, :cost)
   end
 
 end
