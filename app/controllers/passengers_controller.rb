@@ -1,11 +1,13 @@
 class PassengersController < ApplicationController
 
+
+  before_action :find_by, except: [:index, :new, :create]
+
   def index
     @passengers = Passenger.all
   end
 
   def show
-    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -31,7 +33,6 @@ class PassengersController < ApplicationController
   end
 
   def edit
-    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -40,7 +41,6 @@ class PassengersController < ApplicationController
   end
 
   def update
-    @passenger = find_by
 
     if @passenger.nil?
       redirect_to passengers_path
@@ -55,7 +55,6 @@ class PassengersController < ApplicationController
   end
 
   def destroy
-    @passenger = find_by
 
     if @passenger.nil?
         redirect_to passengers_path
