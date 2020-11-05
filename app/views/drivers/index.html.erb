@@ -21,7 +21,7 @@
       <tr>
         <td><%= driver.id %></td>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
-        <td><%= link_to driver.vin, driver_path(driver.id) %></td>
+        <td><%= driver.vin %></td>
         <td>
             <%= link_to "Edit", edit_driver_path(driver.id) %> |
             <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>
