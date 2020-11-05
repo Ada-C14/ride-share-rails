@@ -11,13 +11,15 @@
 <% end %>
 <table>
   <thead>
+  <th>ID</th>
   <th>Name</th>
   <th>VIN number</th>
   <th>Options</th>
   </thead>
   <tbody>
-    <% @drivers.each do |driver| %>
+    <% Driver.order('id').each do |driver| %>
       <tr>
+        <td><%= driver.id %></td>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
         <td><%= link_to driver.vin, driver_path(driver.id) %></td>
         <td>
