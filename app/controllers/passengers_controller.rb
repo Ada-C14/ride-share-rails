@@ -20,10 +20,7 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       head :not_found
       return
-    elsif @passenger.update(
-        name: params[:passenger][:name],
-        phone_num: params[:passenger][:phone_num]
-    )
+    elsif @passenger.update(passenger_params)
       redirect_to passengers_path
       return
     else
@@ -60,14 +57,11 @@ class PassengersController < ApplicationController
   end
 
   def create
-    passenger = Passenger.new(
-        name: params[:passenger][:name],
-        phone_num: params[:passenger][:phone_num]
-    )
-    if passenger.save
-      redirect_to passenger_path(passenger.id)
+    @passenger = Passenger.new(passenger_params)
+    if @passenger.save
+      redirect_to passenger_path(@passenger.id)
     else
-      head :not_found
+      render :new
       return
     end
   end
