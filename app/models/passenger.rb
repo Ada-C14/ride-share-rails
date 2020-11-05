@@ -13,12 +13,12 @@ class Passenger < ApplicationRecord
     return total
   end
 
-  def request_ride
-    found_driver = Driver.find_by(available: true)
-    if found_driver
-      new_ride = Trip.create(driver_id: found_driver.id, passenger_id: self.id, date: Date.today, cost: 1234)
-    end
-
-    return new_ride
-  end
+  # def request_ride
+  #   found_driver = Driver.find_by(available: true)
+  #   if found_driver
+  #     new_ride = Trip.create(driver_id: found_driver.id, passenger_id: self.id, date: Date.today, cost: 1234)
+  #   end
+  #
+  #   return new_ride
+  # end
 end
