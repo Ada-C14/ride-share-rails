@@ -9,6 +9,6 @@
   <li>Passenger: <%= link_to @trip.passenger_id, passenger_path(@trip.passenger_id) %></li>
 </ul>
 
-<p><%= link_to "Edit This Trip", edit_trip_path(@trip) %></p>
-<p><%= link_to "Delete This Trip", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" } %></p>
-<p><%= link_to "See All Trips", trips_path %></p>
+<p><%= button_to "Edit This Trip", edit_trip_path(@trip), method: :get %></p>
+<p><%= button_to "Delete This Trip", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" } %></p>
+<p><%= button_to "See All Trips", trips_path, method: :get %></p>
