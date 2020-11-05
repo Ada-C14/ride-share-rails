@@ -33,7 +33,7 @@ describe DriversController do
 
   describe "show" do
     before do
-      @driver = Driver.create(name: "Jane Smith")
+      @driver = Driver.create(name: "Jane Smith", vin: "aaaaaaa")
     end
 
     it "responds with success when showing an existing valid driver" do
