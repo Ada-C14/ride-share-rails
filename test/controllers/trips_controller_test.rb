@@ -1,8 +1,51 @@
 require "test_helper"
 
 describe TripsController do
+  before do
+    @driver = Driver.create(
+        {
+            name: "Kim Vitug",
+            vin: "FDSGB3245TERSD",
+            available: true
+        }
+    )
+    @passenger = Passenger.create(
+        {
+            name: "Sophie Messing",
+            phone_num: "555-555-5555"
+        }
+    )
+    @trip = Trip.create(
+        {
+            date: Date.today,
+            rating: 4,
+            cost: 1865,
+            passenger_id: @passenger.id,
+            driver_id: @driver.id
+        }
+    )
+  end
+
   describe "show" do
-    # Your tests go here
+    it "responds with success when showing an existing trip" do
+
+      # Act
+      get trip_path(@trip.id)
+
+      # Assert
+      must_respond_with :success
+    end
+
+    it "responds with 404 with an invalid trip id" do
+      # Arrange
+      invalid_id = -1
+
+      # Act
+      get trip_path(invalid_id)
+
+      # Assert
+      must_respond_with :not_found
+    end
   end
 
   describe "create" do

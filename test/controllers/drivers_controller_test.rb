@@ -215,7 +215,7 @@ describe DriversController do
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
-      driver = Driver.create(name: "New Driver", vin: "4534DASDGFA")
+      driver = Driver.create(name: "NEW DRIVER", vin: "FDAFAGWEAGWGERG")
       id = driver.id
 
       # Act
@@ -223,7 +223,7 @@ describe DriversController do
         delete driver_path(id)
       }.must_change "Driver.count", -1
 
-      deleted_driver = Driver.find_by(name: "New Driver")
+      deleted_driver = Driver.find_by(name: "NEW DRIVER")
 
       # Assert
       expect(deleted_driver).must_be_nil
