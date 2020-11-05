@@ -7,7 +7,7 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      @driver = Driver.create(name: "Black 123", vin: "test123098")
+      @driver = Driver.create(name: "Black 123", vin: "WBWSS52P9NEYLVDE9")
 
       # Act
       get "/drivers"
@@ -88,6 +88,26 @@ describe DriversController do
       }    
     }
 
+    let (:invalid_driver_name) { 
+      { 
+        driver: {
+          name: nil, 
+          vin: "WBWSS52P9NEYLVDE9", 
+          available: true
+        }
+      }    
+    }
+
+    let (:invalid_driver_vin) { 
+      { 
+        driver: {
+          name: "TEST123", 
+          vin: "WBWSS52P9NEY", 
+          available: true
+        }
+      }    
+    }
+
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
@@ -104,21 +124,34 @@ describe DriversController do
       expect(Driver.last.available).must_equal valid_driver[:driver][:available]
 
       # Check that the controller redirected the user
-      must_respond_with  :redirect
+      must_respond_with :redirect
       must_redirect_to drivers_path
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations - name, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: invalid_driver_name
+      }.must_differ 'Driver.count', 0
 
       # Assert
       # Check that the controller redirects
+      must_respond_with :bad_request
+    end
 
+    it "does not create a driver if the form data violates Driver validations - VIN, and responds with a redirect" do
+      # Act-Assert
+      expect {
+        post drivers_path, params: invalid_driver_vin
+      }.must_differ 'Driver.count', 0
+
+      # Assert
+      must_respond_with :bad_request
     end
   end
   
@@ -163,6 +196,26 @@ describe DriversController do
       }    
     }
 
+    let (:invalid_driver_name) { 
+      { 
+        driver: {
+          name: nil, 
+          vin: "WBWSS52P9NEYLVDE9", 
+          available: true
+        }
+      }    
+    }
+
+    let (:invalid_driver_vin) { 
+      { 
+        driver: {
+          name: "TEST123456TEST", 
+          vin: "WBWSS52P9NEY", 
+          available: true
+        }
+      }    
+    }
+
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -185,7 +238,6 @@ describe DriversController do
 
       # Check that the controller redirected the user
       must_redirect_to driver_path(id)
-
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
@@ -205,19 +257,36 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations - name, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
-
+      id = Driver.first.id
+      
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id), params: invalid_driver_name
+      }.must_differ 'Driver.count', 0
 
       # Assert
       # Check that the controller redirects
+      must_respond_with :bad_request
+    end
 
+    it "does not create a driver if the form data violates Driver validations - vin, and responds with a redirect" do
+      # Arrange
+      id = Driver.first.id
+
+      # Act-Assert
+      expect {
+        patch driver_path(id), params: invalid_driver_vin
+      }.must_differ 'Driver.count', 0
+
+      # Assert
+      must_respond_with :bad_request
     end
   end
 
