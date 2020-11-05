@@ -193,7 +193,7 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
+
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -214,8 +214,10 @@ describe DriversController do
       }.wont_change "Driver.count"
 
       driver.reload # refresh the book from the database
-      must_respond_with :bad_request
       expect(driver.vin).wont_be_nil
+      must_respond_with :redirect
+      must_redirect_to root_path
+
     end
   end
 
@@ -245,7 +247,6 @@ describe DriversController do
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
-      skip
       # Arrange
       # Ensure there is an invalid id that points to no driver
 
@@ -254,7 +255,11 @@ describe DriversController do
 
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
+      expect {
+        delete driver_path(-1)
+      }.wont_change "Driver.count"
 
+      must_respond_with :not_found
     end
   end
 end
