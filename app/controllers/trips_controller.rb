@@ -22,7 +22,12 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = passenger.trips.new
+    else
+      @trip = Trip.new
+    end
   end
 
   def create
@@ -31,6 +36,8 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to trip_path(@trip) and return
     else
+      render :new, status: :bad_request
+      return
       # TODO
       # thoughts: do we want the user to be able to make trips
       # from the website? or should they only be creatable by a
