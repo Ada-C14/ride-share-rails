@@ -1,8 +1,18 @@
-<h1><%= @trip.id %></h1>
+<h1>Trip #<%= @trip.id %> Details</h1>
 <p>Cost: <%= @trip.cost %></p>
 <p>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></p>
 <p>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></p>
-<p>Rating: <%= @trip.rating %></p>
+<% if @trip.rating.nil? %>
+<!--  <p>Rating: <%#= link_to "rate the trip", edit_trip_path(@trip) %></p>-->
+  <%= form_with model: @trip do |f| %>
+    <%= f.label :rating %>
+    <%= f.select :rating, [1,2,3,4,5]%>
+
+    <%= f.submit "Rate Trip" %>
+  <% end %>
+<% else %>
+  <p>Rating: <%= @trip.rating %></p>
+<% end %>
 
 <%= link_to "Edit", edit_trip_path(@trip) %>
 <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
