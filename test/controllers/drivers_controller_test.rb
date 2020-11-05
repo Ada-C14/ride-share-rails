@@ -282,5 +282,9 @@ describe DriversController do
       # Check that the controller responds or redirects with whatever your group decides
       must_respond_with :redirect
     end
+
+    it "destroys dependent trips" do
+      raise NotImplementedError
+    end
   end
 end
