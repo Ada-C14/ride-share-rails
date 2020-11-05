@@ -1,0 +1,22 @@
+<h2>TRIP DETAILS</h2>
+
+<div style="overflow-x:auto;">
+<table id="trips">
+  <tr>
+    <th>Trip id</th>
+    <th>Trip date</th>
+    <th>Trip rating</th>
+    <th>Trip cost</th>
+    <th>Trip Driver ID</th>
+    <th>Trip Passenger ID</th>
+  </tr>
+  <tr>
+    <td><%= @trip.id %></td>
+    <td><%= @trip.date %></td>
+    <td><%= @trip.rating %></td>
+    <td> Can't figure out cost%</td>
+    <td><%= @trip.driver.id %></td>
+    <td><%= @trip.passenger.id %></td>
+  </tr>
+</table>
+</div>
