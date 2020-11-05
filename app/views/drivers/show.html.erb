@@ -2,7 +2,7 @@
 <ul>
   <li><%= @driver.name %></li>
   <li><%= @driver.vin %></li>
-  <li><%= @driver.available ? "available" : "not available" %> - <%= button_to "Change Status?", toggle_available_path(@driver), method: :patch %></li>
+  <li><%= @driver.available ? "available" : "not available" %> - <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
   <li>Number of Trips Driven: <%= @driver.trips.count %></li>
   <li>Average Rating: <%= @driver.average_rating %></li>
   <li>Total Earnings: $<%= @driver.total_earnings %></li>

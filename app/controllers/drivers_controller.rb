@@ -61,6 +61,8 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     @driver.toggle_available
+
+    redirect_to driver_path(@driver) and return
   end
 
   private

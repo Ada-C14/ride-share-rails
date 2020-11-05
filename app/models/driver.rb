@@ -36,5 +36,7 @@ class Driver < ApplicationRecord
     else
       self.available = true
     end
+
+    self.save
   end
 end
