@@ -13,7 +13,7 @@
   <% else %>
     <p>Average Rating: <%= @driver.average_rating %></p>
   <% end %>
-  <p>Total Earnings: $<%= sprintf("%.2f", @driver.total_earnings) %></p>
+  <p>Total Earnings: $<%= sprintf("%.2f", @driver.total_earnings/100) %></p>
   <% if @driver.available %>
     <p>Current Status: Available</p>
   <% else %>
@@ -47,7 +47,7 @@
       <% else %>
         <td><%= trip.rating %></td>
       <% end %>
-      <td>$<%= sprintf("%.2f", trip.cost) %></td>
+      <td>$<%= sprintf("%.2f", trip.cost/100) %></td>
     </tr>
   <% end %>
 </table>

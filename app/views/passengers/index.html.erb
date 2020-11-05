@@ -15,7 +15,7 @@
         <%= passenger.phone_num %>
       </td>
       <td>
-        $<%= sprintf("%.2f", passenger.total_amount_charged) %>
+        $<%= sprintf("%.2f", passenger.total_amount_charged/100) %>
       </td>
     </tr>
   <% end %>

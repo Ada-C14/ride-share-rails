@@ -8,7 +8,7 @@
 
 <div class="mini-title">
   <p>Phone Number: <%= @passenger.phone_num %></p>
-  <p>Total Amount Charged: $<%= sprintf("%.2f", @passenger.total_amount_charged) %></p>
+  <p>Total Amount Charged: $<%= sprintf("%.2f", @passenger.total_amount_charged/100) %></p>
 </div>
 
 <div class="mini-title">
@@ -35,7 +35,7 @@
       <% end %>
       <td><%= trip.passenger.name %></td>
       <td><%= trip.rating %></td>
-      <td>$<%= sprintf("%.2f", trip.cost) %></td>
+      <td>$<%= sprintf("%.2f", trip.cost/100) %></td>
     </tr>
   <% end %>
 </table>
