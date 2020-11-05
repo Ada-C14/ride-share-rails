@@ -1,10 +1,24 @@
 <div>
   <h1><%= @driver.name %></h1>
   <h6>Vin: <%= @driver.vin %></h6>
-  <h6>Available?: <%= @driver.available %></h6>
-  <h6>Earnings: <%=  %></h6>
-  <h6>Average rating: <%= %></h6>
-  <h6>Trips: <%=  %></h6>
+  <h6>Status:
+    <% if @driver.available == true %>
+      Available
+    <% else %>
+      Unavailable
+    <% end %>
+  </h6>
+  <h6>Total Earnings: <%=  %></h6>
+  <h6>Average Rating: <%= %></h6>
+  <h6>Trips:
+    <ul>
+    <% @driver.trips.each do |trip|%>
+      <li>
+        <%= link_to trip.id, trip_path(trip) %>
+      </li>
+      <% end %>
+    </ul>
+    </h6>
 
   <%= link_to "Edit", edit_driver_path(@driver) %>
   <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>

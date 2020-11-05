@@ -1,9 +1,9 @@
 <div>
   <h1>Trip #<%= @trip.id %></h1>
-  <h6>Driver: <%= @trip.driver.name %></h6>
+  <h6>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></h6>
   <h6>Passenger: <%= %></h6>
-  <h6>Cost: <%=  %></h6>
-  <h6>Rating: <%= %></h6>
+  <h6>Cost: <%= @trip.cost %></h6>
+  <h6>Rating: <%= @trip.rating %></h6>
 
   <%= link_to "Edit", edit_trip_path(@trip) %>
   <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
