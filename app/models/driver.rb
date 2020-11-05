@@ -9,7 +9,7 @@ class Driver < ApplicationRecord
     sum = 0
     every_costs.each do |trip|
       if trip.cost <= 1.65 * 100
-        sum += trip.cost
+        sum += trip.cost * 0.8
       else
         sum += (trip.cost - 1.65 * 100) * 0.8
       end
