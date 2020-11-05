@@ -12,7 +12,9 @@ describe TripsController do
   end
 
   describe "create" do
-    # Your tests go here
+    # test if driver status changes
+    # test if found driver is available
+    # test if right passenger is selected
   end
 
   describe "edit" do
