@@ -56,8 +56,12 @@ nav {
   width: 30%;
 }
 
-.no_border {
+.mid_no_border {
   border-style: hidden hidden hidden solid;
+}
+
+.no_border {
+  border-style: hidden;
 }
 
 table {
@@ -177,4 +181,3 @@ body {
 .starfield span:nth-child(4) {
   transform: rotate(123deg);
 }
-

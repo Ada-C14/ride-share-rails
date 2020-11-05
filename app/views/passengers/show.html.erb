@@ -6,6 +6,9 @@
   <li>PHONE NUMBER: <%= @passenger.phone_num %> </li>
 </ul>
 
+<%= button_to "Edit", edit_passenger_path(@passenger.id), method: :get%>
+<%= button_to "Delete", passenger_path(@passenger.id), method: :delete %>
+
 <h2>Trips taken:</h2>
 <table>
   <tr>
