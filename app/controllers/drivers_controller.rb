@@ -11,6 +11,33 @@ class DriversController < ApplicationController
       return
     end
   end
+
+  def edit
+    task_id = params[:id]
+    @driver = Driver.find_by(id: task_id)
+
+    if @driver.nil?
+      redirect_to tasks_path
+      return
+    end
+  end
+
+  def update
+    driver_id = params[:id]
+    @driver = Driver.find_by(id: driver_id)
+
+    if @driver.nil?
+      redirect_to root_path
+      return
+    elsif @driver.update(driver_params)
+      redirect_to root_path # go to the index so we can see the book in the list
+      return
+    else
+      # save failed :(
+      render :edit # show the new book form view again
+      return
+    end
+  end
 end
 
 
