@@ -1,0 +1,28 @@
+<h2>Drivers list</h2>
+<% if @drivers.length > 0 %>
+
+  <h3>Available Drivers</h3>
+  <ul>
+    <% @drivers.each do |driver| %>
+      <% if driver.available == true %>
+        <li> <%= link_to  driver.name, driver_path(driver) %></li>
+        <% end %>
+    <% end %>
+  </ul>
+
+  <h3>Unavailable Drivers</h3>
+  <ul>
+    <% @drivers.each do |driver| %>
+      <% if driver.available == false %>
+        <li> <%= link_to  driver.name, driver_path(driver) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+<% else %>
+  <h3>No drivers</h3>
+<% end %>
+
+<p class="buttons">
+  <%= link_to "Add a New Driver", new_driver_path %>
+</p>

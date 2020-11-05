@@ -8,7 +8,7 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       driver = Driver.create(
           name: "Jane Do",
-          vin: "3999877uu",
+          vin: "12345678901234567",
           available: false
       )
       expect(Driver.count).must_equal 1
@@ -28,7 +28,7 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       driver = Driver.create(
           name: "Jane Do",
-          vin: "3999877uu",
+          vin: "12345678901234567",
           available: false
       )
 
@@ -54,7 +54,7 @@ describe DriversController do
       driver_hash = {
           driver: {
               name: "John Do",
-              vin: "ww234444",
+              vin: "ww234444112345651",
               available: false
           },
       }
@@ -76,16 +76,25 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      driver_hash = {
+          driver: {
+              name: "John Do",
+              vin: "ww234",
+              available: false
+          },
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller redirects
+      must_respond_to :error?
 
     end
   end
@@ -95,11 +104,12 @@ describe DriversController do
       # Arrange
       driver = Driver.create(
         name: "Jane Do",
-        vin: "3999877uu",
+        vin: "ww234444112345651",
         available: false
       )
       # Ensure there is an existing driver saved
-      get edit_driver_path(driver.id)
+      driver_id = driver.id
+      get edit_driver_path(driver_id)
       # Act/Assert
       must_respond_with :success
     end
@@ -118,14 +128,14 @@ describe DriversController do
     before do
       Driver.create(
         name: "Jane Doe",
-        vin: "89979Ui99",
+        vin: "ww234444112345652",
         available: true )
     end
 
     let (:update_driver_hash) do {
         driver:{
             name: "John Doe",
-            vin: "9990220T",
+            vin: "ww234444112345651",
             available: false
         }
     }
@@ -163,17 +173,24 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+
+      driver_hash = {
+          driver: {
+              name: "John Do",
+              vin: "ww234",
+              available: false
+          },
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller redirects
+      must_respond_to :error?
+
+    end
 
     end
   end
@@ -182,7 +199,7 @@ describe DriversController do
     before do
       Driver.create(
           name: "Jane Doe",
-          vin: "89979Ui99",
+          vin: "ww234444112345651",
           available: true )
     end
     it "destroys the driver instance in db when driver exists, then redirects" do
@@ -213,4 +230,3 @@ describe DriversController do
 
     end
   end
-end

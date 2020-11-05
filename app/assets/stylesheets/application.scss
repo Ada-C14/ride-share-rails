@@ -16,3 +16,18 @@
 @import "bootstrap";
 
 @import "**/*";
+
+body {
+  margin: 25px;
+}
+
+.buttons{
+  border-radius: 25px;
+  border-style: solid;
+  width: 10%;
+  text-align: center;
+}
+
+#delete a{
+  color: red;
+}
