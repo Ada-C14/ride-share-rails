@@ -1,53 +1,103 @@
 <%#show.html.erb%>
 
-<header>
-  <h1><%= link_to "PASSENGERS", passengers_path, class:"header-link-text" %></h1>
-</header>
+<!--<header>-->
+<!--  <h1><%#= link_to "PASSENGERS", passengers_path, class:"header-link-text" %></h1>-->
+<!--</header>-->
 
-<main>
-  <section>
-    <h2><%= @passenger.name %></h2>
+<!--<main>-->
+<!--  <section>-->
+<!--    <h2><%#= @passenger.name %></h2>-->
 
-    <table>
+<!--    <table>-->
 
-      <thead>
+<!--      <thead>-->
 
-      <tr>
-        <th>TRIP ID</th>
-        <th>DRIVER ID</th>
-        <th>DATE</th>
-        <th>RATING</th>
-        <th>COST</th>
-        <th colspan="5"></th>
-      </tr>
+<!--      <tr>-->
+<!--        <th>TRIP ID</th>-->
+<!--        <th>DRIVER ID</th>-->
+<!--        <th>DATE</th>-->
+<!--        <th>RATING</th>-->
+<!--        <th>COST</th>-->
+<!--        <th colspan="5"></th>-->
+<!--      </tr>-->
 
-      </thead>
+<!--      </thead>-->
 
-      <tbody>
-        <% @passenger.trips.each do |trip| %>
-          <tr>
-            <td><% link_to trip.id, passenger_trip_path(trip) %></td>
+<!--      <tbody>-->
+        <%# @passenger.trips.each do |trip| %>
+<!--          <tr>-->
+<!--            <td><%# link_to trip.id, passenger_trip_path(trip) %></td>-->
 
-            <td><% link_to trip.driver_id, driver_path(trip.driver_id) %></td>
+<!--            <td><%# link_to trip.driver_id, driver_path(trip.driver_id) %></td>-->
 
-            <td><%= trip.date %></td>
+<!--            <td><%#= trip.date %></td>-->
 
-            <td><%= trip.rating %></td>
+<!--            <td><%#= trip.rating %></td>-->
 
-            <td><%= trip.cost %></td>
-          </tr>
-        <% end %>
-      </tbody>
+<!--            <td><%#= trip.cost %></td>-->
+<!--          </tr>-->
+        <%# end %>
+<!--      </tbody>-->
 
-    </table>
-  </section>
+<!--    </table>-->
+<!--  </section>-->
 
-  <div>
-    <%= button_to "EDIT", edit_passenger_path(@passenger.id), method: :get, :class => "button" %>
-    <%= button_to "DELETE", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, :class => "button" %>
+<!--  <div>-->
+    <%#= button_to "EDIT", edit_passenger_path(@passenger.id), method: :get, :class => "button" %>
+    <%#= button_to "DELETE", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, :class => "button" %>
     <%#= button_to  "ADD TRIP", new_passenger_trip_path, method: :get, :class => 'button' %>
-  </div>
+<!--  </div>-->
 
-  <p><%= link_to "RETURN TO PASSENGER LIST", passengers_path %></p>
+<!--  <p><%#= link_to "RETURN TO PASSENGER LIST", passengers_path %></p>-->
 
-</main>
+<!--</main>-->
+
+<h1>DETAILS for: <%= @passenger.name %></h1>
+
+<button><%= link_to "Back to Passengers List", passengers_path %></button>
+<button><%= link_to "Edit Passengers", edit_passenger_path %></button>
+<button><%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete #{@passenger.name}?"}%></button>
+
+<ul class="passenger-details">
+
+  <li>
+    PASSENGER ID: <%= @passenger.id %> </br>
+    NAME: <%= @passenger.name %> </br>
+    PHONE NUMBER: <%= @passenger.phone_num %> </br>
+    TOTAL CHARGED:<%= @passenger.total_charged %> </br>
+  </li>
+
+</ul>
+
+<h2> TRIPS TAKEN </h2>
+<table>
+  <thead>
+  <tr>
+    <th>TRIP ID </th>
+    <th>TRIP DATE </th>
+    <th>PASSENGER ID </th>
+    <th>PASSENGER NAME </th>
+    <th>DRIVER ID </th>
+    <th>DRIVER NAME </th>
+    <th>COST </th>
+    <th>RATING </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, passenger_trip_path(trip)%></td>
+      <td><%= trip.date %></td>
+      <td><%= trip.passenger_id %></td>
+      <td><%= link_to trip.passenger.name, passenger_path(trip.passenger)%></td>
+      <td><%= trip.driver_id %></td>
+      <td><%= link_to trip.driver.name, driver_path(trip.driver)%></td>
+      <td><%= trip.cost%></td>
+      <td><%= trip.rating %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>
