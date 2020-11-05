@@ -2,39 +2,12 @@ require "test_helper"
 
 describe TripsController do
   describe "show" do
-<<<<<<< HEAD
-    before do
-      @trip = Trip.create(driver_id: 1, passenger_id: 2, date: "2016-04-05", rating: 3, cost: 1293)
-    end
-
-    it "responds with success when showing an existing valid trip" do
-      # Arrange
-      valid_trip_id = @trip.id
-
-      # Act
-      get "/trips/#{ valid_trip_id }"
-
-      # Assert
-      must_respond_with :success
-    end
-
-    it "responds with 404 with an invalid trip id" do
-      # Arrange
-      invalid_trip_id = -1
-
-      # Act 
-      get "/trips/#{ invalid_trip_id }"
-      
-      # Assert
-      must_respond_with :not_found
-=======
     it "can get a valid trip" do
       # Your tests go here
     end
 
     it "will redirect for an invalid trip" do
       # Your tests go here
->>>>>>> cef4b601b5c386a757a7363193b22c15d4b426d9
     end
   end
 
@@ -48,7 +21,7 @@ describe TripsController do
     end
 
     it "responds with success when getting the edit page for an existing, valid trip" do
-      # Arrange & Act
+      # Arrange & Actgit add
       get edit_trip_path(@trip.id)
 
       # Assert
