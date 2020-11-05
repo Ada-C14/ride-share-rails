@@ -18,7 +18,18 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    if params[:passenger_id]
+      # nested route, /passenger/:passenger_id/trips/new
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = passenger.trips.new
+    elsif params[:driver_id]
+      # nested route, /driver/:driver_id/trips/new
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = passenger.trips.new
+    else
+      # route /trips/new
+      @trip = Trip.new
+    end
   end
 
   def create
@@ -71,6 +82,5 @@ class TripsController < ApplicationController
   def trip_params
     return params.require(:trip).permit(:date, :rating, :driver_id, :passenger_id, :cost)
   end
-
-
+  
 end
