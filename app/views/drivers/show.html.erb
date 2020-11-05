@@ -5,6 +5,8 @@
   <p>Passenger Name: <%= @driver.name %></p>
   <p>Vin: <%= @driver.vin %></p>
   <p>Availability Status: <%= @driver.availability_status ? "AVAILABLE" : "UNAVAILABLE" %></p>
+  <p>Total Earnings: $<%= '%.2f' %@driver.total_earnings %></p>
+  <p>Average Rating: <%='%.1f' %@driver.average_rating %></p>
   <% if @driver.trips.any? %>
     <table class="table">
       <thead>
