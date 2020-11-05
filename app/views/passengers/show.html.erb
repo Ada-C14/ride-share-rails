@@ -32,7 +32,7 @@
       <td><%= link_to "#{trip.id}", trip_path(trip) %></td>
       <td><%= trip.date %></td>
       <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver) %></td>
-      <td>$<%= trip.cost %></td>
+      <td><%= number_to_currency(trip.cost) %></td>
       <td><%= trip.rating %></td>
       <td><%= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link', data: {confirm: "Are you sure?"} %></td>
     </tr>
