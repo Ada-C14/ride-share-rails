@@ -19,10 +19,12 @@
     </ol>
 <% end %>
 
-  <%= button_to "(Edit Passenger Details)", edit_passenger_path(@passenger),
+  <%= link_to "Request A New Trip", new_trip_path %>
+
+  <%= button_to "Edit Passenger", edit_passenger_path(@passenger),
                 method: "get", class: "button" %>
 
-  <%= button_to "Delete", passenger_path(@passenger),
+  <%= button_to "Delete Passenger", passenger_path(@passenger),
                 method: :delete, class: "button",
                 data: {confirm: "WARNING: You cannot get this record back. Delete?"} %>
 
