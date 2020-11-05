@@ -93,15 +93,18 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+      driver_hash = {
+          driver: {
+              name: "jane smith",
+              vin: ""
+          }
+      }
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      must_respond_with :bad_request
 
-      # Assert
-      # Check that the controller redirects
 
     end
   end
@@ -179,19 +182,24 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+    it "does not edit a driver if the form data violates Driver validations, and responds with a redirect" do
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      id = Driver.first.id
+      invalid_driver_hash = {
+          driver:{
+              name:"janesmith2",
+              vin:""
+          },
+      }
+      expect {
+        patch driver_path(id), params: invalid_driver_hash
+      }.wont_change "Driver.count"
 
-      # Assert
-      # Check that the controller redirects
+      must_respond_with :bad_request
 
+      driver = Driver.find_by(id: id)
+      expect(driver.name).must_equal "Jane Smith"
+      expect(driver.vin).must_equal "sv1d65gb6ht1ws"
     end
   end
 

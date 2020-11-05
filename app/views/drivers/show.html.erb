@@ -2,9 +2,9 @@
 
 <ul>
   <li>Vin: <%= @driver.vin %></li>
-  <li>STATUS: <%= @driver.available ? "AVAILABLE" : "UNAVAILABLE" %></li>
-  <li>Total Earnings: <%= @driver.total_earnings %></li>
-  <li>Average Rating: <%= @driver.average_rating %></li>
+  <li>Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
+  <li>Total Earnings: <%= @driver.total_earnings ? @driver.total_earnings.round(2) : 0 %></li>
+  <li>Average Rating: <%= @driver.average_rating ? @driver.average_rating.round(2) : "" %></li>
 </ul>
 
 <h6>

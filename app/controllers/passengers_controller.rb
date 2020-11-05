@@ -47,7 +47,7 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     else
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end
