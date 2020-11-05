@@ -1,5 +1,5 @@
 <% if @driver.errors.any? %>
-  <ul>
+  <ul class="error-message">
     <% @driver.errors.each do |column, message| %>
       <li><%= column %> <%= message %></li>
     <% end %>
