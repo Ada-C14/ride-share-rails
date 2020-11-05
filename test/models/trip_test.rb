@@ -40,7 +40,6 @@ describe Trip do
       expect(new_trip.passenger.name).must_equal @passenger.name
       expect(new_trip.passenger.id).must_equal @passenger.id
       expect(new_trip.passenger.phone_num).must_equal @passenger.phone_num
-
     end
 
     it "belong to one driver" do
@@ -51,15 +50,28 @@ describe Trip do
       expect(new_trip.driver.vin).must_equal @driver.vin
       expect(new_trip.driver.available).must_equal @driver.available
     end
-
-
-
-
   end
 
   describe "validations" do
     # Your tests go here
-    # do we have any validations for trip?
+    it "must have an integer rating between 1 & 5 or nil" do
+      new_trip.rating = 17
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :rating
+      expect(new_trip.errors.messages[:rating]).must_equal ["must be less than or equal to 5"]
+
+      new_trip.rating = 0
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :rating
+      expect(new_trip.errors.messages[:rating]).must_equal ["must be greater than or equal to 1"]
+    end
+
+    it "must have a cost greater than 0" do
+      new_trip.cost = -15.50
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :cost
+      expect(new_trip.errors.messages[:cost]).must_equal ["must be greater than 0"]
+    end
   end
 
   # Tests for methods you create should go here
