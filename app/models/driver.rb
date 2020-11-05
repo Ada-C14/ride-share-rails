@@ -42,6 +42,8 @@ class Driver < ApplicationRecord
 
   def self.select_available
     all_available = Driver.where(available: true)
+    return nil if all_available.empty?
+
     selected = all_available.min_by { |driver| driver.trips.length }
     selected.toggle_available
     return selected
