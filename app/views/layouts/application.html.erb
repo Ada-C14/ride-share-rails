@@ -10,6 +10,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <section class="title">R&R RideShare App</section>
+      <nav>
+      <ul>
+        <li><%= link_to "HOME", root_path %></li>
+        <li><%= link_to "DRIVERS", drivers_path %></li>
+        <li><%= link_to "PASSENGERS", passengers_path %></li>
+        <li><%= link_to "TRIPS", trips_path %></li>
+      </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>&copy 2020 Ringo & Richelle</p>
+    </footer>
   </body>
 </html>
