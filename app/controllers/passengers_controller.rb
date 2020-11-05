@@ -7,8 +7,9 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id].to_i
     @passengers = Passenger.find_by(id: passenger_id)
+
     if @passengers.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     end
   end

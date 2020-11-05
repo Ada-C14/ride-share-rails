@@ -6,7 +6,7 @@ describe DriversController do
     Driver.create name: "driver name", vin: "vin number", available: true
   }
   describe "index" do
-    it "responds with success when there are many drivers saved" do
+    it "responds with success when there are many drivers saved" do #PASSING
       # Arrange
       get drivers_path
       # Ensure that there is at least one Driver saved
@@ -25,7 +25,7 @@ describe DriversController do
   end
 
   describe "show" do
-    it "responds with success when showing an existing valid driver" do
+    it "responds with success when showing an existing valid driver" do #PASSING
       # Arrange
       get driver_path(driver.id)
       # Ensure that there is a driver saved
@@ -34,7 +34,7 @@ describe DriversController do
       # Assert
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with 404 with an invalid driver id" do  #PASSING
       # Arrange
       # Ensure that there is an id that points to no driver
       get driver_path(-12)
