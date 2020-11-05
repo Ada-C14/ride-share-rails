@@ -34,6 +34,7 @@ describe TripsController do
       @passenger = Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
     end
     it "can create a new trip with valid information accurately, and redirect" do
+      skip
       # Arrange
       # Set up the form data
 
@@ -119,7 +120,6 @@ describe TripsController do
     end
 
     it "responds with redirect when getting the edit page for a non-existing trip" do
-      skip
       # Arrange
       # Ensure there is an invalid id that points to no trip
       get edit_trip_path(-1)
@@ -136,7 +136,7 @@ describe TripsController do
       @trip = Trip.create(
           passenger_id: @passenger.id,
           driver_id: @driver.id,
-          date: DateTime.now,
+          date: Time.now,
           rating: nil,
           cost: rand(1...1000)
       )
@@ -150,7 +150,6 @@ describe TripsController do
       }
     }
     it "can update an existing trip with valid information accurately, and redirect" do
-      skip
       # Arrange
       # Ensure there is an existing trip saved
       # Assign the existing trip's id to a local variable
