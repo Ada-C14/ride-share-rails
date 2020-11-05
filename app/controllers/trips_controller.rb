@@ -1,17 +1,17 @@
 class TripsController < ApplicationController
 
   # need to include index in our nested routes
-  def index
-    if params[:passenger_id]
-      # this is the nested route, /passengers/:passenger_id/trips
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trips = passenger.trips
-    else
-      @trips = Trip.all
-    end
-
-
-  end
+  # def index
+  #   if params[:passenger_id]
+  #     # this is the nested route, /passengers/:passenger_id/trips
+  #     passenger = Passenger.find_by(id: params[:passenger_id])
+  #     @trips = passenger.trips
+  #   else
+  #     @trips = Trip.all
+  #   end
+  #
+  #
+  # end
 
   def show
     @trip = Trip.find_by(id: params[:id])
@@ -23,12 +23,23 @@ class TripsController < ApplicationController
 
   end
 
+  # def new
+  #   if params[:passenger_id]
+  #     passenger = Passenger.find_by(id: params[:passenger_id])
+  #     @trip = passenger.trips.new
+  #   else
+  #     @trip = Trip.new
+  #   end
+  #
+  # end
+
   def create
     # how to get server to assign a driver?
     # how to set the same passenger id
     @passenger = Passenger.find_by(id: params[:passenger_id])
 
-    trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
+
+    @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
                     driver_id: 1 ,
                     # how to set the same passenger id?
                     passenger_id: @passenger.id,
@@ -37,8 +48,8 @@ class TripsController < ApplicationController
                     cost: rand(10..200)
     )
 
-    if trip.save
-      redirect_to passenger_path(trip.passenger)
+    if @trip.save
+      redirect_to passenger_path(@trip.passenger)
       return
     else
       # what should we render now that we don't have new view?
