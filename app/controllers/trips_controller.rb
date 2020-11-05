@@ -23,6 +23,9 @@ class TripsController < ApplicationController
 
     if @trip.save
       redirect_to trip_path(@trip.id)
+    else
+      render :new, status: :bad_request
+      return
     end
   end
 
