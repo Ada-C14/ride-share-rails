@@ -12,7 +12,7 @@
 
 <h4>Trips: </h4>
 
-<ul>
+<ol>
   <% @driver.trips.each do |trip| %>
     <li> ID: <%= link_to trip.id, trip_path(trip) %> --
       Driver: <%= trip.driver.name %> --
@@ -21,4 +21,4 @@
       Rating: <%= trip.rating %>
     </li>
   <% end %>
-</ul>
+</ol>
