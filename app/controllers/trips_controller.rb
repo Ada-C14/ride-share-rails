@@ -5,8 +5,8 @@ class TripsController < ApplicationController
       passenger = Passenger.find_by(id: params[:passenger_id])
       @passenger = passenger.trips
     else
-      @trip_id = params[:id].to_i
-      @trip = Trip.find(@trip_id)
+      trip_id = params[:id].to_i
+      @trip = Trip.find_by(id: trip_id)
       if @trip.nil?
         redirect_to trips_path
         return
@@ -22,12 +22,13 @@ class TripsController < ApplicationController
       return
     else
       # nested route, /passenger/:passenger_id/trips/create
-      driver = Driver.find_available_driver
+      driver = Driver.find_by(available: true )
       # @trip = passenger.trips.new
       @trip = Trip.new(
           passenger_id: passenger.id,
           driver_id: driver.id,
           cost: rand(1000..9000),
+          date: Time.now,
           rating: nil
       )
     end
