@@ -1,34 +1,31 @@
+<h1>Driver Details</h1>
+
 <ul>
+  <li>Id: <%= @driver.id %></li>
   <li>Name: <%= @driver.name %></li>
-  <li>Vin: <%= @driver.vin %></li>
-  <li>Driver is currently available: <%= @driver.available %></li>
-  <li>Average Rating: <%= @driver.average_rating %></li>
-<!--  <li>Total Earnings: <%#= @driver.total_earnings %></li>-->
+  <li>VIN: <%= @driver.vin %></li>
+  <li>Available: <%= @driver.available %></li>
+  <li>Total Earnings: $<%= @driver.total_earned %></li>
+  <li>Average Rating: <%= @driver.average_rating.nil? ? "Rating score not available" : @driver.average_rating %></li>
+  <li>Trip Dates:
+    <% if @driver.trips.empty? %>
+      No Trips
+    <% else %>
+      <% @driver.trips.each do |trip| %>
+        <%= link_to "#{trip.date}", trip_path(trip.id) %> /
+      <% end %>
+    <% end %>
+  </li>
+  <li><%= link_to "Trip Details", driver_trips_path(@driver.id) %></li>
+</ul>
 
-<% trips = @driver.trips %>
-  <br>
+<%= button_to "Edit", edit_driver_path(@driver),
+              method: "get", class: "button" %>
 
-<%= @driver.name %>'s Trips:
+<%= button_to "Delete", driver_path(@driver),
+              method: :delete, class: "button",
+              data: {confirm: "Are you sure?"} %>
 
-<ul>
-  <% trips.each do |trip| %>
+<%= button_to "Return to Driver List", drivers_path,
+              method: "get", class: "button" %>
 
-    <li> Trip id: <%= link_to "#{trip.id}", trip_path(trip.id) %> </li>
-    <li> Trip date:  <%= trip.date %></li>
-    <li> Trip rating: <%= trip.rating %></li>
-    <li> Trip cost: $<%= trip.cost/100.00 %></li>
-    <li> Trip Driver ID <%= trip.driver_id %></li>
-    <li> Trip Passenger ID <%= trip.passenger_id %></li><br>
-
-  <% end %>
-
-
-<!--<%# trips.each do |trip| %>'-->
-<!--  <p>tript</p>-->
-<!--  <p>Trip id: <%#= link_to "#{trip.id}", trip_path(trip.id) %></p>-->
-<!--<li>Trip date: <%#= trip.date %></li>-->
-<!--<p> Trip rating: <%#= trip.rating %></p>-->
-<!--<li> Trip cost: <%#= trip.cost %>-->
-<!--<li> Trip Driver ID <%#= trip.driver.id %></li>-->
-<!--<li> Trip Passenger ID <%#= trip.passenger_id %></li>-->
-<%#= end %>

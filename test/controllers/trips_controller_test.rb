@@ -12,7 +12,7 @@ describe TripsController do
     it 'responds with success when showing an existing valid trip' do
       fake_passenger = Passenger.create(name: 'CheezItMan', phone_num: '123-456-7890')
       fake_driver = Driver.create(name: 'Devin', vin: 567, available: true)
-      trip = Trip.create(passenger_id: pass.id, driver_id: driver.id, date: Date.today, cost: 25, rating: nil)
+      trip = Trip.create(passenger_id: fake_passenger.id, driver_id: fake_driver.id, date: Date.today, cost: 25, rating: nil)
 
       get trip_path(trip)
 
