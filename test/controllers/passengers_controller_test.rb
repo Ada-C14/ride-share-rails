@@ -171,7 +171,7 @@ describe PassengersController do
       must_respond_with :not_found
     end
 
-    it "does not update a passenger if the form data violates Passenger validations, and responds with a redirect" do
+    it "does not update a passenger if the form data violates Passenger validations, and responds with bad request" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing passenger saved
@@ -204,7 +204,7 @@ describe PassengersController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
     end
   end
 
