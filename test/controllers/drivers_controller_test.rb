@@ -34,8 +34,6 @@ describe DriversController do
     end
 
     it "responds with success when showing an existing valid driver" do
-      #TODO
-      skip
       # Act
       get driver_path(@driver1.id)
 
@@ -134,7 +132,7 @@ describe DriversController do
 
   describe "update" do
     before do
-      Driver.create(name: "New Driver 1", vin: "DFASDFA32432")
+      Driver.create(name: "New Driver 1", vin: "DFASDFA32432", available: true)
     end
 
     let (:new_driver_hash) {
@@ -148,7 +146,7 @@ describe DriversController do
 
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
-      driver = Driver.first
+      driver = Driver.find_by(name: "New Driver 1")
 
       # Act
       expect {
@@ -175,7 +173,7 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds with bad request" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -208,7 +206,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
     end
   end
 

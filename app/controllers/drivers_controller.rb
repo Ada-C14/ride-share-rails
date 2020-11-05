@@ -54,7 +54,7 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver)
       return
     else
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end
