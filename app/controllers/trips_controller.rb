@@ -1,11 +1,19 @@
 class TripsController < ApplicationController
 
   def show
-    @trip_id = params[:id].to_i
-    @trip = Trip.find(@trip_id)
-    if @trip.nil?
-      redirect_to trips_path
-      return
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @passenger = passenger.trips
+    elsif params[:driver_id]
+      driver = Driver.find_by(id: params[:driver_id])
+      @driver = driver.trips
+    else
+      @trip_id = params[:id].to_i
+      @trip = Trip.find(@trip_id)
+      if @trip.nil?
+        redirect_to trips_path
+        return
+      end
     end
   end
 
