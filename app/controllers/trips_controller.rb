@@ -41,4 +41,30 @@ class TripsController < ApplicationController
     end
   end
 
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to root_path
+      return
+    elsif @trip.update(rating: params[:trip][:rating])
+      @trip.driver.update(available: true)
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :edit
+      return
+    end
+  end
+
+
 end
