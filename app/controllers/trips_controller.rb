@@ -32,6 +32,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    #@trip = Trip.new(date: Date.today, cost: 1234, driver_id: params[:driver_id], passenger_id: params[:passenger_id])
 
     if @trip.save
       redirect_to trip_path(@trip) and return
@@ -81,6 +82,8 @@ class TripsController < ApplicationController
   private
 
   def trip_params
+    #return params.require(:trip).permit(:date, :cost, :passenger_id)
+    #driver should be assigned, rating should not be entered when the trip is created
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end
