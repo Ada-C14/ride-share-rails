@@ -25,7 +25,23 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    @drivers = Driver.all
+    # change status to unavailable // similar to mark complete
+    available_driver = ""
+    @drivers.each do |driver|
+      if driver.available == true
+        available_driver = driver
+      else
+        render :not_found
+      end
+    end
+
+    if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      pass_id = passenger.id
+    end
+
+    @trip = Trip.new(date: Time.now, rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
     if @trip.save
       redirect_to trips_path
       return
