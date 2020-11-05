@@ -3,7 +3,7 @@ class Driver < ApplicationRecord
   validates :vin, length: {is: 17}
   # validates :available, presence: true
 
-  has_many :trips, dependent: :destroy
+  has_many :trips  #, dependent: :destroy
 
   def average_rating
     all_ratings = self.trips.map { |trip| trip.rating}
