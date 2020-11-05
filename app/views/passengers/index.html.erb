@@ -1,11 +1,22 @@
 <h2>All Passengers</h2>
-<ul>
-  <%@passengers.each do |passenger| %>
-    <li>
-      <%= link_to(passenger.name, passenger_path(passenger.id)) %>
-    </li>
-  <% end %>
-</ul>
 
-<%#= might not need this%>
-<%#= link_to "Add Passenger", new_passenger_path %>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th>Total Money spent</th>
+  </tr>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td>
+       <%= link_to "#{passenger.name}", passenger_path(passenger.id)%>
+      </td>
+      <td>
+        <%= passenger.phone_num %>
+      </td>
+      <td>
+        <%= passenger.total_amount_charged %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,15 +1,16 @@
+<h2>Add New Passenger</h2>
+
 <%= form_with model: @passenger, class: 'passenger-form' do |f| %>
   <p>Please provide the following information to save a new passenger to our database:</p>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
   </div>
 
   <div>
-    <%= f.label :phone_num %>
-    <%= f.text_field :phone_num %>
+    <p><%= f.label :phone_number %></p>
+    <p><%= f.text_field :phone_num %></p>
   </div>
 
-  <%= f.submit "Add passenger to the database!" %>
+  <p><%= f.submit "Add passenger to the database!" %></p>
 <% end %>

@@ -19,51 +19,124 @@
 
 body {
   height: 125vh;
-  background-image: url('../images/image.jpg');
   background-size: cover;
-  font-family: sans-serif;
+  font-family: Sans-Serif;
   margin-top: 80px;
   padding: 30px;
 }
 
-.content {
+.index {
+  top: 1em;
+  left: 1em;
+  right: 1em;
+  left: 1em;
+  display: flex;
+  min-height: 40vh;
+  justify-items: center;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.edit-delete{
+  justify-items: center;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.mini-title{
+  color: darkslateblue;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+
+.info{
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+main {
   color: black;
 }
 
-.header {
-  color: white;
+h1{
+  font-size: 4em;
+  font-weight: bold;
+  font-family: geometric, Sans-Serif;
+  font-stretch: condensed;
+}
+
+h2{
+  color: darkslateblue;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding-bottom: 1em;
+}
+
+a {
+  color: darkslateblue;
+  text-decoration: none;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+a:hover {
+  color: cadetblue;
+}
+
+header {
+  color: black;
   text-transform: uppercase;
   text-align: center;
 
 }
 
-.footer {
+footer {
   color: black;
-}
+  background-color: transparent;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-.menu {
-  background-color: white;
+}
+nav {
+  background-color: darkslateblue;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   box-shadow: 0 0 25px 0 black;
+  justify-content: space-around;
 }
 
-.menu * {
+nav * {
   display: inline;
 }
 
-.menu li {
+nav li {
   margin: 20px;
+  justify-content: space-around;
+
 }
 
-.menu li a {
-  color: black;
+nav li a {
+  color: cadetblue;
   text-decoration: none;
+  justify-content: space-around;
 }
-
-

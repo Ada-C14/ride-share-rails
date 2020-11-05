@@ -2,11 +2,11 @@
 
 <%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
 
-  <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
+  <p><%= f.label :phone_num %></p>
+  <p><%= f.text_field :phone_num %></p>
 
-  <%= f.submit "Edit Passenger", class: "passenger-button" %>
+  <p><%= f.submit "Edit Passenger", class: "passenger-button" %></p>
 <% end %>

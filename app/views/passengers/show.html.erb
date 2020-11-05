@@ -1,16 +1,24 @@
 <h2>Passenger: <%= @passenger.name %></h2>
-<p>Phone Number: <%= @passenger.phone_num %></p>
-<p>Total Amount Charged: $<%= @passenger.total_amount_charged %></p>
-<p><%= link_to "Edit #{@passenger.name}", edit_passenger_path(@passenger.id) %></p>
-<p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %></p>
-<p><%= button_to "Add trip for #{@passenger.name}", passenger_trips_path(@passenger.id) %></p>
 
-<div class="passenger_trips">
-<h3><%= @passenger.name %>'s Trips</h3>
+<div class="edit-delete">
+  <p><%= link_to "Edit #{@passenger.name}", edit_passenger_path(@passenger.id) %></p>
+  <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %></p>
+</div>
+
+<div class="mini-title">
+  <p>Phone Number: <%= @passenger.phone_num %></p>
+  <p>Total Amount Charged: $<%= @passenger.total_amount_charged %></p>
+</div>
+
+<div class="mini-title">
+<p><%= @passenger.name %>'s Trips</p>
+</div>
+
 <ul>
   <% @passenger.trips.each do |trip| %>
     <li><%= link_to "Trip ##{trip.id} | Date: #{trip.date}", trip_path(trip.id) %></li>
   <% end %>
 </ul>
 
-</div>
+<p><%= button_to "Add trip for #{@passenger.name}", passenger_trips_path(@passenger.id) %></p>
+
