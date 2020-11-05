@@ -1,8 +1,8 @@
 <div>
   <h1><%= @passenger.name %></h1>
   <h6>Phone Number: <%= @passenger.phone_num %></h6>
-  <h6>Total Spending: <%=  %></h6>
-  <h6>Trips: <%=  %></h6>
+  <h6>Total Spending: <%= @passenger.total_spent ? @passenger.total_spent.round(2) : 0 %></h6>
+  <h6>Trips: <%= @passenger.trips %></h6>
 
   <%= link_to "Edit", edit_passenger_path(@passenger) %> |
   <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%>
@@ -10,5 +10,26 @@
 
 </div>
 
+<table style="width:50%">
+  <thead>
+  <th>Trip ID</th>
+  <th>Date</th>
+  <th>Passenger</th>
+  <th>Cost</th>
+
+  </thead>
+  <tbody>
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip) %></td>
+      <td><%= trip.date %></td>
+      <td><%= @passenger.name %></td>
+      <td><%= @%></td>
+      <td>$<%= trip.cost/100%></td>
+      <td><%= trip.rating %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
 <p><%= link_to "Return to Passengers Database", passengers_path %></p>

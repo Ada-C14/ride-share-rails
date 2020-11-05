@@ -35,16 +35,14 @@ describe TripsController do
       trip_hash = {
           trip: {
               date: "test1",
-              rating: "test2",
-              cost: "test3"
+              rating: 3,
+              cost: 10.0
           }
       }
-
       # Act-Assert
       expect {
         post trips_path, params: trip_hash
       }.must_change "Trip.count", 1
-
       # Assert
       new_trip = Trip.find_by(date: trip_hash[:trip][:date])
       expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
@@ -58,8 +56,8 @@ describe TripsController do
       trip_hash = {
           trip: {
               date: "test1",
-              rating: "test2",
-              cost: "test3"
+              rating: 5,
+              cost: 10
           }
       }
       expect {
