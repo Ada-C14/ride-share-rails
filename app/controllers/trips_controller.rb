@@ -1,8 +1,14 @@
 class TripsController < ApplicationController
 
-  # def index
-  #   @trips = Trip.all
-  # end
+  def index
+    # if !params[:driver_id].nil?
+    #   @trips = Driver.find_by(id: params[:@driver_id])
+    # elsif !params[:passenger_id].nil?
+    #   @trips = Passenger.find_by(id: params[:@passenger_id]).trips
+    # else
+      @trips = Trip.all
+    # end
+  end
 
   def show
     trip_id = params[:id].to_i
