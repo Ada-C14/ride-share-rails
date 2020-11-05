@@ -5,6 +5,38 @@
   <p>Passenger Name: <%= @driver.name %></p>
   <p>Vin: <%= @driver.vin %></p>
   <p>Availability Status: <%= @driver.availability_status ? "AVAILABLE" : "UNAVAILABLE" %></p>
+  <% if @driver.trips.any? %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Trip ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Passenger</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Rating</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @driver.trips.each do |trip| %>
+        <tr>
+          <th scope="row"><%= trip.id %></th>
+          <td>
+            <%= trip.date %>
+          </td>
+          <td>
+            <%= trip.passenger.name %>
+          </td>
+          <td>
+            $<%= '%.2f' %trip.cost %>
+          </td>
+          <td>
+            <%= trip.rating %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
   <%= button_to "Edit Driver", edit_driver_path(@driver.id), method: :get, class: "btn btn-warning btn-sm" %>
   <%= button_to "Return to Driver List", drivers_path, method: :get, class: "btn btn-primary" %>
 </main>
