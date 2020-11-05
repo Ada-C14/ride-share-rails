@@ -19,8 +19,10 @@
     </ol>
 <% end %>
 
-  <%#= button_to "Request trip", passengers_trip_path(@passenger.id),
-       #             method: :post, class: "button" %>
+
+  <%= button_to "Request Trip", passenger_trip_path(@passenger.id),
+                method: :get, class: 'button'
+  %>
 
   <%= button_to "Edit Passenger", edit_passenger_path(@passenger),
                 method: :get, class: "button" %>
