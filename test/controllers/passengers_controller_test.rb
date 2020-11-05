@@ -81,7 +81,7 @@ describe PassengersController do
       must_redirect_to passenger_path(new_passenger.id)
     end
 
-    it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
+    it "does not create a passenger if the form data violates Passenger validations, and responds with bad request" do
       # Arrange
       passenger_hash = {
           passenger: {
@@ -101,7 +101,7 @@ describe PassengersController do
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :redirect
+      must_respond_with :bad_request
     end
   end
 

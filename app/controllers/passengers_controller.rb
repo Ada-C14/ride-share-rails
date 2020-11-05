@@ -25,7 +25,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger)
       return
     else
-      render :new
+      render :new, status: :bad_request
       return
     end
   end
