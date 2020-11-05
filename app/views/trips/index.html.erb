@@ -14,6 +14,7 @@
 
 <table>
   <thead>
+    <th>Id</th>
     <th>Date</th>
     <th>Price</th>
     <th>Rating</th>
@@ -23,9 +24,10 @@
   <tbody>
   <% @trips.each do |trip|  %>
     <tr>
+      <td><%= link_to trip.id, trip_path(trip.id) %></td>
       <td><%= link_to trip.date.strftime("%m/%d/%Y"), trip_path(trip.id) %></td>
-      <td><%= number_to_currency(trip.cost) %></td>
-      <td><%= trip.rating %></td>
+      <td><%= link_to number_to_currency(trip.cost), trip_path(trip.id) %></td>
+      <td><%= link_to trip.rating, trip_path(trip.id)%></td>
       <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %></td>
     </tr>
   <% end %>
