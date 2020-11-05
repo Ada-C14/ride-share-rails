@@ -1,0 +1,40 @@
+<h2> Trips details page </h2>
+<p></p>
+<h3>This is <%= @trip.id %> trip page</h3>
+<p>Trip id: <%= @trip.id %></p>
+<p>Passenger name: <%= @trip.passenger.name %></p>
+<p>Driver name: <%= @trip.driver.name %></p>
+<p>Rating: <%= @trip.rating %></p>
+<p>Cost: <%= @trip.cost%></p>
+<p>Date: <%= @trip.date %></p>
+
+<%= link_to 'Edit', edit_trip_path(@trip) %>
+<%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+<table id='trips-table' class="table table-hover">
+  <thead class="thead-light">
+  <tr>
+    <th>Trip id</th>
+    <th>Passenger name</th>
+    <th>Driver name</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <td><%=@trip.id %></td>
+      <td><%=@trip.passenger.name %></td>
+      <td><%=@trip.driver.name %></td>
+      <td><%=@trip.rating%></td>
+      <td><%=@trip.cost%></td>
+      <td><%=@trip.date%></td>
+    </tr>
+
+  </tbody>
+
+</table>

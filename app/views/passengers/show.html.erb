@@ -11,6 +11,7 @@
 <table id='trips-table' class="table table-hover">
   <thead class="thead-light">
   <tr>
+
     <th>Trip id</th>
     <th>Passenger name</th>
     <th>Driver name</th>
@@ -27,7 +28,7 @@
       <td><%=trip.passenger.name %></td>
       <td><%=trip.driver.name %></td>
       <td><%=trip.rating%></td>
-      <td><%=number_to_currency(trip.cost)%></td>
+      <td><%=(trip.cost)%></td>
       <td><%=trip.date%></td>
     </tr>
   <% end %>
