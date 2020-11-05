@@ -8,15 +8,15 @@
   <h3>Please provide the following information to add a new trip to our database:</h3>
 
   <%= f.label :driver_id %>
-    <%= f.select :driver_id, Driver.where(:available => true).map { |driver| driver.name} %>
+    <%= f.select :driver_id, Driver.where(:available => true).map { |driver|  [driver.name, driver.id]} %>
   <%= f.label :passenger_id %>
-    <%= f.select :passenger_id, Passenger.all.map{ |passenger| passenger.name } %>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
   <%= f.label :date %>
-  <%= f.text_field Date.today%>
+  <%= f.date_field date: Date.today %>
   <%= f.label :rating %>
   <%= f.text_field :rating %>
   <%= f.label :cost %>
-  <%= f.text_field :cost %>
+  <%= f.text_field :cost_in_dollars %>
   <%= f.submit "Add Trip", class: "Trip-button" %>
 
 <% end %>

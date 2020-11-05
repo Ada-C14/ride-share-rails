@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# require 'money'
 
 class Driver < ApplicationRecord
   has_many :trips
@@ -43,7 +44,9 @@ class Driver < ApplicationRecord
             ((trip.cost.to_f - 165) * 0.80).round(2)
           end
       end
-      return  "$#{(total_income / 100.0).round(2)}"
+      # return Money.new((total_income / 100.0).round(2), "USD")
+      return "$#{(total_income / 100.0).round(2)}"
+      # number_to_currency((total_income / 100.0).round(2))
     end
   end
 

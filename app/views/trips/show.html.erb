@@ -7,11 +7,11 @@
 <h1>View Trip</h1>
 <h3>Trip #<%= @trip.id  %></h3>
 <ul>
-  <li>Driver ID: <%= @passenger.request_trip %> </li>
+  <li>Driver ID: <%= @trip.driver_id %> </li>
   <li>Passenger ID: <%= @trip.passenger_id %> </li>
   <li>Date: <%= @trip.date %> </li>
   <li>Rating: <%= @trip.rating %> </li>
-  <li>Cost: <%= @trip.cost %> </li>
+  <li>Cost: <%= @trip.cost_in_dollars %> </li>
   <% @trips.each do |trip| %>
     <li> <%= link_to trip.id, trip_path(trip)%></li>
   <% end %>

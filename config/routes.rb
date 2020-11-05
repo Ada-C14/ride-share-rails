@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :drivers, :passengers, :trips
   root to: 'homepages#index'
-
+  get 'trips/request/:passenger_id', to: 'trips#request_trip', as: 'request_trip'
   resources :trips
   resources :drivers
   resources :passengers

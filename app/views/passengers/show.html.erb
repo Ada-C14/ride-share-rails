@@ -13,4 +13,4 @@
 </ul>
 <p><%= link_to "Edit #{@passenger.name}", edit_passenger_path %></p>
 <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
-<p><%= link_to "Request Trip", new_trip_path %></p>
+<p><%= link_to "Request Trip", request_trip_path(@passenger.id) %></p>

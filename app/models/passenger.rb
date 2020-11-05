@@ -26,7 +26,7 @@ class Passenger < ApplicationRecord
     # passenger = find_passenger(passenger_id)
     # find all available
     # available_drivers = Driver.find_all { |driver| driver.available }
-    available_drivers = Driver.find_all(&:available)
+    available_drivers = Driver.where(:available => true)
 
 
     raise ArgumentError, 'No drivers available' if available_drivers.empty?
