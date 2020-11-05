@@ -4,6 +4,7 @@ describe Driver do
   let (:new_driver) {
     Driver.new(name: "Kari", vin: "12345678901234567", available: true)
   }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
@@ -141,6 +142,46 @@ describe Driver do
         new_driver.toggle_available
 
         expect(new_driver.available).must_equal false
+      end
+    end
+
+    describe "select_available" do
+      before do
+        new_driver.save
+        busy_driver = Driver.new(name: "Marlene Dietrich", vin: "10101010101010101", available: false)
+        busy_driver.save
+      end
+
+      it "selects an available driver" do
+        selected = Driver.select_available
+
+        expect(selected.id).must_equal new_driver.id
+      end
+
+      it "changes selected driver's status to unavailable" do
+        status = new_driver.available
+
+        selected = Driver.select_available
+
+        expect(selected.available).must_equal false
+        expect(selected.available).wont_equal status
+      end
+
+      it "does something something clever if no drivers are available" do
+        raise NotImplementedError
+      end
+
+      it "selects available driver with fewest trips" do
+        newest_driver = Driver.new(name: "Marion Davies", vin: "12341234123412345", available: true)
+        newest_driver.save
+        passenger = Passenger.new(name: "Norma Talmadge", phone_num: "293-239-2398")
+        passenger.save
+        trip_1 = Trip.new(driver_id: new_driver.id, passenger_id: passenger.id, cost: 2938, date: "2020-02-02", rating: 3)
+        trip_1.save
+
+        selected = Driver.select_available
+
+        expect(selected.name).must_equal newest_driver.name
       end
     end
 

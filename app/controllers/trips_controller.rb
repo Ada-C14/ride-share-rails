@@ -39,11 +39,6 @@ class TripsController < ApplicationController
     else
       render :new, status: :bad_request
       return
-      # TODO
-      # thoughts: do we want the user to be able to make trips
-      # from the website? or should they only be creatable by a
-      # user requesting a new trip? and, if that is the only way that
-      # one will be created, shouldn't we not have a view page for trips#new?
     end
   end
 
