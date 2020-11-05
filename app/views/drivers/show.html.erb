@@ -32,7 +32,7 @@
       <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
       <td><%= trip.date %></td>
       <td><%= trip.driver.name %></td>
-      <% if trip.driver.nil? %>
+      <% if trip.passenger.nil? %>
         <td>DELETED</td>
       <% else %>
         <td><%= trip.passenger.name %></td>
