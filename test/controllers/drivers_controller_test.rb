@@ -3,12 +3,6 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
-  # TODO RINGO delete this later
-  # There is a helper method for each HTTP verb,
-  # and each helper method takes the path as an argument.
-  # Every controller test we write will call
-  # at least one of these helper methods
-
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
