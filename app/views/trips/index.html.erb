@@ -8,6 +8,7 @@
     <th>Date</th>
     <th>Rating</th>
     <th>Cost</th>
+
   </tr>
   <% @trips.each do |trip| %>
     <tr>
@@ -17,6 +18,7 @@
       <td><%= "#{trip.date}" %> </td>
       <td><%= "#{trip.rating}" %> </td>
       <td><%= "#{trip.cost}" %> </td>
+      <td class="no_border"><%= button_to "Edit", edit_trip_path(trip.id) %> </td>
     </tr>
 
     <% end %>

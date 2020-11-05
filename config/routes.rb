@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get '/passengers/new', to: 'passengers#new', as: :new_passenger
   get '/drivers/new', to: 'drivers#new', as: :new_driver
 
+  get '/drivers/:id/edit', to: 'drivers#edit', as: :edit_driver
+  get '/passengers/:id/edit', to: 'passengers#edit', as: :edit_passenger
+  get '/trips/:id/edit', to: 'trips#edit', as: :edit_trip
+
+
   get '/drivers/:id', to: 'drivers#show', as: :driver
   get '/passengers/:id', to: 'passengers#show', as: :passenger
   get '/trips/:id', to: 'trips#show', as: :trip
@@ -18,5 +23,10 @@ Rails.application.routes.draw do
   post '/drivers', to: "drivers#create"
   post '/passengers', to: "passengers#create"
   post '/trips', to: "trips#create"
+
+  patch '/drivers/:id', to: 'drivers#update'
+  put '/drivers/:id', to: 'drivers#update'
+  patch '/passengers/:id', to: 'passengers#update'
+  put '/passengers/:id', to: 'passengers#update'
 
 end

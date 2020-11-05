@@ -1,7 +1,7 @@
 class PassengersController < ApplicationController
 
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.order(:id)
   end
 
   def show
@@ -11,6 +11,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path
       return
     end
+
   end
 
   def new
@@ -27,6 +28,31 @@ class PassengersController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @passenger = Passenger.find_by(id: params[:id])
+
+    if @passenger.nil?
+      redirect_to :not_found
+      return
+    end
+  end
+
+  def update
+    @passenger = Passenger.find_by(id: params[:id])
+
+    if @passenger.nil?
+      redirect_to :not_found
+      return
+    elsif @passenger.update(passenger_params)
+      redirect_to passenger_path(@passenger.id)
+      return
+    else
+      render :edit
+      return
+    end
+  end
+
 
   private
 
