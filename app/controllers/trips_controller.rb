@@ -12,10 +12,12 @@ class TripsController < ApplicationController
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = find_driver
+    #what if no drivers available?
     driver.toggle_available
     @trip = passenger.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
 
     if @trip.save
+      #make a new view
       redirect_to passenger_path(params[:passenger_id])
     else
       #display error message?
