@@ -1,10 +1,12 @@
 <%#index.html.erb%>
 
 <h1>Welcome</h1>
-<p class="request-button"><%= link_to "Request A Trip", new_trip_path %></p>
 
-<p><%= link_to "Add A Trip", new_trip_path %></p>
+<div class="homepage-button">
+  <p class="homepage-button1"><%= link_to "Add A Trip", new_trip_path %></p>
 
-<p><%= link_to "Manage Drivers", drivers_path%></p>
+  <p class="homepage-button2"><%= link_to "Manage Drivers", drivers_path%></p>
 
-<p><%= link_to "Manage Passengers", passengers_path%></p>
+  <p class="homepage-button3"><%= link_to "Manage Passengers", passengers_path%></p>
+</div>
+

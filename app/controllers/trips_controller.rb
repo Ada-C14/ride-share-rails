@@ -16,11 +16,19 @@ class TripsController < ApplicationController
   end
 
   def new
-    if @trip.passenger_id.nil?
-      @trip = Trip.new
-    else
+    @trip = Trip.new
 
+    if params[:passenger_id].nil?
+      return
+    else
+      @trip.passenger_id = params[:passenger_id]
+      @driver = Driver.find_by(available: true)
+      @driver.available = false
+      @driver.save
+      @trip.driver_id = @driver.id
+      @trip.cost = rand(1..9999)
     end
+    return
 
   end
 
