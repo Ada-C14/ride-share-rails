@@ -1,8 +1,23 @@
-<h1>Rideshare Rails</h1>
+<h1>Welcome to Rideshare Rails!</h1>
 
-<p>Rideshare stats at a glance:</p>
-<ul>
+<section class="about">
+<p>We're America's favorite Ride Share company!</p>
+<p>Here's a snapshot of our extraordinary business:</p>
+</section>
+<ul class="home_stats">
   <li>Total Number of Passengers: <%= Passenger.count %></li>
   <li>Total Number of Drivers: <%= Driver.count %></li>
   <li> Total Number of Trips: <%= Trip.count %>...and counting!</li>
 </ul>
+
+<section class="sign-up">
+  <p><%= link_to "Sign up to be a Rideshare Driver!", new_driver_path %></p>
+  <p><%= link_to "Sign up to be a Rideshare Passenger!", new_passenger_path %></p>
+</section>
+
+<section class="admin">
+  <p><strong>Administrator:</strong>
+  <%= link_to "Manage Passengers | ", passengers_path %>
+  <%= link_to "Manage Drivers", drivers_path %>
+  </p>
+</section>
