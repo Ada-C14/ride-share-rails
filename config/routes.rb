@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   resources :drivers
   # don't we need trips :index and :new for the nested routes?
+  # :create
   resources :passengers do
-    resources :trips, only: [:index, :new]
+    resources :trips, only: [:create]
   end
 
   resources :trips, except: [:index, :new]
