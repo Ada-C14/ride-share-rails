@@ -35,13 +35,11 @@ class TripsController < ApplicationController
 
   def create
     create_params = {
-        trip: {
-            driver_id: Trips.assign_driver,
-            passenger_id: params[:passenger_id],
-            date: Time.now.strftime("%m/%d/%Y"),
-            rating: nil,
-            cost: rand(8.0..35.0).round(2)
-        }
+        driver_id: Driver.find_by(available: 'true').id,
+        passenger_id: params[:passenger_id].to_i,
+        date: Time.now,
+        rating: nil,
+        cost: rand(8.0..35.0).round(2)
     }
 
     @trip = Trip.new(create_params)

@@ -1,5 +1,6 @@
 <div>
-  <h1><%= @trip.date %></h1>
+  <h1>Trip # <%= @trip.id %></h1>
+  <%= @trip.date.strftime("%m/%d/%Y") %>
   <%= link_to "Edit", edit_trip_path(@trip) %>
   <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
 </div>
