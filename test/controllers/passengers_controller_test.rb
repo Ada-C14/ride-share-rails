@@ -99,8 +99,8 @@ describe PassengersController do
       Passenger.create(name: "Yvonne Okuneva IV", phone_num: "(215) 056-6568 x5330")
       passenger_hash = {
           passenger: {
-              name: "Abigayle Rau Jr.",
-              phone_num: "1-761-352-4516 x63527"
+          name: "Abigayle Rau Jr.",
+          phone_num: "1-761-352-4516 x63527"
           },
       }
       passenger = Passenger.first
