@@ -2,7 +2,7 @@ class Driver < ApplicationRecord
   has_many :trips
 
   validates :name, presence: true
-  validates :vin, presence: true
+  validates :vin, presence: true, length: { is: 17 }
 
   def total_earnings
     every_costs = self.trips.where.not(cost: nil)
