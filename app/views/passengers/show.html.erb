@@ -14,11 +14,30 @@
 <p><%= @passenger.name %>'s Trips</p>
 </div>
 
-<ul>
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
   <% @passenger.trips.each do |trip| %>
-    <li><%= link_to "Trip ##{trip.id} | Date: #{trip.date}", trip_path(trip.id) %></li>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+      <td><%= trip.date %></td>
+      <% if trip.driver.nil? %>
+        <td>DELETED</td>
+      <% else %>
+        <td><%= trip.driver.name %></td>
+      <% end %>
+      <td><%= trip.passenger.name %></td>
+      <td><%= trip.rating %></td>
+      <td><%= trip.cost %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <p><%= button_to "Add trip for #{@passenger.name}", passenger_trips_path(@passenger.id) %></p>
 
