@@ -2,7 +2,7 @@ require "test_helper"
 
 describe DriversController do
   before do
-    @driver = Driver.create(name: "Test Driver", vin: "123456", available: true)
+    @driver = Driver.create!(name: "Test Driver", vin: "123456", available: true)
   end
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
@@ -18,13 +18,15 @@ describe DriversController do
     end
 
     it "responds with success when there are no drivers saved" do
-      skip
-      # Arrange
       # Ensure that there are zero drivers saved
-
       # Act
+      expect {
+        delete driver_path(@driver.id)
+      }.must_differ 'Driver.count', -1
 
       # Assert
+      get drivers_path
+      must_respond_with :success
 
     end
   end
@@ -87,16 +89,28 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
+    it "does not create a driver if the form data violates Driver validations" do
+       # Arrange
+       driver_hash = {
+        driver: {
+          vin: '123456',
+          available: true
+        }
+      }
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
 
       # Act-Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change 'Driver.count'
+
       # Ensure that there is no change in Driver.count
 
       # Assert
+      must_respond_with :success
+      
       # Check that the controller redirects
 
     end
@@ -187,8 +201,28 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
+       # Arrange
+       driver_hash = {
+        driver: {
+          vin: '123456',
+          available: true
+        }
+      }
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Driver validations
+
+      # Act-Assert
+      expect {
+        patch driver_path(id: @driver.id), params: driver_hash
+      }.wont_change 'Driver.count'
+
+      # Ensure that there is no change in Driver.count
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to drivers_path
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved

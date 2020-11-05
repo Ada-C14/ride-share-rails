@@ -44,7 +44,7 @@ class DriversController < ApplicationController
         @driver = Driver.new(driver_params)# using strong params
        
         if @driver.save # save returns true if the database insert succeeds
-          redirect_to drivers_path(@driver.id) # go to the index so we can see the driver in the list
+          redirect_to drivers_path(@driver.id) # go to the index so we can see the drivers in the list
           return
         else # save failed 
           render :new # show the new driver form view again
@@ -56,7 +56,7 @@ class DriversController < ApplicationController
         driver_id = params[:id] #params is a method returning a hash that uses to access hashes. 
         @driver  = Driver.find_by(id: driver_id) # find a driver given an id
     
-        if @driver .nil?
+        if @driver.nil?
           redirect_to drivers_path
           return
         else 
