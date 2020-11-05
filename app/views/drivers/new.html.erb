@@ -1,4 +1,4 @@
-<%= form_with model: @drivers, class: 'create-driver' do |f| %>
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
   <p>Please provide the following information to save your passenger:</p>
 
   <%= f.label :name %>
@@ -7,8 +7,8 @@
   <%= f.label :vin %>
   <%= f.text_field :vin %>
 
-  <%= f.label :available %>
-  <%= f.text_field :available %>
+  <%#= f.label :available %>
+  <%#= f.text_field :available %>
 
   <%= f.submit "Save Driver", class: "driver-button" %>
 <% end %>
