@@ -1,0 +1,14 @@
+<%=form_with model: @driver, class: 'driver_form' do |f| %>
+  <p>Please update Driver Information here:</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_area :vin %>
+  </div>
+
+  <%= f.submit "Update Driver!" %>
+<% end %>
