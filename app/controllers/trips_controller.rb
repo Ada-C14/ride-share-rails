@@ -45,11 +45,13 @@ class TripsController < ApplicationController
     end
 
     @trip = Trip.new(date: Time.now, rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
+
     if @trip.save
+      available_driver.update(available: false)
       redirect_to passenger_path(params[:passenger_id])
       return
     else
-      render :new
+      redirect_to passengers_path
       return
     end
   end
@@ -67,7 +69,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(driver_params)
+    elsif @trip.update(trip_params)
       redirect_to trip_path(id: @trip[:id])
       return
     else
