@@ -26,12 +26,43 @@ class PassengersController < ApplicationController
 
 
     def create
-      @passenger = Passenger.new(passenger_params) #new passenger
+      @passenger = Passenger.new(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num]) #new passenger
       if @passenger.save
         redirect_to passenger_path @passenger.id# go to the index page so we can see the passenger in the list
         return
       else
-      render :new, status: :bad_request # show the new book form view again
+      render :new, status: :bad_request # show the new passenger form view again
+      return
+      end
+    end
+
+    def edit
+      @passenger = Passenger.find_by(id: params[:id])
+      passenger_id = params[:id]
+
+      begin
+        @passenger = Passenger.find(passenger_id)
+      rescue ActiveRecord::RecordNotFound
+        @passenger = nil
+      end
+
+      if @passenger.nil?
+        head :not_found
+        return
+      end
+    end
+
+    def update
+      @passenger = Passenger.find_by(id: params[:id])
+      if @passenger.nil?
+        head :not_found
+        return
+      elsif @passenger.update(
+          name: params[:passenger][:name], phone_num: params[:passenger][:phone_num] )
+        redirect_to passenger_path # go to the passenger details page
+        return
+      else # save failed
+      render :edit # show the new passenger form view again
       return
       end
     end

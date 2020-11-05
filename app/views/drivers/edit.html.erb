@@ -1,4 +1,4 @@
-<h2>This is edit page</h2>
+<h2>Driver edit page</h2>
 
 <%= form_with model: @driver, class: 'edit-driver' do |f| %>
   <p>Please make changes:</p>
@@ -18,5 +18,5 @@
     <%= f.text_field :available %>
   </div>
 
-  <%= f.submit "Edit", class: "driver-button" %>
+  <%= f.submit "Save Edit", class: "driver-button" %>
 <% end %>

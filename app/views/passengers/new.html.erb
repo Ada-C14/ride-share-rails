@@ -2,16 +2,15 @@
 
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
   <p>Please provide the following information to edit your passenger profile:</p>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
   <div>
   <%= f.label :phone %>
   <%= f.text_field :phone_num %>
   </div>
-
 
   <%= f.submit "Save Passenger", class: "passenger-button" %>
 <% end %>
