@@ -87,21 +87,41 @@ describe Driver do
       end
     end
   end
-    
 
+  describe "total earnings" do
+    # You add tests for the total_revenue method
+    it "returns float" do
+      new_driver.save
+      expect(new_driver.total_revenue).must_be_kind_of Float
+    end
 
-  #   describe "total earnings" do
-  #     # Your code here
-  #   end
+    it "returns correct calculation" do
+      new_driver.save
+      expect(new_driver.total_revenue).must_equal ((1234- 1.65) + (6334 - 1.65))*.8
+      # expect(new_driver.total_revenue).must_be_close_to 7564.70, 0.01
+    end
 
-  #   describe "can go online" do
-  #     # Your code here
-  #   end
+    it "return 0 if no driven trips" do
+      driver = Driver.new(
+        id: 54,
+        name: "Rogers Bartell IV",
+        available: false
+      )
+      expect(driver.total_revenue).must_equal 0
+    end
+  end
+end
 
-  #   describe "can go offline" do
-  #     # Your code here
-  #   end
+    # Your code here
+
+  # describe "can go online" do
+  #   # Your code here
+  # end
+
+  # describe "can go offline" do
+  #   # Your code here
+  # end
 
   #   # You may have additional methods to test
   # end
-end
+# end
