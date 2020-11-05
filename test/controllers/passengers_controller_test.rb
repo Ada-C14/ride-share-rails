@@ -1,6 +1,7 @@
 require "test_helper"
 
 describe PassengersController do
+  skip
   describe "index" do
     # Your tests go here
   end

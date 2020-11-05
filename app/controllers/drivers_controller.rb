@@ -11,7 +11,7 @@ class DriversController < ApplicationController
           redirect_to drivers_path
           return
         end
-      end
+    end
     
       def update
         @driver = Driver.find_by(id: params[:id])
@@ -44,7 +44,7 @@ class DriversController < ApplicationController
         @driver = Driver.new(driver_params)# using strong params
        
         if @driver.save # save returns true if the database insert succeeds
-          redirect_to drivers_path(@driver .id) # go to the index so we can see the driver in the list
+          redirect_to drivers_path(@driver.id) # go to the index so we can see the driver in the list
           return
         else # save failed 
           render :new # show the new driver form view again
@@ -67,8 +67,8 @@ class DriversController < ApplicationController
     
       private
     
-      def driver _params
-        return params.require(:driver ).permit(:name, :vin, :status)
+      def driver_params
+        return params.require(:driver).permit(:name, :vin, :available)
       end
     
     
