@@ -16,3 +16,60 @@
 @import "bootstrap";
 
 @import "**/*";
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #00203FFF;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+    color: #ADEFD1FF;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 20%;
+}
+
+nav li {
+    display: inline-block
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    font-weight: bold;
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 5px 5px;
+    background-color: #000000;
+    color: #F5F5F5;
+    text-align: center;
+}
+
+
