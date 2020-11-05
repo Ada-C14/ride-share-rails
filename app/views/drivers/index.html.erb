@@ -1,4 +1,10 @@
 <h1>Drivers</h1>
+
+<div>
+  <%= link_to "Add another driver", new_driver_path %>
+</div>
+<br>
+
 <ul>
   <% @drivers.each do |driver| %>
     <li>
@@ -14,9 +20,5 @@
       </div>
     </li>
   <% end %>
-  <br>
-  <div>
-    <%= link_to "Add another driver", new_driver_path %>
-  </div>
 </ul>
 
