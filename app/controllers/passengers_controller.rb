@@ -28,7 +28,7 @@ class PassengersController < ApplicationController
     def create
       @passenger = Passenger.new(passenger_params) #new passenger
       if @passenger.save
-        redirect_to root_path # go to the index page so we can see the passenger in the list
+        redirect_to passenger_path @passenger.id# go to the index page so we can see the passenger in the list
         return
       else
       render :new, status: :bad_request # show the new book form view again
