@@ -61,7 +61,7 @@ describe DriversController do
       # Ensure that there is a driver saved
       # instantiate driver from let block
       driver
-
+      
       # Act
       get driver_path(driver.id)
       # Assert
