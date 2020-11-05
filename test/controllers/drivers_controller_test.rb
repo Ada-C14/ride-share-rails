@@ -99,7 +99,7 @@ describe DriversController do
       # Set up the form data so that it violates Driver validations
       invalid_input = {
         driver: {
-          name: 934838,
+          name: "",
           vin: "skdjfdkfjdk938439",
           available: true
         }
@@ -113,8 +113,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      # todo: update after validation lesson
-      must_respond_to :redirect
+      must_respond_with :bad_request
 
     end
   end
@@ -204,7 +203,7 @@ describe DriversController do
       # Set up the form data so that it violates Driver validations
       invalid_input = {
           driver: {
-              name: 934838,
+              name: "",
               vin: "skdjfdkfjdk938439",
               available: true
           }
@@ -218,8 +217,7 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      # todo: update after validation lesson
-      must_respond_with :redirect
+      must_respond_with :bad_request
 
     end
   end
