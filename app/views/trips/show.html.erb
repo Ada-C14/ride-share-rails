@@ -1,8 +1,8 @@
 <h2>Trip Details</h2>
 
-<p>Trip #<%= @trip.id %></p>
+<h4>Trip #<%= @trip.id %></h4>
 
-<table>
+<table class="trip-details">
   <tr>
     <th>Date</th>
     <th>Driver</th>
@@ -23,7 +23,7 @@
     <% else %>
       <td><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger.id) %></td>
     <% end %>
-    <td><%= @trip.cost %></td>
+    <td>$<%= sprintf("%.2f", @trip.cost) %></td>
     <% if @trip.rating.nil? %>
       <td><%= link_to "Edit Rating", edit_trip_path(@trip.id) %></td>
     <% else %>

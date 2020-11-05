@@ -8,7 +8,7 @@
 
 <div class="mini-title">
   <p>Average Rating: <%= @driver.average_rating %></p>
-  <p>Total Earnings: <%= @driver.total_earnings %></p>
+  <p>Total Earnings: $<%= sprintf("%.2f", @driver.total_earnings) %></p>
   <% if @driver.available %>
     <p>Current Status: Available</p>
   <% else %>
@@ -38,7 +38,7 @@
         <td><%= trip.passenger.name %></td>
       <% end %>
       <td><%= trip.rating %></td>
-      <td><%= trip.cost %></td>
+      <td>$<%= sprintf("%.2f", trip.cost) %></td>
     </tr>
   <% end %>
 </table>

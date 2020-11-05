@@ -1,5 +1,5 @@
 <h2>All Drivers</h2>
-<table class="table">
+<table id="drivers">
   <tr>
     <th>Name</th>
     <th>Avg Rating</th>
@@ -15,7 +15,7 @@
         <%= driver.average_rating %>
       </td>
       <td>
-        <%= driver.total_earnings %>
+        $<%= sprintf("%.2f", driver.total_earnings) %>
       </td>
       <% if driver.available %>
         <td>Available</td>

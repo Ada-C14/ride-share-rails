@@ -1,10 +1,10 @@
 <h2>All Passengers</h2>
 
-<table class="table">
+<table id="passengers">
   <tr>
     <th>Name</th>
     <th>Phone Number</th>
-    <th>Total Money spent</th>
+    <th>Total Spending</th>
   </tr>
   <% @passengers.each do |passenger| %>
     <tr>
@@ -15,7 +15,7 @@
         <%= passenger.phone_num %>
       </td>
       <td>
-        <%= passenger.total_amount_charged %>
+        $<%= sprintf("%.2f", passenger.total_amount_charged) %>
       </td>
     </tr>
   <% end %>
