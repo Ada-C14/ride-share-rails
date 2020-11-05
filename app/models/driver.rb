@@ -4,8 +4,10 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, uniqueness: true, length: { is: 17}
 
-  # def self.is_available?
-  #   return where(available: true).first
-  # end
+  def self.find_available_driver
+    return Driver.where(available: true).first
+  end
+#  drivers total earnings
+  #  driver gets 80% of the trip cost after a fee of $1.65 is subtracted
 end
 

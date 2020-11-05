@@ -15,20 +15,29 @@ class TripsController < ApplicationController
   end
 
   def create
-    if params[:passenger_id]
-      # nested route, /passenger/:passenger_id/trips/new
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = passenger.trips.new
+    passenger = Passenger.find_by(id: params[:passenger_id])
+
+    if passenger.nil?
+      redirect_to passengers_path
+      return
     else
-      # route /trips/new
-      @trip = Trip.new(trip_params)
+      # nested route, /passenger/:passenger_id/trips/create
+      driver = Driver.find_available_driver
+      # @trip = passenger.trips.new
+      @trip = Trip.new(
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          cost: rand(1000..9000),
+          rating: nil
+      )
     end
 
     if @trip.save
       redirect_to trips_path(@trip.id) #send the user to the /tasks path
       return
     else
-      render :new, status: :bad_request
+      # render :new, status: :bad_request
+      redirect_to passenger_path(passenger.id)
       return
     end
   end

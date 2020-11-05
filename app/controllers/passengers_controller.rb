@@ -11,7 +11,6 @@ class PassengersController < ApplicationController
       return
     end
 
-
   end
 
   def new
@@ -53,12 +52,14 @@ class PassengersController < ApplicationController
   end
 
   def destroy
+
     passenger = Passenger.find_by(id: params[:id])
 
     if passenger.nil?
       head :not_found
       return
     else
+      #need to go through all the trips associated with this specific passenger
       passenger.destroy
       redirect_to passengers_path
     end
