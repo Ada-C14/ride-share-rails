@@ -1,9 +1,27 @@
-<div>
-  <h1>Trip # <%= @trip.id %></h1>
-  <%= @trip.date.strftime("%m/%d/%Y") %>
-  <%= link_to "Edit", edit_trip_path(@trip) %>
-  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
-</div>
+<h1>Trip # <%= @trip.id %></h1>
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Price</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @trip.date.strftime("%m/%d/%Y") %></td>
+        <td><%= link_to Driver.find_by(id: @trip.driver_id).name, driver_path(@trip.driver_id) %></td>
+        <td><%= link_to Passenger.find_by(id: @trip.passenger_id).name, passenger_path(@trip.passenger_id) %></td>
+        <td>$<%= @trip.cost %></td>
+        <td><%= @trip.rating %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-
-<p><%= link_to "Return to trip List", trips_path %></p>
+<%= link_to "Add a Rating", edit_trip_path(@trip.id) %> |
+<%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %> |
+<%= link_to "All Trips", trips_path %>
