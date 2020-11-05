@@ -36,7 +36,7 @@ class DriversController < ApplicationController
     @drivers = Driver.find_by(id:params[:id])
 
     if @drivers.nil?
-      redirect_to drivers_path(@drivers.id) #Vs. Head :not_found
+      redirect_to drivers_path #Vs. Head :not_found
       return
     end
   end
