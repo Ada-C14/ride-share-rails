@@ -42,6 +42,21 @@ describe PassengersController do
   end
 
   describe "create" do
+    it "creates a new passenger" do
+      pass_hash = {
+          passenger: {
+              name: "Passenger 1",
+              phone_num: "12347890245"
+          }
+      }
+      expect {
+        post passengers_path, params: pass_hash
+      }.must_differ "Passenger.count", 1
+
+      must_respond_with :redirect
+      expect(Passenger.last.name).must_equal pass_hash[:passenger][:name]
+      expect(Passenger.last.phone_num).must_equal pass_hash[:passenger][:phone_num]
+    end
     it "requires a name to create a passenger, does not create passenger otherwise, and responds with redirect if no name is entered" do
       passenger_4_hash = {
           passenger: {
