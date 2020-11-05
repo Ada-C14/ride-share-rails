@@ -7,6 +7,8 @@
         <li>VIN: <%= @driver.vin %></li>
         <br>
         <li>Available: <%= @driver.available %></li>
+        <br>
+        <li>Revenue: <%= @driver.total_revenue %></li>
     </ul>
     <div><%= link_to "Edit #{@driver.name}", edit_driver_path(@driver.id) %></div>
     <br>
