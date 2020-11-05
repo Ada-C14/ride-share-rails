@@ -10,6 +10,19 @@
   </head>
 
   <body>
+  <header>
+    <nav>
+      <div>
+        <%= link_to "Return Home", root_path %>
+      </div>
+      <div>
+        <%= link_to "View Passengers", passengers_path %>
+      </div>
+      <div>
+        <%= link_to "View Drivers", drivers_path %>
+      </div>
+    </nav>
+  </header>
     <%= yield %>
   </body>
 </html>
