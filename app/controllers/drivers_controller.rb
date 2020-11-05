@@ -24,7 +24,7 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-      render :new, :bad_request
+      render :new
       return
     end
   end

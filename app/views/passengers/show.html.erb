@@ -11,7 +11,7 @@
 
 <ol>
 <% if @passenger.trips.empty? %>
-  "Woops! This passenger has no trips!"
+    <p><strong>Trips list coming soon!</strong></p>
 <% else %>
   <% @passenger.trips.each do |trip| %>
       <li><%= link_to "#{trip.date}", trip_path(trip.id) %></li>

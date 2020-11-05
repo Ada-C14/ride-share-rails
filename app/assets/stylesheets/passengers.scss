@@ -2,5 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .passenger_crud {
- margin-left: 15px;
+     margin-left: 15px;
+}
+
+.oops_msg {
+    color: red;
+}
+.errors {
+    font-size: 15px;
+    color: red;
 }

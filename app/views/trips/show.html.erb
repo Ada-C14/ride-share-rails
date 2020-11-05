@@ -7,16 +7,16 @@
     <th>Trip date</th>
     <th>Trip rating</th>
     <th>Trip cost</th>
-    <th>Trip Driver ID</th>
-    <th>Trip Passenger ID</th>
+    <th>Trip Driver Name</th>
+    <th>Trip Passenger Name</th>
   </tr>
   <tr>
     <td><%= @trip.id %></td>
     <td><%= @trip.date %></td>
     <td><%= @trip.rating %></td>
     <td>$<%=  @trip.cost/100.00 %></td>
-    <td><%= link_to @trip.driver.id, driver_path(@trip.driver_id) %></td>
-    <td><%= link_to @trip.passenger.id, passenger_path(@trip.passenger_id) %></td>
+    <td><%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></td>
+    <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %></td>
   </tr>
 </table>
 </div>
