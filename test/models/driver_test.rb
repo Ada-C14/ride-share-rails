@@ -4,6 +4,7 @@ describe Driver do
   let (:new_driver) {
     Driver.new(name: "Kari", vin: "12345678901234567", available: true)
   }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
