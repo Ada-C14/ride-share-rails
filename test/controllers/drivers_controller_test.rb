@@ -192,7 +192,7 @@ describe DriversController do
       # must_redirect_to root_path
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
 
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange

@@ -11,7 +11,7 @@ describe TripsController do
   }
 
   let (:trip) {
-    Trip.create date: DateTime.now, rating: 4, driver_id: driver.id, passenger_id: passenger.id, cost: 2350
+    Trip.create date: Time.now, rating: 4, driver_id: driver.id, passenger_id: passenger.id, cost: 2350
   }
 
   describe "show" do
@@ -136,7 +136,7 @@ describe TripsController do
       must_respond_with :not_found
     end
 
-    it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
+    it "does not update a trip if the form data violates trip validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing trip saved
