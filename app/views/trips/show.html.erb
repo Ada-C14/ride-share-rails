@@ -32,9 +32,9 @@
       </td>
       <td><%= @trip.cost %></td>
       <td><%= @trip.date %></td>
-      <td><%= link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id) %></td>
+      <td><%= link_to @trip.passenger.nil? ? "" : "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id) %></td>
       <td><%= link_to @trip.passenger_id, passenger_path(@trip.passenger_id) %></td>
-      <td><%= link_to "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id) %></td>
+      <td><%= link_to @trip.driver.nil? ? "" : "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id) %></td>
       <td><%= link_to @trip.driver_id, driver_path(@trip.driver_id) %></td>
 
     </tr>
