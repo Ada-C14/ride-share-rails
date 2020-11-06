@@ -16,3 +16,69 @@
 @import "bootstrap";
 
 @import "**/*";
+
+body {
+  height: 100%;
+  font-family: "American Typewriter";
+  color: cadetblue;
+  background: mistyrose;
+}
+
+form {
+  background: mistyrose;
+  text-align: center;
+  color: teal;
+
+}
+
+table.table {
+  alignment: center;
+  background: white;
+}
+
+ul {
+  color: teal;
+  text-align: left;
+  background: mistyrose;
+}
+
+ul.main {
+  font-size: x-large;
+}
+
+th {
+  color: lightpink;
+  background: cadetblue;
+}
+
+h1 {
+  margin-top: 0px;
+  margin-bottom: 50px;
+  text-align: center;
+  letter-spacing: 0.20rem;
+  text-transform: uppercase;
+  color: black;
+  text-shadow: 4px 4px #f09b93,
+  8px 8px #ebd6d7,
+  12px 12px #f9ebd9,
+  16px 16px #e9dd8a,
+  20px 20px #439093,
+  24px 24px #f09b93,
+  28px 28px #ebd6d7,
+  32px 32px #f9ebd9,
+  36px 36px #e9dd8a;
+}
+
+
+header {
+  grid-area: header;
+  background: white;
+}
+
+footer {
+  grid-area: footer;
+  background: white;
+  alignment: center;
+  text-align: center;
+  color: rosybrown;
+}

@@ -13,15 +13,17 @@
   <h6>Trips: <% %></h6>
 </div>
 
-<table style="width:50%">
+<table class="table table-striped">
   <thead>
-  <th>Trip ID</th>
-  <th>Date</th>
-  <th>Passenger</th>
-  <th>Driver</th>
-  <th>Rating</th>
-  <th>Cost</th>
+  <tr>
+    <th>Trip ID</th>
+    <th>Trip Date</th>
+    <th>Passenger Name</th>
+    <th>Driver Name</th>
+    <th>Trip Rating</th>
+    <th>Trip Cost</th>
 
+  </tr>
   </thead>
   <tbody>
   <% @passenger.trips.each do |trip| %>

@@ -12,14 +12,16 @@
 </ul>
 
 <h6>
-  <table style="width:50%">
+  <table class="table table-striped">
     <thead>
-    <th>Trip ID</th>
-    <th>Date</th>
-    <th>Driver</th>
-    <th>Passenger</th>
-    <th>Cost</th>
-    <th>Rating</th>
+    <tr>
+      <th>Trip ID</th>
+      <th>Trip Date</th>
+      <th>Driver Name</th>
+      <th>Passenger Name</th>
+      <th>Trip Cost</th>
+      <th>Trip Rating</th>
+    </tr>
     </thead>
     <tbody>
     <% @driver.trips.each do |trip| %>

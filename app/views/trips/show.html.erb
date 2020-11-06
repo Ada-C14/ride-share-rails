@@ -17,9 +17,10 @@
     <li>Cost: $<%= @trip.cost/100 %></li>
     <% if @trip.rating %>
       <li>Rating: <%= @trip.rating %></li>
-    <% else %>
+      <%@trip.driver.complete_trip%>
+  <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
-        <li>Rating:
+        <li>Add a Rating to Complete the Trip:
          <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
          <%= f.submit "Update", class: 'trip-button' %></li>
       <% end %>

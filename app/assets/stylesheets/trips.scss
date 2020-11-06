@@ -1,3 +1,9 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+$table_width: 1000px;
+
+table {
+  max-width: $table_width
+}

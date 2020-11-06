@@ -1,15 +1,25 @@
 <h1>Drivers Database</h1>
 <button><%= link_to "Home Page", homepages_path %></button>
 <button><%= link_to "Add driver", new_driver_path %></button>
-<ul>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Driver Name</th>
+    <th>Status</th>
+    <th>Edit Driver</th>
+    <th>Delete Driver</th>
+  </tr>
+  </thead>
+<tbody>
   <% @drivers.each do |driver| %>
-  <li>
-    <%= link_to driver.name, driver_path(driver) %> |
-    <%= driver.available ? "Available" : "Unavailable" %> |
-    <%= link_to "Edit", edit_driver_path(driver) %> |
-    <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"} %>
-  </li>
+  <tr>
+    <td><%= link_to driver.name, driver_path(driver) %> </td>
+    <td><%= driver.available ? "Available" : "Unavailable" %> </td>
+    <td><%= link_to "Edit", edit_driver_path(driver) %> </td>
+    <td><%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"} %> </td>
+  </tr>
   <% end %>
-</ul>
+</tbody>
+</table>
 <button><%= link_to "Home Page", homepages_path %></button>
 <footer>copyright 2020</footer>

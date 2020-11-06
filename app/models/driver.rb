@@ -12,4 +12,9 @@ class Driver < ApplicationRecord
     total = (self.trips.sum(:cost) / 100  * 0.8) - 1.65
     return total > 0 ? total: 0
   end
+
+  def complete_trip
+    self.update_attribute(:available, true)
+  end
+
 end
