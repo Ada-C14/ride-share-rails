@@ -1,0 +1,17 @@
+<h1> Trip list</h1>
+<div>
+    <ul>
+      <% @trips.each do |trip| %>
+      <li>
+        <p> Passenger Name: <%=trip.passenger.name %></p>
+        <p> Passenger ID: <%=trip.passenger.id %></p>
+        <%#link_to trip.date, trip_path(trip.id) %>
+      </li>
+      <% end %>
+
+    </ul>
+</div>
+
+
+
+

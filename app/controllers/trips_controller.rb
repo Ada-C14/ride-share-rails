@@ -5,14 +5,27 @@ class TripsController < ApplicationController
 
 
   def index
+    @drivers = Driver.all
+    @passengers = Passenger.all
+    @trips = Trip.all
+  end
+
+  def show
+    trip_id = params[:id].to_i
+    @trip = Trip.find_by(id:trip_id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def new
 
   end
 
   def create
-
-  end
-
-  def update
+    @trip = Trip.new()
 
   end
 
@@ -20,10 +33,9 @@ class TripsController < ApplicationController
 
   end
 
-  def show
+  def update
 
   end
-
 
   def destroy
 
