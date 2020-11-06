@@ -1,13 +1,33 @@
 <div>
   <h1>Trip #<%= @trip.id %></h1>
-  <h6>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></h6>
-<!--  <h6>Passenger: <%#= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></h6>-->
-  <h6>Cost: <%= @trip.cost %></h6>
-  <h6>Rating: <%= @trip.rating %></h6>
+  <ul>
+    <% begin %>
+      <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>
+    <% rescue %>
+      <%= flash.alert = "Driver not found" %>
+      <% link_to drivers_path(@trip.driver), flash.alert = "User not found."  %>
+    <% end %>
+    <% begin %>
+      <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></li>
+    <% rescue %>
+      <%= flash.alert = "Passenger not found" %>
+      <% link_to passengers_path(@trip.driver)%>
+    <% end %>
+    <li>Date: <%= @trip.date %></li>
+    <li>Cost: $<%= @trip.cost/100 %></li>
+    <% if @trip.rating %>
+      <li>Rating: <%= @trip.rating %></li>
+    <% else %>
+      <%= form_with model: @trip, class: 'rating-form' do |f| %>
+        <li>Rating:
+         <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
+         <%= f.submit "Update", class: 'trip-button' %></li>
+      <% end %>
+  <% end %>
 
+      </ul>
   <%= link_to "Edit", edit_trip_path(@trip) %>
   <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
 </div>
-
 
 <p><%= link_to "Return to trips Database", trips_path %></p>

@@ -15,16 +15,25 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+
+      @trip = Trip.new
   end
 
   def create
+    if params[:passenger_id]
+      driver = Driver.find_by(available: true)
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, cost:rand(1000..4999), date:Date.today)
+    else
     @trip = Trip.new(trip_params)
+    end
 
     if @trip.save
+      driver.update_attribute(:available, false)
       redirect_to trip_path(@trip.id)
     else
-      render :new, status: :bad_request
+      redirect_to trips_path
+      # render :new, status: :bad_request
       return
     end
   end
@@ -45,7 +54,7 @@ class TripsController < ApplicationController
       redirect_to trips_path
       return
     elsif @trip.update(trip_params)
-      redirect_to trips_path
+      redirect_to trip_path
       return
     else
       render :edit, status: :bad_request
@@ -69,7 +78,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost)
+    return params.require(:trip).permit( :date, :rating, :cost)
   end
 
 end

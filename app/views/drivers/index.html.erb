@@ -3,6 +3,7 @@
   <% @drivers.each do |driver| %>
   <li>
     <%= link_to driver.name, driver_path(driver) %> |
+    <%= driver.available ? "Available" : "Unavailable" %> |
     <%= link_to "Edit", edit_driver_path(driver) %> |
     <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"} %>
   </li>

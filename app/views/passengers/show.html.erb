@@ -6,7 +6,7 @@
 
   <%= link_to "Edit", edit_passenger_path(@passenger) %> |
   <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%>
-  <p><button><%= link_to "Add a trip", new_trip_path %></button></p>
+  <p><button><%= link_to "Add a trip", passenger_trips_path(@passenger), method: :post %></button></p>
   <h6>Trips: <% %></h6>
 </div>
 
@@ -16,7 +16,7 @@
   <th>Date</th>
   <th>Passenger</th>
   <th>Driver</th>
-
+  <th>Rating</th>
   <th>Cost</th>
 
   </thead>
@@ -26,7 +26,12 @@
       <td><%= link_to trip.id, trip_path(trip) %></td>
       <td><%= trip.date %></td>
       <td><%= @passenger.name %></td>
+      <% begin %>
       <td><%= trip.driver.name %></td>
+      <% rescue %>
+        <%= flash.alert = "Driver not found" %>
+      <% end %>
+      <td><%= trip.rating %></td>
       <td>$<%= trip.cost/100%></td>
     </tr>
   <% end %>
