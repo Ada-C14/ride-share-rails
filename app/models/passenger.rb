@@ -8,4 +8,5 @@ class Passenger < ApplicationRecord
     total = self.trips.sum(:cost)/100
     return total > 0 ? total : 0
   end
+
 end

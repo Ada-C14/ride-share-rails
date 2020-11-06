@@ -25,7 +25,8 @@ class TripsController < ApplicationController
       passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, cost:rand(1000..4999), date:Date.today)
     else
-      redirect_to homepages_path, flash.alert = "No drivers available now. Please try again later."
+      flash[:notice] = "No driver is currently available. Please try again later!"
+      redirect_to homepages_path
     end
 
     if @trip.save

@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+  <h1><div class="notice"><%= flash[:notice] %></div></h1>
+<% end %>
 <h1>THE ULTIMATE RIDESHARE V3.0</h1>
 <ul>
   <li><%= link_to "All Passengers", passengers_path(@passengers) %></li>
