@@ -35,7 +35,7 @@ describe TripsController do
         driver_id: @driver.id,
         passenger_id: @passenger.id,
         cost: 23.43,
-        date: Time.now.strftime('%Y-%m-%d'),
+        date: "2020-11-06",
         rating: nil
         }
       }
@@ -45,7 +45,7 @@ describe TripsController do
       }.must_differ "Trip.count", 1
 
       # Assert
-      new_trip = Trip.last
+      new_trip = Trip.find_by(date: "2020-11-06" )
       expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
       expect(new_trip.date).must_equal new_trip_info[:trip][:date]

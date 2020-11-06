@@ -28,7 +28,7 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-      expect(Driver.count).must_equal 0
+      Driver.all.each {|driver| driver.delete}
       # Act
       get drivers_path
       # Assert
@@ -89,7 +89,7 @@ describe DriversController do
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
-      new_driver = Driver.first
+      new_driver = Driver.find_by(name: "Neil Patrick Harris")
       expect(new_driver.name).must_equal new_driver_hash[:driver][:name]
       expect(new_driver.vin).must_equal new_driver_hash[:driver][:vin]
       expect(new_driver.available).must_equal new_driver_hash[:driver][:available]
