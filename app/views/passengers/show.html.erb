@@ -5,11 +5,11 @@
     <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, class: "edit-delete-link"%>
   </h1>
 
-  <p>Phone number: <%= @passenger.phone_num %></p>
+  <p><strong>Phone number:</strong> <%= @passenger.phone_num %></p>
 
 
   <!--See the total amount the passenger has been charged-->
-  <p>Total amount charged: <%= "$#{@passenger.total_cost}" %></p>
+  <p><strong>Total amount charged:</strong> <%= "$#{@passenger.total_cost}" %></p>
 
 
   <!--Click a button to add a new trip for that passenger-->
