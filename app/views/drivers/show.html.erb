@@ -23,7 +23,7 @@
   <% @driver.trips.each do |trip| %>
   <tr>
       <td><%= link_to "#{trip.id}", trip_path(trip) %></td>
-      <td><%= trip.date %></td>
+      <td><%= trip.date.strftime("%m/%d/%Y") %></td>
       <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger) %></td>
       <td><%= trip.rating %></td>
       <td>$<%= @driver.single_trip_earnings(trip) %></td>

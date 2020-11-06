@@ -1,6 +1,9 @@
 <%= form_with model: @trip, class: 'trip-form' do |f| %>
   <p> Please provide the following information:</p>
   <div>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+
     <%= f.label :driver %>
       <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
 
@@ -8,11 +11,11 @@
       <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
 
     <%= f.label :rating %>
-    <%= f.text_field :rating %>
+      <%= f.select :rating, [1,2,3,4,5]%>
 
     <%= f.label :cost %>
     <%= f.text_field :cost %>
 
-    <%= f.submit "#{action_name} Trip", class: "trip-button" %>
+    <%= f.submit "Edit Trip", class: "trip-button" %>
   </div>
 <% end %>
