@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homepages#index'
   get 'homepages/index'
 
-  resources :trips, [:show, :edit, :update, :destroy]
+  resources :trips, only: [:show, :edit, :update, :destroy]
   resources :passengers do
     resources :trips, only: [:create]
   end
