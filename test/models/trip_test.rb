@@ -83,6 +83,28 @@ describe Trip do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    # Your tests here
+    it "generate_cost: generates a floating point cost between 8 and 35" do
+      cost = Trip.generate_cost
+      expect(cost).must_be_within_delta 8, 27
+    end
+
+    it "assign_driver: returns a valid driver id if there are available drivers" do
+      driver
+      expect(Trip.assign_driver).must_equal driver.id
+    end
+
+    it "assign_driver: returns nil if there are no available drivers" do
+      expect(Trip.assign_driver).must_equal nil
+    end
+
+    it "change_driver_status: can change an assigned driver's status to unavailable" do
+      driver
+      trip
+
+      trip.change_driver_status
+      driver.reload
+
+      expect(driver.available).must_equal "false"
+    end
   end
 end
