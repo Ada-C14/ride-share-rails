@@ -13,14 +13,14 @@ class Driver < ApplicationRecord
   def total_revenue
     commission = 0.8
     fee = 1.65
-    totall = 0
+    total = 0
     self.trips.each do |trip|
       if trip.cost > fee
-        totall += (trip.cost - fee) * commission
+        total += (trip.cost - fee) * commission
       else
-        totall += (trip * commission)
+        total += (trip * commission)
       end
-      return totall
+      return total
     end
   end
 
@@ -35,8 +35,6 @@ class Driver < ApplicationRecord
       end
     end
     self.trips.length > 0 ? total_rating / rated_trips.to_f : total_rating
-
   end
-  
 end
 
