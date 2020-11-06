@@ -120,6 +120,8 @@ describe TripsController do
       expect(updated_trip.cost).must_equal @update_info[:trip][:cost]
       expect(updated_trip.date).must_equal @update_info[:trip][:date]
       expect(updated_trip.rating).must_equal @update_info[:trip][:rating]
+
+      must_redirect_to trip_path(valid_id)
     end
 
     it "does not update any trip if given an invalid id, and respons with a 404" do
