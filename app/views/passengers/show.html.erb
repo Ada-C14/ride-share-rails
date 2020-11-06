@@ -11,6 +11,19 @@
 <p>Passenger Name: <%= @passengers.name %></p>
 <p>Passenger Phone Number: <%= @passengers.phone_num %></p>
 
+<div>
+  <p> Total Cost: <%=@passengers.cost %></p>
+  <ul>
+    <% @passengers.trips.each do |trip| %>
+      <li>
+        <p> Passenger Name: <%=trip.passenger.name %></p>
+        <p> Passenger ID: <%=trip.passenger.id %></p>
+        <%#link_to trip.date, trip_path(trip.id) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 <!--Want to create loop that pulls passenger trip details  -->
 <nav>
   <%=link_to "Homepage", homepages_path %> |

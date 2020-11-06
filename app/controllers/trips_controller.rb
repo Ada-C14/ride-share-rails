@@ -13,11 +13,6 @@ class TripsController < ApplicationController
     else
       @trips = Trip.all
     end
-
-    @total_cost = 0
-    @trips.each do |trip|
-      @total_cost += trip.cost
-    end
   end
 
 
@@ -32,7 +27,7 @@ class TripsController < ApplicationController
   end
 
   def new
-
+    @trip = Trip.new
   end
 
   def create
@@ -61,11 +56,15 @@ class TripsController < ApplicationController
     )
 
     if @trip.save
-      driver().save
+      driver.available = false
+      unless driver.save
+        # head :
+        # TO DO- Render-error
+      end
       redirect_to passenger_path(passenger.id)
     else
       # head :not_found
-      redirect_to redirect passenger_path(passenger.id)
+      redirect_to passenger_path(passenger.id)
     end
   end
 
@@ -84,4 +83,12 @@ class TripsController < ApplicationController
   def destroy
 
   end
+
+  # private
+  #
+  # def trip_params
+  #   return params.require(:trip).permit(:passenger_id, :driver_id, :date, :cost, :rating) )
+  # end
+  #
+
 end
