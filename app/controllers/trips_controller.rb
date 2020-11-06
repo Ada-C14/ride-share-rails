@@ -97,4 +97,9 @@ class TripsController < ApplicationController
   #   @trip = passenger.request_trip
   #   render :new
   # end
+  #
+  #  def dollar_format
+  #     dollars = number_to_currency(@trip.cost/100)
+  #     return dollars
+  #   end
 end

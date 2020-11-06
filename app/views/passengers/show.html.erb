@@ -3,7 +3,7 @@
 <h3>This is <%= @passenger.name %> passenger page</h3>
 <p>Passenger's name: <%= @passenger.name %></p>
 <p>Passenger's phone number: <%= @passenger.phone_num %></p>
-<p>Total spent: <%=@passenger.total_spent%></p>
+<p>Total spent: <%=dollar_format(@passenger.total_spent)%></p>
 
 <%= link_to 'Edit', edit_passenger_path(@passenger) %>
 <%= link_to 'Delete', @passenger, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -31,7 +31,7 @@
       <td><%=trip.passenger.name %></td>
       <td><%=trip.driver.name %></td>
       <td><%=trip.rating%></td>
-      <td><%=(trip.cost)%></td>
+      <td><%=dollar_format(trip.cost)%></td>
       <td><%=trip.date%></td>
     </tr>
   <% end %>

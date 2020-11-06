@@ -5,7 +5,7 @@
 <p>VIN: <%= @driver.vin %></p>
 <p>Available: <%= @driver.available %></p>
 <p>Driver's average rating: <%=@driver.average_rating %></p>
-<p>Total revenue: <%=@driver.earned %></p>
+<p>Total revenue: <%=dollar_format(@driver.earned)%></p>
 <%= link_to 'Edit', edit_driver_path(@driver) %>
 <%= link_to 'Delete', @driver, method: :delete, data: { confirm: 'Are you sure?' } %>
 
@@ -28,7 +28,7 @@
         <td><%=trip.driver.name %></td>
         <td><%=trip.passenger.name %></td>
         <td><%=trip.rating%></td>
-        <td><%=trip.cost%></td>
+        <td><%=dollar_format(trip.cost)%></td>
         <td><%=trip.date%></td>
       </tr>
     <% end %>
