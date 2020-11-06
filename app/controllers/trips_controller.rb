@@ -34,8 +34,9 @@ class TripsController < ApplicationController
 
   def assign_rating
     trip = find_trip
-    redirect_to trips_path and return if @trip.nil?
+    redirect_to trips_path and return if trip.nil?
 
+    action_success_check(trip.update(rating: params[:rating]), trip_path)
   end
 
   def edit
