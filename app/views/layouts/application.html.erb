@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class=<%= "#{controller.controller_path.parameterize.gsub('-', '_')}-#{controller.action_name}" %>>
     <header>
       <nav>
         <div class="home-link"><%= link_to "Rideshare Rails", root_path %></div>

@@ -16,6 +16,7 @@
 @import "bootstrap";
 
 @import "**/*";
+
 //body * {
 //  color:                    hsla(210, 100%, 100%, 0.88) !important;
 //  background:               hsla(210, 100%,  50%, 0.33) !important;
@@ -27,20 +28,28 @@ body {
   grid-template-columns: 1fr [main-start] minmax(0, 50rem) [main-end] 1fr;
 }
 
-body > * {
+header {
+  grid-column: 1 / -1;
+  background: white;
+}
+
+main {
   grid-column: main;
 }
+
 nav {
+  max-width: 50rem;
   display:flex;
   justify-content: space-between;
 
-  height: 5rem;
-  margin-bottom: 2rem;
+  height: 4rem;
+  margin: 2rem auto;
 }
 
 .right-nav-links {
   font-size: smaller;
-  align-self: flex-end
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
 }
 
 .right-nav-links a {
