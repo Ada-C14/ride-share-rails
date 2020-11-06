@@ -38,11 +38,11 @@ class Driver < ApplicationRecord
     if new_drivers.length > 0
       return new_drivers.first
     else
-      return available_drivers.filter { |driver| driver.trips.any? }.first
-      # return available_drivers.filter { |driver| driver.trips.any? }.max do |driver|
-      #   sorted_trips = driver.trips.sort_by { |trip| trip.date }
-      #   Time.now - sorted_trips.last.date.month
-      # end
+      # return available_drivers.filter { |driver| driver.trips.any? }.first
+      return available_drivers.filter { |driver| driver.trips.any? }.max do |driver|
+        sorted_trips = driver.trips.sort_by { |trip| trip.date }
+        Time.now.to_date - sorted_trips.last.date
+      end
     end
   end
 
