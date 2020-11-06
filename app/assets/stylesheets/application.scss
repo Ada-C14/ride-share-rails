@@ -17,7 +17,7 @@
 @import "**/*";
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 header {
@@ -44,13 +44,6 @@ footer {
   width: 100%;
   position: fixed;
   padding: 15px;
-}
-
-.show {
-//   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style-type: none;
 }
 
 a:hover {
@@ -90,9 +83,9 @@ table, th, td {
 }
 
 th{
-background-color: lightblue;
-text-align: center;
-font-size: 14pt;
+  background-color: lightblue;
+  text-align: center;
+  font-size: 14pt;
 }
 
 tr:nth-child(even) {
@@ -105,8 +98,8 @@ ul.errors li {
 }
 
 a{
-color: black;
-margin-right: 15px,
+  color: black;
+  margin-right: 15px,
 }
 
 * {
@@ -140,12 +133,12 @@ input[type=submit]:hover {
 }
 
 .row{
-display: flex;
-width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .row input[type="text"]{
-width: 100%;
+  width: 100%;
 }
 
 .col-25 {
@@ -160,14 +153,14 @@ width: 100%;
 
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
+   width: 100%;
+   margin-top: 0;
   }
 }
 
 .return {
-display: block;
-text-align: center;
+  display: block;
+  text-align: center;
 }
 
 back{
@@ -186,5 +179,5 @@ p{
 }
 
 .nav-list{
-display: flex;
+ display: flex;
 }

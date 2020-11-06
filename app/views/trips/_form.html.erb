@@ -9,6 +9,7 @@
   <%= form_with model: @trip do |f| %>
   <div class="container">
     <p>Please provide the information for a trip:</p>
+
     <div class="row">
       <div class="col-25">
         <%= f.label :date %>
@@ -19,18 +20,18 @@
     </div>
     <div class="row">
       <div class="col-25">
-        <%= f.label :driver_id%>
+        Driver
       </div>
       <div class="col-75">
-        <%= f.text_field :driver_id %>
+    <%= @trip.driver.name %>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <%= f.label :passenger_id %>
+        Passenger
       </div>
       <div class="col-75">
-        <%= f.text_field :passenger_id %>
+    <%= @trip.passenger.name %>
       </div>
     </div>
     <div class="row">
