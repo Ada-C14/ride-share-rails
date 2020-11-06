@@ -49,7 +49,7 @@ class TripsController < ApplicationController
       end
     end
 
-    @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"), rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
+    @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"), rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id, complete: false)
 
     if @trip.save
       available_driver.update(available: false)
@@ -100,6 +100,17 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id), notice: "Either Driver or Passenger is still active, couldn't delete the trip."
       return
     end
+  end
+
+  def complete_trip
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.complete == false
+      @driver = Driver.find_by(id: @trip.driver_id)
+      @trip.update(complete: true)
+      @driver.update(available: true)
+      redirect_to trip_path(@trip.id)
+    end
+    return
   end
 
   private

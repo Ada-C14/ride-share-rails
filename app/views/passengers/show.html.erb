@@ -48,7 +48,7 @@
           <th>$ <%= trip.cost / 100 %></th>
 
           <th>
-            <% if trip.rating.nil? %>
+            <% if trip.rating.nil? && trip.complete == true %>
             <%= form_for trip do |f| %>
               <%= f.select :rating, [1,2,3,4,5] %>
               <%= f.submit "Add Rating" %>
@@ -57,11 +57,11 @@
               <%= trip.rating %>
             <% end %>
           </th>
-          <th>
-            <% if trip.rating.nil? %>
-              This trip has not been rated yet, would you like to add a rating?
-            <% end %>  
-          </th>
+<!--          <th>-->
+            <%# if trip.rating.nil? && trip.complete == true %>
+<!--              This trip has not been rated yet, would you like to add a rating?-->
+            <%# end %>
+<!--          </th>-->
         </tr>  
       <% end %>
       <br/>  

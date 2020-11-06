@@ -246,4 +246,21 @@ describe TripsController do
       must_redirect_to trip_path(@trip.id)
     end
   end
+
+  describe "complete_trip" do
+    it "updates trip complete status and driver available status" do
+      @driver_1 = Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true, isactive: true)
+      @passenger_1 = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip_1 = Trip.create(driver_id: @driver_1.id, passenger_id: @passenger_1.id, date: "2016-04-05", rating: 3, cost: 1293, complete: false)
+
+      expect {
+        patch complete_trip_path(@trip_1.id)
+      }.wont_change 'Trip.count'
+      
+      expect(Driver.find_by(id: @driver_1.id).available).must_equal true
+      expect(Trip.find_by(id: @trip_1.id).complete).must_equal true
+
+      must_redirect_to trip_path(@trip_1.id)
+    end
+  end
 end

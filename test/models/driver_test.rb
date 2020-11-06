@@ -61,24 +61,37 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "total_earniings" do
-      it "calculates the total amount spent by a passenger on all trips" do
+      it "calculates the total amount earned by a driver on all trips" do
         new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
         passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
         trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
         trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
-        p new_driver.total_earnings
+
         assert_equal(57.9, new_driver.total_earnings)
       end
 
-      it "gives a total of zero if the passenger has zero trips" do
-        no_trip_driver = Passenger.create(name: "Mildred", phone_num: "206-777-8293")
+      it "gives a total of nil if the driver has zero trips" do
+        no_trip_driver = Driver.create(name: "Mildred", vin: "TEST1234567891234")
 
-        assert_equal(0, no_trip_passenger.total_spent)
+        assert_nil(no_trip_driver.total_earnings)
       end
     end
 
     describe "ave_rating" do
-      # Your code here
+      it "calculates the average rating of a driver based on all trips" do
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+        assert_equal(4, new_driver.ave_rating)
+      end
+
+      it "gives a total of nil if the driver has zero trips" do
+        no_trip_driver = Driver.create(name: "Mildred", vin: "TEST1234567891234")
+
+        assert_nil(no_trip_driver.ave_rating)
+      end
     end
     # You may have additional methods to test here
   end

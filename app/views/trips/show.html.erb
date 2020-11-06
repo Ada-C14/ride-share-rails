@@ -1,25 +1,3 @@
-
-
-<% if @trip.rating.nil? == false %>
-  <h4>Rating: <%= @trip.rating %></h4>
-<% elsif @trip.rating.nil? && @trip.driver.available == true %>
-  <h4>This trip has not been rated yet, would you like to add a rating?</h4>
-  <%= form_for @trip do |f| %>
-    <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
-    <%= f.submit "Add Rating" %>
-  <% end %>
-<% end %>
-
-<h4>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></h4>
-<h4>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></h4>
-<% if @trip.rating.nil? && @trip.driver.available == false %>
-  <h5>**This trip is still in progress**</h5>
-  <%= form_with model: @trip, class: 'complete-trip', url: passenger_passenger_complete_trip_path(@trip.id) do |f| %>
-    <% f.submit "Complete Trip" %>
-    <% @trip.complete_trip %>
-  <% end %>
-<% end %>
-
 <section>
   <article>
     <h2>Trip ID: <%= @trip.id %></h2>
@@ -53,25 +31,31 @@
           </th>
 
           <th>
-            $ <%= @trip.cost / 100 %> 
-            <%# sprintf to round to two deciaml places %>
+            $ <%= @trip.cost / 100 %>
           </th>
 
           <th>
-            <% if @trip.rating.nil? %>
+            <% if @trip.rating.nil? == false %>
+              Rating: <%= @trip.rating %>
+            <% elsif @trip.complete == true && @trip.rating.nil? %>
+              <h4>This trip has not been rated yet, would you like to add a rating?</h4>
               <%= form_for @trip do |f| %>
-                <%= f.select :rating, [1,2,3,4,5] %>
+                <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
                 <%= f.submit "Add Rating" %>
               <% end %>
-            <% else %>  
-              <%= @trip.rating %>
             <% end %>
           </th>
-          
+
           <th>
-            <% if @trip.rating.nil? %>
-              This trip has not been rated by <%= @trip.passenger.name %>.
-            <% end %> 
+            <% if @trip.complete == false %>
+              <h5>**This trip is still in progress**</h5>
+              <%= form_with model: @trip, class: 'complete-trip', url: complete_trip_path(@trip.id) do |f| %>
+                <% f.submit "Complete Trip" %>
+                <%# @trip.complete_trip %>
+              <% end %>
+            <% else %>
+              <h5>complete<%= @trip.driver.available %></h5>
+            <% end %>
           </th>
 
           <th>
