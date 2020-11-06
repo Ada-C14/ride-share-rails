@@ -3,7 +3,7 @@ require "test_helper"
 describe Trip do
 
   let (:new_trip) {
-    Trip.new(date: Date.current, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: false), passenger: Passenger.new(name: "Kari", phone_num: "111-111-1211"))
+    Trip.new(date: Date.current, cost: 777, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: false), passenger: Passenger.new(name: "Kari", phone_num: "111-111-1211"))
   }
   it "can be instantiated" do
     expect(new_trip.valid?).must_equal true

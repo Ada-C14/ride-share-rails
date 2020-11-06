@@ -62,12 +62,12 @@ describe Passenger do
   describe "custom methods" do
     describe "request a ride" do
       it "returns a new trip if there is available driver" do
-        Trip.create(date: Date.current, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true), passenger: new_passenger)
+        Trip.create(date: Date.current, cost: 7777, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true), passenger: new_passenger)
         expect(new_passenger.request_trip).must_be_instance_of Trip
       end
 
       it "returns false if there is no available driver" do
-        Trip.create(date: Date.current, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: false), passenger: new_passenger)
+        Trip.create(date: Date.current, cost: 7777, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: false), passenger: new_passenger)
         expect(new_passenger.request_trip).must_equal false
       end
     end
@@ -75,6 +75,6 @@ describe Passenger do
     describe "complete trip" do
       # Your code here
     end
-    # You may have additional methods to test here
+
   end
 end

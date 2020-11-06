@@ -62,14 +62,6 @@ class TripsController < ApplicationController
 
   private
 
-  def action_success_check(action, redirect_path)
-    if action
-      redirect_to redirect_path
-    else
-      render :new, bad_request
-    end
-  end
-
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost)
   end
@@ -77,6 +69,5 @@ class TripsController < ApplicationController
   def find_trip
     return Trip.find_by(id: params[:id].to_i)
   end
-
 
 end
