@@ -176,32 +176,23 @@ describe PassengersController do
   describe "destroy" do
     it "Should delete an existing passenger and redirect to the page" do
       # Arrange
-      passenger = Passenger.new name: "Ana Beatriz", phone_num:"(302) 257-9999"
-
-      passenger.save
-      passenger = passenger.id
+      passenger
 
       # Act
       expect {
-        delete passenger_path(passenger)
-
-        # Assert
+        delete passenger_path(passenger.id)
       }.must_change 'Passenger.count', -1
-
-      passenger = Passenger.find_by_id(name: "Hair Cut")
-
-      expect(passenger).must_be_nil
 
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
 
-    it "will respond with not_found for invalid ids" do
-
+    it "does not change the db when the passenger does not exist, then redirects" do
+      # Act-Assert
       expect {
         delete passenger_path(-1)
       }.wont_change 'Passenger.count'
-
+      # Assert
       must_respond_with :redirect
     end
   end
