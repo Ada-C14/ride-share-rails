@@ -4,7 +4,7 @@
 <p>Driver's name: <%= @driver.name %></p>
 <p>VIN: <%= @driver.vin %></p>
 <p>Available: <%= @driver.available %></p>
-<p>Driver's average rating: ...</p>
+<p>Driver's average rating: <%=@driver.average_rating %></p>
 <p>Total revenue: <%=@driver.earned %></p>
 <%= link_to 'Edit', edit_driver_path(@driver) %>
 <%= link_to 'Delete', @driver, method: :delete, data: { confirm: 'Are you sure?' } %>
