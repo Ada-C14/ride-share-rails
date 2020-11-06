@@ -48,7 +48,7 @@ describe TripsController do
       new_trip = Trip.last
       expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
-      expect(new_trip.date.strftime('%Y-%m-%d')).must_equal new_trip_info[:trip][:date]
+      expect(new_trip.date).must_equal new_trip_info[:trip][:date]
       expect(new_trip.rating).must_be_nil
 
       must_respond_with :redirect
@@ -118,7 +118,7 @@ describe TripsController do
       expect(updated_trip.driver_id).must_equal @update_info[:trip][:driver_id]
       expect(updated_trip.passenger_id).must_equal @update_info[:trip][:passenger_id]
       expect(updated_trip.cost).must_equal @update_info[:trip][:cost]
-      expect(updated_trip.date.strftime('%Y-%m-%d')).must_equal @update_info[:trip][:date]
+      expect(updated_trip.date).must_equal @update_info[:trip][:date]
       expect(updated_trip.rating).must_equal @update_info[:trip][:rating]
 
       must_redirect_to trip_path(valid_id)
