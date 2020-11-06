@@ -6,11 +6,13 @@ class Driver < ApplicationRecord
   validates :vin, presence: true
 
   def total_earnings
+    if self.trips.empty?
+      return 0
+    else
+      sum_revenue = self.trips.sum { |trip| trip.cost > 1.65 ? 0.8 * (trip.cost - 1.65) : trip.cost }
 
-    sum_revenue = self.trips.sum { |trip| trip.cost > 1.65 ? 0.8 * (trip.cost - 1.65) : trip.cost }
-
-    return sum_revenue.round(2)
-
+      return sum_revenue.round(2)
+    end
   end
 
   def average_rating

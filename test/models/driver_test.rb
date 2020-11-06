@@ -103,15 +103,25 @@ describe Driver do
     describe "total earnings" do
       # Your code here
       it "correctly calculates earnings" do
+        total_earnings = @new_driver.total_earnings
+        expected_earnings = 0.8 * (@new_driver.trips.sum { |trip| trip.cost - 1.65 })
 
+        expect(total_earnings).must_be_kind_of Float
+        expect(total_earnings).must_be_close_to expected_earnings, 0.01
       end
 
       it "returns 0 for a driver with no trips" do
-
+        no_trips_driver = Driver.create(name: "New Driver", vin: "00000000999")
+        expect(no_trips_driver.total_earnings).must_equal 0
       end
 
       it "correctly calculates earnings after a trip is deleted" do
+        @new_driver.trips.last.destroy
+        total_earnings = @new_driver.total_earnings
+        expected_earnings = 0.8 * (@new_driver.trips.sum { |trip| trip.cost - 1.65 })
 
+        expect(total_earnings).must_be_kind_of Float
+        expect(total_earnings).must_be_close_to expected_earnings, 0.01
       end
 
     end
