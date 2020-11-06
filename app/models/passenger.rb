@@ -4,6 +4,17 @@ class Passenger < ApplicationRecord
   validates :name, presence: true
   validates :phone_num, presence: true
 
+  def request_trip
+    driver = find_driver
+    driver.toggle_available
+    return self.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
+  end
+
+  private
+
+  def find_driver
+    return Driver.find_by(available: true)
+  end
 end
 
 
