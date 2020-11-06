@@ -4,6 +4,10 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def total_charged
+    if self.trips.empty?
+      return " $0.00"
+    end
+
     dollars = 0
 
     self.trips.each do |trip|
@@ -12,7 +16,6 @@ class Passenger < ApplicationRecord
     end
     dollars = (dollars.to_f / 100)
     return " $#{dollars.to_s}"
-
   end
 
 end

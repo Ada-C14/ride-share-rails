@@ -16,10 +16,10 @@ class Driver < ApplicationRecord
           return 0
         end
       end
-      total_rev = total_cost.sum
-      total_rev = (total_rev * 0.80).round(2)
 
-      return " $#{total_rev} "
+      int_total = (total_cost.sum * 0.80)
+      dollars = (int_total.to_f / 100).round(2)
+      return " $#{dollars} "
     end
 
   end
