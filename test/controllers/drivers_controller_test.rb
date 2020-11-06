@@ -103,7 +103,7 @@ describe DriversController do
           driver: {
               name: "",
               vin: "123"
-          },
+          }
       }
 
       # Act-Assert
@@ -237,10 +237,10 @@ describe DriversController do
       driver_id = driver.id
       passenger = Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
       Trip.create(date: "2020-11-05",
-         rating: nil,
-         cost: 1000,
-         passenger_id: passenger.id,
-         driver_id: driver_id)
+                  rating: nil,
+                  cost: 1000,
+                  passenger_id: passenger.id,
+                  driver_id: driver_id)
 
       expect {
         delete driver_path(driver_id)

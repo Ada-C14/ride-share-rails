@@ -44,7 +44,7 @@ class PassengersController < ApplicationController
       head :not_found
       return
     elsif @passenger.update(passenger_params)
-      redirect_to passenger_path
+      redirect_to passenger_path(@passenger.id)
       return
     else # save failed :(
       render :edit, status: :bad_request

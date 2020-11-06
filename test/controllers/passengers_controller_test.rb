@@ -48,13 +48,8 @@ describe PassengersController do
     end
 
     it "responds with redirect with an invalid passenger id" do
-      # Arrange
-      # Ensure that there is an id that points to no passenger
-
-      # Act
       get passenger_path(-1)
 
-      # Assert
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
@@ -145,7 +140,7 @@ describe PassengersController do
     it "can update an existing passenger with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing passenger saved
-      get edit_passenger_path(passenger.id)
+      passenger_id = passenger.id
       # Assign the existing passenger's id to a local variable
       # Set up the form data
       edited_passenger_hash = {
@@ -158,18 +153,18 @@ describe PassengersController do
       # Act-Assert
       # Ensure that there is no change in Passenger.count
       expect {
-        patch passenger_path(passenger.id), params: edited_passenger_hash
+        patch passenger_path(passenger_id), params: edited_passenger_hash
       }.wont_change "Passenger.count"
 
       # Assert
       # Use the local variable of an existing passenger's id to find the passenger again, and check that its attributes are updated
       # Check that the controller redirected the user
-      edited_passenger = Passenger.find_by(id: passenger.id)
+      edited_passenger = Passenger.find_by(id: passenger_id)
       expect(edited_passenger.name).must_equal edited_passenger_hash[:passenger][:name]
       expect(edited_passenger.phone_num).must_equal edited_passenger_hash[:passenger][:phone_num]
 
       must_respond_with :redirect
-      must_redirect_to passenger_path(passenger.id)
+      must_redirect_to passenger_path(passenger_id)
     end
 
     it "does not update any passenger if given an invalid id, and redirects to list of passengers" do
@@ -199,7 +194,7 @@ describe PassengersController do
       # Arrange
       # Ensure there is an existing passenger saved
       # Assign the existing passenger's id to a local variable
-      get edit_passenger_path(passenger.id)
+      passenger_id = passenger.id
 
       # Set up the form data so that it violates passenger validations
       edited_passenger_hash = {
@@ -212,7 +207,7 @@ describe PassengersController do
       # Act-Assert
       # Ensure that there is no change in Passenger.count
       expect {
-        patch passenger_path(passenger.id), params: edited_passenger_hash
+        patch passenger_path(passenger_id), params: edited_passenger_hash
       }.wont_change "Passenger.count"
 
       # Assert
@@ -223,17 +218,13 @@ describe PassengersController do
 
   describe "destroy" do
     it "destroys the passenger instance in db when passenger exists and has no trips, then redirects" do
-      passenger
+      passenger_id = passenger.id
 
-
-      # Act
       expect {
-        delete passenger_path(passenger.id)
-
-        # Assert
+        delete passenger_path(passenger_id)
       }.must_change 'Passenger.count', -1
 
-      deleted_passenger = Passenger.find_by(id: passenger.id)
+      deleted_passenger = Passenger.find_by(id: passenger_id)
 
       expect(deleted_passenger).must_be_nil
 
@@ -242,35 +233,27 @@ describe PassengersController do
     end
 
     it "does not change the db when passenger exists and has trips, must respond with bad request" do
-      p1 = passenger
+      passenger_id = passenger.id
       driver = Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
+      Trip.create(date: "2020-11-05",
+                  rating: nil,
+                  cost: 1000,
+                  passenger_id: passenger_id,
+                  driver_id: driver.id)
 
-      trip1 = Trip.create(date: "2020-11-05",
-                          rating: nil,
-                          cost: 1000,
-                          passenger: p1,
-                          driver: driver)
-
-
-
-      # Act
       expect {
-        delete passenger_path(p1.id)
-
-        # Assert
+        delete passenger_path(passenger_id)
       }.wont_change 'Passenger.count'
 
-      deleted_passenger = Passenger.find_by(id: p1.id)
+      passenger_with_trips = Passenger.find_by(id: passenger_id)
 
-      expect(deleted_passenger).must_equal p1
+      expect(passenger_with_trips).must_equal passenger
 
       must_respond_with :redirect
-      must_redirect_to passenger_path(p1.id)
+      must_redirect_to passenger_path(passenger_id)
     end
 
     it "does not change the db when the passemger does not exist, then responds with not found" do
-      passenger
-
       expect {
         delete passenger_path(-1)
       }.wont_change 'Passenger.count'
