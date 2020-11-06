@@ -8,8 +8,9 @@
     <%= "Not Available" %>
       <% end %>
       </p>
-  <p><strong>Total Earnings:</strong> $<%= '%.2f' % @driver.total_earnings %></p>
+  <p><strong>Total Earnings:</strong> $<%= '%.2f' % (@driver.total_earnings.to_i/100.00).to_s %></p>
   <p><strong>Average Rating:</strong> <%= @driver.avg_rating %></p>
+
   <strong>Driver's Trips:</strong>
   <ol>
     <% @driver.trips.each do |trip| %>

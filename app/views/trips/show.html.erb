@@ -4,11 +4,19 @@
   <p><strong>Date: </strong><%= @trip.date %></p>
   <p><strong>Driver:</strong> <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></p>
   <p><strong>Passenger:</strong> <%= link_to @trip.passenger.name, driver_path(@trip.passenger.id) %></p>
-  <p><strong>Rating:</strong> <%= @trip.rating %></p>
   <p><strong>Cost:</strong> $<%='%.2f' % @trip.money %></p>
+  <p><strong>Rating:</strong> <%= @trip.rating %></p>
+  <%= form_for @trip do |f| %>
+    <%= f.select :rating, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]] %>
+    <br>
+    <br>
+    <%= f.submit %>
+
+  <% end %>
 
 </div>
 
+<br>
 
 
 <p class="buttons"><%= link_to "Back to Trips List", trips_path %></p>
