@@ -27,11 +27,49 @@ describe Trip do
   end
 
   describe "relationships" do
-    # Your tests go here
+
   end
 
   describe "validations" do
-    # Your tests go here
+    it "must have a date" do
+      # Arrange
+      new_trip.date = Date.tomorrow
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :date
+      expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
+    end
+
+    it "must have a cost" do
+      # Arrange
+      new_trip.cost = nil
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :cost
+      expect(new_trip.errors.messages[:cost]).must_equal ["can't be blank", "is not a number"]
+    end
+
+    it "must have a passenger id" do
+      # Arrange
+      new_trip.passenger_id = nil
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :passenger_id
+      expect(new_trip.errors.messages[:passenger_id]).must_equal ["can't be blank", "is not a number"]
+    end
+
+    it "must have a driver id" do
+      # Arrange
+      new_trip.driver_id = nil
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :driver_id
+      expect(new_trip.errors.messages[:driver_id]).must_equal ["can't be blank", "is not a number"]
+    end
   end
 
   # Tests for methods you create should go here
