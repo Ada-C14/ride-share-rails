@@ -12,11 +12,14 @@
         <br>
         <li>Average Rating: <%= @driver.average_rating %></li>
         <br>
+        <h4>Trips<h4>
+
         <% if @driver.trips.length > 0 %>
-            <% @driver.trips.each do |trip|%>
+            <% @driver.trips.each do |trip| %>
             <ul>
-                <li><%= link_to "Trip id #{trip.id}", driver_path(driver.id) %></li>            
+                <li><%= link_to "Trip id #{trip.id}", trip_path(trip.id) %></li>            
             </ul>
+            <% end %>
         <% end %>
         <li>All trips: <%= @driver.average_rating %></li>
     </ul>
