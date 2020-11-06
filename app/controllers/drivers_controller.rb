@@ -91,9 +91,10 @@ class DriversController < ApplicationController
     elsif @driver.available == 'true'
       @driver.update(available: 'false')
     else
-      @driver.update(available "true")
+      @driver.update(available: "true")
     end
 
+    @driver.save
     render :show
     return
   end

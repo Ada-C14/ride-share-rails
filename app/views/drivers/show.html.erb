@@ -18,7 +18,8 @@
         <td><%= @driver.vin %></td>
         <td><%= number_to_currency(@driver.total_earnings) %></td>
         <td><%= @driver.average_rating.nil? ? nil : @driver.average_rating.round(2) %></td>
-        <td><%= link_to "Edit", edit_driver_path(@driver.id) %>|
+        <td><%= link_to "Edit", edit_driver_path(@driver.id) %> |
+          <%= link_to "Toggle Availability", toggle_availability_path(@driver.id), method: :patch %> |
           <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>|
           <%= link_to "Back", drivers_path %>
         </td>
