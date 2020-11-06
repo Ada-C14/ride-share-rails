@@ -60,10 +60,13 @@ describe TripsController do
     end
 
     it "does not create a trip if the form data violates Trip validations" do
+      new_driver.save
+      new_passenger.save
+
       invalid_hash = {
           trip: {
-              driver_id: "",
-              passenger_id: "",
+              driver_id: new_driver.id,
+              passenger_id: new_passenger.id,
               cost: "money",
               date: "now",
               rating: 1
@@ -74,10 +77,34 @@ describe TripsController do
         post trips_path, params: invalid_hash
       }.wont_change Trip.count
 
-      must_respond_with :bad_request
+      must_respond_with :redirect
     end
 
+    it "can create a new trip from the passenger nested path and change driver status" do
+      new_passenger.save
+      new_driver.save
 
+      expect {
+        post passenger_create_trip_path(new_passenger)
+      }.must_differ Trip.count, 1
+
+      expect(new_driver.available).must_equal false
+
+      must_respond_with :redirect
+    end
+
+    it "leaves assigned driver unavailable if trip not created" do
+      new_driver.save
+      passenger_id = -1
+
+      expect {
+        post passenger_create_trip_path(passenger_id)
+      }.wont_differ Trip.count
+
+      expect(new_driver.available).must_equal true
+
+      must_respond_with :redirect
+    end
   end
 
   describe "edit" do
@@ -174,6 +201,14 @@ describe TripsController do
       }.wont_change Driver.count
 
       must_respond_with :bad_request
+    end
+
+    it "sets driver back to available after trip completed" do
+      raise NotImplementedError
+    end
+
+    it "leaves driver unavailable if trip not completed" do
+      raise NotImplementedError
     end
   end
 

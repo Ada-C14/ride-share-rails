@@ -73,17 +73,19 @@ describe Passenger do
 
       total = new_passenger.total_charged
 
-      expect(total).must_equal 7568
-
+      expect(total).must_equal 75.68
     end
 
     describe "request a ride" do
-      # Your code here
+      it "if we're not gonna define this method let's delete it and the test" do
+        raise NotImplementedError
+      end
     end
 
     describe "complete trip" do
-      # Your code here
+      it "sets driver status to available" do
+        raise NotImplementedError
+      end
     end
-    # You may have additional methods to test here
   end
 end

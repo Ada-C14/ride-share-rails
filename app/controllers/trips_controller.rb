@@ -60,7 +60,7 @@ class TripsController < ApplicationController
       redirect_to trips_path and return
     elsif
       @trip.update(trip_params)
-      passenger.complete_trip(@trip)
+      passenger.complete_trip(@trip) unless @trip.rating.nil?
       redirect_to trip_path(@trip)
     else
       render :edit, status: :bad_request
