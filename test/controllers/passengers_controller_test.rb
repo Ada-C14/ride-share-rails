@@ -33,7 +33,7 @@ describe PassengersController do
   describe "show" do
     it "responds with success when showing an existing valid passenger" do
       # Arrange
-      valid_passenger_id = Passenger.first.id
+      valid_passenger_id = @passenger.id
 
       # Act
       get "/passengers/#{ valid_passenger_id }"
@@ -49,6 +49,18 @@ describe PassengersController do
       # Act
       get "/passengers/#{ invalid_passenger_id }"
 
+      # Assert
+      must_respond_with :not_found
+    end
+
+    it "responds with 404 with an inactive passenger id" do
+      # Arrange
+      @passenger.update(isactive: false)
+      inactive_passenger_id = @passenger.id
+
+      # Act 
+      get "/passengers/#{ inactive_passenger_id }"
+      
       # Assert
       must_respond_with :not_found
     end
@@ -113,33 +125,32 @@ describe PassengersController do
 
     it "does not create a passenger if the form data violates Passenger validations - name, and responds with a redirect" do
       # Act-Assert
-      # Ensure that there is no change in Driver.count
       expect {
         post passengers_path, params: invalid_passenger_name
       }.must_differ 'Passenger.count', 0
 
       # Assert
-      # Check that the controller redirects
       must_respond_with :bad_request
     end
 
     it "does not create a passenger if the form data violates Passenger validations - phone number, and responds with a redirect" do
       # Act-Assert
-      # Ensure that there is no change in Driver.count
       expect {
         post passengers_path, params: invalid_passenger_phone_num
       }.must_differ 'Passenger.count', 0
 
       # Assert
-      # Check that the controller redirects
       must_respond_with :bad_request
     end
   end
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid passenger" do
-      # Arrange & Act
-      get edit_passenger_path(Passenger.first.id)
+      # Arrange 
+      valid_passenger_id = @passenger.id
+      
+      # Act
+      get edit_passenger_path(valid_passenger_id)
 
       # Assert
       must_respond_with :success
@@ -151,6 +162,18 @@ describe PassengersController do
 
       # Assert
       must_redirect_to passengers_path
+    end
+
+    it "responds with 404 when getting the edit page for an inactive passenger" do
+      # Arrange
+      @passenger.update(isactive: false)
+      inactive_passenger_id = @passenger.id
+
+      # Act
+      get edit_passenger_path(inactive_passenger_id)
+
+      # Assert
+      must_respond_with :not_found
     end
   end
 
@@ -184,7 +207,7 @@ describe PassengersController do
 
     it "can update an existing passenger with valid information accurately, and redirect" do
       # Arrange
-      id = Passenger.first.id
+      id = @passenger.id
 
       # Act-Assert
       expect {
@@ -213,9 +236,24 @@ describe PassengersController do
       must_respond_with :not_found
     end
 
+    it "does not update any passenger if given an inactive passenger id, and responds with a 404" do
+      # Arrange
+      @passenger.update(isactive: false)
+      inactive_passenger_id = @passenger.id
+
+      # Act-Assert
+      expect {
+        patch passenger_path(inactive_passenger_id), params: passenger
+      }.wont_change 'Passenger.count'
+
+      # Assert
+      # Check that the controller gave back a 404
+      must_respond_with :not_found
+    end
+
     it "does not update a passenger if the form data violates Passenger validations - name, and responds with a redirect" do
       # Arrange
-      id = Passenger.first.id
+      id = @passenger.id
       
       # Act-Assert
       expect {
@@ -229,7 +267,7 @@ describe PassengersController do
 
     it "does not update a passenger if the form data violates Passenger validations - phone number, and responds with a redirect" do
       # Arrange
-      id = Passenger.first.id
+      id = @passenger.id
 
       # Act-Assert
       expect {
@@ -242,16 +280,21 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    it "destroys the passenger instance in db when passenger exists, then redirects" do
+    it "inactivates the passenger instance in db when passenger exists, then redirects" do
       # Arrange
-      # Ensure there is an existing driver saved
+      valid_passenger_id = @passenger.id
 
       # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      # Ensure that there is no change of in Passenger.count, but inactivate the passenger
+      expect {
+        delete passenger_path(valid_passenger_id)
+      }.wont_change "Passenger.count"
+      
+      @passenger.reload
+      expect(@passenger.isactive).must_equal false
 
       # Assert
-      # Check that the controller redirects
-
+      must_redirect_to passengers_path
     end
 
     it "does not change the db when the passenger does not exist, then responds with " do
@@ -261,6 +304,20 @@ describe PassengersController do
       # Act-Assert
       expect {
         delete passenger_path(id)
+      }.wont_change "Passenger.count"
+
+      # Assert
+      must_respond_with :not_found
+    end
+
+    it "does not change the db when the passenger is inactive, then responds with 404" do
+      # Arrange
+      @passenger.update(isactive: false)
+      inactive_passenger_id = @passenger.id
+
+      # Act-Assert
+      expect {
+        delete passenger_path(inactive_passenger_id)
       }.wont_change "Passenger.count"
 
       # Assert

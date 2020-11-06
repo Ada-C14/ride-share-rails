@@ -2,15 +2,16 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  before do
+    @driver = Driver.create(name: "Driver 123", vin: "WBWSS52P9NEYLVDE9", available: true, isactive: true)
+  end
 
   describe "index" do
-    before do
-      @driver = Driver.create(name: "Driver 123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    end
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
       driver = @driver
+
       # Act
       get "/drivers"
       
@@ -37,7 +38,7 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      valid_driver_id = Driver.first.id
+      valid_driver_id = @driver.id
 
       # Act
       get "/drivers/#{ valid_driver_id }"
@@ -53,6 +54,19 @@ describe DriversController do
 
       # Act 
       get "/drivers/#{ invalid_driver_id }"
+      
+      # Assert
+      must_respond_with :not_found
+    end
+
+    it "responds with 404 with an inactive driver id" do
+      # Arrange
+      # Ensure that there is an id that points to inactive driver
+      @driver.update(available: false, isactive: false)
+      inactive_driver_id = @driver.id
+
+      # Act 
+      get "/drivers/#{ inactive_driver_id }"
       
       # Assert
       must_respond_with :not_found
@@ -155,8 +169,10 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
+      valid_driver_id = @driver.id
+
       # Act
-      get edit_driver_path(Driver.first.id)
+      get edit_driver_path(valid_driver_id)
 
       # Assert
       must_respond_with :success
@@ -170,6 +186,18 @@ describe DriversController do
 
       # Assert
       must_redirect_to drivers_path
+    end
+
+    it "responds with 404 when getting the edit page for an inactive driver" do
+      # Arrange
+      @driver.update(available: false, isactive: false)
+      inactive_driver_id = @driver.id
+
+      # Act
+      get edit_driver_path(inactive_driver_id)
+
+      # Assert
+      must_respond_with :not_found
     end
   end
 
@@ -209,7 +237,7 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      id = Driver.first.id
+      id = @driver.id
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
@@ -245,13 +273,30 @@ describe DriversController do
       must_respond_with :not_found
     end
 
+    it "does not update any driver if given an inactive driver id, and responds with a 404" do
+      # Arrange
+      # Ensure there is an invalid id that points to inactive driver
+      @driver.update(available: false, isactive: false)
+      inactive_driver_id = @driver.id
+
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(inactive_driver_id), params: valid_driver
+      }.wont_change 'Driver.count'
+
+      # Assert
+      # Check that the controller gave back a 404
+      must_respond_with :not_found
+    end
+
     it "does not update a driver if the form data violates Driver validations - name, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
-      id = Driver.first.id
+      id = @driver.id
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
@@ -266,7 +311,7 @@ describe DriversController do
 
     it "does not update a driver if the form data violates Driver validations - vin, and responds with a redirect" do
       # Arrange
-      id = Driver.first.id
+      id = @driver.id
 
       # Act-Assert
       expect {
@@ -279,19 +324,27 @@ describe DriversController do
   end
 
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
+    it "inactivates the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      valid_driver_id = @driver.id
 
       # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      # Ensure that there is no change of in Driver.count, but inactivate the driver and turn driver's available to false
+      expect {
+        delete driver_path(valid_driver_id)
+      }.wont_change "Driver.count"
+      
+      @driver.reload
+      expect(@driver.available).must_equal false
+      expect(@driver.isactive).must_equal false
 
       # Assert
       # Check that the controller redirects
-
+      must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with 404" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       id = -1
@@ -300,6 +353,23 @@ describe DriversController do
       # Ensure that there is no change in Driver.count
       expect {
         delete driver_path(id)
+      }.wont_change "Driver.count"
+
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+      must_respond_with :not_found
+    end
+
+    it "does not change the db when the driver is inactive, then responds with 404" do
+      # Arrange
+      # Ensure there is an invalid id that points to inactive driver
+      @driver.update(available: false, isactive: false)
+      inactive_driver_id = @driver.id
+
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      expect {
+        delete driver_path(inactive_driver_id)
       }.wont_change "Driver.count"
 
       # Assert
