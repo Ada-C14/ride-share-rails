@@ -1,0 +1,31 @@
+<h1>Trip Details</h1>
+<br>
+<ul>
+  <li> Date: <%= @trip.date %> </li>
+  <li> Rating: <%= @trip.rating %> </li>
+  <li> Cost: <%= number_to_currency(@trip.cost.to_f / 100) %> </li>
+  <li> Trip Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>
+  <li> Trip Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> </li>
+
+  <li> <%= link_to "Edit trip info", edit_trip_path(@trip) %></li>
+  <li> <%= link_to "Delete trip from database", trip_path(@trip), method: :delete,
+                   data: {confirm: 'Are you sure you would like to delete?'} %></li>
+  <li> <%= link_to "Back to Trip List", trips_path %></li>
+</ul>
+
+<!--http://localhost:3000/rideshare/drivers/2-->
+
+<!--When I am on a trip's detail page, I want to be able to...-->
+<!--XView details of the trip-->
+<!--Assign a rating (1-5) to the trip, if it does not already have one-->
+<!-X-Click a link to the detail page for the trip's passenger-->
+<!--XClick a link to the detail page for the trip's driver-->
+<!--XClick a link to edit the trip-->
+<!--XClick a link to delete the trip-->
+
+
+<!--driver.trips.first.passenger.name-->
+<!--<-- Lists the name of the passenger for the first trip of that driver-->
+<!--<li> Trip Driver: <%#= @trip.driver.name %> </li>-->
+<!--<li> <%#= link_to "Trip Driver", driver_path(@trip.driver.id) %></li>-->
+<!--<li> Trip Passenger: <%#= @trip.passenger.name %> </li>-->
