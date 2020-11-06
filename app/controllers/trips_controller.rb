@@ -97,8 +97,7 @@ class TripsController < ApplicationController
       redirect_to root_path  # should we have index page?
       return
     else
-      redirect_to trip_path, notice: "Either Driver or Passenger is still active, couldn't delete the trip."
-      # we don't have trip_path
+      redirect_to trip_path(@trip.id), notice: "Either Driver or Passenger is still active, couldn't delete the trip."
       return
     end
   end

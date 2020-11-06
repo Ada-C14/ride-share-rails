@@ -58,6 +58,11 @@
           </th>
         </tr>  
     </table>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
   </article>
 </section>  
 
