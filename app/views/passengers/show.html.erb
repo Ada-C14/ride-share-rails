@@ -6,6 +6,7 @@
   <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
   <%= link_to "Add a New Rider ", new_passenger_path%>
   <%= link_to "Create a new trip", new_passenger_trip_path(@passengers.id) %>
+  <%= link_to "Edit trip", edit_trip_path(@passengers.id) %>
 </nav>
 
 <p>Passenger ID: <%= @passengers.id %></p>

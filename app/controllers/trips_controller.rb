@@ -69,15 +69,30 @@ class TripsController < ApplicationController
   end
 
   def edit
-    # @trip = Trip.find_by(id: params[:id])
-    # if @trip.nil?
-    #   redirect_to passenger_trips_path(@passengers.id)
-    #   return
-    # end
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to passenger_trips_path(@passengers.id)
+      return
+    end
   end
 
   def update
+    @trip = Trip.find_by(id: params[:id])
 
+    if @trip.nil?
+      head :not_found #redirect_to driver_path(@driver.id) # vs Head :not_found
+      return
+    elsif @trip.update(name:params[:driver][:name],vin: params[:driver][:vin])
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :edit
+      return
+    end
+    #
+    # @trip = Trip.find_by(id: params[:id])
+    # if trip.nil?
+    #   render :edit
   end
 
   def destroy
