@@ -3,7 +3,7 @@ require "test_helper"
 describe TripsController do
   before do
     Passenger.create!(id: 57, name: "Anna Laura", phone_num: "999-999-0000")
-    Driver.create!(id: 20, name: "John Meyer", vin: "WEE7868967777", available: true)
+    Driver.create!(id: 20, name: "John Meyer", vin: "WEE7868967777", available: "true")
   end
 
   describe "show" do
@@ -29,23 +29,24 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
 
       # Arrange
-      trip_hash = {
-          trip: {
-              driver_id: 20,
-              passenger_id: 57,
-              date: "2020/11/05",
-              rating:nil,
-              cost: 27.58
-          }
-      }
+      # trip_hash = {
+      #     trip: {
+      #         driver_id: 20,
+      #         passenger_id: 57,
+      #         date: "2020/11/05",
+      #         rating: nil,
+      #         cost: 27.58
+      #     }
+      # }
+
       # Act-Assert
       expect {
-        post passenger_trips_path(57), params: trip_hash
+        post passenger_trips_path(57)
       }.must_change "Trip.count", 1
 
-      new_trip =  Trip.find_by(driver_id: trip_hash[:trip][:driver_id])
-      expect(new_trip.date).must_equal Date.parse(trip_hash[:trip][:date])
-      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      new_trip = Trip.find_by(passenger_id: 57)
+      expect(new_trip.driver_id).must_equal 20
+
       must_respond_with :redirect
       must_redirect_to trip_path(new_trip.id)
     end
@@ -74,7 +75,7 @@ describe TripsController do
     it "Does not change count and redirects to trip_path when trip id is valid" do
 
       # Arrange
-      Trip.create!(driver_id: 20, passenger_id: 57, date: Time.now, rating: 5.0, cost: 16.59)
+      Trip.create!(driver_id: 20, passenger_id: 57, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59)
       trip_hash = {
           trip: {
               date: "11/05/2020",
@@ -121,7 +122,7 @@ describe TripsController do
   describe "destroy" do
     it "Should delete an existing trip and redirect to the page" do
       # Arrange
-      trip = Trip.new driver_id: 20, passenger_id: 57, date: "09/15/2016", rating: 5.0, cost: 16.59
+      trip = Trip.new driver_id: 20, passenger_id: 57, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59
 
       trip.save!
 
@@ -132,7 +133,7 @@ describe TripsController do
         # Assert
       }.must_change 'Trip.count', -1
 
-      trip = Trip.find_by_id(date: "09/15/2016")
+      trip = Trip.find_by_id(date: Date.parse("2016/09/15"))
 
       expect(trip).must_be_nil
 
