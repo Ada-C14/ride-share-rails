@@ -1,39 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
   <title>RideShareRails</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 </head>
+<style>
+    /* Header/logo Title */
+    .header {
+        padding: 80px;
+        text-align: center;
+        background: rebeccapurple;
+        color: white;
+    }
+    /* Increase the font size of the heading */
+    .header h1 {
+        font-size: 40px;
+    }
+    /* Style the top navigation bar */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+    }
+    /* Style the navigation bar links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    /* Right-aligned link */
+    .navbar a.right {
+        float: right;
+    }
+    /* Change color on hover */
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    /* Footer */
+    footer {
+        padding: 100px;
+        text-align: center;
+        background: #ddd;
+    }
+</style>
+<body>
+<div class="header">
+  <h1> Welcome to the Rideshare App!</h1>
+</div>
 <div>
-  <nav class="nav">
-    <ul class="menu">
-      <li> <%= link_to "Passengers", passengers_path%>
-      </li>
-      <li> <%= link_to "Drivers", drivers_path%>
-      </li>
-      <li>
-        <%= link_to "Home", homepages_path %>
-      </li>
-    </ul>
-  </nav>
+  <div class="navbar">
+    <%= link_to "Home", homepages_path %>
+    <%= link_to "Passengers", passengers_path%>
+     <%= link_to "Drivers", drivers_path%>
+  </div>
   <header>
-    <h1>
-      Welcome to the Rideshare App!
-    </h1>
+    <h2>
+      Select more options below:
+    </h2>
   </header>
   <main>
     <ul>
       <li>
-        <%= link_to "Riders", passengers_path%>
-      </li>
-      <li> <%= link_to "Drivers", drivers_path%>
+        <%= link_to "View Passengers", passengers_path%>
       </li>
       <li>
-        <%= link_to "New Driver", new_driver_path%>
+        <%= link_to "Create New Passenger Account", new_passenger_path %>
+      </li>
+      <li> <%= link_to "View Drivers", drivers_path%>
       </li>
       <li>
-        <%= link_to "New Rider", new_passenger_path %>
+        <%= link_to "Create New Driver Account", new_driver_path%>
       </li>
+
 <!--      <li>-->
         <%#= link_to "Request a Ride", new_trip_path %>
 <!--      </li>-->
@@ -42,4 +87,5 @@
   <footer>
   Sandy and Rachael (c) 2020
 </footer>
+</body>
 </html>

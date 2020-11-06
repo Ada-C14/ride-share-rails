@@ -2,18 +2,55 @@
 <html>
 <head>
   <meta charset="utf-8">
+<!--  <link href="https://fonts.googleapis.com/css?family=Cherry+Swash&display=swap" rel="stylesheet">-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <%#= stylesheet_link_tag  'passenger' %>
 </head>
   <style>
-    a {
-        color: purple;
-    }
-      html, body {
-          margin: 0;
-          padding: 10px;
+      /* Header/logo Title */
+      .header {
+          padding: 80px;
+          text-align: center;
+          background: rebeccapurple;
+          color: white;
+      }
+      /* Increase the font size of the heading */
+      .header h1 {
+          font-size: 40px;
+      }
+      /* Style the top navigation bar */
+      .navbar {
+          overflow: hidden;
+          background-color: #333;
+      }
+      /* Style the navigation bar links */
+      .navbar a {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 20px;
+          text-decoration: none;
       }
 
+      /* Right-aligned link */
+      .navbar a.right {
+          float: right;
+      }
+      /* Change color on hover */
+      .navbar a:hover {
+          background-color: #ddd;
+          color: black;
+      }
+      /* Footer */
+      footer {
+          padding: 100px;
+          text-align: center;
+          background: #ddd;
+      }
+
+    /*table styling*/
       thead:nth-child(odd){background-color: black;}
       tr:nth-child(even) {background-color: #c8a2c8;}
       table, th, td {
@@ -24,11 +61,22 @@
       thead {
           color: white;
       }
+
+      a {
+          color: rebeccapurple;
+      }
+
 </style>
 <body>
-<a href="/homepages">Home</a> | <a href="/passengers">Passenger Page</a> | <a href="/drivers">Driver Page </a>
+<div class="header">
+  <h1> Passenger: <%= @passenger.name %></h1>
+</div>
+<div class="navbar">
+  <%= link_to "Home", homepages_path %>
+  <%= link_to "Passengers", passengers_path%>
+  <%= link_to "Drivers", drivers_path%>
+</div>
 
-<h2>Passenger: <%= @passenger.name %></h2>
 <table>
   <thead>
  <tr>
