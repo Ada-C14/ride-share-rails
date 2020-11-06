@@ -17,11 +17,9 @@
 
     <li>Date: <%= @trip.date %></li>
     <li>Cost: $<%= @trip.cost/100 %></li>
-    <% rating = [] %>
-    <% rating << @trip.rating %>
     <% if @trip.rating %>
       <li>Rating: <%= @trip.rating %></li>
-      <% @trip.driver.complete_trip if @trip.updated_at > @trip.created_at %>
+      <% @trip.driver.complete_trip unless @trip.driver.trips.find {|trip| trip.rating.nil?} %>
   <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
         <li>Add a Rating to Complete the Trip:
