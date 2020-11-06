@@ -5,7 +5,7 @@
       <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
 
     <%= f.label :passenger %>
-      <%= f.select :passenger, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+      <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
 
     <%= f.label :rating %>
     <%= f.text_field :rating %>
