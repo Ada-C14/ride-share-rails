@@ -1,5 +1,7 @@
+
 <h2>Drivers</h2>
 
+<<<<<<< HEAD
 <table id="myTable">
   <tr>
     <th>Driver ID</th>
@@ -22,3 +24,28 @@
     </tr>
   <% end %>
 </table>
+=======
+<%= link_to "Add driver", new_driver_path, class: "link-button" %>
+
+<table>
+    <tr>
+        <th>Driver</th>
+        <th>Name</th>
+        <th>Vin</th>
+        <th>Rating</th>
+        <th>Availability</th>
+    </tr>
+    <% @drivers.each do |driver| %>
+        <tr>
+            <td><%= link_to driver.id, driver_path(driver) %></td>
+            <td><%= link_to driver.name, driver_path(driver) %></td>
+            <td><%= driver.vin %></td>
+            <td><%= driver.average_rating %></td>
+            <td>
+                <%= link_to "Edit", edit_driver_path(driver) , class: "link-button"%>
+                <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+            </td>
+        </tr>
+    <% end %>
+</table>
+>>>>>>> c804042d54b9f71084e0a7162c2055170d92696f

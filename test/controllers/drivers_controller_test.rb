@@ -3,10 +3,13 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   describe "index" do
+    before do
+      Driver.create(name: "India", vin: "9879", available: true)
+    end
+
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      Driver.create(name: "India", vin: "9879", available: true)
       # Act
       get "/drivers"
       # Assert
@@ -25,10 +28,12 @@ describe DriversController do
   end
 
   describe "show" do
+    
+    let driver = Driver.create(name: "India", vin: "9879", available: true)
+
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      driver = Driver.create(name: "India", vin: "9879", available: true)
       id = driver.id
       # Act
       get "/drivers/#{id}"
@@ -126,15 +131,30 @@ describe DriversController do
   end
 
   describe "update" do
+    
+    let driver_hash = {
+      driver: {
+        name: "Emma",
+        vin: "9090",
+        available: true
+      }
+    }
+
+    before do
+      Driver.create(name: "India", vin: "9879", available: true)
+    end
+
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-
+      id = Driver.first.id
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      expect {
+        patch driver_path(id), params: driver_hash
+      }.wont_change "Driver.count"
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
@@ -145,14 +165,6 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
-      driver_hash = {
-        driver: {
-          name: "India",
-          vin: "9879",
-          available: true
-        }
-      }
-      Driver.create(name: "India", vin: "9879", available: true)
       # Act-Assert
       id = -1
       # Ensure that there is no change in Driver.count
@@ -170,14 +182,6 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
-      driver_hash = {
-        driver: {
-          name: "India",
-          vin: "9879",
-          available: true
-        }
-      }
-      Driver.create(name: "India", vin: "9879", available: true)
       driver_hash[:driver][:name] = nil
       driver = Driver.first
       # Act-Assert
