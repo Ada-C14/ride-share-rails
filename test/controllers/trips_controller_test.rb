@@ -37,7 +37,7 @@ describe TripsController do
       invalid_id = -1
 
       expect {
-        post passenger_create_trip_path(invalid_id)
+        post request_trip_path(invalid_id)
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
@@ -48,17 +48,11 @@ describe TripsController do
       new_driver.save
 
       expect {
-        post passenger_create_trip_path(new_passenger.id)
+        post request_trip_path(new_passenger.id)
       }.must_differ "Trip.count", 1
 
+      expect(new_driver.available).must_equal false
       must_respond_with :redirect
-    end
-
-    it "leaves assigned driver available if trip not created" do
-      skip
-      # we do not know how to make @trip.save fail
-      # without using bad passenger info that would redirect on first loop
-      # our code is just too strong to fail
     end
   end
 
@@ -230,6 +224,24 @@ describe TripsController do
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
+    end
+  end
+
+  describe "passenger_request_trip" do
+    it "creates a new trip when a passenger requests one" do
+      new_driver.save
+      new_passenger.save
+
+      params = new_passenger.request_trip
+
+      expect(params[:driver_id]).must_equal new_driver.id
+      expect(params[:passenger_id]).must_equal new_passenger.id
+      expect(params[:cost]).must_be_kind_of Integer
+      expect(params[:date]).must_be_kind_of Date
+    end
+
+    it "does not create a trip for an invalid passenger id" do
+      raise NotImplementedError
     end
   end
 end

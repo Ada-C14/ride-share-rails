@@ -58,8 +58,6 @@ class TripsController < ApplicationController
     else
       render :new and return
     end
-
-
   end
 
   def edit
@@ -103,9 +101,14 @@ class TripsController < ApplicationController
     end
 
     trip_params = @passenger.request_trip
-    @trip = Trip.create(trip_params)
-    # @trip = Trip.new(trip_params)
-    # @trip.save
+    # @trip = Trip.create(trip_params)
+
+    @trip = Trip.new(trip_params)
+    if @trip.save
+      redirect_to trip_path(@trip) and return
+    else
+      render :new and return
+    end
     redirect_to passenger_trips_path(@passenger.id)
   end
 
