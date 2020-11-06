@@ -37,18 +37,18 @@ describe TripsController do
               rating: nil,
           }
       }
-
       expect {
-        post passenger_path(passenger.id), params: new_trip
+        post passenger_trips_path(passenger), params: new_trip
       }.must_differ "Trip.count", 1
 
       must_respond_with :redirect
-      must_redirect_to passenger_path(new_trip.id)
+      # must_redirect_to trip_path
       expect(Trip.last.passenger.name).must_equal passenger.name
       expect(Trip.last.driver.name).must_equal driver.name
     end
 
     it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
+      passenger = Passenger.create(name: "Jared", phone_num: "1112223333")
 
       new_trip = {
           trip: {
@@ -56,7 +56,7 @@ describe TripsController do
       }
 
       expect {
-        post passenger_trips_path, params: new_trip
+        post passenger_trips_path(passenger), params: new_trip
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
