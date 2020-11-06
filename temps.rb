@@ -3,9 +3,12 @@
 def create
   driver = Driver.find_by(:available = true)
   passenger = Passenger.find_by(id: params[:passenger_id])
-  @trip = Trip.new(
-    driver_id = driver.id,
-    passenger_id = passenger.id
+  @trip = Trip.create(
+    driver_id: driver.id,
+    passenger_id: passenger.id,
+    date: Time.now,
+    rating: nil,
+    cost: 123232
   )
 end
 
