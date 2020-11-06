@@ -17,7 +17,7 @@
     STATUS:
     <% if @driver.available %>
       <button><%= link_to "AVAILABLE", driver_path(@driver.id), method: :put %></button>
-  <% else %>
+    <% else %>
       <button><%= link_to "UNAVAILABLE", driver_path(@driver.id), method: :put %></button>
     <% end %>
   </li>
