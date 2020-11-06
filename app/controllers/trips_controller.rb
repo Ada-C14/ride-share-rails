@@ -42,7 +42,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip)
       return
     else
-      render :new
+      render :new, status: :bad_request
       return
     end
   end
@@ -65,7 +65,7 @@ class TripsController < ApplicationController
       redirect_to trips_path
       return
     else
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end
