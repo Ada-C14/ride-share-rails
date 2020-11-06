@@ -8,4 +8,4 @@
 
   <p class="buttons"><%= link_to "Back to Index", passengers_path %></p>
   <p class="buttons"><%= link_to "Edit Passenger Info", edit_passenger_path(@passenger.id) %></p>
-  <p class="buttons" id="delete"><%= link_to "Delete Passenger Info", passenger_path(@passenger.id), method: :delete %></p>
+  <p class="buttons" id="delete"><%= link_to "Delete Passenger Info", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
