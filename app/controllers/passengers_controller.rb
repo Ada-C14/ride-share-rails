@@ -52,6 +52,22 @@ class PassengersController < ApplicationController
     end
   end
 
+  def destroy
+    @passenger = Passenger.find_by(id: params[:id])
+
+    if @passenger.trips.empty?
+      @passenger.destroy
+      redirect_to passengers_path
+      return
+    elsif @passenger.trips.count > 0
+      redirect_to passenger_path(@passenger.id)
+      return
+    else
+      head :not_found
+      return
+    end
+  end
+
   private
   def passenger_params
     return params.require(:passenger).permit(:name, :phone_num)

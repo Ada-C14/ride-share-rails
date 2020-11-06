@@ -52,6 +52,22 @@ class DriversController < ApplicationController
     end
   end
 
+  def destroy
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.trips.empty?
+      @driver.destroy
+      redirect_to drivers_path
+      return
+    elsif @driver.trips.count > 0
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      head :not_found
+      return
+    end
+  end
+
   private
   def driver_params
     return params.require(:driver).permit(:name, :vin, :available)
