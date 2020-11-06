@@ -67,6 +67,8 @@ class DriversController < ApplicationController
       return
     end
 
+    @driver.trips.delete_all
+
     if @driver.destroy
       redirect_to drivers_path
       return
