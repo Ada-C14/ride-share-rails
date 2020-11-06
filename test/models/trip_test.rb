@@ -1,5 +1,7 @@
-# require "test_helper"
-#
+require "test_helper"
+
+describe Trip do
+
   describe "relationships" do
     it "can have many trips" do
       # Arrange
@@ -37,8 +39,9 @@
       expect(new_passenger.errors.messages[:phone_num]).must_equal ["can't be blank"]
     end
   end
-#   # Tests for methods you create should go here
-#   describe "custom methods" do
-#     # Your tests here
-#   end
-# end
+
+  # Tests for methods you create should go here
+  describe "custom methods" do
+    # Your tests here
+  end
+end

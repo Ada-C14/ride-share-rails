@@ -9,13 +9,25 @@ describe TripsController do
     Driver.create(name: "John Meyer", vin: "WEE7868967777", available: "true")
   }
 
+  let (:trip_hash) {
+    {
+        driver_id: Trip.assign_driver,
+        passenger_id: passenger.id,
+        date: Time.now,
+        rating: nil,
+        cost: Trip.generate_cost
+    }
+  }
+
   let (:trip) {
-    Trip.create(passenger_id: passenger.id)
+    Trip.create(trip_hash)
   }
 
   describe "index" do
     it "responds with success when there are trips saved" do
       # Arrange
+      passenger
+      driver
       trip
 
       # Act
@@ -36,15 +48,17 @@ describe TripsController do
 
   describe "show" do
     it "can get a valid trip" do
+      passenger
+      driver
+      trip
       # Act
-      get "/trips"
+      get trip_path(trip.id)
 
       # Assert
       must_respond_with :success
     end
 
     it "will redirect for an invalid trip" do
-
       # Act
       get trip_path(-1)
 
@@ -54,26 +68,22 @@ describe TripsController do
   end
 
   describe "create" do
-    it "can create a new trip with valid information accurately, and redirect" do
-
+    it "can create a new trip with valid passenger id and available drivers and sets driver to status to available == false" do
       # Arrange
-      trip_hash = {
-          trip: {
-              driver_id: 20,
-              passenger_id: 57,
-              date: "2020/11/05",
-              rating:nil,
-              cost: 27.58
-          }
-      }
+      original_driver_status = driver.available
+      expect(original_driver_status).must_equal "true"
+      passenger
+      driver
       # Act-Assert
       expect {
-        post passenger_trips_path(57), params: trip_hash
+        post passenger_trips_path(passenger.id)
       }.must_change "Trip.count", 1
 
-      new_trip = Trip.find_by(driver_id: trip_hash[:trip][:driver_id])
-      expect(new_trip.date).must_equal Date.parse(trip_hash[:trip][:date])
-      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(driver.available).must_equal "false"
+
+      new_trip = Trip.find_by(driver_id: driver.id)
+      # expect(new_trip.date).must_equal Date.parse(trip_hash[:trip][:date])
+      # expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
       must_respond_with :redirect
       must_redirect_to trip_path(new_trip.id)
     end
