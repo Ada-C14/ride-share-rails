@@ -20,5 +20,4 @@ class Driver < ApplicationRecord
   def num_of_rides
     return self.trips.sum { |trip| trip }
   end
-
 end

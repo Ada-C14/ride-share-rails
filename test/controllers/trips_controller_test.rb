@@ -63,23 +63,33 @@ describe TripsController do
               phone_num: "555-555-5555"
           }
       )
-      @trip = Trip.create!(
-          {
-              date: Date.today,
-              rating: 4,
-              cost: 1865,
-              passenger_id: @passenger.id,
-              driver_id: @driver.id
-          }
-      )
     end
 
     it "can create a new trip with valid information accurately, and redirect" do
+      trip_info = {
+          trip: {
+              driver_id: @driver.id,
+              passenger_id: @passenger.id,
+              date: Date.today,
+              cost: 2342,
+          }
+      }
 
+      expect {
+        post passenger_trips_path(pass), params: trip_info
+      }.must_differ "Trip.count", 1
+
+      new_trip = Trip.find_by(passenger_id: @passenger.id)
+      expect(new_trip.date).must_equal Date.today
+      expect(new_trip.cost).must_be_kind_of Integer
+      expect(new_trip.rating).must_be_nil
+      expect(new_trip.driver_id).must_equal @driver.id
+
+      must_respond_with :redirect
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with bad request" do
-   
+
     end
   end
 
