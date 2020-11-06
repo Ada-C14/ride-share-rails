@@ -60,13 +60,61 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
+    before do
+      @new_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
     end
 
-    describe "complete trip" do
-      # Your code here
+    describe "request a ride" do
+      it "requests a ride" do
+        requested_trip = @new_passenger.request_trip
+
+        expect(requested_trip).must_be_kind_of Trip
+        expect(requested_trip.valid?).must_equal true
+        expect(requested_trip.passenger_id).must_equal @new_passenger.id
+      end
     end
-    # You may have additional methods to test here
+
+    #TODO: do we want to implement this?
+    # describe "complete trip" do
+    #
+    # end
+
+    describe "total charged" do
+      before do
+          Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", availability_status: true)
+        @requested_trip1 = @new_passenger.request_trip
+        @requested_trip1.save
+        @requested_trip2 = @new_passenger.request_trip
+        @requested_trip2.save
+        @requested_trip3 = @new_passenger.request_trip
+        @requested_trip3.save
+      end
+
+      it "correctly calculates total amount charged" do
+        expected_total_charged = @requested_trip1.cost + @requested_trip2.cost + @requested_trip3.cost
+
+        total_charged = @new_passenger.total_charged
+
+        expect(total_charged).must_equal expected_total_charged
+      end
+
+      it "correctly calculates total amount charged when a trip is deleted" do
+        @new_passenger.trips.last.destroy
+        expected_total_charged = @requested_trip1.cost + @requested_trip2.cost
+
+        total_charged = @new_passenger.total_charged
+
+        expect(total_charged).must_be_close_to expected_total_charged, 0.01
+      end
+
+      it "returns 0 for passengers with no trips" do
+        no_trip_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
+
+        amount_charged = no_trip_passenger.total_charged
+
+        expect(amount_charged).must_equal 0
+      end
+    end
+
   end
 end
