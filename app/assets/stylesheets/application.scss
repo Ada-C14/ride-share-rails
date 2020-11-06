@@ -17,11 +17,11 @@
 
 @import "**/*";
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&display=swap');
 
 html, body {
   height: 100%;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Overpass", sans-serif;
 }
 
 body {
@@ -48,29 +48,46 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: grey;
+}
+
+.button_to {
+  margin: 4px 4px 4px 0;
+  width: 300px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
 header {
+  padding: 10px;
   grid-area: header;
   background: lightgreen;
 }
 
 .menu {
+  padding: 10px;
   grid-area: menu;
   background: lightblue;
 }
 
 main {
+  padding: 10px;
   grid-area: yield;
 }
 
 footer {
+  padding: 10px;
   grid-area: footer;
   background: lightgoldenrodyellow;
 }
 
-header nav {
-  margin-right: auto;
-}
 
-header nav p{
-  display: inline;
-}
+

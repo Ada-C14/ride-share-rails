@@ -1,12 +1,12 @@
 <h3>Driver Details</h3>
 <br>
   <h2><%= @driver.name %></h2>
-  <p>ID: <%= @driver.id %></p>
-  <p>VIN: <%= @driver.vin %></p>
-  <p>Status: <%= @driver.available ? "Available" : "Unavailable" %></p>
-  <p>Average Rating: <%= @driver.avg_rating %> ★</p>
-  <p>Total Earnings: $<%= @driver.total_earnings %></p>
-  <p>Rides Given: <%= @driver.trips.length %></p>
+  <p><strong>ID: </strong><%= @driver.id %></p>
+  <p><strong>VIN: </strong><%= @driver.vin %></p>
+  <p><strong>Status: </strong><%= @driver.available ? "Available" : "Unavailable" %></p>
+  <p><strong>Average Rating: </strong><%= @driver.avg_rating %> ★</p>
+  <p><strong>Total Earnings: </strong>$<%= @driver.total_earnings %></p>
+  <p><strong>Rides Given: </strong><%= @driver.trips.length %></p>
 
 <br>
 
