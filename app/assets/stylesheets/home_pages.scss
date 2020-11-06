@@ -1,7 +1,25 @@
 // Place all the styles related to the HomePages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
 .homepage{
-    padding: 10%;
+    padding: 1%;
     width: 100%;
+}
+
+.img{
+    margin-top: 5%;
+    width:33%;
+    height: 50%;
+    float:left;
+    position:relative;
+    text-align: center;
+}
+
+.img h3{
+    margin-top: 3%;
+    font-size:25pt;
+    width:100%;
+    bottom:0px;
+    padding:5px
 }
