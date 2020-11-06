@@ -1,1 +1,15 @@
+<h1>Create New Rider</h1>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Rider List", passengers_path %> |
+  <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
+</nav>
+
 <%= render partial: "form", locals: { action_name: "New Rider" } %>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Rider List", passengers_path %> |
+  <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
+</nav>

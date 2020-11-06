@@ -1,4 +1,12 @@
 <h1> Trip Details </h1>
+
+<nav>
+<%=link_to "Homepage", homepages_path %> |
+<%=link_to "Edit trip details", edit_trip_path(@trip.id) %>
+<%= link_to "Add a New Driver", new_driver_path%>
+<%= link_to "Add a New Rider", new_passenger_path%>
+</nav>
+
 <ul>
   <li> ID: <%= @trip.id %></li>
   <li> Date: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
@@ -7,4 +15,10 @@
   <li> Rating: <%= @trips.rating%></li>
 </ul>
 <!--Want to create loop that pulls  trip details  -->
-<p> <%=link_to "Edit trip details", edit_trip_path(@trip.id) %></p>
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%=link_to "Edit trip details", edit_trip_path(@trip.id) %>
+  <%= link_to "Add a New Driver", new_driver_path%>
+  <%= link_to "Add a New Rider", new_passenger_path%>
+</nav>
+

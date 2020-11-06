@@ -1,9 +1,10 @@
-<h2> Passenger Details </h2>
+<h2>Rider Details</h2>
 
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Rider List", passengers_path %> |
   <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
+  <%= link_to "Add a New Rider ", new_passenger_path%>
 </nav>
 
 <p>Passenger ID: <%= @passengers.id %></p>
@@ -15,6 +16,7 @@
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Rider List", passengers_path %> |
   <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
+  <%= link_to "Add a New Rider ", new_passenger_path%>
 </nav>
 
 
