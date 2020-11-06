@@ -17,20 +17,19 @@
 
     <li>Date: <%= @trip.date %></li>
     <li>Cost: $<%= @trip.cost/100 %></li>
-
+    <% rating = @trip.rating %>
     <% if @trip.rating %>
       <li>Rating: <%= @trip.rating %></li>
-  <% else %>
+    <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
         <li>Add a Rating to Complete the Trip:
          <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
          <%= f.submit "Update", class: 'trip-button' %></li>
-        <% link_to trip_path(@trip.id)%>
-          <%  if @trip.rating%>
-            <% @trip.driver.complete_trip%>
-          <% end %>
       <% end %>
-  <% end %>
+    <% end %>
+    <%  if rating != @trip.rating %>
+      <% @trip.driver.complete_trip%>
+    <% end %>
 
       </ul>
   <%= link_to "Edit", edit_trip_path(@trip) %>

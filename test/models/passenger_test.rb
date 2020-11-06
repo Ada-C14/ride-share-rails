@@ -60,13 +60,34 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    before do
+      @passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      @driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+    end
+
+    let(:trip_1) {
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, rating: 5, cost: 1234)
+    }
+
     describe "request a ride" do
-
+      it "can will add trip count" do
+        new_trip = {
+            trip: {
+                date: Date.today,
+                passenger_id: @passenger.id,
+                driver_id: @driver.id,
+                rating: nil,
+            }
+        }
+        expect{
+          trip_1
+        }.must_change "Trip.count", 1
+      end
     end
 
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
+    # describe "complete trip" do
+    #   # Your code here
+    # end
+    # # You may have additional methods to test here
   end
 end
