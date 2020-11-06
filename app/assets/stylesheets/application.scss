@@ -82,3 +82,33 @@ h1 {
   text-align: center;
 }
 
+.container-2 {
+  display: flex;
+  padding-left: 18vw;
+
+}
+
+.container-2 .driver {
+  padding-left: 2vw;
+  padding-bottom: .5vh;
+  align-self: center;
+  justify-self: center;
+
+}
+
+ul {
+  list-style-type: none;
+}
+
+.driver img {
+  width: 6vw ;
+}
+
+.driver_name {
+  font-size: 1.5vw;
+  width: 35vw;
+}
+
+.driver_name a {
+  padding-left: 2vw;
+}
