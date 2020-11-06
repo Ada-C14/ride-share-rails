@@ -46,7 +46,7 @@ describe TripsController do
       }
     }
 
-    it "can create a new trip with valid information accurately, and redirect" do
+    it "can create a new trip with valid information accurately, with rating nil, turn driver's available to false, and redirect" do
       # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
       
@@ -54,6 +54,11 @@ describe TripsController do
       expect {
         post passenger_trips_path(@passenger.id)
       }.must_differ 'Trip.count', 1
+
+      # Check the rating for new trip is nil and driver available becomes false
+      trip = @passenger.trips.last
+      expect(trip.rating).must_be_nil
+      expect(trip.driver.available).must_equal false
 
       # Check that the controller redirected the user
       must_respond_with :redirect
