@@ -24,14 +24,25 @@ class TripsController < ApplicationController
 
 
   def create
-    @trip = Trip.new(passenger_id: params[:trip][:passenger_id], driver_id: params[:trip][:driver_id],
-                     cost: params[:trip][:cost], rating: params[:trip][:rating], date: params[:trip][:date])
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    @driver = Driver.find_by(available: true)
+    @cost = rand(1..1000)
+    @date = Time.now.strftime("%Y/%m/%d")
+    @rating = nil
+    @trip = Trip.new(
+        driver_id: @driver.id,
+        passenger_id: @passenger.id,
+        rating: @rating,
+        cost: @cost,
+        date: @date)
+
     if @trip.save
-      redirect_to trip_path @trip.id# not sure about this redirection
+      @driver.available = false
+      @driver.save
+      redirect_to trip_path @trip.id
       return
     else
-      render :new, status: :bad_request
-      return
+      redirect_to passenger_path @passenger.id
     end
   end
 
@@ -81,9 +92,9 @@ class TripsController < ApplicationController
     end
   end
 
-  def request_trip
-    passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = passenger.request_trip
-    render :new
-  end
+  # def request_trip
+  #   passenger = Passenger.find_by(id: params[:passenger_id])
+  #   @trip = passenger.request_trip
+  #   render :new
+  # end
 end

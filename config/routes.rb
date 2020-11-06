@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :drivers
-  resources :passengers
+  resources :passengers do
+    resources :trips, only: [:index, :create]
+  end
   resources :trips
 
   get '/homes', to: 'homes#index', as: 'homes'

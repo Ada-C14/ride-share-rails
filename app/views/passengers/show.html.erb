@@ -4,8 +4,11 @@
 <p>Passenger's name: <%= @passenger.name %></p>
 <p>Passenger's phone number: <%= @passenger.phone_num %></p>
 <p>Total spent: ...</p>
+
 <%= link_to 'Edit', edit_passenger_path(@passenger) %>
 <%= link_to 'Delete', @passenger, method: :delete, data: { confirm: 'Are you sure?' } %>
+<p></p>
+<%= link_to 'Request trip',  passenger_trips_path(@passenger), method: :post %>
 
 
 <table id='trips-table' class="table table-hover">
