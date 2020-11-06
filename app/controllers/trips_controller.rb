@@ -49,7 +49,7 @@ class TripsController < ApplicationController
       end
     end
 
-    @trip = Trip.new(date: Time.now, rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
+    @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"), rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
 
     if @trip.save
       available_driver.update(available: false)

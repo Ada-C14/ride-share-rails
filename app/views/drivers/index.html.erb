@@ -7,11 +7,13 @@
     <th></th>
   </tr>
   <% @drivers.each do |driver|  %>
-    <tr>
-      <th><%= driver.id %></th>
-      <th><%= link_to driver.name, driver_path(driver) %></th>
-      <th><%= link_to "Edit", edit_driver_path(driver.id) %> |
-      <%= link_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure?"} %></th>
-    </tr>  
+    <% if driver.isactive %>
+      <tr>
+        <th><%= driver.id %></th>
+        <th><%= link_to driver.name, driver_path(driver) %></th>
+        <th><%= link_to "Edit", edit_driver_path(driver.id) %> |
+        <%= link_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure?"} %></th>
+      </tr>  
+    <% end %>  
   <% end %>
 </table>

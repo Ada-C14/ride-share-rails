@@ -5,7 +5,7 @@ class PassengersController < ApplicationController
 
   def show
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
+    if @passenger.nil? || !(@passenger.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
@@ -31,12 +31,15 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       redirect_to passengers_path
       return
+    elsif !(@passenger.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+      return
     end
   end
 
   def update
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
+    if @passenger.nil? || !(@passenger.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     elsif @passenger.update(passenger_params)
@@ -50,11 +53,11 @@ class PassengersController < ApplicationController
 
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
+    if @passenger.nil? || !(@passenger.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     else
-      @passenger.destroy
+      @passenger.update(isactive: false)
       redirect_to passengers_path
       return
     end
