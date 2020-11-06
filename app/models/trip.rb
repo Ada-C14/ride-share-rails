@@ -19,7 +19,7 @@ class Trip < ApplicationRecord
              passenger_id: passenger.id,
              rating: nil,
              # get a random number
-             cost: rand(10..200)
+             cost: rand(5.0..90.5)
     )
   end
 end
