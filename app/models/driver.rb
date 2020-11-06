@@ -47,3 +47,4 @@ class Driver < ApplicationRecord
       return revenue
     end
   end
+end
