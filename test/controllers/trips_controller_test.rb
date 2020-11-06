@@ -44,8 +44,8 @@ describe TripsController do
         post passenger_trips_path(@passenger), params: new_trip_info
       }.must_differ "Trip.count", 1
 
-      # Assert
-      new_trip = Trip.find_by(date: "2020-11-06" )
+            # Assert
+      new_trip = Trip.last
       expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
       expect(new_trip.date).must_equal new_trip_info[:trip][:date]
