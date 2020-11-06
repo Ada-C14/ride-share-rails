@@ -146,6 +146,28 @@ describe TripsController do
       must_respond_with :redirect
       must_redirect_to trip_path(updated_trip)
     end
+
+    it "does not update any trip if given an invalid id, and responds with a 404" do
+      passenger = Passenger.create(name: 'Kim Vitug', phone_num: '342-342-5435')
+      driver = Driver.create(name: 'Nathan Fielder', vin: 'DSAFHTS5465', available: true)
+
+      update_info = {
+        trip: {
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          date: Date.today,
+          cost: 2342,
+          rating: 3
+        }
+      }
+
+      # Act - Assert
+      expect {
+        patch trip_path(-1), params: update_info
+      }.wont_change 'Trip.count'
+
+      must_respond_with :not_found
+    end
   end
 
   describe "destroy" do
