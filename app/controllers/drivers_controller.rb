@@ -12,6 +12,19 @@ class DriversController < ApplicationController
     end
   end
 
+  def new
+    @driver = Driver.new
+  end
+
+  def create
+    @driver = Driver.new(driver_params)
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+    else
+      render :new, :bad_request
+    end
+  end
+
   def edit
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
@@ -33,6 +46,17 @@ class DriversController < ApplicationController
       flash.now[:error] = "Something happened. Driver not updated."
       render :edit, status: :bad_request # show the new driver form view again
       return
+    end
+  end
+
+  def destroy
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      redirect_to root_path
+      return
+    else
+      @driver.destroy
+      redirect_to drivers_path
     end
   end
 

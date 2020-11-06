@@ -8,3 +8,7 @@
   <li>Trip ID: <%= link_to trip.id, trip_path(trip.id) %> Trip Date: <%= trip.date %></li>
   <% end %>
 </ul>
+
+<div><%= link_to "Edit Passenger", edit_passenger_path %></div>
+
+<div><%= link_to "Back to Passengers", passengers_path %></div>
