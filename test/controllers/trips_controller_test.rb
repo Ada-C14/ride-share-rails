@@ -115,7 +115,37 @@ describe TripsController do
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip with valid information accurately, and redirect" do
+      passenger = Passenger.create(name: 'Kim Vitug', phone_num: '342-342-5435')
+      driver = Driver.create(name: 'Nathan Fielder', vin: 'DSAFHTS5465', available: true)
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: 70000, rating: nil)
+
+      trip_id = trip.id
+
+      update_info = {
+        trip: {
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          date: Date.today,
+          cost: 2342,
+          rating: 3
+        }
+      }
+
+      expect{
+        patch trip_path(trip), params: update_info
+      }.wont_change "Trip.count"
+
+      updated_trip = Trip.find_by(id: trip_id)
+      expect(updated_trip.passenger_id).must_equal update_info[:trip][:passenger_id]
+      expect(updated_trip.driver_id).must_equal update_info[:trip][:driver_id]
+      expect(updated_trip.date).must_equal update_info[:trip][:date]
+      expect(updated_trip.cost).must_equal update_info[:trip][:cost]
+      expect(updated_trip.rating).must_equal update_info[:trip][:rating]
+
+      must_respond_with :redirect
+      must_redirect_to trip_path(updated_trip)
+    end
   end
 
   describe "destroy" do
