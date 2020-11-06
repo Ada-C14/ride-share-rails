@@ -44,7 +44,6 @@ describe TripsController do
       must_respond_with :redirect
       must_redirect_to passenger_path(id: passenger.id)
       expect(Trip.last.passenger.name).must_equal passenger.name
-      expect(Trip.last.driver.name).must_equal driver.name
     end
 
     it "will not create a new trip with an invalid passenger id" do
