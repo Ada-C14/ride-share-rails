@@ -120,7 +120,7 @@ describe PassengersController do
 
       # Check that the controller redirected the user
       must_respond_with :redirect
-      must_redirect_to passengers_path
+      must_redirect_to passenger_path(Passenger.last.id)
     end
 
     it "does not create a passenger if the form data violates Passenger validations - name, and responds with a redirect" do
