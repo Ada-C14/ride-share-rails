@@ -1,25 +1,16 @@
 <h1>Welcome to Rideshare Rails!</h1>
 
-<section class="home-page-wrapper">
+<section class="container">
+  <h1><span class="text_1">Welcome!</span></h1>
+</section>
+
 <section class="about">
-<p>We're America's favorite Ride Share company!</p>
-<p>Here's a snapshot of our extraordinary business:</p>
-</section>
-<ul class="home_stats">
-  <li>Total Number of Passengers: <%= Passenger.count %></li>
-  <li>Total Number of Drivers: <%= Driver.count %></li>
-  <li> Total Number of Trips: <%= Trip.count %>...and counting!</li>
-</ul>
-
-<section class="sign-up">
-  <p><%= link_to "Sign up to be a Rideshare Driver!", new_driver_path %></p>
-  <p><%= link_to "Sign up to be a Rideshare Passenger!", new_passenger_path %></p>
-</section>
-
-<section class="admin">
-  <p><strong>Administrator:</strong>
-  <%= link_to "Manage Passengers | ", passengers_path %>
-  <%= link_to "Manage Drivers", drivers_path %>
-  </p>
-</section>
+  <p>Thank you for visiting our website We make it our goal to provide passengers and riders with the best experience possible! </p>
+  <p class="fast_facts"><strong>Rideshare Rails Fast Facts</strong></p>
+  <ol class="home_stats">
+    <li>We have <strong><%= Passenger.count %></strong> passengers in our rider pool</li><br>
+    <li>We have <strong><%= Driver.count %></strong> drivers on our team</li><br>
+    <li> We've given <strong><%= Trip.count %></strong> trips...and counting!</li>
+  </ol>
+  <p><em>*Use the navigation bar above to view passengers, drivers, trips, and more!</em></p>
 </section>
