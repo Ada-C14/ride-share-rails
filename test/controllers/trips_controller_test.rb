@@ -4,7 +4,6 @@ describe TripsController do
   before do
     @driver = Driver.create(name: "Jared", vin: "ABC1234")
     @passenger = Passenger.create(name: "Li", phone_num: "1112223333")
-
     @trip = Trip.create(date: Date.today, passenger_id: @passenger.id, driver_id: @driver.id, rating: nil, cost: 10)
   end
 
@@ -29,11 +28,17 @@ describe TripsController do
       expect {
         post passenger_trips_path(@passenger)
       }.must_differ "Trip.count", 1
-      Trip.first.save
+
       must_respond_with :redirect
-      expect(Trip.first.passenger.name).must_equal @passenger.name
-      expect(Trip.first.driver.name).must_equal @driver.name
     end
+
+    it "will have the current driver & passenger" do
+
+      Driver.where(available: true)
+      expect(@trip.passenger.name).must_equal @passenger.name
+      expect(@trip.driver.name).must_equal @driver.name
+    end
+
 
   end
 
