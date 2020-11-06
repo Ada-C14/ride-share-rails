@@ -16,6 +16,11 @@ class Passenger < ApplicationRecord
     return self.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
   end
 
+  def total_charged
+    charged = (self.trips.map{|trip| trip.cost}.sum)/100.00
+    return '%.2f' % charged
+  end
+
   private
 
   def find_driver

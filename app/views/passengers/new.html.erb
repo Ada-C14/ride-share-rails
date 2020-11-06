@@ -1,6 +1,7 @@
 <h2>New Passenger</h2>
 
 <% if @passenger.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
   <ul class="errors">
     <% @passenger.errors.each do |column, message| %>
       <li>

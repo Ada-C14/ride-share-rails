@@ -2,12 +2,15 @@
 <!--to add driver's name and passenger's name-->
 <div>
   <p><strong>Date: </strong><%= @trip.date %></p>
+  <p><strong>Driver:</strong> <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></p>
+  <p><strong>Passenger:</strong> <%= link_to @trip.passenger.name, driver_path(@trip.passenger.id) %></p>
   <p><strong>Rating:</strong> <%= @trip.rating %></p>
-  <p><strong>Cost:</strong> <%= @trip.cost %></p></div>
+  <p><strong>Cost:</strong> $<%='%.2f' % @trip.money %></p>
 
-<!--  <p class="buttons"><%#= link_to "Edit Trip", edit_trip_path(@trip.id) %></p>-->
-<!--  <p class="buttons" id="delete_trip"><%#= link_to "Delete Trip", delete_trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %></p>-->
+</div>
 
-<p class="buttons"><%= link_to "Back to Index", trips_path %></p>
-<p class="buttons"><%= link_to "Edit Trip Info", edit_trip_path(@trip.id) %></p>
-<p class="buttons" id="delete"><%= link_to "Delete Trip Info", trip_path(@trip.id), method: :delete,data: {confirm: "Are you sure?"}  %></p>
+
+
+<p class="buttons"><%= link_to "Back to Trips List", trips_path %></p>
+<p class="buttons"><%= link_to "Edit Trip", edit_trip_path(@trip.id) %></p>
+<p class="buttons" id="delete"><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete,data: {confirm: "Are you sure?"}  %></p>

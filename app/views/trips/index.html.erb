@@ -1,17 +1,18 @@
-<h2>Trips list</h2>
+<h2>Trips List</h2>
+
+<p class="buttons">
+  <%= link_to "Add a New Trip", new_trip_path %>
+</p>
+
 <% if @trips.length > 0 %>
 
 <!--  To connect Driver ID, passenger ID, Date , rating and Cost-->
   <ul>
     <% @trips.each do |trip| %>
-      <li> <%= link_to  trip.id, trip_path(trip) %></li>
+      <li> Trip ID: <%= link_to  trip.id, trip_path(trip) %>, Driver: <%= link_to trip.driver.name, driver_path(trip.driver.id) %>, Passenger: <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>, Rating: <%= trip.rating %>, cost: $<%= trip.money %>  </li>
     <% end %>
   </ul>
 
 <% else %>
   <h3>No trip</h3>
 <% end %>
-
-<p class="buttons">
-  <%= link_to "Add a New Passenger", new_trip_path %>
-</p>

@@ -1,4 +1,7 @@
-<h2>Passengers list</h2>
+<h2>Passengers List</h2>
+<p class="buttons">
+  <%= link_to "Add a New Passenger", new_passenger_path %>
+</p>
 <% if @passengers.length > 0 %>
 
   <ul>
@@ -11,6 +14,3 @@
   <h3>No passenger</h3>
 <% end %>
 
-<p class="buttons">
-  <%= link_to "Add a New Passenger", new_passenger_path %>
-</p>
