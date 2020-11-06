@@ -36,7 +36,7 @@ describe Trip do
   end
 
   describe "validations" do
-    it "must have a name" do
+    it "must have a rating between 1 and 5" do
       # Arrange
       new_passenger.name = nil
 

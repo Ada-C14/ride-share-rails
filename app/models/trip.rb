@@ -3,6 +3,10 @@ class Trip < ApplicationRecord
   belongs_to :passenger
 
   validates :rating, :inclusion => { :in => 1..5 }, on: :update
+  validates :date, presence: true
+  validates :cost, :numericality => { :greater_than_or_equal_to => 0 }, presence: true
+  validates :driver_id, presence: true
+  validates :passenger_id, presence: true
 
   def self.generate_cost
     return rand(8.0..35.0).round(2)
