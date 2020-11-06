@@ -220,7 +220,7 @@ describe PassengersController do
       }.must_change "Passenger.count", -1
 
       deleted_passenger = Passenger.find_by(name: "New Passenger")
-
+      #
       # Assert
       expect(deleted_passenger).must_be_nil
       must_respond_with :redirect
