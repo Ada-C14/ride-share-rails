@@ -7,6 +7,24 @@ describe PassengersController do
                   phone_num: "999.999.9999"
   }
 
+  let (:passenger_hash) {
+    {
+        passenger: {
+            name: "Abigayle Rau Jr.",
+            phone_num: "1-761-352-4516 x63527"
+        }
+    }
+  }
+
+  let (:invalid_params) {
+    {
+        passenger: {
+            name: nil,
+            phone_num: "560.815.3059"
+        }
+    }
+  }
+
   describe "index" do
     it "can get the index path" do
       # Act
@@ -83,13 +101,6 @@ describe PassengersController do
       # Arrange
       passenger
 
-      invalid_params = {
-          passenger: {
-              name: nil,
-              phone_num: "560.815.3059"
-          }
-      }
-
       expect {
         post passengers_path, params: invalid_params
       }.wont_change 'Passenger.count'
@@ -121,41 +132,44 @@ describe PassengersController do
 
       # Arrange
       Passenger.create(name: "Yvonne Okuneva IV", phone_num: "(215) 056-6568 x5330")
-      passenger_hash = {
-          passenger: {
-          name: "Abigayle Rau Jr.",
-          phone_num: "1-761-352-4516 x63527"
-          },
-      }
+
       passenger = Passenger.first
 
       # Act-Assert
       expect {
         patch passenger_path(passenger.id), params: passenger_hash
-      }.must_differ "Passenger.count", 0
+      }.wont_change "Passenger.count"
 
+      must_respond_with :redirect
       must_redirect_to passenger_path
-      expect(Passenger.last.name).must_equal passenger_hash[:passenger][:name]
-      expect(Passenger.last.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+
+      passenger.reload
+      expect(passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
     end
 
-    it "will redirect to the root page if given an invalid id" do
-      # Arrange
-      Passenger.create(name: "Alice Costa", phone_num: "(999) 000-9987")
-      passenger_hash = {
-          passenger: {
-              name: "Ana Beatriz",
-              phone_num: "(302) 257-9999"
-          },
-      }
-      passenger = Passenger.first
-
+    it "does not update passenger if given an invalid id and redirects" do
       # Act-Assert
       expect {
         patch passenger_path(-1), params: passenger_hash
-      }.must_differ "Passenger.count", 0
+      }.wont_change "Passenger.count"
 
       must_respond_with :redirect
+    end
+
+    it "does not patch a passenger if the form data violates passenger validations" do
+      original_name = passenger.name
+      original_phone_num = passenger.phone_num
+
+      # Act-Assert
+      expect {
+        patch passenger_path(passenger.id), params: invalid_params
+      }.wont_change "Passenger.count"
+
+      passenger.reload
+
+      expect(passenger.name).must_equal original_name
+      expect(passenger.phone_num).must_equal original_phone_num
     end
   end
 
