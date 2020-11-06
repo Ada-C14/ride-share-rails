@@ -2,7 +2,11 @@
   <ul class="errors">
     <% @trip.errors.each do |column, message| %>
       <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
+        <% if message == "is not included in the list" %>
+          <strong><%= column.capitalize %></strong> must be an integer between 1 and 5 (inclusive).
+        <% else %>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        <% end %>
       </li>
     <% end %>
   </ul>
@@ -59,5 +63,5 @@
     </div>
   </div>
   <% end %>
-<%= link_to "Return to trips list", passengers_path, class:"return"%>
+<%= link_to "Return to trips list", trips_path, class:"return"%>
 </div>

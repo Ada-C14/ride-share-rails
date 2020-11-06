@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_191326) do
 
   create_table "trips", force: :cascade do |t|
     t.date "date"
-    t.integer "rating"
+    t.float "rating"
     t.float "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

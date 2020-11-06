@@ -10,7 +10,9 @@ class TripsController < ApplicationController
   end
 
   def no_available_driver_notice
-    flash[:notice] = "Uh oh! There are currently no available drivers."
+    flash[:notice] = "There are currently no available drivers.
+                      Please wait for a driver to become available and request again."
+    redirect_to passenger_path(params[:passenger_id])
   end
 
   #########################################################
@@ -46,8 +48,8 @@ class TripsController < ApplicationController
         cost: Trip.generate_cost
     }
 
-    if create_params[:driver_id.nil?]
-      redirect_to passenger_path(params[:passenger_id])
+    if create_params[:driver_id].nil?
+      no_available_driver_notice
       return
     end
 
