@@ -32,20 +32,20 @@ describe TripsController do
 
   describe "create" do
 
+    Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
     available_driver = Driver.first
-    available_driver.update(available: false)
-    let (:invalid_trip) { 
-      { 
+
+    let (:invalid_trip) {
+      {
           trip: {
-          driver_id: available_driver.id,  
-          date: "2016-04-05", 
-          rating: 5, 
-          cost: 12.0
-        }
-      }    
+              driver_id: available_driver.id,
+              date: "2016-04-05",
+              rating: 5,
+              cost: 12.0
+          }
+      }
     }
     it "can create a new trip with valid information accurately, and redirect" do
-      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
       # test if driver status changes
       # Act 
@@ -58,22 +58,33 @@ describe TripsController do
       must_redirect_to passenger_path(@passenger.id)
     end
 
+
     it "does not create a trip if no driver is available" do
       # test if found driver is available
       # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      available_driver.update(available: false)
+      Driver.all.update(available: false)
+
 
       # Act
       expect {
-        post passenger_trips_path(@passenger.id), params: invalid_trip
+        post passenger_trips_path(@passenger.id)  #, params: invalid_trip
       }.wont_change 'Trip.count'
 
       # Assert
       must_respond_with :not_found
     end
 
-    it "does not create a trip if non-existing passenger" do
+    it "does not create a trip for non-existing passenger" do
       # test if right passenger is selected
+      passenger_id = -1
+
+      expect {
+        post passenger_trips_path(passenger_id)
+      }.wont_change 'Trip.count'
+
+      must_respond_with :not_found
     end
   end
 

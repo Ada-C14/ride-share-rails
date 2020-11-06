@@ -41,7 +41,12 @@ class TripsController < ApplicationController
 
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
-      pass_id = passenger.id
+      if passenger.nil?
+        head :not_found
+        return
+      else
+        pass_id = passenger.id
+      end
     end
 
     @trip = Trip.new(date: Time.now, rating: nil, cost: rand(1000..3500), driver_id: available_driver.id, passenger_id: pass_id)
