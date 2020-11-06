@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe "TripsController" do
+describe TripsController do
 
   before do
     @driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
@@ -9,12 +9,16 @@ describe "TripsController" do
 
 
   let (:trip) do
+    driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+    passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
+    p driver
+    p passenger
     Trip.create(
         rating: 1,
         cost: 4.99,
         date: Time.now - 4.days,
-        driver_id: @driver.id,
-        passenger_id: @passenger.id
+        driver_id: driver.id,
+        passenger_id: passenger.id
     )
   end
 
@@ -81,13 +85,16 @@ describe "TripsController" do
     it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Set up the form data so that it violates trip validations
+      #  Set up the form data so that it violates trip validations
+      driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+      passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
+
       invalid_trip_hash1 = {
         trip: {
           rating: 5,
           cost: 12.32,
-          driver_id: @driver.id,
-          passenger_id: @passenger.id
+          driver_id: driver.id,
+          passenger_id: passenger.id
         }
       }
 
@@ -95,34 +102,22 @@ describe "TripsController" do
         trip: {
           rating: 5,
           date: Time.now,
-          driver_id: @driver.id,
-          passenger_id: @passenger.id
+          driver_id: driver.id,
+          passenger_id: passenger.id
         }
       }
 
-      invalid_trip_hash3 = {
-        trip: {
-          rating: 50,
-          date: Time.now,
-          driver_id: @driver.id,
-          passenger_id: @passenger.id
-        }
-      }
 
       # Act-Assert
       # Ensure that there is no change in trip.count
 
       expect{
         post trips_path, params: invalid_trip_hash1
-      }.wont_change "trip.count"
+      }.wont_change "Trip.count"
 
       expect{
         post trips_path, params: invalid_trip_hash2
-      }.wont_change "trip.count"
-
-      expect{
-        post trips_path, params: invalid_trip_hash3
-      }.wont_change "trip.count"
+      }.wont_change "Trip.count"
 
       # Assert
       # Check that the controller redirects
@@ -131,22 +126,27 @@ describe "TripsController" do
   end
 
   before do
-    Trip.create(
+    driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+    passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
+
+    @trip = Trip.create(
       rating: 1,
       cost: 20.46,
-      driver_id: @driver.id,
-      passenger_id: @passenger.id
+      driver_id: driver.id,
+      passenger_id: passenger.id
     )
   end
 
   let(:new_trip) {
+    driver = Driver.create(name: "New Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+    passenger = Passenger.create(name: "New Anna Bobby", phone_number: "BFJHD2345654")
     {
       trip: {
         rating: 5,
         cost: 12.32,
         date: Time.now,
-        driver_id: @driver.id,
-        passenger_id: @passenger.id
+        driver_id: driver.id,
+        passenger_id: passenger.id
       }
     }
   }
@@ -155,7 +155,7 @@ describe "TripsController" do
     it "responds with success and redirect when getting the edit page for an existing, valid trip" do
       # Arrange
       # Ensure there is an existing trip saved
-      trip = Trip.find_by(name: "Anna Bobby")
+      found_trip = Trip.find_by(id: @trip.id)
       # Act
       get edit_trip_path(trip.id)
       # Assert
@@ -181,14 +181,14 @@ describe "TripsController" do
       # Assign the existing trip's id to a local variable
       # Set up the form data
 
-      found_trip = Trip.find_by(name: "Anna Bobby")
+      found_trip = Trip.find_by(id: @trip.id)
 
       # Act-Assert
       # Ensure that there is no change in trip.count
 
       expect{
         patch trip_path(found_trip.id), params: new_trip
-      }. wont_change "trip.count"
+      }. wont_change "Trip.count"
 
       must_redirect_to trip_path(found_trip.id)
 
@@ -212,7 +212,7 @@ describe "TripsController" do
       # Ensure that there is no change in trip.count
       expect{
         patch trip_path(-1), params: new_trip
-      }. wont_change "trip.count"
+      }. wont_change "Trip.count"
 
       # Assert
       # Check that the controller gave back a 404
@@ -225,21 +225,38 @@ describe "TripsController" do
       # Ensure there is an existing trip saved
       # Assign the existing trip's id to a local variable
 
-      found_trip = trip.find_by(name: "Anna Bobby")
+      found_trip = Trip.find_by(id: @trip.id)
 
       # Set up the form data so that it violates trip validations
 
-      invalid_trip_hash = {
+      invalid_trip_hash1 = {
           trip: {
-              vin: "Vin only"
+              rating: 5,
+              cost: 12.32,
+              driver_id: driver.id,
+              passenger_id: passenger.id
+          }
+      }
+
+      invalid_trip_hash2 = {
+          trip: {
+              rating: 5,
+              date: Time.now,
+              driver_id: driver.id,
+              passenger_id: passenger.id
           }
       }
 
       # Act-Assert
       # Ensure that there is no change in trip.count
+
       expect{
-        patch trip_path(found_trip.id), params: invalid_trip_hash
-      }.wont_change "trip.count"
+        patch trip_path(found_trip.id), params: invalid_trip_hash1
+      }.wont_change "Trip.count"
+
+      expect{
+        patch trip_path(found_trip.id), params: invalid_trip_hash2
+      }.wont_change "Trip.count"
 
       # Assert
       # Check that the controller redirect
@@ -247,7 +264,8 @@ describe "TripsController" do
       must_redirect_to trip_path(found_trip.id)
 
       #check to make sure attempted save with invalid params did not overwrite previously saved object
-      refound_trip = Trip.find_by(name: "Anna Bobby")
+      #
+      refound_trip = Trip.find_by(id: @trip.id)
       expect(refound_trip).must_equal found_trip
     end
   end
@@ -256,16 +274,16 @@ describe "TripsController" do
     it "destroys the trip instance in db when trip exists, then redirects" do
       # Arrange
       # Ensure there is an existing trip saved
-      trip_to_delete = Trip.find_by(name: "Anna Bobby")
+      trip_to_delete = Trip.find_by(id: @trip.id)
       # Act-Assert
       # Ensure that there is a change of -1 in trip.count
       expect {
         delete trip_path(trip_to_delete.id)
-      }.must_differ "trip.count", -1
+      }.must_differ "Trip.count", -1
       # Assert
       # Check that the controller redirects
 
-      trip_to_delete = Trip.find_by(name: "Anna Bobby")
+      trip_to_delete = Trip.find_by(id: @trip.id)
 
       expect(trip_to_delete).must_be_nil
 
@@ -281,7 +299,7 @@ describe "TripsController" do
       # Ensure that there is no change in trip.count
       expect{
         delete trip_path(-1)
-      }.wont_change "trip.count"
+      }.wont_change "Trip.count"
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
 
