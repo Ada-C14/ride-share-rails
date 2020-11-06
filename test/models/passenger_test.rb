@@ -61,10 +61,10 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
-        post passenger_trips_path(new_passenger.id)
-
+      # new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      # new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      # trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      # expect(new_driver.available).must_equal false
     end
 
     describe "complete trip" do

@@ -25,6 +25,7 @@
         <li>Add a Rating to Complete the Trip:
          <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
          <%= f.submit "Update", class: 'trip-button' %></li>
+        <% link_to passenger_path(@passenger)%>
           <%  if @trip.rating%>
             <% @trip.driver.complete_trip%>
           <% end %>
