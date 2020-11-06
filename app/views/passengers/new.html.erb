@@ -1,0 +1,10 @@
+<%# in app/views/create.html.erb %>
+<h2> New page </h2>
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+  <p>Please provide the following information to add your new passenger:</p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :phone %>
+    <%= f.text_field :phone_num %>
+  <%= f.submit "Save passenger", class: "passenger-button" %>
+<% end %>
