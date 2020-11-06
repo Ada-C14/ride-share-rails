@@ -2,7 +2,7 @@
   <h1>Driver Details</h1>
 </header>
 <main>
-  <section>
+  <section class="show">
       <div class="container-profile">
         <div class="profile-pic">
           <%= image_tag "driver_avatar.png", alt: "driver avatar", class: "driver" %>
@@ -27,15 +27,15 @@
   <% if @driver.trips.any? %>
     <table class="table">
       <thead>
-      <tr>
-        <th scope="col">Trip ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">Passenger</th>
-        <th scope="col">Cost</th>
-        <th scope="col">Rating</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
+        <tr>
+          <th scope="col">Trip ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Passenger</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Rating</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
       </thead>
       <tbody>
       <% @driver.trips.each do |trip| %>

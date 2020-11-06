@@ -152,9 +152,11 @@ div.container-profile {
   width: 15vw;
 }
 
-section {
+
+section.show {
   height: 30vh;
   margin-bottom: 3vh;
+  font-size: 1.2vw;
 }
 
 div.button-container {
@@ -165,4 +167,17 @@ div.button-container {
   width: 75%;
   margin-left: 12vw;
   margin-right: 5vw;
+}
+
+div btn-success {
+  width: 3rem;
+}
+
+#request-trip {
+  padding-top: 2rem;
+}
+
+section.form div {
+  font-size: 1.2vw;
+  padding-bottom: 1vh;
 }
