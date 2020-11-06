@@ -88,9 +88,17 @@ class TripsController < ApplicationController
     if @trip.nil?
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
-    else
+    end
+
+    driver = @trip.driver
+    passenger = @trip.passenger
+    if !(driver.isactive) && !(passenger.isactive)
       @trip.destroy
-      redirect_to root_path
+      redirect_to root_path  # should we have index page?
+      return
+    else
+      redirect_to trip_path, notice: "Either Driver or Passenger is still active, couldn't delete the trip."
+      # we don't have trip_path
       return
     end
   end

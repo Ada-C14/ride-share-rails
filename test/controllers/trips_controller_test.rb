@@ -78,7 +78,7 @@ describe TripsController do
       }.wont_change 'Trip.count'
 
       # Assert
-      must_respond_with :not_found
+      must_redirect_to passenger_path(@passenger.id)
     end
 
     it "does not create a trip for non-existing passenger" do
@@ -190,19 +190,32 @@ describe TripsController do
   end
 
   describe "destroy" do
-    it "destroys the trip instance in db when trip exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
-
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+    before do
+      @driver = Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true, isactive: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: "2016-04-05", rating: 3, cost: 1293)
     end
 
-    it "does not change the db when the trip does not exist, then responds with " do
+    it "can delete the trip instance in db when trip exists and both driver and passenger are inactive, then redirects" do
+      # Arrange
+      valid_trip = @trip.id
+      # inactive driver & passenger
+      @driver.update(available: false, isactive: false)
+      @passenger.update(isactive: false)
+      
+      # Act-Assert
+      expect {
+        delete trip_path(valid_trip)
+      }.must_change "Trip.count", 1
+      
+      expect(@driver.isactive).must_equal false
+      expect(@passenger.isactive).must_equal false
+
+      # Assert
+      must_redirect_to root_path
+    end
+
+    it "does not change the db when the trip does not exist, then responds with 404" do
       # Arrange
       id = -1
 
@@ -213,6 +226,24 @@ describe TripsController do
 
       # Assert
       must_respond_with :not_found
+    end
+
+    it "does not change the db when trip exists but either driver and passenger are still active, then redirects" do
+      # Arrange
+      valid_trip = @trip.id
+      # inactive driver & passenger
+      @driver.update(available: false, isactive: false)
+
+      # Act-Assert
+      expect {
+        delete trip_path(valid_trip)
+      }.wont_change "Trip.count"
+      
+      expect(@driver.isactive).must_equal false
+      expect(@passenger.isactive).must_equal true
+
+      # Assert
+      must_redirect_to trip_path(@trip.id)
     end
   end
 end
