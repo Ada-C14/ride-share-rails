@@ -1,6 +1,12 @@
-<h1>Trip #<%= @trip.id %> Details</h1>
+<section class="passenger-section" >
+  <h2>Trip #<%= @trip.id %>
+    <%= link_to "Edit", edit_trip_path(@trip), class: "edit-delete-link" %>
+    <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}, class: "edit-delete-link" %>
+  </h2>
+  <p></p>
+</section>
 
-<table>
+<table class="trips-border">
   <thead>
   <tr>
     <th>ID</th>
@@ -14,7 +20,7 @@
   <tbody>
   <tr>
     <td><%= @trip.id%></td>
-    <td><%= @trip.date.strftime("%m/%d/%Y") %></td>
+    <td><%= @trip.date %></td>
     <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></td>
     <td><%= link_to @trip.driver.name, driver_path(@trip.driver) %></td>
     <td><%= number_to_currency(@trip.cost) %></td>
@@ -34,7 +40,3 @@
   </tr>
   </tbody>
 </table>
-
-<%= link_to "Edit", edit_trip_path(@trip) %>
-<%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
-
