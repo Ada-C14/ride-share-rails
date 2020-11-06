@@ -37,7 +37,9 @@ describe TripsController do
     end
   end
 
+
   describe "create" do
+    # #create method only tested for new trips (not created through passenger nested route
 
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
@@ -118,7 +120,6 @@ describe TripsController do
       must_redirect_to root_path
     end
 
-    #TODO: Add a test to check for trip creation from nested route?
   end
 
   before do
