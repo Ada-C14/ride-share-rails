@@ -60,6 +60,11 @@ class DriversController < ApplicationController
     end
   end
 
+  def unavailable
+    @driver = Driver.find_by(id: params[:id])
+    @driver.mark_unavailable
+  end
+
   private
 
   def driver_params

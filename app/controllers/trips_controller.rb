@@ -13,4 +13,16 @@ class TripsController < ApplicationController
     end
   end
 
+  def create
+    driver = Driver.find_by(:available = true)
+    passenger = Passenger.find_by(id: params[:pasenger_id])
+
+    @trip = Trip.new(
+        driver_id = driver.id,
+        passenger_id = passenger.id
+    )
+    @trip.save
+    driver.unavailable
+  end
+
 end
