@@ -91,14 +91,14 @@ describe Driver do
     it "returns total_revenue" do
       trip_1
 
-      expect(@new_driver.total_revenue).must_equal 668
+      expect(@new_driver.total_revenue).must_equal '$6.68'
     end
 
     it "returns total_revenue" do
       trip_1
       trip_2
 
-      expect(@new_driver.total_revenue).must_equal 5604
+      expect(@new_driver.total_revenue).must_equal '$56.04'
     end
 
     it "returns total_revenue" do
@@ -106,7 +106,7 @@ describe Driver do
       trip_2
       trip_3
 
-      expect(@new_driver.total_revenue).must_equal 6459
+      expect(@new_driver.total_revenue).must_equal '$64.59'
     end
 
     it "returns 0.0 if there is no trip" do
