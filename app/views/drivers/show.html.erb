@@ -1,14 +1,28 @@
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <style>
+      html, body {
+          margin: 0;
+          padding: 10px;
+      }
+
+      thead:nth-child(odd){background-color: black;}
+      tr:nth-child(even) {background-color: #c8a2c8;}
       table, th, td {
-          border: 3px solid #800080;
+          border: 3px solid purple;
           padding: 10px;
           margin: 20px;
+      }
+      thead {
+          color: white;
       }
   </style>
 </head>
 <body>
+<a href="/homepages">Home</a> | <a href="/passengers">Passengers' Page</a> | <a href="/drivers">Drivers' Page</a>
 <h2>Driver: <%= @driver[:name] %></h2>
 <h3>Vin: <%= @driver[:vin] %></h3>
 <h3> Driver Id: <%=@driver[:id] %></h3>
