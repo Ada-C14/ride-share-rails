@@ -2,29 +2,21 @@
 <p><%= link_to "Drivers List", drivers_path %></p>
 <p><%= link_to "Passengers List", passengers_path %></p>
 <p><%= link_to "Trips List", trips_path %></p>
-
-<p><%= link_to "Sign up Driver", new_driver_path %></p>
-<p><%= link_to "Sign up Passenger", new_passenger_path %></p>
+<p><%= link_to "Sign Up Driver", new_driver_path %></p>
+<p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
 
 <h2>Edit Trip</h2>
 <%= form_with model: @trip, class: 'create-trip' do |f|%>
   <p>Please provide the following information to edit trip information in our database:</p>
   <%= f.label :driver_id %>
-    <%= f.select :driver_id, Driver.where(:available => true).map { |driver| driver.name} %>
+  <%= f.select :driver_id, Driver.where(:available => true).map { |driver| driver.name} %>
   <%= f.label :passenger_id %>
-    <%= f.select :passenger_id, Passenger.all.map{ |passenger| passenger.name } %>
+  <%= f.select :passenger_id, Passenger.all.map{ |passenger| passenger.name } %>
   <%= f.label :date %>
-  <%= f.date_field date: Date.today %>
-  <%#= f.label :driver_id %>
-  <%#= f.text_field :driver_id %>
-  <%#= f.label :passenger_id %>
-  <%#= f.text_field :passenger_id %>
-  <%#= f.label :date %>
-  <%#= f.text_field :date %>
+  <%= f.date_field :date, :value => Date.today %>
   <%= f.label :rating %>
-   <%= f.select :rating, [1, 2, 3, 4, 5] %>
-
+  <%= f.select :rating, [1, 2, 3, 4, 5] %>
   <%= f.label :cost %>
-  <%= f.text_field :cost%>
+  <%= f.text_field :cost_in_dollars%>
   <%= f.submit "Edit Trip", class: "Trip-button" %>
 <% end %>

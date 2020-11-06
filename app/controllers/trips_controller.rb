@@ -48,10 +48,11 @@ class TripsController < ApplicationController
       head :not_found
       return
     elsif @trip.update(trip_params)
-      redirect_to trip_path(@trip.id)
-      return
+      redirect_to trip_path
     else
       render :edit
+      @trip.save!
+
       return
     end
   end

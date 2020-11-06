@@ -2,9 +2,8 @@
 <p><%= link_to "Drivers List", drivers_path %></p>
 <p><%= link_to "Passengers List", passengers_path %></p>
 <p><%= link_to "Trips List", trips_path %></p>
-
-<p><%= link_to "Sign up Driver", new_driver_path %></p>
-<p><%= link_to "Sign up Passenger", new_passenger_path %></p>
+<p><%= link_to "Sign Up Driver", new_driver_path %></p>
+<p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
 
 <h1>View Passenger</h1>
 <h3>Passenger #<%= @passenger.id  %></h3>
@@ -13,6 +12,9 @@
   <li>Passenger Phone Number: <%= @passenger.phone_num %> </li>
   <li>Passenger Total Expense: <%= @passenger.net_expenditures %> </li>
 </ul>
+<% @passenger.trips.each do |trip| %>
+  <li> <%= link_to trip.id, trip_path(trip)%></li>
+<% end %>
 <p><%= link_to "Edit #{@passenger.name}", edit_passenger_path %></p>
 <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
 <p><%= link_to "Request Trip", request_trip_path(@passenger.id) %></p>

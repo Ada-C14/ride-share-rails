@@ -6,7 +6,7 @@ class Trip < ApplicationRecord
   validates :passenger_id, presence: true
   validates :rating, numericality: { only_integer: true, greater_than: 0, less_than: 6, allow_nil: true }
   validates :cost, presence: true, numericality: { greater_than: 0 }
-  # validates :date, presence: true
+   # validates :date, presence: true
 
   def cost_in_dollars
     return (cost / 100.0).round(2)

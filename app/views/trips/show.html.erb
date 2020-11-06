@@ -9,8 +9,8 @@
 <h1>View Trip</h1>
 <h3>Trip #<%= @trip.id  %></h3>
 <ul>
-  <li>Driver ID: <%= @trip.driver_id %> </li>
-  <li>Passenger ID: <%= @trip.passenger_id %> </li>
+  <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
+  <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
   <li>Date: <%= @trip.date %> </li>
   <li>Rating: <%= @trip.rating %> </li>
   <li>Cost: <%= @trip.cost_in_dollars %> </li>
@@ -20,3 +20,4 @@
 </ul>
 
 <p><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
+<p><%= link_to "Edit Trip", edit_trip_path %></p>
