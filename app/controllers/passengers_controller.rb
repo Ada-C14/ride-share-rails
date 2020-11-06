@@ -76,7 +76,4 @@ class PassengersController < ApplicationController
     return params.require(:passenger).permit(:name, :phone_num)
   end
 
-
-
-
 end

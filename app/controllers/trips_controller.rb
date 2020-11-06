@@ -1,18 +1,5 @@
 class TripsController < ApplicationController
 
-  # need to include index in our nested routes
-  # def index
-  #   if params[:passenger_id]
-  #     # this is the nested route, /passengers/:passenger_id/trips
-  #     passenger = Passenger.find_by(id: params[:passenger_id])
-  #     @trips = passenger.trips
-  #   else
-  #     @trips = Trip.all
-  #   end
-  #
-  #
-  # end
-
   def show
     @trip = Trip.find_by(id: params[:id])
 
@@ -23,19 +10,8 @@ class TripsController < ApplicationController
 
   end
 
-  # def new
-  #   if params[:passenger_id]
-  #     passenger = Passenger.find_by(id: params[:passenger_id])
-  #     @trip = passenger.trips.new
-  #   else
-  #     @trip = Trip.new
-  #   end
-  #
-  # end
 
   def create
-    # how to get server to assign a driver?
-    # how to set the same passenger id
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @driver = Driver.get_available_driver
     @trip = Trip.request_trip(@driver, @passenger)
@@ -45,7 +21,6 @@ class TripsController < ApplicationController
       @driver.set_unavailable
       return
     else
-      # what should we render now that we don't have new view?
       render :bad_request
       return
     end
@@ -83,8 +58,6 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    #
-    # passenger = Passenger.find_by(id: params[:passenger_id])
     trip = Trip.find_by(id: params[:id])
 
     if trip.nil?
@@ -92,8 +65,6 @@ class TripsController < ApplicationController
       return
     else
       trip.destroy
-      # where to redirect this path to?
-      # redirect_to passenger_trips_path(trip.passenger.id)
       redirect_to passenger_path(trip.passenger)
     end
 

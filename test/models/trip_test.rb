@@ -15,12 +15,11 @@ describe Trip do
     Trip.new(date: "2020-11-03", rating: 2, cost: 25.12, driver_id: @driver.id, passenger_id: @passenger.id )
   }
   it "can be instantiated" do
-    # Your code here
+
     expect(new_trip.valid?).must_equal true
   end
 
   it "will have the required fields" do
-    # Your code here
     # Arrange
     new_trip.save
     trip = Trip.first
@@ -33,10 +32,7 @@ describe Trip do
     # Your tests go here
     it "belongs to one passenger" do
       new_trip.save
-      # new_driver = Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true)
-      # new_passenger = Passenger.create(name: "Test Pass", phone_num: "219-144-2635")
 
-      # check with Jasmine to how write this test
       expect(new_trip.passenger.name).must_equal @passenger.name
       expect(new_trip.passenger.id).must_equal @passenger.id
       expect(new_trip.passenger.phone_num).must_equal @passenger.phone_num
@@ -76,28 +72,17 @@ describe Trip do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    # Your tests here
-    # we don't have any custom methods for trip yet
     describe "complete trip" do
-      # @driver_2 = Driver.create(name: "Dr. Kenton Berge",
-      #                         vin: "12345678901234567",
-      #                         available: false
-      # )
-      new_new_trip =
 
       it "sets the driver to available when the trip is completed" do
         new_trip.save
 
         expect(new_trip.rating).must_equal 2
 
-        # p new_trip.driver.available
-
         new_trip.complete_trip
         new_trip.reload
 
         # assert
-        # p new_trip.driver.available
-
         expect(new_trip.driver.available).must_equal true
 
       end
