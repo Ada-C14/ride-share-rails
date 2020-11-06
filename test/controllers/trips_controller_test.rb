@@ -37,13 +37,10 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      driver.save
       new_trip_info = {
         trip: {
-        driver_id: driver.id,
         passenger_id: passenger.id,
-        cost: 23.43,
-        date: "2020-11-06",
-        rating: nil
         }
       }
       # Act-Assert
@@ -51,12 +48,10 @@ describe TripsController do
         post passenger_trips_path(passenger.id), params: new_trip_info
       }.must_differ "Trip.count", 1
 
-            # Assert
-      #
       new_trip = Trip.last
-      expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
-      expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
-      expect(new_trip.date).must_equal new_trip_info[:trip][:date]
+      expect(new_trip.driver_id).must_equal driver.id
+      expect(new_trip.passenger_id).must_equal passenger.id
+      expect(new_trip.date).must_equal Time.now.strftime("%Y-%m-%d")
       expect(new_trip.rating).must_be_nil
 
       must_respond_with :redirect
