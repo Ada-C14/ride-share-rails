@@ -36,62 +36,130 @@ describe TripsController do
 
   describe "create" do
     # Your tests go here
-    # refactor!
     it "can create a new trip with valid information and redirect" do
-    task_hash = {
-        task: {
-            name: "new task",
-            description: "new task description",
-            completed_at: nil,
-        },
-    }
+      driver_id = driver.id
 
-    # Act-Assert
-    expect {
-      post tasks_path, params: task_hash
-    }.must_change "Task.count", 1
+      expect {
+        post passenger_trips_path(passenger.id)
+      }.must_change "Trip.count", 1
 
-    new_task = Task.find_by(name: task_hash[:task][:name])
-    expect(new_task.description).must_equal task_hash[:task][:description]
-    expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
+      new_trip = Trip.last
+      Date.parse(new_trip.date)
+      expect(new_trip.rating).must_be_nil
+      expect(new_trip.cost >= 1000).must_equal true
+      expect(new_trip.cost <= 3000).must_equal true
+      expect(new_trip.passenger).must_equal passenger
+      expect(new_trip.driver).must_equal driver
 
-    must_respond_with :redirect
-    must_redirect_to task_path(new_task.id)
+      expect(new_trip.driver.available).must_equal false
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(passenger.id)
     end
 
-    it "won't create an invalid trip if no drivers available and will redirect with a bad request" do
+    it "won't create an invalid trip if no drivers available and will redirect" do
+      driver.available = false
+      driver.save
 
+      # Act-Assert
+      expect {
+        post passenger_trips_path(passenger.id)
+      }.wont_change "Trip.count"
+
+      must_respond_with :temporary_redirect
+      must_redirect_to passenger_path(passenger.id)
     end
-
-
   end
 
   describe "edit" do
     # Your tests go here
-    # refactor!
-    it "can get the edit page for an existing task" do
-      # skip
-      get edit_task_path(task.id)
+    it "can get the edit page for an existing trip" do
+      get edit_trip_path(trip.id)
 
-      # Assert
       must_respond_with :success
     end
 
-    it "will respond with redirect when attempting to edit a nonexistant task" do
-      #skip
-      # Act
-      get task_path(-1)
+    it "will respond with redirect when attempting to edit a nonexistent trip" do
+      get edit_trip_path(-1)
 
-      # Assert
       must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip" do
+      trip_id = trip.id
+
+      edited_trip_hash = {
+          trip: {
+              rating: 1
+          }
+      }
+
+      expect {
+        patch trip_path(trip_id), params: edited_trip_hash
+      }.wont_change "Trip.count"
+
+      edited_trip = Trip.find_by(id: trip_id)
+      expect(edited_trip.rating).must_equal edited_trip_hash[:trip][:rating]
+
+      must_respond_with :redirect
+      must_redirect_to trip_path(trip_id)
+    end
+
+    it "won't update an existing trip if given invalid rating" do
+      trip_id = trip.id
+
+      edited_trip_hash = {
+          trip: {
+              rating: 10
+          }
+      }
+
+      expect {
+        patch trip_path(trip_id), params: edited_trip_hash
+      }.wont_change "Trip.count"
+
+      must_respond_with :bad_request
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      patch trip_path(-1)
+
+      must_respond_with :not_found
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can delete an existing trip with a rating" do
+      trip.rating = 5
+      trip.save
+
+      expect {
+        delete trip_path(trip.id)
+      }.must_change "Trip.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(trip.passenger)
+    end
+
+    it "won't delete an existing trip without a rating" do
+      trip_id = trip.id
+
+      expect {
+        delete trip_path(trip_id)
+      }.wont_change "Trip.count"
+
+      must_respond_with :bad_request
+    end
+
+    it "will respond with not_found for invalid ids" do
+      expect {
+        delete trip_path(-1)
+      }.wont_change "Trip.count"
+
+      must_respond_with :not_found
+    end
   end
 end

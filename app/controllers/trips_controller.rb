@@ -24,6 +24,11 @@ class TripsController < ApplicationController
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = Driver.find_by(available: true)
 
+    if driver.nil?
+      redirect_to passenger_path(passenger.id), status: :temporary_redirect
+      return
+    end
+
     @trip = passenger.trips.new(
         date: Date.today.to_s,
         rating: nil,
@@ -36,8 +41,10 @@ class TripsController < ApplicationController
       @trip.driver.available = false
       @trip.driver.save
       redirect_to passenger_path(passenger.id)
+      return
     else
-      redirect_to passenger_path(passenger.id), status: :bad_request
+      redirect_to passenger_path(passenger.id), status: :temporary_redirect
+      return
     end
   end
 
@@ -56,18 +63,18 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    # Try to DRY this block
-    elsif params[:trip][:rating].nil? && @trip.update(rating: params[:trip][:rating])
-      redirect_to trip_path(@trip.id)
-      return
-    elsif @trip.update(rating: params[:trip][:rating])
-      @trip.driver.update(available: true)
-      redirect_to trip_path(@trip.id)
-      return
-    else
+    end
+
+    if ! @trip.update(rating: params[:trip][:rating])
       render :edit, status: :bad_request
       return
     end
+
+    if params[:trip][:rating]
+      @trip.driver.update(available: true)
+    end
+
+    redirect_to trip_path(@trip.id)
   end
 
   def destroy
@@ -82,6 +89,7 @@ class TripsController < ApplicationController
       return
     else
       render :edit, status: :bad_request
+      return
     end
   end
 
