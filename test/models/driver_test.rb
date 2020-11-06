@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "123", available: "true")
   }
 
   let (:new_passenger) {
@@ -97,12 +97,15 @@ describe Driver do
       expect(new_driver.total_earnings).must_be_within_delta (12.34 + 63.34 - 2 * 1.65) * 0.8, 0.01
     end
 
-    it "can go online" do
-      # Your code here
-    end
+    it "can go online and offline" do
+      new_driver.save
+      new_driver.toggle_availability
+      new_driver.reload
+      expect(new_driver.available).must_equal 'false'
 
-    it "can go offline" do
-      # Your code here
+      new_driver.toggle_availability
+      new_driver.reload
+      expect(new_driver.available).must_equal 'true'
     end
   end
 end

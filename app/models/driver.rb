@@ -6,21 +6,26 @@ class Driver < ApplicationRecord
   DRIVER_PCT_TAKE_HOME = 0.8
 
   def total_earnings
-    total_earnings = self.trips.sum(:cost)
-    total_earnings_net_fees = total_earnings - PER_TRIP_FEE * self.trips.count
+    total_earnings = trips.sum(:cost)
+    total_earnings_net_fees = total_earnings - PER_TRIP_FEE * trips.count
     net_earnings = total_earnings_net_fees * DRIVER_PCT_TAKE_HOME
 
     return net_earnings
   end
 
   def average_rating
-    avg_rating = self.trips.where.not(rating: nil).sum(:rating)
-    total_trips = self.trips.count(:rating)
+    avg_rating = trips.where.not(rating: nil).sum(:rating)
+    total_trips = trips.count(:rating)
 
     return nil if total_trips.zero? || avg_rating.zero?
 
     avg_rating /= total_trips
 
     return avg_rating
+  end
+
+  def toggle_availability
+    self.available = (available == 'true' ? 'false' : 'true')
+    self.save
   end
 end
