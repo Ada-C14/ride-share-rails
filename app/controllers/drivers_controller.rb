@@ -82,6 +82,22 @@ class DriversController < ApplicationController
     end
   end
 
+  def toggle_availability
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      not_found_error_notice
+      return
+    elsif @driver.available == 'true'
+      @driver.update(available: 'false')
+    else
+      @driver.update(available "true")
+    end
+
+    render :show
+    return
+  end
+
   private
 
   def driver_params
