@@ -38,7 +38,7 @@
           <th>Rating</th>
           <th>Note</th>
       </tr>
-      <% @passenger.trips.each do |trip| %>
+      <% @passenger.trips.order(id: :asc).each do |trip| %>
         <tr>
           <th><%= link_to trip.id, trip_path(trip.id) %></th>
           <th><%= trip.date %></th>

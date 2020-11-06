@@ -6,7 +6,7 @@
     <th>Driver Name</th>
     <th></th>
   </tr>
-  <% @drivers.each do |driver|  %>
+  <% @drivers.order(id: :asc).each do |driver|  %>
     <% if driver.isactive %>
       <tr>
         <th><%= driver.id %></th>

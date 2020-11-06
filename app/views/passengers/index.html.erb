@@ -6,7 +6,7 @@
     <th>Passenger Name</th>
     <th></th>
   </tr>
-  <% @passengers.each do |passenger| %>
+  <% @passengers.order(id: :asc).each do |passenger| %>
     <% if passenger.isactive %>
       <tr>
         <th><%= passenger.id %></th>

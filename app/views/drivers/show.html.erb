@@ -47,7 +47,7 @@
             <th>Cost</th>
             <th>Rating</th>
         </tr>
-        <% @driver.trips.each do |trip| %>
+        <% @driver.trips.order(id: :asc).each do |trip| %>
             <tr>
                 <th><%= link_to trip.id, trip_path(trip.id) %></th>
                 <th><%= trip.date %></th>
