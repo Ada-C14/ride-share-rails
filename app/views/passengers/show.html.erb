@@ -19,7 +19,7 @@
       <tbody>
         <% @passenger.trips.each do |trip| %>
         <tr>
-          <th scope="row"><%= trip.id %></th>
+          <th scope="row"><%= link_to trip.id, trip_path(trip.id) %></th>
           <td>
             <%= trip.date %>
           </td>
