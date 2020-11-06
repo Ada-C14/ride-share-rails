@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Driver < ApplicationRecord
-  after_initialize :set_availability
+  # after_initialize :set_availability
   has_many :trips
   def average_rating
     ratings = trips.map {|trip| trip.rating}
@@ -35,10 +35,10 @@ class Driver < ApplicationRecord
     return total = total.round(2)
   end
 
-  def set_availability
-    self.available ||= "available"
-
-  end
+  # def set_availability
+  #   self.available ||= "available"
+  #
+  # end
 
 
 end

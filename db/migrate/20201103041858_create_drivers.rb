@@ -3,7 +3,7 @@ class CreateDrivers < ActiveRecord::Migration[6.0]
     create_table :drivers do |t|
       t.string :name
       t.string :vin
-      t.string :available
+      t.boolean :available, default: true
 
       t.timestamps
     end

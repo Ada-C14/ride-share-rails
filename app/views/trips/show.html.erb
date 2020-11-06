@@ -1,1 +1,21 @@
 <!--what you see here is what happens when you click trip id in passenger page-->
+<tr>
+  <th>Trip ID</th>
+  <th>Driver</th>
+  <th>Passenger</th>
+  <th>Trip Cost</th>
+  <th>Trip Rating</th>
+</tr>
+</thead>
+<tbody  >
+<% @trips.each do |trip|%>
+  <tr>
+    <td><%= trip.id %></td>
+    <td><%= trip.driver.name %></td>
+    <td><%= trip.passenger.name %></td>
+    <td>$<%= trip.cost %></td>
+    <td><%= trip.rating %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
