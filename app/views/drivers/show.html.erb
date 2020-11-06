@@ -8,11 +8,12 @@
     <%= "Not Available" %>
       <% end %>
       </p>
-  <p><strong>Total Earnings:</strong> $<%= @driver.total_earnings %></p>
+  <p><strong>Total Earnings:</strong> $<%= '%.2f' % @driver.total_earnings %></p>
   <p><strong>Average Rating:</strong> <%= @driver.avg_rating %></p>
-  <ol>Trips:
+  <strong>Driver's Trips:</strong>
+  <ol>
     <% @driver.trips.each do |trip| %>
-    <li><%= link_to trip, trip_path(trip.id) %>>Passenger: <%= trip.passenger.name %>, Date: <%= trip.date %>, rating: <%= trip.rating %></li>
+    <li><%= link_to "Trip:", trip_path(trip.id) %> Passenger: <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>, Date: <%= trip.date %>, rating: <%= trip.rating %>, cost: $<%= trip.money %></li>
       <%end %>
   </ol>
 
@@ -22,6 +23,6 @@
 <!--  <p class="buttons"><%#= link_to "Edit Driver", edit_driver_path(@driver.id) %></p>-->
 <!--  <p class="buttons" id="delete_driver"><%#= link_to "Delete Driver", delete_driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %></p>-->
 
-  <p class="buttons"><%= link_to "Back to Driver's Index", drivers_path %></p>
+  <p class="buttons"><%= link_to "Back to Drivers List", drivers_path %></p>
   <p class="buttons"><%= link_to "Edit Driver Info", edit_driver_path(@driver.id) %></p>
   <p class="buttons" id="delete"><%= link_to "Delete Driver Info", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
