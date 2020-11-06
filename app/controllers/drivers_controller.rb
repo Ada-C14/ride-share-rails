@@ -17,6 +17,7 @@ class DriversController < ApplicationController
 
   def new
     @driver = Driver.new
+
   end
 
   def create
@@ -31,8 +32,59 @@ class DriversController < ApplicationController
     end
   end
 
-  private
-  def driver_params
-    return params.require(:driver).permit(:name, :vin, :available)
+  def edit
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      head :not_found
+      return
+    end
   end
+
+  def update
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      head :not_found
+      return
+    elsif @driver.update(driver_params)
+      redirect_to drivers_path
+      return
+      render :edit
+      return
+    end
+  end
+
+    def destroy
+      @driver = Driver.find_by(id: params[:id])
+
+      if @driver.nil?
+        head :not_found
+        return
+      else
+        @driver.destroy
+        redirect_to drivers_path
+        return
+      end
+    end
+
+  def available
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      head :not_found
+      return
+    else
+      availability = "false"
+      @driver.update(available: availability)
+      redirect_to driver_path
+      return
+    end
+  end
+
+    private
+    def driver_params
+      return params.require(:driver).permit(:name, :vin, :available)
+    end
+
 end
+

@@ -1,17 +1,22 @@
 # frozen_string_literal: true
 class Driver < ApplicationRecord
+  after_initialize :set_availability
   has_many :trips
-  def average_rating(driver)
-    ratings = driver.trips.map {|trip| trip.rating}
+  def average_rating
+    ratings = trips.map {|trip| trip.rating}
+    if ratings = 0
+      return "NIL"
+    end
     total_ratings = 0
-      ratings.each do |rating|
-        total_ratings += rating
-      end
+    ratings.each do |rating|
+      total_ratings += rating
+    end
     average = total_ratings.to_f / ratings.length
     return average.round(1)
   end
-  def total_money(driver)
-    costs = driver.trips.map {|trip| trip.cost}
+  
+  def total_money
+    costs = trips.map {|trip| trip.cost}
     total = 0
     costs.each do |cost|
       total += cost
@@ -20,31 +25,20 @@ class Driver < ApplicationRecord
     return total.round(2)
   end
 
-  def after_fee(driver)
-    total = total_money(driver)
+  def after_fee
+    total = total_money
     fee = 1.65
     total = (total - fee) * 0.8
+    if total < 0
+      return 0
+    end
     return total
+  end
+
+  def set_availability
+    self.available ||= "available"
 
   end
 
-  def list_all_trips(driver)
-    # trip_ids = driver.trips.map {|trip| trip.id}
-    # trip_passengers = driver.trips.map {|trip| trip.passenger_id}
-    # trip_dates = driver.trips.map {|trip| trip.date}
-    # trip_rating = driver.trips.map {|trip| trip.rating}
-    # trip_cost = driver.trips.map {|trip| trip.cost}
-    trips = driver.trips.map {|trip| trip}
-    trips_hash = Hash[trips.map {|key, value| [key, value]}]
-    # trips_hash = trips_hash.delete(:created_at)
-    return trips_hash
-  end
 
-  # def better_hash(driver)
-  #   keys = [:created_at, :updated_at]
-  #   trips_hash = list_all_trips(driver)
-  #   new_hash = trips_hash.delete(:created_at)
-  #   # new_hash = trips_hash.delete(:updated_at)
-  #   return new_hash
-  # end
 end

@@ -2,7 +2,7 @@
 <head>
   <style>
       table, th, td {
-          border: 3px solid purple;
+          border: 3px solid #800080;
           padding: 10px;
           margin: 20px;
       }
@@ -18,11 +18,14 @@
   <% availability = "no" %>
   <% end %>
 <h4>Availability: <%= availability %></h4>
+  <%= link_to "Is this Driver available?", available_driver_path(@driver.id), method: :patch %>
+  <%= link_to "Delete Driver?", destroy_driver_path, method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= link_to "Edit Driver", edit_driver_path %>
 
 <h4> <%= @driver[:name] %>'s average rating is
-<%= @driver.average_rating(@driver) %>. </h4>
+<%= @driver.average_rating %>. </h4>
 <h4>
-    Their trips totaled to $<%= @driver.total_money(@driver)%> and they made $<%= @driver.after_fee(@driver) %>.
+    Their trips totaled to $<%= @driver.total_money%> and they made $<%= @driver.after_fee %>.
 </h4>
   <table>
     <thead>
@@ -36,18 +39,10 @@
     <% @driver.trips.each do |trip|%>
       <tr>
         <td><%= trip[:id] %></td>
-        <td>$<%= trip[:cost.] %></td>
+        <td>$<%= trip[:cost] %></td>
         <td><%= trip[:rating] %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
   </body>
-<!--<tr>-->
-<%#trips = @driver.list_all_trips(@driver) %>
-  <%#trips.each do |trip| %>
-
-<!--</tr>-->
-
-<!--<p><%#= @driver.list_all_trips(@driver) %></p>-->
-<!--</html>-->
