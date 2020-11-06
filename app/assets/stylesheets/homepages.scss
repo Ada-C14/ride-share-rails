@@ -12,10 +12,12 @@ body {
 .navbar {
   list-style: none;
   width: 100%;
-  text-align: left;
+  text-align: right;
   display: flex;
   margin-right: 2rem;
-  float: left;
+  float: right;
+  position: fixed;
+  top: 0;
 
 }
 

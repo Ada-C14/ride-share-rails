@@ -11,19 +11,12 @@
   <nav>
 
     <ul>
-      <li><h1><%= link_to "Ride Share", root_path %></h1></li>
       <div class="navbar">
+        <li><h1><%= link_to "Ride Share", root_path %></h1></li>
         <li><%= link_to "Drivers", drivers_path %></li>
-        <ul>
-          <li><%= link_to "Add New Driver", new_driver_path %></li>
-        </ul>
-      </div>
-      <div class="navbar">
+        <li><%= link_to "Add New Driver", new_driver_path %></li>
         <li><%= link_to "Passengers", passengers_path %></li>
-        <ul>
-          <li><%= link_to "Add New Passenger", new_passenger_path %></li>
-        </ul>
-      </div>
+        <li><%= link_to "Add New Passenger", new_passenger_path %></li>
     </ul>
 
   </nav>
