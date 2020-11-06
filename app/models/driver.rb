@@ -15,7 +15,11 @@ class Driver < ApplicationRecord
 
   def average_rating
     total_trips = trips.length
-    return self.trips.sum { |trip| trip.rating.to_f }/total_trips
+    if total_trips > 0
+      return self.trips.sum { |trip| trip.rating.to_f }/total_trips
+    else
+      return 0
+    end
   end
 
   def change_status
