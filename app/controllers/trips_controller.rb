@@ -7,6 +7,15 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+  def show
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+    if @trip.nil?
+      redirect_to trips_path
+      return
+    end
+  end
+
   def create
     @trip = Trip.new(trip_params)
     if @trip.save # save returns true if the database insert succeeds

@@ -1,11 +1,19 @@
 class PassengersController < ApplicationController
-
   def index
     @passengers = Passenger.all
   end
 
   def new
     @passenger = Passenger.new
+  end
+
+  def show
+    passenger_id = params[:id]
+    @passenger = Passenger.find_by(id: passenger_id)
+    if @passenger.nil?
+      redirect_to passengers_path
+      return
+    end
   end
 
   def create
@@ -37,11 +45,10 @@ class PassengersController < ApplicationController
       redirect_to passenger_path
       return
     elsif @passenger.update(passenger_params)
-      redirect_to passengers_path # go to the index so we can see the book in the list
+      redirect_to passengers_path
       return
     else
-      # save failed :(
-      render :edit # show the new book form view again
+      render :edit
       return
     end
   end
@@ -57,7 +64,7 @@ class PassengersController < ApplicationController
   private
 
   def passenger_params
-    return params.require(:passenger).permit(:name, :phone)
+    return params.require(:passenger).permit(:name, :phone_num)
   end
 
 end

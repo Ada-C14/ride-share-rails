@@ -1,10 +1,11 @@
 <div>
 
-<%= form_with model: @driver do |f| %>
+  <%= form_with model: @driver do |f| %>
 
+<!--    Attempt for errors?-->
   <%# if @driver.errors.any? %>
 <!--    <ul>-->
-      <%# @driver.errors.each do |attributef, message| %>
+      <%# @driver.errors.each do |attribute, message| %>
 <!--        <li>-->
 <!--          <p><%#= attribute %> <%#= message %></p>-->
 <!--        </li>-->
@@ -12,26 +13,27 @@
 <!--    </ul>-->
   <%# end %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :vin %>
-    <%= f.text_field :vin %>
-  </div>
-  <br>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <br>
 
-  <% if @driver.persisted? %>
-  <div>
-  <%= f.label :available %>
-  <%= f.check_box :available %>
-  </div>
+    <div>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+    </div>
+    <br>
+
+    <div>
+    <% if @driver.persisted? %>
+    <%= f.label :available %>
+    <%= f.check_box :available %>
+    <% end %>
+    </div>
+    <br>
+
+    <%= f.submit action_name, class: "button" %>
+
   <% end %>
-
-  <br>
-  <%= f.submit action_name, class: "button" %>
-
-<% end %>
 </div>

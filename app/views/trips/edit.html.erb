@@ -1,0 +1,39 @@
+<h1>Edit Trip</h1>
+
+<div>
+  <%= form_with model: @trip, class: 'create-trip' do |f| %>
+  <div>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+  </div>
+  <br>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+  <br>
+
+  <div>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+  </div>
+  <br>
+
+  <div>
+    <%= f.label :driver_id %>
+    <%= f.text_field :driver_id %>
+  </div>
+  <br>
+
+  <div>
+    <%= f.label :passenger_id %>
+    <%= f.text_field :passenger_id %>
+  </div>
+  <br>
+
+    <%= f.submit action_name, class: "button" %>
+
+  <% end %>
+</div>
+
