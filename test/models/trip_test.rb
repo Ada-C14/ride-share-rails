@@ -99,5 +99,15 @@ describe Trip do
         expect(new_trip.driver.available).must_equal false
       end
     end
+    describe "request trip" do
+      it "returns a new trip object based on driver & passenger paramters" do
+        new_trip = Trip.request_trip(@driver, @passenger)
+        expect(new_trip).must_be_instance_of Trip
+        expect(new_trip.driver_id).must_equal @driver.id
+        expect(new_trip.passenger_id).must_equal @passenger.id
+        expect(new_trip.rating).must_be_nil
+        expect(new_trip.cost).wont_be_nil
+      end
+    end
   end
 end
