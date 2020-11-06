@@ -24,7 +24,7 @@
       <% if @trip.rating.nil? %>
         <!--  <p>Rating: <%#= link_to "rate the trip", edit_trip_path(@trip) %></p>-->
         <%= form_with model: @trip do |f| %>
-          <%= f.label :rating %>
+          <%#= f.label :rating %>
           <%= f.select :rating, [1,2,3,4,5]%>
 
           <%= f.submit "Rate to Complete Trip" %>
