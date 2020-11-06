@@ -3,18 +3,25 @@ class TripsController < ApplicationController
   def index
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
-      @trips= passenger.trips
+      @trips = passenger.trips
     else
       @trips = Trip.all
     end
   end
 
+  def show
+    @trip = find_trip
+
+    redirect_to passengers_path and return if @trip.nil?
+  end
+
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
-    driver = find_driver
+
     #what if no drivers available?
-    driver.toggle_available
-    @trip = passenger.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
+    # redirect to page that says "no driver"?
+
+    @trip = passenger.request_trip
 
     if @trip.save
       #make a new view
@@ -65,7 +72,7 @@ class TripsController < ApplicationController
     return Trip.find_by(id: params[:id].to_i)
   end
 
-  def find_driver
-    return Driver.find_by(available: true)
-  end
+  # def find_driver
+  #   return Driver.find_by(available: true)
+  # end
 end

@@ -4,7 +4,7 @@ describe TripsController do
 
 
   let(:trip){
-    Trip.create(date: Date.current)
+    Trip.create(date: Date.current, passenger: Passenger.new(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
   }
 
   let(:passenger){
