@@ -11,7 +11,14 @@
 
   <body>
   <header>
-<!--  style should be here-->
+    <nav>
+      <div class = "nav-link"><%= link_to 'Home', root_path%></div>
+      <div class = "nav-link"><%= link_to 'Passengers', passengers_path%></div>
+      <div class = "nav-link"><%= link_to 'New Passenger', new_passenger_path%></div>
+      <div class = "nav-link"><%= link_to 'Drivers', drivers_path%></div>
+      <div class = "nav-link"><%= link_to 'New Driver', new_driver_path%></div>
+      <div class = "nav-link"><%= link_to 'Trips', trips_path%></div>
+    </nav>
   </header>
    <%= yield %>
   </body>
