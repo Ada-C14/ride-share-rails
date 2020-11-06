@@ -36,13 +36,25 @@ class DriversController < ApplicationController
   end
 
   def update
-    @driver = Driver.find_by id: params[:id]
-    if @driver.nil?
-      head :not_found
-      return
-    elsif @driver.update(driver_params)
-      redirect_to driver_path(@driver.id)
-      return
+    @trip = Trip.new(trip_params)
+    available_driver = Driver.find_by_id(@trip.driver_id)
+    if @trip.save
+      # available_driver.toggle!(:available)
+      @trip.driver.update({available: true})
+      #available_driver.available = false
+      # available_driver.save!
+      redirect_to trip_path(@trip.id)
+    # @driver = Driver.find_by id: params[:id]
+    # if @driver.nil?
+    #   head :not_found
+    #   return
+    # elsif @driver.update(driver_params)
+    #   redirect_to driver_path(@driver.id)
+    #   if !(@trip.rating.nil?)
+    #     @trip.driver.update({available: true})
+    #     # @trip.driver.available == true
+    #   end
+    #   return
     else
       render :edit
       return

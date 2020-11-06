@@ -4,7 +4,7 @@ class Driver < ApplicationRecord
   has_many :trips
   validates :name, presence: true
   validates :vin, presence: true
-  validates :available, presence: true
+  # validates :available, presence: true
 
   def average_rating
     sum_of_ratings = 0.00

@@ -51,8 +51,6 @@ class TripsController < ApplicationController
       redirect_to trip_path
     else
       render :edit
-      @trip.save!
-
       return
     end
   end

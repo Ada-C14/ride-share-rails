@@ -104,12 +104,24 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      driver_params = {
+          driver: {
+              name: "invalid driver",
+              vin: nil,
+              available: false
+          },
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: driver_params
+      }.must_differ "Driver.count", 0
 
       # Assert
       # Check that the controller redirects
+      # must_redirect_to
+      must_respond_with :redirect
     end
   end
 

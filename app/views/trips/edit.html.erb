@@ -9,9 +9,9 @@
 <%= form_with model: @trip, class: 'create-trip' do |f|%>
   <p>Please provide the following information to edit trip information in our database:</p>
   <%= f.label :driver_id %>
-  <%= f.select :driver_id, Driver.where(:available => true).map { |driver| driver.name} %>
+  <%= f.select :driver_id, Driver.where(:available => true).map { |driver| [driver.name, driver.id]} %>
   <%= f.label :passenger_id %>
-  <%= f.select :passenger_id, Passenger.all.map{ |passenger| passenger.name } %>
+  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
   <%= f.label :date %>
   <%= f.date_field :date, :value => Date.today %>
   <%= f.label :rating %>
