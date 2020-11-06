@@ -20,7 +20,7 @@ class DriversController < ApplicationController
     @driver = Driver.new(
         name: params[:driver][:name],
         vin: params[:driver][:vin],
-        available: params[:driver][:available]
+        available: true
     )
     if @driver.save
       redirect_to driver_path(@driver)
