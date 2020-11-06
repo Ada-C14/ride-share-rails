@@ -17,10 +17,12 @@
 
 @import "**/*";
 
-#nav {
-    display: grid;
-    grid-gap: 20px;
-    padding: 0;
-    list-style: none;
-    grid-template-columns: repeat(4, 1fr);
+.navbar-default {
+
+background-color: teal;
+background-repeat: no-repeat;
+
 }
+
+
+
