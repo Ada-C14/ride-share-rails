@@ -30,8 +30,8 @@ describe Trip do
       trip
 
       # Assert
-      expect(Passenger.find_by(id: trip.passenger_id).must_be_instance_of Passenger
-      expect(Driver.find_by(id: trip.driver_id).must_be_instance_of Driver
+      expect(Passenger.find_by(id: trip.passenger_id)).must_be_instance_of Passenger
+      expect(Driver.find_by(id: trip.driver_id)).must_be_instance_of Driver
     end
   end
 
