@@ -3,8 +3,18 @@
 <h1> TRIP ID: <%= @trip.id %> </h1>
 <ul>
   <li>
-    PASSENGER: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %> </br>
-    DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
+    <% if  Passenger.find_by(id: @trip.passenger_id) == nil %>
+      PASSENGER: DELETED PASSENGER </br>
+    <% else %>
+      PASSENGER: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %> </br>
+    <% end %>
+
+    <% if Driver.find_by(id: @trip.driver_id) == nil %>
+      DRIVER: DELETED DRIVER </br>
+    <% else %>
+      DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
+    <% end %>
+
     DATE: <%= @trip.date %> </br>
     RATING: <%= @trip.rating %> </br>
   </li>

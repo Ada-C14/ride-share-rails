@@ -4,17 +4,17 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def total_charged
-    total = 0
+    dollars = 0
 
     self.trips.each do |trip|
-      total += trip.cost
+
+      dollars += trip.cost
     end
-    return total
+    dollars = (dollars.to_f / 100)
+    return " $#{dollars.to_s}"
+
   end
 
-  def integer_to_string
-    # a method to
-  end
 end
 
 

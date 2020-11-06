@@ -42,7 +42,7 @@
     <tbody>
     <% @driver.trips.each do |trip| %>
       <tr>
-        <td><%= link_to trip.id, driver_trip_path(trip)%></td>
+        <td><%= link_to trip.id, trip_path(trip)%></td>
         <td><%= trip.date %></td>
         <td><%= trip.passenger_id %></td>
         <td><%= link_to trip.passenger.name, passenger_path(trip.passenger)%></td>
