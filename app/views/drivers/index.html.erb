@@ -2,7 +2,8 @@
 
 <table>
   <tr>
-    <th>Driver ID</th>
+    <th>ID</th>
+    <th>Name</th>
     <th>VIN</th>
     <th>Status</th>
     <th class="mid_no_border"></th>
@@ -11,6 +12,7 @@
   <% @drivers.each do |driver| %>
     <tr>
       <td><%= link_to "#{driver.id}", driver_path(driver)%> </td>
+      <td><%= link_to "#{driver.name}", driver_path(driver) %> </td>
       <td><%= "#{driver.vin}" %> </td>
       <td><%= driver.available ? "Available" : "Unavailable" %> </td>
       <td class="mid_no_border"><%= button_to "Edit", edit_driver_path(driver.id), method: :get%></td>
