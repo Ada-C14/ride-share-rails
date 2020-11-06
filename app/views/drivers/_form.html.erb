@@ -16,6 +16,13 @@
   
     <%= f.label :vin %>
     <%= f.text_field :vin %>
+
+    <%= f.label :available %>
+    <% if action_name == "Edit" %>
+      <%= f.select :available, [["Yes", true],["No", false]], value: @driver.available %>
+    <% else %>
+      <%= f.select :available, [["Yes", true]], value: @driver.available %>
+    <% end %>  
   
     <%= f.submit "#{ action_name } Driver" %>
 <% end %>
