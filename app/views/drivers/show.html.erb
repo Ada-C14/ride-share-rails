@@ -3,7 +3,7 @@
 <h1>All Drivers</h1>
 
 <div>
-  <h2>driver information</h2>
+  <h2>Driver Information</h2>
   <h3><%= @driver.name %></h3>
   <h3><%= @driver.vin %></h3>
   <h3><%= @driver.available ? "Available" : "Unavailable" %></h3>
@@ -15,8 +15,8 @@
     <thead>
     <tr>
       <th scope="col">Trip ID</th>
-      <th scope="col">passenger</th>
-      <th scope="col">driver</th>
+      <th scope="col">Passenger</th>
+      <th scope="col">Driver</th>
       <th scope="col">Cost</th>
       <th scope="col">Rating</th>
     </tr>
@@ -26,12 +26,12 @@
       <tr>
         <td scope="row"><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
         <% if trip.passenger.nil? %>
-          <td>passenger deleted</td>
+          <td>Passenger Deleted</td>
         <% else %>
           <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
         <%end %>
         <% if trip.driver.nil? %>
-          <td>driver deleted</td>
+          <td>Driver Deleted</td>
         <% else %>
           <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
         <%end %>
@@ -41,6 +41,6 @@
     <% end %>
     </tbody>
   </table>
-  <p>Average Rating:<%= @driver.average_rating %></p>
-  <p>Total Earning:<%=@driver.total_revenue %></p>
+  <p>Average Rating: <%= @driver.average_rating %></p>
+  <p>Total Earning: <%=@driver.total_revenue %></p>
 </div>
