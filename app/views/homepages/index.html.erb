@@ -1,7 +1,10 @@
-<% if flash[:notice] %>
-  <h1><div class="notice"><%= flash[:notice] %></div></h1>
-<% end %>
+
 <h1>THE ULTIMATE RIDESHARE V3.0</h1>
+
+<% if flash[:notice] %>
+  <h2><div class="notice"><%= flash[:notice] %></div></h2>
+<% end %>
+
 <ul class="main">
   <li><%= link_to "All Passengers", passengers_path(@passengers) %></li>
   <li><%= link_to "All Drivers", drivers_path(@passengers) %></li>

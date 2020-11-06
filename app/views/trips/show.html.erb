@@ -7,14 +7,17 @@
       <%= flash.alert = "Driver not found" %>
       <% link_to drivers_path(@trip.driver), flash.alert = "User not found."  %>
     <% end %>
+
     <% begin %>
       <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></li>
     <% rescue %>
       <%= flash.alert = "Passenger not found" %>
       <% link_to passengers_path(@trip.driver)%>
     <% end %>
+
     <li>Date: <%= @trip.date %></li>
     <li>Cost: $<%= @trip.cost/100 %></li>
+
     <% if @trip.rating %>
       <li>Rating: <%= @trip.rating %></li>
   <% else %>
@@ -22,7 +25,9 @@
         <li>Add a Rating to Complete the Trip:
          <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
          <%= f.submit "Update", class: 'trip-button' %></li>
-        <% @trip.driver.complete_trip if @trip.rating %>
+          <%  if @trip.rating%>
+            <% @trip.driver.complete_trip%>
+          <% end %>
       <% end %>
   <% end %>
 

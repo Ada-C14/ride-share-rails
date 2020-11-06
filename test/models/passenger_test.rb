@@ -61,7 +61,10 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      #We tried. Kept getting error.
+      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        post passenger_trips_path(new_passenger.id)
+
     end
 
     describe "complete trip" do
