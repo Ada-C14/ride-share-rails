@@ -1,9 +1,37 @@
 require "test_helper"
 
 describe TripsController do
-  before do
+  let (:passenger) {
     Passenger.create(name: "Anna Laura", phone_num: "999-999-0000")
+  }
+
+  let (:driver) {
     Driver.create(name: "John Meyer", vin: "WEE7868967777", available: "true")
+  }
+
+  let (:trip) {
+    Trip.create(passenger_id: passenger.id)
+  }
+
+  describe "index" do
+    it "responds with success when there are trips saved" do
+      # Arrange
+      trip
+
+      # Act
+      get trips_path
+
+      # Assert
+      must_respond_with :success
+    end
+
+    it "responds with success when there are no trips saved" do
+      # Act
+      get trips_path
+
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "show" do
@@ -43,7 +71,7 @@ describe TripsController do
         post passenger_trips_path(57), params: trip_hash
       }.must_change "Trip.count", 1
 
-      new_trip =  Trip.find_by(driver_id: trip_hash[:trip][:driver_id])
+      new_trip = Trip.find_by(driver_id: trip_hash[:trip][:driver_id])
       expect(new_trip.date).must_equal Date.parse(trip_hash[:trip][:date])
       expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
       must_respond_with :redirect
