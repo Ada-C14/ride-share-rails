@@ -32,6 +32,10 @@ class TripsController < ApplicationController
       return
   end
 
+  def new 
+    @trip = Trip.new 
+  end
+
   def update
     if params[:id]
       @trip = Trip.find_by(id: params[:id])
