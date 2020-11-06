@@ -9,7 +9,7 @@
 <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
 <%= button_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete passenger #{@passenger.name}?" }%>
 <!--TODO Request Trip-->
-<%= button_to "Request Trip" %>
+<%= button_to "Request Trip", new_passenger_trip_path(@passenger.id), method: :get %>
 
 <br>
 
