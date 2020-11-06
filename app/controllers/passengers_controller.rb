@@ -1,7 +1,7 @@
 class PassengersController < ApplicationController
 
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.all.order(:id)
   end
 
   def show
@@ -56,7 +56,7 @@ class PassengersController < ApplicationController
     @passengers = Passenger.find_by(id:passenger_id)
 
     if @passengers.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     else
       @passengers.destroy

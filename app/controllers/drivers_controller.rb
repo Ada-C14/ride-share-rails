@@ -1,7 +1,7 @@
 class DriversController < ApplicationController
   def index
     #give us all drivers
-    @drivers = Driver.all
+    @drivers = Driver.all.order(:id)
   end
 
   def show
@@ -61,7 +61,7 @@ class DriversController < ApplicationController
     @drivers = Driver.find_by(id:driver_id)
 
     if @drivers.nil?
-      redirect_to drivers_path
+      head :not_found
       return
     else
       @drivers.destroy

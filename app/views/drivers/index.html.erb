@@ -6,7 +6,7 @@
 <div>
   <%@drivers.each do |driver|%>
     <ul>
-      <li><strong><%= link_to driver.name, driver_path(driver.id) %></strong> : <%= driver.vin%> | <%= link_to "Edit Driver", edit_driver_path(driver.id) %> | <%= link_to "Delete Driver", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
+      <li><strong><%= link_to driver.name, driver_path(driver.id) %></strong> : Driver ID: <%= driver.id%> | VIN: <%= driver.vin%> | <%= link_to "Edit Driver", edit_driver_path(driver.id) %> | <%= link_to "Delete Driver", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
     </ul>
   <%end%>
 </div>
