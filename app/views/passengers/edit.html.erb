@@ -1,0 +1,19 @@
+<%= form_with model: @drivers, class: "create-passengers" do |f| %>
+  <p>Please provide the following information to edit your driver in our database:</p>
+
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %> 
+  </div>
+
+
+<div>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+  </div>
+
+<div>
+  <%= f.submit "Edit Passenger", class: "edit-button" %>
+<% end %>
+
+</div>

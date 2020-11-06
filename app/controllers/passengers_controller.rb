@@ -13,4 +13,12 @@ class PassengersController < ApplicationController
     end
   end
 
+  def edit
+    if @passengers.nil?
+      render :edit 
+      return
+    end
+  end
+
+
 end

@@ -1,0 +1,23 @@
+<%= form_with model: @driver, class: "create-drivers" do |f| %>
+  <p>Please provide the following information to edit your driver in our database:</p>
+
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %> 
+  </div>
+
+
+<div>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+  </div>
+
+<div>
+  <%= f.label :available %>
+  <%= f.select :available, options_for_select([["Select One", ""], "Available", "Unavailable"]) %>
+</div>
+<div>
+  <%= f.submit "Edit Driver", class: "edit-button", method: :patch %>
+<% end %>
+
+</div>
