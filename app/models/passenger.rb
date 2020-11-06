@@ -13,7 +13,20 @@ class Passenger < ApplicationRecord
     return total
   end
 
-  # def request_ride
+  def request_trip
+    driver = Driver.select_available
+    passenger = self
+    cost = rand(1000..9999)
+    date = Date.today
+
+    params = {
+            driver_id: driver.id,
+            passenger_id: passenger.id,
+            cost: cost,
+            date: date
+    }
+
+    return params
   #   found_driver = Driver.find_by(available: true)
   #   cost = rand(1000..9999)
   #   if found_driver
@@ -24,7 +37,7 @@ class Passenger < ApplicationRecord
   #   end
   #
   #   #return @trip
-  # end
+  end
 
   def complete_trip(trip)
     driver = Driver.find_by(id: trip.driver_id)

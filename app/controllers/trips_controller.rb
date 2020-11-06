@@ -25,32 +25,41 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.select_available
-    passenger = Passenger.find_by(id: params[:passenger_id])
-    cost = rand(1000..9999)
-    date = Date.today
+    # driver = Driver.select_available
+    # passenger = Passenger.find_by(id: params[:passenger_id])
+    # cost = rand(1000..9999)
+    # date = Date.today
 
-    if driver.nil?
-      redirect_to drivers_path and return # ideally redirect with flash message explaining no drivers available
-    elsif passenger
-      @trip = Trip.new(
-          driver_id: driver.id,
-          passenger_id: passenger.id,
-          date: date,
-          cost: cost
-      )
-    else
-      redirect_to trips_path
-      return
-    end
+    # if driver.nil?
+    #   redirect_to drivers_path and return # ideally redirect with flash message explaining no drivers available
+    # elsif passenger
+    #   @trip = Trip.new(
+    #       driver_id: driver.id,
+    #       passenger_id: passenger.id,
+    #       date: date,
+    #       cost: cost
+    #   )
+    # else
+    #   redirect_to trips_path
+    #   return
+    # end
+    # if @trip && @trip.save
+    #   redirect_to trip_path(@trip) and return
+    # else
+    #   driver.toggle_available unless driver.nil?
+    #   redirect_to trips_path
+    #   return
+    # end
+    #
+    @trip = Trip.new(trip_params)
 
-    if @trip && @trip.save
+    if @trip.save
       redirect_to trip_path(@trip) and return
     else
-      driver.toggle_available unless driver.nil?
-      redirect_to trips_path
-      return
+      render :new and return
     end
+
+
   end
 
   def edit
@@ -85,6 +94,19 @@ class TripsController < ApplicationController
     else
       redirect_to trips_path and return
     end
+  end
+
+  def passenger_request_trip
+    @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.nil?
+      redirect_to passengers_path and return
+    end
+
+    trip_params = @passenger.request_trip
+    @trip = Trip.create(trip_params)
+    # @trip = Trip.new(trip_params)
+    # @trip.save
+    redirect_to passenger_trips_path(@passenger.id)
   end
 
   private

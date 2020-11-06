@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     resources :trips, only: [:index]
   end
 
-  post '/passenger/:passenger_id/trip', to: 'trips#create', as: 'passenger_create_trip'
+  # post '/passenger/:passenger_id/trip', to: 'trips#create', as: 'passenger_create_trip'
 
   resources :trips
 
   patch "/drivers/:id/toggle", to: "drivers#toggle_available", as: "toggle_available"
+  post "/passengers/:id/request_trip", to: "trips#passenger_request_trip", as: "request_trip"
 end
