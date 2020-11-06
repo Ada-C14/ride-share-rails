@@ -1,11 +1,9 @@
 <h1>PASSENGER SHOW PAGE</h1>
 <br />
 <p>PASSENGER: <%= @passenger.name + " - " + @passenger.phone_num %></p>
-<br />
 <%= button_to "Edit", edit_passenger_path(@passenger), method: :get %>
 <%= button_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?" } %>
-<%= button_to "#{@passenger.name}'s Trips", passenger_trips_path(@passenger), method: :get %>
-<%= button_to "#{@passenger.name} New Trip", passenger_create_trip_path(@passenger), method: :post %>
+<br />
 
 <h3>TRIPS:</h3>
 <p>TOTAL SPENT ON ALL TRIPS: $<%= @passenger.total_charged %></p>
@@ -25,23 +23,7 @@
   </ul>
 <% end %>
 
-<!--<table>-->
-<!--  <tr>-->
-<!--    <th>Trip ID</th>-->
-<!--    <th>Date</th>-->
-<!--    <th>Driver</th>-->
-<!--    <th>Cost</th>-->
-<!--    <th>Rating</th>-->
-<!--  </tr>-->
+<%= button_to "#{@passenger.name}'s Trips", passenger_trips_path(@passenger), method: :get %>
+<%= button_to "#{@passenger.name} New Trip", passenger_create_trip_path(@passenger), method: :post %>
 
-  <%# @passenger.trips.each do |trip| %>
-<!--    <tr>-->
-<!--      <td><%#= link_to trip.id, trip_path(trip.id) %></td>-->
-<!--      <td><%#= trip.date %></td>-->
-<!--      <td><%#= link_to trip.driver.name, driver_path(trip.driver.id) %></td>-->
-<!--      <td>$<%#= (trip.cost).to_f/100 %></td>-->
-<!--      <td><%#= trip.rating %></td>-->
-<!--    </tr>-->
 
-  <%# end %>
-<!--</table>-->
