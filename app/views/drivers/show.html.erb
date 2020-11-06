@@ -26,6 +26,7 @@
 </h4>
   <table>
     <thead>
+
     <tr>
       <th>Trip ID</th>
       <th>Trip Cost</th>
@@ -36,7 +37,7 @@
     <% @driver.trips.each do |trip|%>
       <tr>
         <td><%= trip[:id] %></td>
-        <td>$<%= trip[:cost.] %></td>
+        <td>$<%= trip[:cost] %></td>
         <td><%= trip[:rating] %></td>
       </tr>
     <% end %>

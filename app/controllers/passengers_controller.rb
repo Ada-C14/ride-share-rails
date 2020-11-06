@@ -6,6 +6,7 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
+
     if @passenger.nil?
       redirect_to passenger_path
       return
@@ -19,7 +20,7 @@ class PassengersController < ApplicationController
   end
 
   def create
-    @passenger = Passenger.new
+    @passenger = Passenger.new(passenger_params)
 
     if @passenger.save
       redirect_to passenger_path(@passenger)
@@ -32,6 +33,7 @@ class PassengersController < ApplicationController
 
   def edit
     @passenger = Passenger.find_by(id: params[:id])
+
     if @passenger.nil?
       head :not_found
       return
@@ -64,12 +66,10 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     end
-
   end
 
   private
-  def driver_params
+  def passenger_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
-
 end
