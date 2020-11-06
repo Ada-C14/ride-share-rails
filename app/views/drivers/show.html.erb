@@ -2,7 +2,7 @@
   <h1>Driver Details</h1>
 </header>
 <main>
-  <p>Passenger Name: <%= @driver.name %></p>
+  <p>Driver Name: <%= @driver.name %></p>
   <p>Vin: <%= @driver.vin %></p>
   <p>Availability Status: <%= @driver.availability_status ? "AVAILABLE" : "UNAVAILABLE" %></p>
   <p>Total Earnings: $<%= '%.2f' %@driver.total_earnings %></p>
@@ -29,7 +29,7 @@
           </td>
           <td>
             <% if trip.passenger %>
-              <%= trip.passenger.name %>
+              <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>
             <% else %>
               <p><em>Not Available</em></p>
             <% end %>
