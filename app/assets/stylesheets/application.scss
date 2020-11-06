@@ -56,9 +56,15 @@ h3 {
   color: grey;
 }
 
+ul li {
+  color: red;
+  background: lightpink;
+  list-style: none;
+  width: 250px;
+}
+
 .button_to {
   margin: 4px 4px 4px 0;
-  width: 300px;
 }
 
 a:hover {
