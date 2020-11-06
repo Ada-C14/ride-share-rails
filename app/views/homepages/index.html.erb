@@ -15,13 +15,13 @@
   # of Passengers: <%= @passenger_count %>
 </div>
 <div>
-  # of Trips: <% @trip_count %>
+  # of Trips: <%= @trip_count %>
 </div>
 <div>
-  Average Rating: <% @average_rating %>
+  Average Rating (completed trips): <%= @average_rating %>
 </div>
 <div>
-  Total Revenue:
+  Total Revenue: $<%= number_with_delimiter(((@total_revenue)/100.0).round(2), :delimiter => ',') %>
 </div>
 
 <p></p>
