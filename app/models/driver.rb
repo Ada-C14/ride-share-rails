@@ -1,12 +1,12 @@
 class Driver < ApplicationRecord
   has_many :trips
 
-
-  validates :name, presence: true
-
-  validates :vin, uniqueness: true, length: { is: 17 }
-
-  validates :available
+  #
+  # validates :name, presence: true
+  #
+  # validates :vin, uniqueness: true, length: { is: 17 }
+  #
+  # validates :available
 
   def first_available_driver
     first_available_driver = nil
