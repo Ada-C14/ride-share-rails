@@ -11,7 +11,16 @@
         <li>Revenue: <%= @driver.total_revenue %></li>
         <br>
         <li>Average Rating: <%= @driver.average_rating %></li>
+        <br>
+        <% if @driver.trips.length > 0 %>
+            <% @driver.trips.each do |trip|%>
+            <ul>
+                <li><%= link_to "Trip id #{trip.id}", driver_path(driver.id) %></li>            
+            </ul>
+        <% end %>
+        <li>All trips: <%= @driver.average_rating %></li>
     </ul>
+
     <div><%= link_to "Edit #{@driver.name}", edit_driver_path(@driver.id) %></div>
     <br>
     <div><%= link_to "Delete #{@driver.name}", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?"} %></div>
