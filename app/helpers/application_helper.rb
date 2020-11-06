@@ -3,7 +3,7 @@ module ApplicationHelper
     if cents.nil?
       return "N/A"
     else
-      dollars = number_to_currency(cents/100)
+      dollars = number_to_currency(cents * 0.01)
     end
 
     return dollars
