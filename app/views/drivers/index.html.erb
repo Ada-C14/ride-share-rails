@@ -4,7 +4,7 @@
   <title>RideShareRails</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 </head>
 <style>
@@ -46,18 +46,26 @@
         background: #ddd;
     }
 </style>
-<h1>All Drivers</h1>
-<div>
-  <%= link_to 'Add new driver', new_driver_path %>
+<h1 class="header">All Drivers</h1>
+<div class="navbar">
+  <%= link_to "Home", homepages_path %>
+  <%= link_to "Passengers", passengers_path%>
+  <%= link_to "Drivers", drivers_path%>
 </div>
-<ul>
+<div>
+  <%= link_to 'Add New Driver', new_driver_path %>
+</div>
+<ul id = "drivers">
   <% @drivers.each do |driver|  %>
     <li>
-      <%= link_to driver.name, driver_path(driver) %>
-      <%= link_to 'Edit', edit_driver_path(driver[:id]) %>
+      <%= link_to driver.name, driver_path(driver) %> |
+      <%= link_to 'Edit', edit_driver_path(driver[:id]) %> |
+      <%= link_to "Delete", destroy_driver_path(driver[:id]), method: :delete, data: {confirm: "Are you sure?"} %>
     </li>
   <% end %>
 </ul>
+<footer>
+    Sand and Rachael (c) 2020
 
 
 <%#= link_to "New", new_task_path %>

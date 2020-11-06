@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get '/drivers', to: 'drivers#index', as: 'drivers_path'
   get '/drivers/new', to: 'drivers#new', as: 'new_driver'
   post '/drivers', to: 'drivers#create'
-  get '/drivers/edit', to: 'drivers#edit', as: 'edit_driver'
+  get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
+  patch '/drivers/:id', to: 'drivers#update'
   get '/drivers/:id', to: 'drivers#show', as: "driver"
   delete '/drivers/:id', to: 'drivers#destroy', as: 'destroy_driver'
   patch 'drivers/:id/available', to: 'drivers#set_available', as: 'available_driver'
