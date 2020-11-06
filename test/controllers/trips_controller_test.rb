@@ -128,6 +128,7 @@ describe TripsController do
     @trip = Trip.create(
       rating: 1,
       cost: 20.46,
+      date: Time.now,
       driver_id: driver.id,
       passenger_id: passenger.id
     )
@@ -193,9 +194,11 @@ describe TripsController do
       # Check that the controller redirected the user
 
       found_trip.reload
-      expect(found_trip.name).must_equal new_trip[:trip][:name]
-      expect(found_trip.vin).must_equal new_trip[:trip][:vin]
-      expect(found_trip.availability_status).must_equal new_trip[:trip][:availability_status]
+      expect(found_trip.cost).must_equal new_trip[:trip][:cost]
+      expect(found_trip.rating).must_equal new_trip[:trip][:rating]
+      expect(found_trip.date).must_equal new_trip[:trip][:date].to_date
+      expect(found_trip.driver_id).must_equal new_trip[:trip][:driver_id]
+      expect(found_trip.passenger_id).must_equal new_trip[:trip][:passenger_id]
 
     end
 
@@ -224,7 +227,8 @@ describe TripsController do
       found_trip = Trip.find_by(id: @trip.id)
 
       # Set up the form data so that it violates trip validations
-
+      driver = Driver.create(name: "New Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+      passenger = Passenger.create(name: "New Anna Bobby", phone_number: "BFJHD2345654")
       invalid_trip_hash1 = {
           trip: {
               rating: 5,
