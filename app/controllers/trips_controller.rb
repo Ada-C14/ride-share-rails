@@ -19,25 +19,27 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.find_by(available: true)
+    driver = Driver.find_by(id: 1000)
+    # driver = Driver.find_by(available: true)
 
     if driver
       passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, cost:rand(1000..4999), date:Date.today)
+      if @trip.save
+        driver.update_attribute(:available, false)
+
+        redirect_to trip_path(@trip.id)
+      else
+        redirect_to trips_path
+        # render :new, status: :bad_request
+        return
+      end
     else
       flash[:notice] = "No driver is currently available. Please try again later!"
       redirect_to homepages_path
     end
 
-    if @trip.save
-      driver.update_attribute(:available, false)
 
-      redirect_to trip_path(@trip.id)
-    else
-      redirect_to trips_path
-      # render :new, status: :bad_request
-      return
-    end
   end
 
   def edit
