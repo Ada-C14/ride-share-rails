@@ -6,19 +6,22 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
-    @driver = @trip.driver
-
 
     if @trip.nil?
       head :not_found
       # render :not_found, status: :not_found -->> WE CAN RENDER A TEMPLATE PAGE
+      return
     end
 
+    @driver = @trip.driver
     @trips = @driver.trips if @driver
   end
 
   def new
-    @trip = Trip.new
+    #Found the passenger that will be assigned to the "new trip"
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    # Making a new trip using a class helper method
+    @trip = Trip.request_trip(passenger)
   end
 
   def create
@@ -47,12 +50,16 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(trip_params)
-      redirect_to trip_path
-    else
+    end
+    unless @trip.update(trip_params)
       render :edit
       return
     end
+    if @trip.rating
+      @trip.driver.available = true
+      @trip.driver.save #save! or save 
+    end
+    redirect_to trip_path
   end
 
   def destroy
@@ -66,11 +73,11 @@ class TripsController < ApplicationController
     end
   end
 
-  def request_trip
-    passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = passenger.request_trip
-    render :new
-  end
+  # def request_trip
+  #   passenger = Passenger.find_by(id: params[:passenger_id])
+  #   @trip = passenger.request_trip
+  #   render :new
+  # end
 
   private
   def trip_params

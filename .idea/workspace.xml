@@ -20,8 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ca6bd59-5a32-47d4-b809-3098ca6eba84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/trips_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/trips_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/passenger.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/passenger.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/trip.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/trip.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/passengers/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/passengers/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/drivers_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/drivers_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/trips_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/trips_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/trip_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/trip_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +46,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1jkiTupmJopELU4WNkgH6Z90TiX" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -53,7 +60,55 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.trip_test">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.trips_controller_test (1)">
+    <configuration name="Development: ride-share-rails" type="RailsRunConfigurationType" factoryName="Rails">
+      <module name="ride-share-rails" />
+      <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Production: ride-share-rails" type="RailsRunConfigurationType" factoryName="Rails">
+      <module name="ride-share-rails" />
+      <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="production" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="RideShare " type="RailsRunConfigurationType" factoryName="Rails">
       <module name="ride-share-rails" />
       <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
@@ -89,6 +144,55 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
       <method v="2" />
     </configuration>
+    <configuration name="spec: ride-share-rails" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="ride-share-rails" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test: ride-share-rails" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="ride-share-rails" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="test" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
+      <method v="2" />
+    </configuration>
     <configuration name="server" type="RubyRunConfigurationType" factoryName="Ruby">
       <module name="ride-share-rails" />
       <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
@@ -118,7 +222,7 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="server -b 127.0.0.1 -p 3000 -e development" />
       <method v="2" />
     </configuration>
-    <configuration name="does not update a passenger..." type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="can update an existing trip..." type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="ride-share-rails" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
@@ -138,9 +242,9 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/passengers_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/trips_controller_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^update#test_\d+_does\ not\ update\ a\ passenger\ if\ the\ form\ data\ violates\ Passenger\ validations,\ and\ responds\ with\ a\ redirect$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^update#test_\d+_can\ update\ an\ existing\ trip\ with\ valid\ information\ accurately,\ and\ redirect$" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
@@ -148,7 +252,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="index" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="index (1)" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="ride-share-rails" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
@@ -178,7 +282,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="passengers_controller_test" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="show" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="ride-share-rails" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
@@ -198,10 +302,10 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/passengers_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/trips_controller_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="show(#|::)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
@@ -238,7 +342,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="trips_controller_test" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="trips_controller_test (1)" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="ride-share-rails" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
@@ -271,19 +375,23 @@
     <list>
       <item itemvalue="Rails.RideShare " />
       <item itemvalue="Ruby.server" />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.does not update a passenger..." />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.passengers_controller_test" />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.trips_controller_test" />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.index" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.trip_test" />
+      <item itemvalue="Rake.test: ride-share-rails" />
+      <item itemvalue="Rake.spec: ride-share-rails" />
+      <item itemvalue="Rails.Production: ride-share-rails" />
+      <item itemvalue="Rails.Development: ride-share-rails" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.trips_controller_test (1)" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.index (1)" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.show" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.can update an existing trip..." />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Test::Unit/Shoulda/Minitest.trips_controller_test (1)" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.can update an existing trip..." />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.show" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.index (1)" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.trip_test" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.trips_controller_test" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.index" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.passengers_controller_test" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.does not update a passenger..." />
       </list>
     </recent_temporary>
   </component>
@@ -301,6 +409,7 @@
       <workItem from="1604461014536" duration="28101000" />
       <workItem from="1604683864015" duration="870000" />
       <workItem from="1604686156123" duration="23000" />
+      <workItem from="1604686618143" duration="10393000" />
     </task>
     <servers />
   </component>
@@ -328,7 +437,7 @@
     </state>
     <state x="-854" y="-11" width="753" height="820" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594349065" />
     <state x="-854" y="169" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604686179190" />
-    <state width="918" height="358" key="GridCell.Tab.0.bottom" timestamp="1604683795113">
+    <state width="512" height="937" key="GridCell.Tab.0.bottom" timestamp="1604695542582">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="512" height="937" key="GridCell.Tab.0.bottom/0.23.1440.804/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604552802838" />
@@ -338,7 +447,8 @@
     <state width="918" height="358" key="GridCell.Tab.0.bottom/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795113" />
     <state width="1175" height="677" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1604677268768" />
     <state width="1297" height="857" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480572" />
-    <state width="918" height="358" key="GridCell.Tab.0.center" timestamp="1604683795112">
+    <state width="512" height="937" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542582" />
+    <state width="512" height="937" key="GridCell.Tab.0.center" timestamp="1604695542581">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="512" height="937" key="GridCell.Tab.0.center/0.23.1440.804/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604552802836" />
@@ -348,7 +458,8 @@
     <state width="918" height="358" key="GridCell.Tab.0.center/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795112" />
     <state width="1175" height="677" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1604677268760" />
     <state width="1297" height="857" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480571" />
-    <state width="918" height="358" key="GridCell.Tab.0.left" timestamp="1604683795111">
+    <state width="512" height="937" key="GridCell.Tab.0.center/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542581" />
+    <state width="512" height="937" key="GridCell.Tab.0.left" timestamp="1604695542581">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="512" height="937" key="GridCell.Tab.0.left/0.23.1440.804/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604552802834" />
@@ -358,7 +469,8 @@
     <state width="918" height="358" key="GridCell.Tab.0.left/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795111" />
     <state width="1175" height="677" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1604677268744" />
     <state width="1297" height="857" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480571" />
-    <state width="918" height="358" key="GridCell.Tab.0.right" timestamp="1604683795112">
+    <state width="512" height="937" key="GridCell.Tab.0.left/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542581" />
+    <state width="512" height="937" key="GridCell.Tab.0.right" timestamp="1604695542582">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="512" height="937" key="GridCell.Tab.0.right/0.23.1440.804/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604552802837" />
@@ -368,7 +480,8 @@
     <state width="918" height="358" key="GridCell.Tab.0.right/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795112" />
     <state width="1175" height="677" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1604677268762" />
     <state width="1297" height="857" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480571" />
-    <state width="918" height="358" key="GridCell.Tab.1.bottom" timestamp="1604683795117">
+    <state width="512" height="937" key="GridCell.Tab.0.right/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542582" />
+    <state width="512" height="937" key="GridCell.Tab.1.bottom" timestamp="1604695542583">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="918" height="358" key="GridCell.Tab.1.bottom/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594805028" />
@@ -376,7 +489,8 @@
     <state width="918" height="358" key="GridCell.Tab.1.bottom/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795117" />
     <state width="1175" height="677" key="GridCell.Tab.1.bottom/0.23.1440.821@0.23.1440.821" timestamp="1604677268778" />
     <state width="1297" height="857" key="GridCell.Tab.1.bottom/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480573" />
-    <state width="918" height="358" key="GridCell.Tab.1.center" timestamp="1604683795114">
+    <state width="512" height="937" key="GridCell.Tab.1.bottom/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542583" />
+    <state width="512" height="937" key="GridCell.Tab.1.center" timestamp="1604695542582">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="918" height="358" key="GridCell.Tab.1.center/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594805027" />
@@ -384,7 +498,8 @@
     <state width="918" height="358" key="GridCell.Tab.1.center/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795114" />
     <state width="1175" height="677" key="GridCell.Tab.1.center/0.23.1440.821@0.23.1440.821" timestamp="1604677268774" />
     <state width="1297" height="857" key="GridCell.Tab.1.center/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480572" />
-    <state width="918" height="358" key="GridCell.Tab.1.left" timestamp="1604683795114">
+    <state width="512" height="937" key="GridCell.Tab.1.center/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542582" />
+    <state width="512" height="937" key="GridCell.Tab.1.left" timestamp="1604695542582">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="918" height="358" key="GridCell.Tab.1.left/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594805027" />
@@ -392,7 +507,8 @@
     <state width="918" height="358" key="GridCell.Tab.1.left/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795114" />
     <state width="1175" height="677" key="GridCell.Tab.1.left/0.23.1440.821@0.23.1440.821" timestamp="1604677268772" />
     <state width="1297" height="857" key="GridCell.Tab.1.left/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480572" />
-    <state width="918" height="358" key="GridCell.Tab.1.right" timestamp="1604683795115">
+    <state width="512" height="937" key="GridCell.Tab.1.left/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542582" />
+    <state width="512" height="937" key="GridCell.Tab.1.right" timestamp="1604695542583">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state width="918" height="358" key="GridCell.Tab.1.right/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594805028" />
@@ -400,17 +516,22 @@
     <state width="918" height="358" key="GridCell.Tab.1.right/0.23.1440.821/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604683795115" />
     <state width="1175" height="677" key="GridCell.Tab.1.right/0.23.1440.821@0.23.1440.821" timestamp="1604677268776" />
     <state width="1297" height="857" key="GridCell.Tab.1.right/0.23.1440.877/-1920.-157.1920.977@-1920.-157.1920.977" timestamp="1604635480573" />
+    <state width="512" height="937" key="GridCell.Tab.1.right/0.23.1440.877/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1604695542583" />
     <state x="-1435" y="5" key="SettingsEditor" timestamp="1604594109852">
       <screen x="-1920" y="-157" width="1920" height="1057" />
     </state>
     <state x="-1435" y="5" key="SettingsEditor/0.23.1440.806/-1920.-157.1920.1057@-1920.-157.1920.1057" timestamp="1604594109852" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ride_share_rails@show.rcov" NAME="show Coverage Results" MODIFIED="1604687164875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@drivers_controller_test.rcov" NAME="drivers_controller_test Coverage Results" MODIFIED="1604430459884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
+    <SUITE FILE_PATH="coverage/ride_share_rails@trips_controller_test__1_.rcov" NAME="trips_controller_test (1) Coverage Results" MODIFIED="1604693347906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@index.rcov" NAME="index Coverage Results" MODIFIED="1604634687310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@trip_test.rcov" NAME="trip_test Coverage Results" MODIFIED="1604637667452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
+    <SUITE FILE_PATH="coverage/ride_share_rails@can_update_an_existing_trip___.rcov" NAME="can update an existing trip... Coverage Results" MODIFIED="1604693142741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@trips_controller_test.rcov" NAME="trips_controller_test Coverage Results" MODIFIED="1604635462172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@does_not_update_a_passenger___.rcov" NAME="does not update a passenger... Coverage Results" MODIFIED="1604632383515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
+    <SUITE FILE_PATH="coverage/ride_share_rails@index__1_.rcov" NAME="index (1) Coverage Results" MODIFIED="1604687150610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@passengers_controller_test.rcov" NAME="passengers_controller_test Coverage Results" MODIFIED="1604632409332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ride-share-rails" />
     <SUITE FILE_PATH="coverage/ride_share_rails@server.rcov" NAME="server Coverage Results" MODIFIED="1604594388299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" MODULE_NAME="ride-share-rails" />
   </component>

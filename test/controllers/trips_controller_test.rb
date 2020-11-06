@@ -1,8 +1,16 @@
 require "test_helper"
 
 describe TripsController do
+  let(:driver) do
+    Driver.create! name: 'Ayesha', vin: 'BCTSH52M8YERVGDK9', available: true
+  end
+
+  let(:passenger) do
+    Passenger.create! name: 'Roshni', phone_num: '123.456.7890'
+  end
+
   let(:trip) do
-    Trip.create driver_id: 1, passenger_id: 1, date: Date.today, rating: nil, cost: 10
+    Trip.create! driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: nil, cost: 10
   end
 
   describe "index" do
@@ -39,7 +47,8 @@ describe TripsController do
 
   describe "new" do
     it "responds with success" do
-      get new_trip_path
+      driver
+      get new_passenger_trip_path(passenger.id)
 
       # Assert
       must_respond_with :success
@@ -50,9 +59,9 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
       trip_params = {
         trip: {
-          driver_id: 1,
-          passenger_id: 1,
-          date: Date.today,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: Date.today.to_s,
           rating: nil,
           cost: 10
         }
@@ -74,8 +83,8 @@ describe TripsController do
     it 'will redirect to the trip_path' do
       trip_params = {
         trip: {
-          driver_id: 1,
-          passenger_id: 1,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
           date: Date.today,
           rating: nil,
           cost: 10
@@ -92,8 +101,8 @@ describe TripsController do
     it 'will add a new trip to the database' do
       trip_params = {
         trip: {
-          driver_id: 1,
-          passenger_id: 1,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
           date: Date.today,
           rating: nil,
           cost: 10
@@ -108,9 +117,9 @@ describe TripsController do
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
       trip_params = {
         trip: {
-          driver_id: 1,
-          passenger_id: 1,
-          date: Date.today,
+          driver_id: driver.id,
+          passenger_id: nil,
+          date: nil,
           rating: nil,
           cost: 10
         }
@@ -140,14 +149,14 @@ describe TripsController do
 
   describe "update" do
     before do
-      Trip.create(driver_id: 1, passenger_id: 1, date: Date.today, rating: nil, cost: 10)
+      Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: nil, cost: 10)
     end
     let(:new_trip_hash) do
       {
         trip: {
-          driver_id: 1,
-          passenger_id: 1,
-          date: Date.today,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: Date.today.to_s,
           rating: nil,
           cost: 10
         }
@@ -163,6 +172,7 @@ describe TripsController do
       must_redirect_to trip_path(id)
 
       trip = Trip.find_by(id: id)
+
       expect(trip.driver_id).must_equal new_trip_hash[:trip][:driver_id]
       expect(trip.passenger_id).must_equal new_trip_hash[:trip][:passenger_id]
       expect(trip.date).must_equal new_trip_hash[:trip][:date]
@@ -193,7 +203,7 @@ describe TripsController do
 
     describe "destroy" do
       it "destroys the trip instance in db when trip exists, then redirects to root_path" do
-        new_trip = Trip.create(driver_id: 1, passenger_id: 1, date: Date.today, rating: nil, cost: 10)
+        new_trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: nil, cost: 10)
 
         new_trip.save
 

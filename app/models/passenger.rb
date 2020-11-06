@@ -17,11 +17,4 @@ class Passenger < ApplicationRecord
     end
   end  
 
-  def request_trip
-    available_drivers = Driver.where(:available => true)
-
-    raise ArgumentError, 'No drivers available' if available_drivers.empty?
-
-    Trip.new(passenger: self, driver: available_drivers.first, date: Date.today, rating: nil, cost: rand(100..1000))
-  end
 end

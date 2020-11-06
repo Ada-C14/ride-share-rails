@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Trip do
   let (:new_trip) {
-    Trip.new(driver_id: 1, passenger_id: 2, date: "11-03-2020", rating: 3, cost: 10)
+    Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: "11-03-2020", rating: 3, cost: 10)
   }
   it "can be instantiated" do
     expect(new_trip.valid?).must_equal true
@@ -28,7 +28,7 @@ describe Trip do
       # Assert
       expect(new_passenger.trips.count).must_equal 1
       new_passenger.trips.each do |trip|
-        expect(trip).must_be_instance_of Trip
+        expect(trip).must_be trip_1
       end
     end
 
