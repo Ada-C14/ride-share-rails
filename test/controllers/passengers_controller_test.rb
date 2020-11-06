@@ -40,7 +40,6 @@ describe PassengersController do
     end
 
     it "will redirect for an invalid passenger" do
-
       # Act
       get passenger_path(-1)
 
@@ -51,7 +50,6 @@ describe PassengersController do
 
   describe "new" do
     it "can get the new passenger page" do
-
       # Act
       get new_passenger_path
 
@@ -67,11 +65,11 @@ describe PassengersController do
           passenger: {
             name: "Nina Hintz Sr.",
             phone_num: "560.815.3059"
-          },
+          }
       }
       # Act-Assert
       expect {
-        post "/passengers", params: passenger_hash
+        post passengers_path, params: passenger_hash
       }.must_change "Passenger.count", 1
 
       new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
@@ -80,12 +78,27 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
+
+    it "does not create a passenger if the form data violates passenger validations" do
+      # Arrange
+      passenger
+
+      invalid_params = {
+          passenger: {
+              name: nil,
+              phone_num: "560.815.3059"
+          }
+      }
+
+      expect {
+        post passengers_path, params: invalid_params
+      }.wont_change 'Passenger.count'
+    end
   end
 
   describe "edit" do
     it "can get the edit page for an existing passenger" do
-
-      # #Act
+      # Act
       get "/passengers"
 
       # Assert
