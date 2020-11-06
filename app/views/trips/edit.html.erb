@@ -2,17 +2,17 @@
   <h1>Edit Trip</h1>
 </header>
 <main>
-<!--  <section class="error_messages">-->
-    <%# if @passenger.errors.any?%>
-<!--      <ul >-->
-        <%# @passenger.errors.each do |attribute, error_message| %>
-<!--          <li>-->
-<!--            Error: <%#= attribute.capitalize.to_s.gsub('_', ' ') %> <%#= error_message %>-->
-<!--          </li>-->
-        <%# end %>
-<!--      </ul>-->
-    <%# end %>
-<!--  </section>-->
+  <section class="error_messages">
+    <% if @trip.errors.any?%>
+      <ul >
+        <% @trip.errors.each do |attribute, error_message| %>
+          <li>
+            Error: <%= attribute.capitalize.to_s.gsub('_', ' ') %> <%= error_message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
   <%= form_with model: @trip do |f| %>
 
     <div>
