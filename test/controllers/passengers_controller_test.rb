@@ -1,28 +1,39 @@
 require "test_helper"
 
 describe PassengersController do
+
+  let (:passenger) {
+    Passenger.create name: "Passenger",
+                  phone_num: "999.999.9999"
+  }
+
   describe "index" do
     it "can get the index path" do
       # Act
-      get "/passengers"
+      get passengers_path
 
       # Assert
       must_respond_with :success
     end
 
-    it "can get the root path" do
-      # Act
-      get "/passengers"
+    it "responds with success when there are passengers saved" do
+      passenger
+      get passengers_path
+      must_respond_with :success
+    end
 
-      # Assert
+    it "responds with success when there are no passengers saved" do
+      get passengers_path
       must_respond_with :success
     end
   end
 
   describe "show" do
     it "can get a valid passenger" do
+      passenger
+
       # Act
-      get "/passengers"
+      get passenger_path(passenger.id)
 
       # Assert
       must_respond_with :success
@@ -51,8 +62,6 @@ describe PassengersController do
 
   describe "create" do
     it "can create a new passenger" do
-      # skip
-
       # Arrange
       passenger_hash = {
           passenger: {
