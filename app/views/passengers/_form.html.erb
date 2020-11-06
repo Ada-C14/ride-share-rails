@@ -1,6 +1,18 @@
 <div>
 
-<%= form_with model: @passenger do |f| %>
+  <%= form_with model: @passenger do |f| %>
+
+    <% if @passenger.errors.any? %>
+      <ul class="errors">
+        <% @passenger.errors.each do |column, message| %>
+          <li>
+            <p><%= column %> <%= message %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>
