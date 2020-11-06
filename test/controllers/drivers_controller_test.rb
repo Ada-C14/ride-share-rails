@@ -115,7 +115,7 @@ describe DriversController do
     end
 
 
-    it "will respond with redirect when attempting to edit a nonexistant task" do
+    it "will respond with redirect when attempting to edit a nonexistant driver" do
       # Act
       get edit_trip_path(-1)
 
@@ -210,7 +210,7 @@ describe DriversController do
 
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then redirects" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
 

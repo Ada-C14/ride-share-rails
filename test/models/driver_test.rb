@@ -68,13 +68,24 @@ describe Driver do
       # Your code here
     end
 
-    describe "can go online" do
-      # Your code here
+    describe "can go on/off line" do
+      driver = Driver.first
+      it "can access the availability path" do
+        # Act
+        patch availability_path(driver.id)
+
+        # Assert
+        must_redirect_to root_path
+      end
+      it "will not change other statistics" do
+        expect {
+          patch availability_path(driver.id)
+        }.wont_change "Driver.count", Driver.name
+
+        must_redirect_to root_path
+      end
     end
 
-    describe "can go offline" do
-      # Your code here
-    end
 
     # You may have additional methods to test
   end

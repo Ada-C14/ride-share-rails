@@ -49,7 +49,7 @@ describe TripsController do
   end
 
   describe "edit" do
-    it "can get the edit page for an existing task" do
+    it "can get the edit page for an existing trip" do
       # Act
       get edit_trip_path(trip.id)
 
@@ -90,7 +90,7 @@ describe TripsController do
   end
 
   describe "destroy" do
-    it "can destroy an existing task and redirect to the root page" do
+    it "can destroy an existing trip and redirect to the root page" do
       trip = Trip.first
       expect {
         delete trip_path(trip.id)
