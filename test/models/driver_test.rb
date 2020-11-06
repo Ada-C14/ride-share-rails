@@ -11,7 +11,7 @@ describe Driver do
 
   it "will have the required fields" do
     # Arrange
-    new_driver.save
+    new_driver.save!
     driver = Driver.first
     [:name, :vin, :available].each do |field|
 
@@ -77,7 +77,7 @@ describe Driver do
         expected_avg_rating = (ratings.sum/ratings.length).round
 
         new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-        ratings.each{|rating| Trip.create(rating: rating, date: Date.current, driver:new_driver, passenger: new_passenger)}
+        ratings.each{|rating| Trip.create!(rating: rating, cost:7777, date: Date.current, driver:new_driver, passenger: new_passenger)}
 
         expect(new_driver.avg_rating).must_equal expected_avg_rating
       end
@@ -86,10 +86,10 @@ describe Driver do
     describe "total earnings" do
       it "correctly calculates total earnings" do
         costs = [2000, 3000, 4000]
-        expected_total_earnings = ((costs.sum - 1.65) * 0.8).round #7199
+        expected_total_earnings = (costs.sum{|cost| cost - 165} * 0.8).round #7199
 
-        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-        costs.each{|cost| Trip.create(cost:cost, date: Date.current, driver:new_driver, passenger: new_passenger)}
+        new_passenger = Passenger.create!(name: "Kari", phone_num: "111-111-1211")
+        costs.each{|cost| Trip.create!(cost:cost, date: Date.current, driver:new_driver, passenger: new_passenger)}
 
         expect(new_driver.total_earnings).must_equal expected_total_earnings
       end
