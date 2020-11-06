@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   let (:new_driver) {
-    Driver.new(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", available: "true")
+    Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", available: "true")
   }
 
   let (:new_passenger) {
@@ -24,7 +24,7 @@ describe Passenger do
 
   it "will have the required fields" do
     # Arrange
-    new_passenger.save
+    new_passenger
     passenger = Passenger.first
     [:name, :phone_num].each do |field|
 
@@ -36,7 +36,6 @@ describe Passenger do
   describe "relationships" do
     it "can have many trips" do
       # Arrange
-      new_passenger.save
       trip_1
       trip_2
 
@@ -72,22 +71,22 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    it "total spent on rides:: returns 0 if no trips" do
-      new_passenger.save
+    it "total spent on rides: returns 0 if no trips" do
+      new_passenger
       expect(new_passenger.lifetime_cost).must_equal 0
     end
 
     it "total spent on rides: returns proper total spent if valid trips" do
-      new_passenger.save
+      new_passenger
       trip_1
       trip_2
-      expect(new_passenger.lifetime_cost).must_equal 75.68
-    end
-  end
 
-    describe "complete trip" do
+      expect(new_passenger.lifetime_cost).must_be_within_delta 75.68, 0.01
+    end
+
+    it "complete trip" do
       # Your code here
     end
-    # You may have additional methods to test here
+  end
 end
 

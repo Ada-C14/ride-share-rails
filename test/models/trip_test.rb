@@ -94,7 +94,7 @@ describe Trip do
     end
 
     it "assign_driver: returns nil if there are no available drivers" do
-      expect(Trip.assign_driver).must_equal nil
+      assert_nil(Trip.assign_driver)
     end
 
     it "change_driver_status: can change an assigned driver's status to unavailable" do
