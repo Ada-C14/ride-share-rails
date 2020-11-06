@@ -36,8 +36,11 @@ class TripsController < ApplicationController
   end
 
   def create
+    # Want to use passenger id to create trip
+    # Want to select available driver
+    # Create new trip with these params
 
-    driver = Driver.find_by( availble = true)
+    driver = Driver.find_by(:available = true)
     if driver.nil?
       redirect_to
     end
