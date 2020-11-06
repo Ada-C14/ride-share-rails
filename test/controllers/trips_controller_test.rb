@@ -37,7 +37,7 @@ describe TripsController do
   describe "create" do
     # Your tests go here
     # refactor!
-    it "can create a new trip"
+    it "can create a new trip with valid information and redirect" do
     task_hash = {
         task: {
             name: "new task",
@@ -57,9 +57,11 @@ describe TripsController do
 
     must_respond_with :redirect
     must_redirect_to task_path(new_task.id)
-  end
+    end
 
-  it "won't save invalid trip if no drivers available or if it can't save it won't create and will redirect"
+    it "won't create an invalid trip if no drivers available and will redirect with a bad request" do
+
+    end
 
 
   end

@@ -54,9 +54,10 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
-    elsif @trip.update(rating: params[:trip][:rating]) && params[:trip][:rating].nil?
+    # Try to DRY this block
+    elsif params[:trip][:rating].nil? && @trip.update(rating: params[:trip][:rating])
       redirect_to trip_path(@trip.id)
       return
     elsif @trip.update(rating: params[:trip][:rating])
@@ -71,14 +72,13 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
-    passenger = @trip.passenger
 
     if @trip.nil?
-      redirect_to passenger_path(passenger.id)
+      head :not_found
       return
     elsif @trip.rating
       @trip.destroy
-      redirect_to passenger_path(passenger.id)
+      redirect_to passenger_path(@trip.passenger)
       return
     else
       render :edit, status: :bad_request
