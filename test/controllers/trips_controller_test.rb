@@ -1,7 +1,6 @@
 require "test_helper"
 
 describe TripsController do
-  # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let (:passenger) {
     Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
   }
@@ -74,8 +73,7 @@ describe TripsController do
     it "responds with success when getting the edit page for an existing, valid trip" do
       driver
       passenger
-      # Arrange
-      # Ensure there is an existing trip saved
+
       trip = Trip.create(
           passenger_id: passenger.id,
           driver_id: driver.id,
@@ -86,7 +84,6 @@ describe TripsController do
 
       get edit_trip_path(trip.id)
 
-      # Assert
       must_respond_with :success
     end
 
@@ -137,22 +134,14 @@ describe TripsController do
     end
 
     it "does not update a trip if the form data violates trip validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing trip saved
-      # Assign the existing trip's id to a local variable
-      # Set up the form data so that it violates trip validations
-
       new_trip_hash[:trip][:date] = nil
       trip = Trip.first
-      # Act-Assert
-      # Ensure that there is no change in trip.count
 
       expect {
         patch trip_path(trip.id), params: new_trip_hash
       }.wont_change "Trip.count"
 
-      trip.reload # refresh the trip from the database
+      trip.reload
       expect(trip.date).wont_be_nil
       must_respond_with :redirect
       end
