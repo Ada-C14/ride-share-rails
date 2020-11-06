@@ -1,11 +1,18 @@
 require "test_helper"
 
 describe TripsController do
-  before do
-    @driver = Driver.create(name: "Dr. Kenton Berge", vin: "12345678901234567", available: true)
-    @passenger = Passenger.create(name: "Nina Hintz Sr.", phone_num: "560.815.3059")
-    @trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: @driver.id, passenger_id: @passenger.id )
-  end
+  let(:driver) {
+    Driver.create(name: "Dr. Kenton Berge", vin: "12345678901234567", available: true)
+  }
+
+  let(:passenger) {
+    Passenger.create(name: "Nina Hintz Sr.", phone_num: "560.815.3059")
+  }
+
+  before {
+    @trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: driver.id, passenger_id: passenger.id )
+  }
+
 
   describe "show" do
     it "responds with success when showing an existing valid trip" do
@@ -32,8 +39,8 @@ describe TripsController do
       # Set up the form data
       new_trip_info = {
         trip: {
-        driver_id: @driver.id,
-        passenger_id: @passenger.id,
+        driver_id: driver.id,
+        passenger_id: passenger.id,
         cost: 23.43,
         date: "2020-11-06",
         rating: nil
@@ -41,10 +48,11 @@ describe TripsController do
       }
       # Act-Assert
       expect {
-        post passenger_trips_path(@passenger), params: new_trip_info
+        post passenger_trips_path(passenger.id), params: new_trip_info
       }.must_differ "Trip.count", 1
 
             # Assert
+      #
       new_trip = Trip.last
       expect(new_trip.driver_id).must_equal new_trip_info[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal new_trip_info[:trip][:passenger_id]
@@ -52,32 +60,8 @@ describe TripsController do
       expect(new_trip.rating).must_be_nil
 
       must_respond_with :redirect
-      must_redirect_to passenger_path(@passenger.id)
+      must_redirect_to passenger_path(passenger.id)
     end
-
-    # # not sure if we need this test, since the trip will be created internally?
-    # it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
-    #   # Note: This will not pass until ActiveRecord Validations lesson
-    #
-    #   invalid_input = {
-    #     trip: {
-    #       driver_id: -1,
-    #       passenger_id: 5,
-    #       cost: 2394,
-    #       date: "2020-11-11",
-    #       rating: 25
-    #     }
-    #   }
-    #
-    #   expect {
-    #     post trips_path, params: invalid_input
-    #   }.wont_change "Trip.count"
-    #
-    #   # Assert
-    #   # Check that the controller redirects, render or something
-    #   # todo: update after validation lesson
-    #     must_respond_with :bad_request
-    # end
   end
 
   describe "edit" do
@@ -98,8 +82,8 @@ describe TripsController do
     before do
       @update_info = {
         trip: {
-          driver_id: @driver.id,
-          passenger_id: @passenger.id,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
           cost: 25.50,
           date: Time.now.strftime('%Y-%m-%d'),
           rating: 5
