@@ -16,3 +16,40 @@
 @import "bootstrap";
 
 @import "**/*";
+//body * {
+//  color:                    hsla(210, 100%, 100%, 0.88) !important;
+//  background:               hsla(210, 100%,  50%, 0.33) !important;
+//  outline:    0.25rem solid hsla(210, 100%, 100%, 0.50) !important;
+//}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr [main-start] minmax(0, 50rem) [main-end] 1fr;
+}
+
+body > * {
+  grid-column: main;
+}
+nav {
+  display:flex;
+  justify-content: space-between;
+
+  height: 5rem;
+  margin-bottom: 2rem;
+}
+
+.right-nav-links {
+  font-size: smaller;
+  align-self: flex-end
+}
+
+.right-nav-links a {
+  margin-left: 1rem;
+}
+
+.home-link {
+  font-size: 2rem;
+  align-self: flex-end;
+  font-weight: bold;
+}
+
