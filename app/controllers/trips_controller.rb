@@ -63,7 +63,7 @@ class TripsController < ApplicationController
   def destroy
     if @trip
       @trip.destroy
-      redirect_to passenger_path(@trip.passenger_id)
+      redirect_to root_path
     else
       head :not_found
     end
