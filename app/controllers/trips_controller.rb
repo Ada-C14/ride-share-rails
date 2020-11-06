@@ -67,9 +67,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(
-        passenger_id: params[:trip][:passenger_id], driver_id: params[:trip][:driver_id],
-        cost: params[:trip][:cost], rating: params[:trip][:rating], date: params[:trip][:date] )
+    elsif @trip.update(trip_params)
       redirect_to trip_path(@trip.id)
       return
     else # save failed
@@ -90,6 +88,11 @@ class TripsController < ApplicationController
       head :not_found
       return
     end
+  end
+
+  private
+  def trip_params
+    params.require(:trip).permit(:passenger_id, :driver_id, :cost, :rating, :date)
   end
 
   # def request_trip
