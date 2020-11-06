@@ -38,7 +38,7 @@ describe Trip do
       # Assert
       expect(new_trip.valid?).must_equal false
       expect(new_trip.errors.messages).must_include :date
-      expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
+      expect(new_trip.errors.messages[:date]).must_equal ["must be a valid date"]
     end
 
     it "must have a cost" do

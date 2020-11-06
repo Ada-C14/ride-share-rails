@@ -78,8 +78,8 @@ describe TripsController do
 
     end
 
-    it "does not create a trip if the form data violates Passenger validations, and responds with bad request" do
-
+    it "does not create a trip if the form data violates Trip validations, and responds with bad request" do
+   
     end
   end
 
