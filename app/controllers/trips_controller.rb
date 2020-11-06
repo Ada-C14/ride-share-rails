@@ -40,10 +40,10 @@ class TripsController < ApplicationController
     # Want to select available driver
     # Create new trip with these params
 
-    driver = Driver.find_by(:available = true)
-    if driver.nil?
-      redirect_to
-    end
+    # driver = Driver.find_by(:available = true)
+    # if driver.nil?
+    #   redirect_to
+    # end
 
     @trip =passenger.trips.new(
         date: Date.today_to_s,
