@@ -1,18 +1,64 @@
-<h4>Date: <%= @trip.date %></h4>
-<h4>Cost: $<%= @trip.cost / 100 %></h4> <%# sprintf to round to two deciaml places %>
+<section>
+  <article>
+    <h2>Trip ID: <%= @trip.id %></h2>
+    <table class="driver-table">
+        <tr>
+          <th>Date</th>
+          <th>Passenger</th>
+          <th>Driver</th>
+          <th>Cost</th>
+          <th>Rating</th>
+          <th>Note</th>
+          <th>Edit</th>
+        </tr>
+        <tr>  
+          <th><%= @trip.date %></th>
 
-<% if @trip.rating.nil? == false %>
-  <h4>Rating: <%= @trip.rating %></h4>
-<% else %>
-  <h4>This trip has not been rated yet, would you like to add a rating?</h4>
-  <%= form_for @trip do |f| %>
-    <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
-    <%= f.submit "Add Rating" %>
-  <% end %>
-<% end %>
+          <th>
+            <% if @trip.passenger.isactive %>
+              <%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %>
+            <% else %>  
+              <%= @trip.passenger.name %>
+            <% end %>  
+          </th>
 
-<h4>Driver: <%= @trip.driver.name %></h4>
-<h4>Passenger: <%= @trip.passenger.name %></h4>
+          <th>
+            <% if @trip.driver.isactive %>
+              <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %>
+            <% else %>  
+              <%= @trip.driver.name %>
+            <% end %>
+          </th>
 
-<%= link_to "Edit Trip", edit_trip_path(@trip) %>
-<%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
+          <th>
+            $ <%= @trip.cost / 100 %> 
+            <%# sprintf to round to two deciaml places %>
+          </th>
+
+          <th>
+            <% if @trip.rating.nil? %>
+              <%= form_for @trip do |f| %>
+                <%= f.select :rating, [1,2,3,4,5] %>
+                <%= f.submit "Add Rating" %>
+              <% end %>
+            <% else %>  
+              <%= @trip.rating %>
+            <% end %>
+          </th>
+          
+          <th>
+            <% if @trip.rating.nil? %>
+              This trip has not been rated by <%= @trip.passenger.name %>.
+            <% end %> 
+          </th>
+
+          <th>
+            <%= link_to "Edit", edit_trip_path(@trip) %> |
+            <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
+          </th>
+        </tr>  
+    </table>
+  </article>
+</section>  
+
+
