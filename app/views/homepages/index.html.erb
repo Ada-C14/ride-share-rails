@@ -21,7 +21,12 @@
   Average Rating (completed trips): <%= @average_rating %>
 </div>
 <div>
-  Total Revenue: $<%= number_with_delimiter(((@total_revenue)/100.0).round(2), :delimiter => ',') %>
+  Total Revenue: $
+  <% if @total_revenue.is_a?(String) %>
+    <%= @total_revenue %>
+  <% else %>
+    <%= number_with_delimiter(((@total_revenue)/100.0).round(2), :delimiter => ',') %>
+  <% end %>
 </div>
 
 <p></p>

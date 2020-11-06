@@ -2,6 +2,7 @@ class HomepagesController < ApplicationController
 
   def index
     drivers = Driver.all #would it better to write these in a driver model method etc.?  Probably too much logic should move to Driver model
+
     if drivers.empty?
       @driver_count = 0
       @available_drivers = "N/A"
@@ -37,7 +38,9 @@ class HomepagesController < ApplicationController
           ratings << trip.rating
         end
       end
-      @average_rating = (ratings.sum) / ratings.length
+      unless ratings.length == 0
+        @average_rating = (ratings.sum) / ratings.length
+      end
     end
 
     @total_revenue = 0
@@ -46,14 +49,5 @@ class HomepagesController < ApplicationController
     else
       trips.each {|trip| @total_revenue += trip.cost }
     end
-
-
   end
-    
-    #@ave_trip_rating = trips.size
-    # # Sum some numbers
-    # (5..10).reduce(:+)                             #=> 45
-    # # Same using a block and inject
-    # (5..10).inject { |sum, n| sum + n }
-
 end
