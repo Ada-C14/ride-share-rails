@@ -14,7 +14,13 @@ class TripsController < ApplicationController
     else
       @trips = Trip.all
     end
+
+    @total_cost = 0
+    @trips.each do |trip|
+      @total_cost += trip.cost
+    end
   end
+
 
   def show
     trip_id = params[:id].to_i
