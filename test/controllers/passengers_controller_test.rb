@@ -94,16 +94,20 @@ describe PassengersController do
     end
 
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      passenger_params = {
+        passenger: {
+          name: 'invalid passenger',
+          phone_num: nil
+        }
+      }
+      expect {
+        post passengers_path, params: passenger_params
+      }.must_differ "Passenger.count", 0
 
       # Assert
       # Check that the controller redirects
-
+      # must_redirect_to
+      must_respond_with :redirect
     end
   end
 
@@ -157,18 +161,13 @@ describe PassengersController do
       must_respond_with :not_found
     end
 
-    it "does not create a passenger if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+    it "does not update a passenger if the form data violates Passenger validations, and responds with a redirect" do
+      id = passenger.id
+      expect do
+        patch passenger_path(id), params: new_passenger_hash
+      end.wont_change 'Passenger.count'
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
+      must_redirect_to passenger_path
 
     end
   end

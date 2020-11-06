@@ -105,11 +105,11 @@ describe DriversController do
       # Arrange
       # Set up the form data so that it violates Driver validations
       driver_params = {
-          driver: {
-              name: "invalid driver",
-              vin: nil,
-              available: false
-          },
+        driver: {
+          name: "invalid driver",
+            vin: nil,
+            available: false
+        }
       }
 
       # Act-Assert

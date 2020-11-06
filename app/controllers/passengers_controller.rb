@@ -22,7 +22,7 @@ class PassengersController < ApplicationController
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
-      render :new
+      redirect_to passengers_path
     end
   end
 
