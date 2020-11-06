@@ -39,11 +39,11 @@ describe TripsController do
       }
 
       expect {
-        post passenger_trips_path(passenger.id), params: new_trip
+        post passenger_path(passenger.id), params: new_trip
       }.must_differ "Trip.count", 1
 
       must_respond_with :redirect
-      must_redirect_to trip_path(new_trip.id)
+      must_redirect_to passenger_path(new_trip.id)
       expect(Trip.last.passenger.name).must_equal passenger.name
       expect(Trip.last.driver.name).must_equal driver.name
     end
@@ -56,7 +56,7 @@ describe TripsController do
       }
 
       expect {
-        post passenger_trips_path(50), params: new_trip
+        post passenger_trips_path, params: new_trip
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
@@ -127,7 +127,7 @@ describe TripsController do
         delete trip_path(id)
       }.must_change "Trip.count", -1
 
-      must_redirect_to passenger_path(id: passenger_id)
+      must_redirect_to passenger_path
     end
 
     it"does not change the db when the trip does not exist, then responds with redirect" do
