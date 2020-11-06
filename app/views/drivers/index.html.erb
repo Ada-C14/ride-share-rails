@@ -1,13 +1,26 @@
+
 <h2>Drivers</h2>
-<ul>
-<% @drivers.each do |driver| %>
-    <li>
-        <%= driver.id %> -
-        <%= link_to driver.name, driver_path(driver) %> |
-        Vin: <%= driver.vin %> |
-         Rating: <%= driver.average_rating %> |
-        <%= link_to "Edit", edit_driver_path(driver) , class: "link-button"%> | 
-        <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
-    </li>
-<% end %>
-</ul>
+
+<%= link_to "Add driver", new_driver_path, class: "link-button" %>
+
+<table>
+    <tr>
+        <th>Driver</th>
+        <th>Name</th>
+        <th>Vin</th>
+        <th>Rating</th>
+        <th>Availability</th>
+    </tr>
+    <% @drivers.each do |driver| %>
+        <tr>
+            <td><%= link_to driver.id, driver_path(driver) %></td>
+            <td><%= link_to driver.name, driver_path(driver) %></td>
+            <td><%= driver.vin %></td>
+            <td><%= driver.average_rating %></td>
+            <td>
+                <%= link_to "Edit", edit_driver_path(driver) , class: "link-button"%>
+                <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+            </td>
+        </tr>
+    <% end %>
+</table>
