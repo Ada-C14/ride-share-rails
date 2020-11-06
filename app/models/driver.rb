@@ -4,9 +4,6 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
-  def self.find_available_driver
-    return Driver.where(available: true).first
-  end
   def mark_unavailable
     self.available = false
     self.save

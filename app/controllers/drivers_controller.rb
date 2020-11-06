@@ -20,7 +20,7 @@ class DriversController < ApplicationController
   def create
     @driver = Driver.new(driver_params)
     if @driver.save
-      redirect_to drivers_path(@driver.id) #send the user to the /tasks path
+      redirect_to drivers_path(@driver.id)
       return
     else
       render :new, status: :bad_request
@@ -45,7 +45,6 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-    # render :edit
     redirect_to root_path
     end
   end
@@ -60,14 +59,6 @@ class DriversController < ApplicationController
       driver.destroy
       redirect_to drivers_path
     end
-  end
-
-  def set_available
-    # @available_driver = Driver.is_available?
-  end
-
-  def set_unavailable
-    driver.mark_available
   end
 
   private

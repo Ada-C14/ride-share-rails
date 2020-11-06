@@ -14,53 +14,32 @@ class TripsController < ApplicationController
     end
   end
 
-  # def create
-  #   passenger = Passenger.find_by(id: params[:passenger_id])
-  #
-  #   if passenger.nil?
-  #     redirect_to passengers_path
-  #     return
-  #   else
-  #     # nested route, /passenger/:passenger_id/trips/create
-  #     driver = Driver.find_by(available: true )
-  #     # @trip = passenger.trips.new
-  #     @trip = Trip.new(
-  #         passenger_id: params[:passenger_id],
-  #         driver_id: driver.id,
-  #         cost: rand(1000..9000),
-  #         date: Time.now,
-  #         rating: nil
-  #     )
-  #   end
-  #
-  #   if @trip.save
-  #     redirect_to passenger_path(params[:passenger_id]) #send the user to the /tasks path
-  #     return
-  #   else
-  #     # render :new, status: :bad_request
-  #     redirect_to passenger_path(params[:passenger_id])
-  #     return
-  #   end
-  # end
   def create
-    driver = Driver.find_by(available: true )
-    @trip = Trip.new(
-                passenger_id: params[:passenger_id],
-                driver_id: driver.id,
-                cost: rand(1000..9000),
-                date: Time.now,
-                rating: nil
-            )
-    if @trip.save
-      driver.available?
-          redirect_to passenger_path(params[:passenger_id]) #send the user to the /tasks path
-          return
-        else
-          # render :new, status: :bad_request
-          redirect_to passenger_path(params[:passenger_id])
-          return
+    passenger = Passenger.find_by(id: params[:passenger_id])
+
+    if passenger.nil?
+      redirect_to passengers_path
+      return
+    else
+      driver = Driver.find_by(available: true )
+      driver.mark_unavailable
+
+      @trip = Trip.new(
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          cost: rand(1000..9000),
+          date: Time.now,
+          rating: nil
+      )
     end
 
+    if @trip.save
+      redirect_to passenger_path(params[:passenger_id])
+      return
+    else
+      redirect_to passenger_path(params[:passenger_id])
+      return
+    end
   end
 
   def edit
@@ -80,7 +59,6 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
-      # render :edit
       redirect_to root_path
     end
   end

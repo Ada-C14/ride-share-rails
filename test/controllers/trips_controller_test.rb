@@ -58,12 +58,12 @@ describe TripsController do
       expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
 
-      must_redirect_to trip_path(new_trip.id)
+      must_redirect_to passenger_path(new_trip.passenger_id)
     end
 
     it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
       expect {
-        post passenger_trips_path(-1)
+        post passenger_trips_path(-1), params: trip_hash
       }.wont_change "Trip.count"
 
       must_redirect_to passengers_path
