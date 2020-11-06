@@ -94,7 +94,7 @@ describe Driver do
         trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 1, cost: 15.65)
         trip_4 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 63.17)
 
-        expect(new_driver.total_earnings).must_be_close_to 82.73
+        expect(new_driver.total_earnings).must_be_close_to 84.05
       end
     end
 
@@ -107,10 +107,10 @@ describe Driver do
     end
 
     describe "can go offline" do
-      # Your code here
       it "can change availability to false from true" do
         new_driver.save
         new_driver.set_unavailable
+
         expect(new_driver.available).must_equal false
       end
     end

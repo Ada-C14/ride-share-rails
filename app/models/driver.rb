@@ -15,12 +15,8 @@ class Driver < ApplicationRecord
   end
 
   def total_earnings
-    total = self.trips.map {|trip| trip.cost * 0.8 - 1.65}.sum
+    total = self.trips.map {|trip| (trip.cost - 1.65) * 0.8}.sum
     return total.round(2)
-  end
-
-  def single_trip_earnings(trip)
-    return (trip.cost * 0.8 - 1.65).round(2)
   end
 
   def self.get_available_driver
