@@ -8,14 +8,14 @@ class TripsController < ApplicationController
       driver = Driver.find_by(id: params[:driver_id])
       @trips = driver.trips
     else
-      head :not_found # for now
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
     end
   end
 
   def show
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      head :not_found
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
   end
@@ -35,14 +35,14 @@ class TripsController < ApplicationController
     end
 
     if available_driver.nil?
-      head :not_found
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
 
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
       if passenger.nil?
-        head :not_found
+        render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
         return
       else
         pass_id = passenger.id
@@ -64,7 +64,7 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      head :not_found
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
   end
@@ -72,7 +72,7 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      head :not_found
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     elsif @trip.update(trip_params)
       redirect_to trip_path(id: @trip[:id])
@@ -86,7 +86,7 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      head :not_found
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     else
       @trip.destroy
