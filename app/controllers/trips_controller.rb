@@ -3,7 +3,6 @@ class TripsController < ApplicationController
     
   end
 
-
   def index
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
@@ -37,8 +36,23 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new()
 
+    driver = Driver.find_by( availble = true)
+    if driver.nil?
+      redirect_to
+    end
+
+    @trip =passenger.trips.new(
+        date: Date.today_to_s,
+        rating:nil,
+        cost: nil,
+        driver_id: driver.id,
+        passenger_id: passenger.id
+    )
+
+    if @trip.save
+
+    end
   end
 
   def edit

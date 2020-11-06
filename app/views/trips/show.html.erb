@@ -1,6 +1,10 @@
 <h1> Trip Details </h1>
+<ul>
+  <li> ID: <%= @trip.id %></li>
+  <li> Date: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
+  <li> Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
+  <li> Cost: <%= @trips.cost/100 %></li>
+  <li> Rating: <%= @trips.rating%></li>
+</ul>
 
-<li> Date: <%=@trips.date %>  </li>
-<li> Cost: <%=@trips.cost %> </li>
-<li> Passenger: <%=@trips.passenger.name %> </li>
-<li> Driver: <%=@trips.driver.name %></li>
+<p> <%=link_to "Edit trip details", edit_trip_path(@trip.id) %></p>
