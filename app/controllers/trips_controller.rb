@@ -70,9 +70,10 @@ class TripsController < ApplicationController
       redirect_to trips_path
       return
     end
+
     @trip.destroy
 
-    redirect_to trips_path
+    redirect_to passenger_path(id:params[:id])
     return
   end
 
