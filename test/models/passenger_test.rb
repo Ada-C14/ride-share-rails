@@ -84,7 +84,16 @@ describe Passenger do
 
     describe "complete trip" do
       it "sets driver status to available" do
-        raise NotImplementedError
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", available: false)
+        new_driver.save
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_1.save
+
+        new_passenger.complete_trip(trip_1)
+
+        driver = Driver.find_by(name: "Waldo")
+        expect(driver.available).must_equal true
       end
     end
   end

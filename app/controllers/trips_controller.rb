@@ -25,20 +25,29 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.select_available #Driver.find_by(available: true)
+    driver = Driver.select_available
     passenger = Passenger.find_by(id: params[:passenger_id])
     cost = rand(1000..9999)
+    date = Date.today
 
-    if passenger
-      @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, cost: cost)
+    if driver.nil?
+      redirect_to drivers_path and return # ideally redirect with flash message explaining no drivers available
+    elsif passenger
+      @trip = Trip.new(
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: date,
+          cost: cost
+      )
     else
       redirect_to trips_path
+      return
     end
 
-    if @trip.save
+    if @trip && @trip.save
       redirect_to trip_path(@trip) and return
     else
-      driver.toggle_available
+      driver.toggle_available unless driver.nil?
       redirect_to trips_path
       return
     end
@@ -54,12 +63,12 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
-    passenger = Passenger.find_by(id: @trip.passenger_id)
 
     if @trip.nil?
       redirect_to trips_path and return
     elsif
       @trip.update(trip_params)
+      passenger = Passenger.find_by(id: @trip.passenger_id)
       passenger.complete_trip(@trip) unless @trip.rating.nil?
       redirect_to trip_path(@trip)
     else
