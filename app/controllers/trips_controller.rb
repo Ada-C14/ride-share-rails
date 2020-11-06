@@ -9,6 +9,10 @@ class TripsController < ApplicationController
     flash[:notice] = "Uh oh! That did not save correctly."
   end
 
+  def no_available_driver_notice
+    flash[:notice] = "Uh oh! There are currently no available drivers."
+  end
+
   #########################################################
 
   def index
@@ -42,6 +46,11 @@ class TripsController < ApplicationController
         cost: Trip.generate_cost
     }
 
+    if create_params[:driver_id.nil?]
+      redirect_to passenger_path(params[:passenger_id])
+      return
+    end
+
     @trip = Trip.new(create_params)
 
     if @trip.save
@@ -49,7 +58,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
-      render :new
+      redirect_to passenger_path(params[:passenger_id])
       return
     end
   end

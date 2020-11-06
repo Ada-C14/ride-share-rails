@@ -13,7 +13,7 @@ class Trip < ApplicationRecord
   end
 
   def self.assign_driver
-    return Driver.find_by(available: 'true').id
+    Driver.find_by(available: 'true').nil? ? return nil : return Driver.find_by(available: 'true').id
   end
 
   def change_driver_status
