@@ -6,7 +6,13 @@ class Passenger < ApplicationRecord
 
   def request_trip
     driver = find_driver
-    driver.toggle_available
+
+    if driver
+      driver.toggle_available
+    else
+      return false
+    end
+
     return self.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
   end
 
