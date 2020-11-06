@@ -85,27 +85,9 @@ class TripsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-  # def trip_params
-  # trip_params = (passenger_id: params[:trip][:passenger_id], driver_id: params[:trip][:driver_id],
-  #         cost: params[:trip][:cost], rating: params[:trip][:rating], date: params[:trip][:date] )
-  # end
-  #
-=======
   private
   def trip_params
     params.require(:trip).permit(:passenger_id, :driver_id, :cost, :rating, :date)
   end
 
->>>>>>> 73d265195d01973c9803d0de0982bd03359451ce
-  # def request_trip
-  #   passenger = Passenger.find_by(id: params[:passenger_id])
-  #   @trip = passenger.request_trip
-  #   render :new
-  # end
-  #
-  #  def dollar_format
-  #     dollars = number_to_currency(@trip.cost/100)
-  #     return dollars
-  #   end
 end
