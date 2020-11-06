@@ -9,7 +9,7 @@
 
 
 <!--Click a button to add a new trip for that passenger-->
-<!--to do : add conditional to display a message if there are no available driver-->
+
 <% if Driver.get_available_driver.nil? %>
   <p>No available driver</p>
 <% else %>
@@ -41,23 +41,3 @@
     <% end %>
   </tbody>
 </table>
-
-
-<!--<ul>-->
-  <%# @passenger.trips.each do |trip| %>
-<!--    <li>-->
-      <%#= link_to "Trip ID: #{trip.id}", trip_path(trip.id) %>
-      <%#= "Date: #{trip.date}" %>
-      <%#= "Driver: #{trip.driver.name}" %>
-      <%#= "Cost: $#{trip.cost}" %>
-      <%#= "Rating: #{trip.rating}" %>
-      <%#= link_to "Delete", trip_path(trip.id), method: :delete, class: 'trip---delete-link', data: {confirm: "Are you sure?"} %>
-<!--    </li>-->
-
-  <%# end %>
-<!--</ul>-->
-
-<%#= link_to "#{@passenger.name}'s Trips", passenger_trips_path(@passenger.id) %>
-<!--Click on an individual trip from the list of trips, which will take me to a detail page for that trip-->
-
-
