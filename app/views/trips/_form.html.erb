@@ -1,8 +1,10 @@
 <% if @trip.errors.any? %>
   <ul class="errors">
-    <li>
-      Rating must be an integer value between 1 and 5 inclusive.
-    </li>
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
   </ul>
 <% end %>
 

@@ -2,7 +2,7 @@ class Trip < ApplicationRecord
   belongs_to :driver
   belongs_to :passenger
 
-  validates :rating, :inclusion => { :in => 1..5 }, on: :update
+  validates :rating, :numericality => { :greater_than_or_equal_to => 0 }, :inclusion => { :in => 1..5 }, on: :update
   validates :date, presence: true
   validates :cost, :numericality => { :greater_than_or_equal_to => 0 }, presence: true
   validates :driver_id, presence: true
