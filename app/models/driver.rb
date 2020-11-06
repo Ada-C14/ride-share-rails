@@ -2,7 +2,7 @@ class Driver < ApplicationRecord
   has_many :trips
 
   validates :name, presence: true
-  validates :vin, uniqueness: true, length: { is: 17}
+  validates :vin, presence: true
 
   def self.find_available_driver
     return Driver.where(available: true).first

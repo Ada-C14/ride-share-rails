@@ -213,7 +213,7 @@ describe DriversController do
         patch driver_path(driver.id), params: new_driver_hash
       }.wont_change "Driver.count"
 
-      driver.reload # refresh the book from the database
+      driver.reload # refresh the driver from the database
       expect(driver.vin).wont_be_nil
       must_respond_with :redirect
       must_redirect_to root_path
