@@ -1,3 +1,4 @@
+require 'money'
 class DriversController < ApplicationController
 
   def index

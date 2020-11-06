@@ -105,7 +105,7 @@ describe Driver do
       trip_1
       trip_2
       trip_3
-      
+
       expect(@new_driver.total_revenue).must_equal 6459
     end
 

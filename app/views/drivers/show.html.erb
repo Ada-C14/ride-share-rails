@@ -24,15 +24,23 @@
     <tbody>
     <% @driver.trips.each do |trip| %>
       <tr>
-        <th scope="row"><%= link_to "#{trip.id}", trip_path(trip.id) %></th>
-        <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
-        <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
-        <td><%= trip.cost %></td>
+        <td scope="row"><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+        <% if trip.passenger.nil? %>
+          <td>passenger deleted</td>
+        <% else %>
+          <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
+        <%end %>
+        <% if trip.driver.nil? %>
+          <td>driver deleted</td>
+        <% else %>
+          <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
+        <%end %>
+        <td><%= trip.format_cost %></td>
         <td><%= trip.rating %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
   <p>Average Rating:<%= @driver.average_rating %></p>
-  <p>Total Earning:$<%=@driver.total_revenue %></p>
+  <p>Total Earning:<%=@driver.total_revenue %></p>
 </div>
