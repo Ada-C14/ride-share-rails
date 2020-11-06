@@ -1,1 +1,25 @@
-Trip
+<div>
+    <h4> Trip Details</h4>
+    <br>
+    <ul>
+        <li>Driver Name: <%= @driver.name %> </li>
+        <br>
+        <li>Driver VIN: <%= @driver.vin %></li>
+        <br>
+        <li>Passenger Name: <%= @passenger.name %></li>
+        <br>
+        <li>Trip Cost: <%= @trip.cost %></li>
+        <br>
+        <li>Trip Rating: <%= @trip.rating %></li>
+        <br>
+    </ul>
+    <div><%= link_to "Passenger #{@passenger.name} details", passenger_path(@passenger.id) %></div>
+    <br>
+    <div><%= link_to "Driver #{@driver.name} details", driver_path(@driver.id) %></div>
+    <br>
+    <div><%= link_to "Edit Trip", edit_trip_path(@trip.id) %></div>
+    <br>
+    <div><%= link_to "Delete Trip", trip_path(@trip), method: :delete, data: { confirm: "Are you sure?"} %></div>
+    <br>
+</div>
+<p><%= link_to "Return to Trip List", trips_path %></p>

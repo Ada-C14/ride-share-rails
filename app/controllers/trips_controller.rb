@@ -15,22 +15,35 @@ class TripsController < ApplicationController
   # end
 
   def show # details of an instance of an object
-    raise
 
-    if params[:driver_id]
-      driver = Driver.find_by(id: params[:driver_id])
-      raise
-      trip = driver.trips.find_by(id: 124)
-    end
-
-
-    passenger_id = params[:id]
-    @passenger = Passenger.find_by(id: passenger_id)
-
-    if @passenger.nil?
-      redirect_to passengers_path
+    if params[:id]
+      # Look up the trip by trip id
+      @trip = Trip.find_by(id: params[:id])
+      if @trip.nil?
+        redirect_to root_path
+        return
+      end
+      # find driver and passenger with trip
+      @driver = @trip.driver
+      @passenger = @trip.passenger
+    else
+      redirect_to root_path
       return
     end
-end
+  end
+
+  def create
+    driver = Driver.find_by(available: true)
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    @trip = Trip.create(
+      driver_id: driver.id,
+      passenger_id: passenger.id,
+      date: Time.now,
+      rating: nil,
+      cost: rand(1..1000)
+    )
+    redirect_to passenger_path(passenger.id)
+      return
+  end
     
 end
