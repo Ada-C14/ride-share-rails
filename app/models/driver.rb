@@ -36,13 +36,13 @@ class Driver < ApplicationRecord
     return
   end
 
+  # TODO: implement logic for what to return in cases of no available drivers
   def self.next_available
     available_drivers = Driver.all.filter { |driver| driver.availability_status == true }
     new_drivers = available_drivers.filter { |driver| driver.trips.empty? }
     if new_drivers.length > 0
       return new_drivers.first
     else
-      # return available_drivers.filter { |driver| driver.trips.any? }.first
       return available_drivers.filter { |driver| driver.trips.any? }.max do |driver|
         sorted_trips = driver.trips.sort_by { |trip| trip.date }
         Time.now.to_date - sorted_trips.last.date

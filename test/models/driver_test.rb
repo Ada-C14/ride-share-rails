@@ -126,6 +126,23 @@ describe Driver do
 
     end
 
+    describe "next available" do
+      it "returns the next available driver from a list of new drivers (no trips)" do
+
+        expect {
+          next_driver = Driver.next_available
+        }.must_differ "next_driver.trips.count", 1
+
+        expect(next_driver.count).must_equal 1
+      end
+
+      it "in the absence of new drivers, will select the driver with the longest time since last trip" do
+
+      end
+
+      # TODO: implement tests for logic for what to return in cases of no available drivers
+    end
+
     describe "can go online" do
       it "changes an unavailable driver to available" do
         offline_driver = Driver.create(name: "New Driver", vin: "00000000999", availability_status: false)
