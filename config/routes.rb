@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :passengers
   resources :trips
 
-  
-
   get '/drivers/:driver_id/trips', to: 'trips#index', as: 'driver_trips'
   get '/passengers/:passenger_id/trips', to: 'trips#index', as: 'passenger_trips'
   get '/drivers/:driver_id/trips/:trip_id', to: 'trips#show'
