@@ -4,7 +4,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
 
     if @trip.nil?
-      redirect_to trips_path
+      render file: "#{Rails.root}/public/404.html", status: :not_found
       return
     end
 
@@ -19,16 +19,11 @@ class TripsController < ApplicationController
       @trip = passenger.request_trip
     end
 
-    if @trip.save
-      if params[:passenger_id].nil?
-        redirect_to trip_path(@trip.id)
-        return
-      else
-        redirect_to passenger_path(passenger.id)
-        return
-      end
+    if @trip.save && params[:passenger_id].nil?
+      redirect_to trip_path(@trip.id)
+      return
     else
-      redirect_to trips_path
+      redirect_to passenger_path(passenger.id)
       return
     end
 
@@ -39,7 +34,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
 
     if @trip.nil?
-      redirect_to trips_path
+      render file: "#{Rails.root}/public/404.html", status: :not_found
       return
     end
   end
@@ -49,7 +44,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
 
     if @trip.nil?
-      redirect_to trips_path
+      render file: "#{Rails.root}/public/404.html", status: :not_found
       return
     elsif @trip.update(trip_params)
       redirect_to trip_path(@trip.id)
@@ -64,16 +59,24 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      head :not_found
+      render file: "#{Rails.root}/public/404.html", status: :not_found
       return
     end
 
     if @trip.destroy
-      redirect_to root_path
-      return
+      if params[:passenger_id] && params[:driver_id].nil?
+        redirect_to passenger_path(params[:passenger_id])
+        return
+      elsif params[:passenger_id].nil? && params[:driver_id]
+        redirect_to driver_path(params[:driver_id])
+        return
+      else
+        redirect_to root_path
+        return
+      end
     else #if .destroy fails
-    redirect_to trip_path(@trip.id)
-    return
+      redirect_to trip_path(@trip.id)
+      return
     end
   end
 
