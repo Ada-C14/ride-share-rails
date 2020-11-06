@@ -56,7 +56,7 @@ class DriversController < ApplicationController
         end
     end
 
-    def destory
+    def destroy
         driver_id = params[:id]
         @driver = Driver.find_by(id: driver_id)
 
@@ -65,7 +65,7 @@ class DriversController < ApplicationController
             return
         end
 
-        @driver.destory
+        @driver.destroy
 
         redirect_to drivers_path
         return
