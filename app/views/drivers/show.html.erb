@@ -1,14 +1,13 @@
 <h1>Driver Details</h1>
 <br>
 <ul>
-  <li> Name: <%= @driver.name %> </li>
-  <li> VIN: <%= @driver.vin %> </li>
-  <li> Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
-
+    <li> Name: <%= @driver.name %> </li>
+    <li> VIN: <%= @driver.vin %> </li>
+    <li> Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
   <li>
 
     Driver's Trips, total earnings, average rating
-    <%= @driver.trips.map{ |trip| trip.date} %>
+    <%= @driver.trips.map { |trip| trip.date } %>
     <%= @driver.total_revenue %>
     <%= @driver.average_rating %>
   </li>
