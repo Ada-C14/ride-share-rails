@@ -14,45 +14,46 @@
     <%# end %>
 <!--  </section>-->
   <section class="form">
-  <%= form_with model: @trip do |f| %>
+    <%= form_with model: @trip do |f| %>
 
-    <div>
-      <strong><%= f.label :date %>:</strong>
-      <%= f.date_field :date %>
-    </div>
-    <div>
-      <strong><%= f.label :passenger %>:</strong>
-      <%= f.select :passenger_id, Passenger.all.map{ |pass| [pass.name, pass.id]} %>
-    </div>
-    <div>
-      <strong><%= f.label :driver %>:</strong>
-      <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]} %>
-    </div>
-    <div>
-      <strong><%= f.label :cost %>:</strong>
-      <%= f.text_field :cost %>
-    </div>
-    <div>
-      <strong><%= f.label :rating %>:</strong>
+      <div>
+        <strong><%= f.label :date %>:</strong>
+        <%= f.date_field :date %>
+      </div>
+      <div>
+        <strong><%= f.label :passenger %>:</strong>
+        <%= f.select :passenger_id, Passenger.all.map{ |pass| [pass.name, pass.id]} %>
+      </div>
+      <div>
+        <strong><%= f.label :driver %>:</strong>
+        <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]} %>
+      </div>
+      <div>
+        <strong><%= f.label :cost %>:</strong>
+        <%= f.text_field :cost %>
+      </div>
+      <div>
+        <strong><%= f.label :rating %>:</strong>
 
-      <%= f.radio_button :rating, 1 %>
-      <%= f.label "1"%>
+        <%= f.radio_button :rating, 1 %>
+        <%= f.label "1"%>
 
-      <%= f.radio_button :rating, 2 %>
-      <%= f.label "2"%>
+        <%= f.radio_button :rating, 2 %>
+        <%= f.label "2"%>
 
-      <%= f.radio_button :rating, 3 %>
-      <%= f.label "3"%>
+        <%= f.radio_button :rating, 3 %>
+        <%= f.label "3"%>
 
-      <%= f.radio_button :rating, 4 %>
-      <%= f.label "4"%>
+        <%= f.radio_button :rating, 4 %>
+        <%= f.label "4"%>
 
-      <%= f.radio_button :rating, 5 %>
-      <%= f.label "5"%>
-    </div>
+        <%= f.radio_button :rating, 5 %>
+        <%= f.label "5"%>
+      </div>
 
-    <%= f.submit "Update", class: "btn btn-success" %>
+      <%= f.submit "Update", class: "btn btn-success" %>
 
-  <% end %>
+    <% end %>
+
   </section>
 </main>
