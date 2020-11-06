@@ -50,13 +50,13 @@ describe TripsController do
 
   describe "create" do
     before do
-      @driver = Driver.create!(
-          {
-              name: "Kim Vitug",
-              vin: "FDSGB3245TERSD",
-              available: true
-          }
-      )
+      # @driver = Driver.create!(
+      #     {
+      #         name: "Kim Vitug",
+      #         vin: "FDSGB3245TERSD",
+      #         available: true
+      #     }
+      # )
       @passenger = Passenger.create!(
           {
               name: "Sophie Messing",
@@ -66,41 +66,33 @@ describe TripsController do
     end
 
     it "can create a new trip with valid information accurately, and redirect" do
-      @driver.update(available: true)
-
-      trip_info = {
-          trip: {
-              driver_id: @driver.id,
-              passenger_id: @passenger.id,
-              date: Date.today,
-              cost: 2342,
-          }
-      }
 
       expect {
-        post passenger_trips_path(@passenger.id), params: trip_info
+        post passenger_trips_path(@passenger.id)
       }.must_differ "Trip.count", 1
 
+      driver = @trip.driver
+
       new_trip = Trip.find_by(passenger_id: @passenger.id)
+
       p new_trip
       expect(new_trip.date).must_equal Date.today
       expect(new_trip.cost).must_be_kind_of Integer
       expect(new_trip.rating).must_be_nil
-      expect(new_trip.driver_id).must_equal @driver.id
+      expect(new_trip.driver_id).must_equal driver.id
 
       must_respond_with :redirect
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with bad request" do
-      # new_trip = Trip.create(date: Date.today)
-      #
-      # expect{
-      #   post passengers_path(new_trip)
-      # }.wont_change "Passenger.count"
-      #
-      # # Assert
-      # # Check that the controller redirects
-      # must_respond_with :bad_request
+
+      expect{
+        post passenger_trips_path(-99)
+      }.wont_change "Trip.count"
+
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :bad_request
     end
   end
 
