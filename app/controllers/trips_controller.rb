@@ -16,6 +16,7 @@ class TripsController < ApplicationController
 
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
+    redirect_to passenger_path(params[:passenger_id]) if passenger.request_trip == 'in progress'
 
     if passenger.nil?
       redirect_to passengers_path
