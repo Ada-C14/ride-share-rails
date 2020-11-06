@@ -5,3 +5,16 @@
 .sign-up {
  font-size: 20px;
 }
+
+.home-page-wrapper {
+    background: var(--primary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    font-family: sans-serif;
+    border: 10px solid white;
+    }

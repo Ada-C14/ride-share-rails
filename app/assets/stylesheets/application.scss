@@ -17,19 +17,37 @@
 
 @import "**/*";
 
-// .navbar {
-//     background-color: #283618 !important;
-// }
-//
-// .navbar .navbar-brand {
-//     color: #FEFAEO;
-// }
-//
-// .navbar-toggler {
-//     background-color: #FEFAEO;
-// }
-// .navbar .nav-item .dropdown-menu .dropdown-item:hover {
-// color: #606C38 !important;
-//
-// }
+
+
+
+body {
+
+  font-family: Verdana, sans-serif;
+  color: white;
+  background-color: #F9EAE1;
+  margin: 30px 50px;
+  line-height: 1.4;
+
+
+}
+.navbar {
+    background-color: #606C38 !important;
+}
+
+.navbar .navbar-brand {
+    color: #FEFAEO;
+}
+
+.navbar-toggler {
+    background-color: #FEFAEO;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item {
+
+}
+.navbar .nav-item .dropdown-menu .dropdown-item:hover {
+color: #606C38 !important;
+
+}
+
 
