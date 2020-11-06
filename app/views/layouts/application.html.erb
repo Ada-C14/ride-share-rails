@@ -8,21 +8,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <header>
-    <h1>Welcome to RideShareRails</h1>
-  </header>
   <body>
-    <header>
-      <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "Driver", drivers_path %>
-        <%= link_to "Passenger", passengers_path %>
-      </nav>
-    </header>
-    <%= yield %>
+    <div class="main-container">
+      <header>
+      <h1><%= link_to "Welcome to RideShareRails", root_path %></h1>
+        <nav>
+          <div>
+            <%= link_to "Home", root_path %>
+            <%= link_to "Driver", drivers_path %>
+            <%= link_to "Passenger", passengers_path %>
+          </div>  
+        </nav>
+      </header>
+      <%= yield %>
+      <footer>
+        <p>Copyright 2020 @Ada Devlopers Academy</p>
+      </footer>
+    </div>  
   </body>
-  <footer>
-    <p>Copyright 2020 @Ada Devlopers Academy</p>
-  </footer>
 </html>
