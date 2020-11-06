@@ -1,14 +1,13 @@
-<h1>Driver List</h1>
+<section class="index">
+  <h4><strong>Driver List</strong></h4>
 
-<ul>
-  <% @drivers.each do |driver| %>
-    <li>
-      <strong><%= link_to driver.name, driver_path(driver) %></strong>
-      <%= link_to "Edit", edit_driver_path(driver) %>
-      <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"} %>
-
-
-    </li>
-  <% end %>
-</ul>
-
+  <ul class="passenger-driver-list">
+    <% @drivers.each do |driver| %>
+      <li>
+        <strong><%= link_to driver.name, driver_path(driver) %></strong>
+        <%= link_to "Edit", edit_driver_path(driver) %>
+        <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"} %>
+      </li>
+    <% end %>
+  </ul>
+</section>

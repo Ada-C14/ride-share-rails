@@ -79,8 +79,7 @@ nav {
 }
 
 .trip-list {
-  border-bottom: solid darkgrey;
-  padding-top: 75px;
+  padding-top: 30px;
   padding-bottom: 25px;
   text-align: center;
 }
@@ -88,10 +87,25 @@ nav {
 .trips-border {
   margin-left: auto;
   margin-right: auto;
+  border-top: solid gray;
 }
 
 .passenger-section {
   margin-left: auto;
   margin-right: auto;
+}
+
+.index {
+  display: grid;
+  place-items: center;
+}
+
+.index h4 {
+  padding-bottom: 10px;
+}
+.passenger-driver-list {
+  padding-top: 10px;
+  border-top: solid gray;
+  list-style-type: none;
 }
 
