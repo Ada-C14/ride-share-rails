@@ -50,13 +50,12 @@ describe PassengersController do
     # Your tests go here
     it "can create a new passenger" do
 
-
       # Arrange
       passenger_hash = {
           passenger: {
               name: "Biff Jurgenstern",
-              phone_num: "999-999-9999",
-          },
+              phone_num: "999-999-9999"
+          }
       }
 
       # Act-Assert

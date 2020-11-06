@@ -12,7 +12,7 @@ class TripsController < ApplicationController
   def show
     @trip = find_trip
 
-    redirect_to passengers_path and return if @trip.nil?
+    redirect_to trips_path and return if @trip.nil?
   end
 
   def create
@@ -30,6 +30,12 @@ class TripsController < ApplicationController
       #display error message?
       redirect_to passengers_path
     end
+  end
+
+  def assign_rating
+    trip = find_trip
+    redirect_to trips_path and return if @trip.nil?
+
   end
 
   def edit
@@ -72,7 +78,5 @@ class TripsController < ApplicationController
     return Trip.find_by(id: params[:id].to_i)
   end
 
-  # def find_driver
-  #   return Driver.find_by(available: true)
-  # end
+
 end

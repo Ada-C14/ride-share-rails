@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :drivers
   resources :passengers
   resources :homepages, only: [:index]
-  resources :trips, except: [:create]
+  resources :trips, except: [:create] do
+    member do
+      patch :assign_rating
+    end
+  end
   resources :passengers do
     resources :trips, only: [:index, :create]
   end
