@@ -1,26 +1,44 @@
-<h1>Edit Trip</h1>
-
-<% if @trip.errors.any? %>
-  <ul class="errors">
-    <% @trip.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
+<section>
+  <article>
+    <h2>Edit Trip <%= @trip.id %></h2>
+    <% if @trip.errors.any? %>
+      <ul class="errors">
+        <% @trip.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<%= form_with model: @trip, class: 'edit-trip' do |f| %>
-
-  <%= f.label :date %>
-  <%= f.text_field :date %>
-
-  <%= f.label :cost %>
-  <%= f.text_field :cost %>
-
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
-
-  <%= f.submit "Edit Trip", class: 'trip-button' %>
-<% end %>
+    <%= form_with model: @trip, class: 'edit-trip' do |f| %>
+      <table class="driver-table">
+        <tr>  
+          <th>
+            <%= f.label :date %>
+            <%= f.date_field :date, value: @trip.date %>
+          </th>
+          <th>
+            <%= f.label :passenger %>  
+            <%= f.select :passenger_id, Passenger.all.order(name: :asc).map { |passenger| [passenger.name, passenger.id] } %>
+          </th>  
+          <th>  
+            <%= f.label :driver %> 
+            <%= f.select :driver_id, Driver.all.order(name: :asc).map{ |driver| [driver.name, driver.id] } %>
+          </th>  
+          <th>
+            <%= f.label :cost %> 
+            <%= f.text_field :cost %>
+          </th>
+          <th>  
+            <%= f.label :cost %> 
+            <%= f.select :rating, [1,2,3,4,5] %>
+          </th>
+        </tr>
+      </table>
+      <br/>
+      <%= f.submit "Edit Trip", class: 'trip-button' %>
+    <% end %>  
+  </article>
+</section>          
 

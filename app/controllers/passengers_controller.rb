@@ -5,8 +5,8 @@ class PassengersController < ApplicationController
 
   def show
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
-      head :not_found
+    if @passenger.nil? || !(@passenger.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
   end
@@ -18,10 +18,10 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
-      redirect_to root_path
+      redirect_to passengers_path
       return
     else
-      redirect_to passengers_path # for now
+      render :new, status: :bad_request 
       return
     end
   end
@@ -31,31 +31,34 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       redirect_to passengers_path
       return
+    elsif !(@passenger.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+      return
     end
   end
 
   def update
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
-      head :not_found
+    if @passenger.nil? || !(@passenger.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path(id: @passenger[:id])
       return
     else
-      render :edit
+      render :edit, status: :bad_request  
       return
     end
   end
 
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
-      head :not_found
+    if @passenger.nil? || !(@passenger.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     else
-      @passenger.destroy
-      redirect_to root_path
+      @passenger.update(isactive: false)
+      redirect_to passengers_path
       return
     end
   end

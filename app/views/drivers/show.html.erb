@@ -1,6 +1,6 @@
 <section>
   <article>
-    <h1><%= @driver.name %></h1>
+    <h2><%= @driver.name %></h2>
     <table class="driver-table">
         <tr>
             <th>Driver ID</th>
@@ -13,6 +13,7 @@
         <tr>
             <th><%= @driver.id %></th>
             <th><%= @driver.vin %></th>
+
             <th>
                 <% if @driver.available %>
                     available 
@@ -20,6 +21,7 @@
                     unavailable 
                 <% end %>
             </th>    
+
             <th>
                 <%= @driver.total_earnings.nil? ? "No data": "$ #{@driver.total_earnings}" %>
             </th>
@@ -30,23 +32,33 @@
                 <%= link_to "Edit", edit_driver_path(@driver) %> |
                 <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
             </th> 
-            </tr>   
-      </table>  
+        </tr>   
+    </table> 
   </article>
   <br/>
   <article>
+    <h4><%= @driver.name %>'s Trips:</h4>
     <table class="trip-table">
         <tr>
             <th>Trip ID</th>
+            <th>Date</th>
             <th>Passenger</th>
             <th>Driver</th>
             <th>Cost</th>
             <th>Rating</th>
         </tr>
-        <% @driver.trips.each do |trip| %>
+        <% @driver.trips.order(id: :asc).each do |trip| %>
             <tr>
                 <th><%= link_to trip.id, trip_path(trip.id) %></th>
-                <th><%= link_to trip.passenger.name,passenger_path(trip.passenger_id) %></th>
+                <th><%= trip.date %></th>
+                <th>
+                  <% if trip.passenger.isactive %>
+                    <%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %>
+                  <% else %>
+                    <%= trip.passenger.name %>
+                  <% end %>    
+                </th>
+
                 <th><%= @driver.name %></th>
                 <th>$ <%= trip.cost / 100 %></th>
                 <th><%= trip.rating %></th>

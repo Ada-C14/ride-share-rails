@@ -1,22 +1,85 @@
-<h2><%= @passenger.name %></h2>
-<h4>Phone Number: <%= @passenger.phone_num %></h4>
+<section>
+  <article>
+    <h2><%= @passenger.name %></h2>
+    <table class="driver-table">
+        <tr>
+          <th>Passenger ID</th>
+          <th>Phone Number</th>
+          <th>Total spent on all trips</th>
+          <th>Edit</th>
+        </tr>
+        <tr>
+          <th><%= @passenger.id %></th>
+          <th><%= @passenger.phone_num %></th>
 
-<h4>Total spent on all trips: $<%= @passenger.total_spent %></h4>
+          <th>$<%= @passenger.total_spent %></th>
+          <th>
+            <%= link_to "Edit", edit_passenger_path(@passenger) %> |
+            <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
+          </th>
+        </tr>
+    </table>
+  </article>
+  <br/>
+  <article>
+    <h4><%= @passenger.name %>'s Trips:</h4>
+    <table class="trip-table">
+      <tr>
+          <th>Trip ID</th>
+          <th>Date</th>
+          <th>Driver</th>
+          <th>Passenger</th>
+          <th>Cost</th>
+          <th>Rating</th>
+          <th>Note</th>
+      </tr>
+      <% @passenger.trips.order(id: :asc).each do |trip| %>
+        <tr>
+          <th><%= link_to trip.id, trip_path(trip.id) %></th>
+          <th><%= trip.date %></th>
 
-<h4><%= @passenger.name %>'s Trips:</h4>
-<ul>
-<% @passenger.trips.each do |trip| %>
-  <li>
-  <%= link_to trip.date, trip_path(trip.id) %>
-  </li>
-<% end %>
-</ul>
+          <% if trip.driver.isactive %>
+              <th><%= link_to trip.driver.name, driver_path(trip.driver_id) %></th>
+          <% else %>
+              <th><%= trip.driver.name %></th>
+          <% end %> 
 
-<%= form_with model: @trip, class: 'new_passenger_trip', url: passenger_trips_path(@passenger.id) do |f|  %>
-  <% f.submit "Request Trip" %>
-<% end %>
+          <th><%= @passenger.name %></th>
+          <th>$ <%= trip.cost / 100 %></th>
 
-<%= link_to "Edit", edit_passenger_path(@passenger) %>
-<%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
+          <th>
+            <% if trip.rating.nil? %>
+            <%= form_for trip do |f| %>
+              <%= f.select :rating, [1,2,3,4,5] %>
+              <%= f.submit "Add Rating" %>
+            <% end %>
+            <% else %> 
+              <%= trip.rating %>
+            <% end %>
+          </th>
+          <th>
+            <% if trip.rating.nil? %>
+              This trip has not been rated yet, would you like to add a rating?
+            <% end %>  
+          </th>
+        </tr>  
+      <% end %>
+      <br/>  
+    </table>  
+  </article>
+  <article>
+    <%= form_with model: @trip, class: 'new_passenger_trip', url: passenger_trips_path(@passenger.id) do |f|  %>
+      <% f.submit "Request Trip", data: { confirm: 'Your confirm message' } %>
+    <% end %>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+  </article>
+</section>
+
+
+
 
 

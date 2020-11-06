@@ -9,7 +9,7 @@ describe TripsController do
       @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
     end
     it "can get a valid trip" do
-
+      # Arrange
       valid_trip_id = @trip.id
 
       # Act
@@ -20,6 +20,7 @@ describe TripsController do
     end
 
     it "will redirect for an invalid trip" do
+      # Arrange
       invalid_passenger_id = -1
 
       # Act
@@ -31,7 +32,6 @@ describe TripsController do
   end
 
   describe "create" do
-
     Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
     available_driver = Driver.first
 
@@ -45,13 +45,20 @@ describe TripsController do
           }
       }
     }
-    it "can create a new trip with valid information accurately, and redirect" do
+
+    it "can create a new trip with valid information accurately, with rating nil, turn driver's available to false, and redirect" do
+      # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
-      # test if driver status changes
+      
       # Act 
       expect {
         post passenger_trips_path(@passenger.id)
       }.must_differ 'Trip.count', 1
+
+      # Check the rating for new trip is nil and driver available becomes false
+      trip = @passenger.trips.last
+      expect(trip.rating).must_be_nil
+      expect(trip.driver.available).must_equal false
 
       # Check that the controller redirected the user
       must_respond_with :redirect
@@ -60,24 +67,21 @@ describe TripsController do
 
 
     it "does not create a trip if no driver is available" do
-      # test if found driver is available
       # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
       available_driver.update(available: false)
       Driver.all.update(available: false)
 
-
       # Act
       expect {
-        post passenger_trips_path(@passenger.id)  #, params: invalid_trip
+        post passenger_trips_path(@passenger.id)  
       }.wont_change 'Trip.count'
 
       # Assert
-      must_respond_with :not_found
+      must_redirect_to passenger_path(@passenger.id)
     end
 
     it "does not create a trip for non-existing passenger" do
-      # test if right passenger is selected
       passenger_id = -1
 
       expect {
@@ -172,7 +176,6 @@ describe TripsController do
     end
 
     it "does not update a trip if the form data violates rating, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       id = @trip.id
 
@@ -182,25 +185,37 @@ describe TripsController do
       }.wont_change 'Trip.count'
 
       # Assert
-      # Check that the controller redirects
       must_respond_with :bad_request
     end
   end
 
   describe "destroy" do
-    it "destroys the trip instance in db when trip exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
-
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+    before do
+      @driver = Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true, isactive: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: "2016-04-05", rating: 3, cost: 1293)
     end
 
-    it "does not change the db when the trip does not exist, then responds with " do
+    it "can delete the trip instance in db when trip exists and both driver and passenger are inactive, then redirects" do
+      # Arrange
+      valid_trip = @trip.id
+      # inactive driver & passenger
+      @driver.update(available: false, isactive: false)
+      @passenger.update(isactive: false)
+      
+      # Act-Assert
+      expect {
+        delete trip_path(valid_trip)
+      }.must_change "Trip.count", 1
+      
+      expect(@driver.isactive).must_equal false
+      expect(@passenger.isactive).must_equal false
+
+      # Assert
+      must_redirect_to root_path
+    end
+
+    it "does not change the db when the trip does not exist, then responds with 404" do
       # Arrange
       id = -1
 
@@ -211,6 +226,24 @@ describe TripsController do
 
       # Assert
       must_respond_with :not_found
+    end
+
+    it "does not change the db when trip exists but either driver and passenger are still active, then redirects" do
+      # Arrange
+      valid_trip = @trip.id
+      # inactive driver & passenger
+      @driver.update(available: false, isactive: false)
+
+      # Act-Assert
+      expect {
+        delete trip_path(valid_trip)
+      }.wont_change "Trip.count"
+      
+      expect(@driver.isactive).must_equal false
+      expect(@passenger.isactive).must_equal true
+
+      # Assert
+      must_redirect_to trip_path(@trip.id)
     end
   end
 end

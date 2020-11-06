@@ -5,7 +5,7 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find_by(id: params[:id])
-    if @driver.nil?
+    if @driver.nil? || !(@driver.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
@@ -29,19 +29,22 @@ class DriversController < ApplicationController
   def edit
     @driver = Driver.find_by(id: params[:id])
 
-    if @driver.nil?
+    if @driver.nil? 
       redirect_to drivers_path 
+      return
+    elsif !(@driver.isactive)
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     end
   end
 
   def update
     @driver = Driver.find_by(id: params[:id])
-    if @driver.nil? 
+    if @driver.nil? || !(@driver.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     elsif @driver.update(driver_params)
-      redirect_to driver_path 
+      redirect_to driver_path(@driver.id) 
       return
     else 
       render :edit, status: :bad_request  
@@ -52,15 +55,14 @@ class DriversController < ApplicationController
   def destroy
     @driver = Driver.find_by(id: params[:id])
 
-    if @driver.nil?
+    if @driver.nil? || !(@driver.isactive)
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
+    else
+      @driver.update(available: false, isactive: false)
+      redirect_to drivers_path
+      return
     end
-
-    @driver.destroy
-
-    redirect_to drivers_path
-    return
   end
 
   private

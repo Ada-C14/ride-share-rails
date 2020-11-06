@@ -6,12 +6,14 @@
     <th>Passenger Name</th>
     <th></th>
   </tr>
-  <% @passengers.each do |passenger| %>
-    <tr>
-      <th><%= passenger.id %></th>
-      <th><%= link_to passenger.name, passenger_path(passenger.id) %></th>
-      <th><%= link_to "Edit", edit_passenger_path(passenger.id) %> |
-        <%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></th>
-    </tr>
+  <% @passengers.order(id: :asc).each do |passenger| %>
+    <% if passenger.isactive %>
+      <tr>
+        <th><%= passenger.id %></th>
+        <th><%= link_to passenger.name, passenger_path(passenger.id) %></th>
+        <th><%= link_to "Edit", edit_passenger_path(passenger.id) %> |
+          <%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></th>
+      </tr>
+    <% end %>  
   <% end %>
 </table>
