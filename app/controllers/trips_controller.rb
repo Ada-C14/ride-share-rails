@@ -55,6 +55,7 @@ class TripsController < ApplicationController
       render :edit
       return
     end
+  end
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
@@ -89,6 +90,5 @@ class TripsController < ApplicationController
     def trip_params
       return params.require(:trip).permit(:id, :driver_id, :passenger_id, :date, :rating, :cost)
     end
-  end
 end
 
