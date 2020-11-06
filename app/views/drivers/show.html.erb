@@ -6,7 +6,7 @@
   <li> Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
 
   <li>
-    Driver's Trips
+    Driver's Trips, total earnings, average rating
     <%= @driver.trips.map { |trip| trip.date} %>
   </li>
 
