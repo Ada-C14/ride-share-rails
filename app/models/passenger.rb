@@ -7,4 +7,11 @@ class Passenger < ApplicationRecord
   def total_charged
     return self.trips.sum { |trip| trip.cost }.round(2)
   end
+
+  def request_trip
+    driver = Driver.next_available
+    driver.change_status
+    return Trip.new(rating: nil, cost: rand(5.00..30.00), passenger: self, driver: driver, date: Time.now)
+  end
+
 end

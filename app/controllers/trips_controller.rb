@@ -12,11 +12,21 @@ class TripsController < ApplicationController
 
 
   def create
-    @trip = Trip.new(trip_params)
+    if params[:passenger_id].nil?
+      @trip = Trip.new(trip_params)
+    else
+      passenger = Passenger.find_by_id(params[:passenger_id])
+      @trip = passenger.request_trip
+    end
 
     if @trip.save
-      redirect_to trip_path(@trip.id)
-      return
+      if params[:passenger_id].nil?
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        redirect_to passenger_path(passenger.id)
+        return
+      end
     else
       redirect_to trips_path
       return
