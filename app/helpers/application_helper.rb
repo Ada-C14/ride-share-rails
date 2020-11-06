@@ -5,7 +5,6 @@ module ApplicationHelper
     else
       dollars = number_to_currency(cents * 0.01)
     end
-
     return dollars
   end
 end

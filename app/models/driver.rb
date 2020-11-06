@@ -21,8 +21,10 @@ class Driver < ApplicationRecord
     sum = 0
     count = 0
     trips.each do |trip|
-      sum += trip.rating
-      count += 1
+      if !trip.rating.nil?
+        sum += trip.rating
+        count += 1
+      end
     end
     average = (sum / count.to_f).round(2)
     return average

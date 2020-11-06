@@ -25,8 +25,8 @@
     <% @driver.trips.each do |trip| %>
       <tr>
         <td><%=link_to trip.id, trip_path(trip.id) %></td>
-        <td><%=trip.driver.name %></td>
-        <td><%=trip.passenger.name %></td>
+        <td><%=trip.passenger ? trip.passenger.name : "N/A"%></td>
+        <td><%=trip.driver ? trip.driver.name : "N/A"%></td>
         <td><%=trip.rating%></td>
         <td><%=dollar_format(trip.cost)%></td>
         <td><%=trip.date%></td>
