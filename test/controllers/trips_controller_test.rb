@@ -256,7 +256,7 @@ describe TripsController do
       expect {
         patch complete_trip_path(@trip_1.id)
       }.wont_change 'Trip.count'
-      
+
       expect(Driver.find_by(id: @driver_1.id).available).must_equal true
       expect(Trip.find_by(id: @trip_1.id).complete).must_equal true
 

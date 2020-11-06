@@ -61,10 +61,6 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
 
-    describe "complete trip" do
-      # Your code here
-    end
-
     describe "total_spent" do
       it "calculates the total amount spent by a passenger on all trips" do
         new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
