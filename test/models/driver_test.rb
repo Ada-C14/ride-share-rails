@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true)
   }
   it "can be instantiated" do
     # Assert
@@ -62,10 +62,21 @@ describe Driver do
   describe "custom methods" do
     describe "average rating" do
       # Your code here
+      # new_driver.update(trip: Trip.new(cost:2000, date: Date.current))
+      # new_driver.update(trip: Trip.new(cost:3000, date: Date.current))
+      # new_driver.update(trip: Trip.new(cost:4000, date: Date.current))
     end
 
     describe "total earnings" do
-      # Your code here
+      it "correctly calculates total earnings" do
+        costs = [2000, 3000, 4000]
+        expected_total_earnings = ((costs.sum - 1.65) * 0.8).round #7199
+
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        costs.each{|cost| Trip.create(cost:cost, date: Date.current, driver:new_driver, passenger: new_passenger)}
+
+        expect(new_driver.total_earnings).must_equal expected_total_earnings
+      end
     end
 
     describe "can go online" do
