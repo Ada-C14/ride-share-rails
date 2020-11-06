@@ -75,6 +75,8 @@ class DriversController < ApplicationController
     else
       return @driver.update(available: true)
     end
+    redirect_to driver_path
+    return
   end
 
   private

@@ -65,6 +65,9 @@ class TripsController < ApplicationController
 
   #if we delete driver, will it delete trip so that passenger cant access it
   def destroy
+    @trip = Trip.find_by(id: params[:id])
+    pp @trip
+
     if @trip.nil?
       head :not_found
       return
@@ -73,7 +76,6 @@ class TripsController < ApplicationController
     if @trip
       @trip.destroy
       redirect_to root_path
-    else
     end
   end
 
