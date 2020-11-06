@@ -4,7 +4,7 @@ describe TripsController do
 
 
   let(:trip){
-    Trip.create(date: Date.current, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
+    Trip.create!(date: Date.current, cost: 7777, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
   }
 
   let(:passenger){
@@ -62,7 +62,7 @@ describe TripsController do
   describe "update" do
 
     before do
-      Trip.create(date: Date.current, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
+      Trip.create!(date: Date.current, cost: 7777, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
     end
 
     let (:edit_trip_hash) do
@@ -98,7 +98,7 @@ describe TripsController do
 
   describe "destroy" do
       before do
-        Trip.create(date: Date.current, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
+        Trip.create!(cost: 7777, date: Date.current, passenger: Passenger.create(name: "sample passenger", phone_num: "999-999-9999"), driver: Driver.create(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: true))
       end
 
       # Your tests go here
