@@ -27,15 +27,21 @@ html {
 
 html, body {
     height: 100%;
+    background-color: #fffbee;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+//     display: flex;
+//     flex-direction: column;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 125px auto 40px;
 }
 
 main {
     padding: 5px 10px;
+//     background-color: #fffbee;
 }
 
 header {
