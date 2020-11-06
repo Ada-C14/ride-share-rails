@@ -27,12 +27,12 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    create
   end
 
   def create
     # Want to use passenger id to create trip
-    passenger = Passenger.find_by(id:passenger_id)
+    passenger = Passenger.find_by(id: params[:passenger_id])
     if passenger.nil?
       head :not_found
       return
