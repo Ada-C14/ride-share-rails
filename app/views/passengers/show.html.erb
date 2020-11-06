@@ -8,16 +8,15 @@
   <tr>
     <td>Phone Number:</td>
     <td> <%= @passenger.phone_num %> </td>
-    >
+
   </tr>
   <tr>
     <td>Passenger's Trips:</td>
-    <td><%= @passenger.trips.map { |trip| trip.date } %></td>
+    <td><% @passenger.trips.each do |trip| %>
+        <li>Trip: <%= link_to trip.date, trip_path %>
+      <% end %></li>
+    </td>
   </tr>
-  <!--  <li><%#= @passenger.trips.each do |trip| %>-->
-  <!--      Trip: <%#= link_to trip.date, trip_path(trip) %>-->
-  <%# end %>
-  <!--  </li>-->
   <tr>
     <td>Total charged</td>
     <td><%= number_to_currency(@passenger.total_charged.to_f / 100) %></td>
