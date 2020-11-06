@@ -1,28 +1,17 @@
-<h2>Drivers list</h2>
-<% if @drivers.length > 0 %>
+<h2>Trips list</h2>
+<% if @trips.length > 0 %>
 
-  <h3>Available Drivers</h3>
+<!--  To connect Driver ID, passenger ID, Date , rating and Cost-->
   <ul>
-    <% @drivers.each do |driver| %>
-      <% if driver.available == true %>
-        <li> <%= link_to  driver.name, driver_path(driver) %></li>
-        <% end %>
-    <% end %>
-  </ul>
-
-  <h3>Unavailable Drivers</h3>
-  <ul>
-    <% @drivers.each do |driver| %>
-      <% if driver.available == false %>
-        <li> <%= link_to  driver.name, driver_path(driver) %></li>
-      <% end %>
+    <% @trips.each do |trip| %>
+      <li> <%= link_to  trip.id, trip_path(trip) %></li>
     <% end %>
   </ul>
 
 <% else %>
-  <h3>No drivers</h3>
+  <h3>No trip</h3>
 <% end %>
 
 <p class="buttons">
-  <%= link_to "Add a New Driver", new_driver_path %>
+  <%= link_to "Add a New Passenger", new_trip_path %>
 </p>

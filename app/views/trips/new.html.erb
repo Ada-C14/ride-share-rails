@@ -1,8 +1,8 @@
-<h2>New Driver</h2>
+<h2>New Trip</h2>
 
-<% if @driver.errors.any? %>
+<% if @trip.errors.any? %>
   <ul class="errors">
-    <% @driver.errors.each do |column, message| %>
+    <% @trip.errors.each do |column, message| %>
       <li>
         <strong><%= column.capitalize %></strong> <%= message %>
       </li>
@@ -10,18 +10,23 @@
   </ul>
 <% end %>
 
-<div class="new-driver">
-  <%= form_with model: @driver do |f| %>
-    <%= f.label :name%>
+<!--check error messages-->
+
+<div class="new-trip">
+  <%= form_with model: @trip do |f| %>
+    <%= f.label :date%>
     <br>
-    <%= f.text_field :name %>
+    <%= f.text_field :date %>
     <br>
-    <%= f.label :vin %>
+    <%= f.label :rating %>
     <br>
-    <%= f.text_area :vin %>
+    <%= f.text_area :rating %>
     <br>
-    <% # set availability by default %>
-    <% @driver[:available] = true %>
+    <%= f.label :cost %>
+    <br>
+    <%= f.text_area :cost %>
+    <br>
+
 
     <%= f.submit %>
   <% end %>

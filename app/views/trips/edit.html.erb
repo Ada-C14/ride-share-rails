@@ -1,4 +1,4 @@
-<h2>Edit Driver</h2>
+<h2>Edit Trips</h2>
 
 <% if @trip.errors.any? %>
   <ul class="errors">
@@ -13,13 +13,13 @@
 <!--put driver and passenger name-->
 <div class="edit-trip">
   <%= form_for @trip do |f| %>
-    <%= f.label :name%>
+    <%= f.label :rating %>
     <br>
-    <%= f.text_field :name %>
+    <%= f.text_field :rating %>
     <br>
-    <%= f.label :vin %>
+    <%= f.label :cost %>
     <br>
-    <%= f.text_area :vin %>
+    <%= f.text_area :cost %>
     <br>
 
     <%= f.submit %>
