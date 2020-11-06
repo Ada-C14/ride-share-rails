@@ -9,9 +9,8 @@
   <% end %>
 </ul>
 
-<div><%= link_to "Edit Passenger", edit_passenger_path %></div>
-
-<div><%= link_to "Delete Passenger", edit_passenger_path %></div>
-
-
-<div><%= link_to "Back to Passengers", passengers_path %></div>
+<ul>
+  <li><%= link_to "Edit Passenger", edit_passenger_path %></li>
+  <li><%= link_to "Delete Passenger", passenger_path, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+  <li><%= link_to "Back to Passengers", passengers_path %></li>
+</ul>

@@ -9,7 +9,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <h1>Madeline & Jessica Ride Share</h1>
+    <nav>
+        <h3><%= link_to "Homepage", root_path %></h3>
+    </nav>
+  </header>
+
   <body>
     <%= yield %>
   </body>
+
+  <footer>
+    copyright Madeline & Jessica 2020
+  </footer>
 </html>

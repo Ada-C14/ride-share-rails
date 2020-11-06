@@ -1,4 +1,6 @@
 <h2><%= @driver.name%></h2>
+<h3><%= @driver.vin %></h3>
+<h3><%= @driver.available %></h3>
 
 <h4>List of Trips:</h4>
 <ul>
@@ -7,7 +9,11 @@
   <% end %>
 </ul>
 
-<div><%= link_to "Edit Driver", edit_driver_path %></div>
+<ul>
+  <li><%= link_to "Edit Driver", edit_driver_path %></li>
+  <li><%= link_to "Delete Driver", driver_path, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+  <li><%= link_to "Back to Drivers", drivers_path %></li>
+</ul>
 
-<div><%= link_to "Back to Drivers", drivers_path %></div>
+
 

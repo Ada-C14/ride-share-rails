@@ -1,6 +1,6 @@
 <h1>All Passengers</h1>
 
-<div><%= link_to "Add a Passenger", new_passenger_path %></div>
+<h3><%= button_to "Add a Passenger", new_passenger_path, method: :get %></h3>
 
 <ul>
   <% @passengers.each do |passenger|  %>
