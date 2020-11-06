@@ -13,6 +13,12 @@ describe TripsController do
     @trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: driver.id, passenger_id: passenger.id )
   }
 
+  # before do
+  #   @driver = Driver.create(name: "Dr. Kenton Berge", vin: "12345678901234567", available: true)
+  #   @passenger =  Passenger.create(name: "Nina Hintz Sr.", phone_num: "560.815.3059")
+  #   @trip =  @trip = Trip.create(date: "2020-11-03", rating: 4, cost: 25.50, driver_id: @driver.id, passenger_id: @passenger.id )
+  # end
+
 
   describe "show" do
     it "responds with success when showing an existing valid trip" do
@@ -34,24 +40,38 @@ describe TripsController do
 
   describe "create" do
     # Your tests go here
+    before do
+    @new_trip_info = {
+            trip: {
+            driver_id: driver.id,
+            passenger_id: passenger.id,
+            cost: 23.43,
+            date: "2020-11-06",
+            rating: nil
+            }
+          }
+    end
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+
       driver.save
       new_trip_info = {
         trip: {
         passenger_id: passenger.id,
         }
       }
-      # Act-Assert
+
       expect {
-        post passenger_trips_path(passenger.id), params: new_trip_info
+        post passenger_trips_path(passenger.id), params: @new_trip_info
       }.must_differ "Trip.count", 1
 
       new_trip = Trip.last
+
       expect(new_trip.driver_id).must_equal driver.id
       expect(new_trip.passenger_id).must_equal passenger.id
       expect(new_trip.date).must_equal Time.now.strftime("%Y-%m-%d")
+
       expect(new_trip.rating).must_be_nil
 
       must_respond_with :redirect
