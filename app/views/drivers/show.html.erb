@@ -1,18 +1,18 @@
 
-<!--each driver data-->
-<h1>All Drivers</h1>
-
 <div>
   <h2>Driver Information</h2>
   <h3><%= @driver.name %></h3>
   <h3><%= @driver.vin %></h3>
   <h3><%= @driver.available ? "Available" : "Unavailable" %></h3>
 
-  <%= link_to "Edit", edit_driver_path(@driver.id) %>
-  <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %>
+  <button type="button" class="btn btn-primary btn-lg"><%= link_to "Edit", edit_driver_path(@driver.id)%></button>
+  <button type="button" class="btn btn-secondary btn-lg"><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+
+  <%#= link_to "Edit", edit_driver_path(@driver.id) %>
+  <%#= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %>
 
   <table class="table table-striped">
-    <thead>
+    <thead class="thead-dark">
     <tr>
       <th scope="col">Trip ID</th>
       <th scope="col">Passenger</th>

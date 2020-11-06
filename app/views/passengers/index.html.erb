@@ -1,10 +1,12 @@
-<h1>passengers</h1>
+<h1 class ="col-xs-1 text-center">Passengers</h1>
+
 
 <%= link_to "Create New Passenger Account", new_passenger_path %>
 
-
-<% @passengers.each do |passenger|%>
-  <li>
-    <%=passenger.name %> | <%= link_to "Details", passenger_path(passenger.id) %>
-  </li>
-<% end %>
+<ul class="list-group list-group-flush">
+  <% @passengers.each do |passenger|%>
+    <li class="list-group-item">
+      <%=passenger.name %> | <%= link_to "Details", passenger_path(passenger.id) %>
+    </li>
+  <% end %>
+</ul>

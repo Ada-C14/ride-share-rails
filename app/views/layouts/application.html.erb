@@ -6,18 +6,25 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
     <header>
-      <nav>
-        <%= link_to "Home", root_path, method: :get %>
-        <%= link_to "View All Passenger", passengers_path, method: :get %>
-        <%= link_to "View All Drivers", drivers_path, method: :get %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <%= link_to "Ride Share", root_path, method: :get, :class=> "navbar-brand"  %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to "View Passengers", passengers_path, method: :get, :class=> "nav-item nav-link active"%>
+            <%= link_to "View Drivers", drivers_path, method: :get, :class=> "nav-item nav-link active"%>
+          </div>
+        </div>
       </nav>
-      <h1>Ride Share</h1>
     </header>
 
     <main>

@@ -59,7 +59,7 @@ class PassengersController < ApplicationController
       head :not_found
       return
     else
-      
+
       passenger.destroy
       redirect_to passengers_path
     end
