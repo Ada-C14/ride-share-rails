@@ -34,6 +34,7 @@ class TripsController < ApplicationController
 
     if @trip.save!
       # @first_available_driver.update(available: false)
+      first_available_driver.update_attribute(:available, false)
       redirect_to trip_path(@trip)
       return
     else
