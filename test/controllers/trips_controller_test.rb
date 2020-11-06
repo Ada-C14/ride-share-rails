@@ -47,14 +47,14 @@ describe TripsController do
       expect(Trip.last.driver.name).must_equal driver.name
     end
 
-    it "will not create a new trip if there are for an invalid passenger id" do
+    it "will not create a new trip with an invalid passenger id" do
 
       new_trip = {
           trip: {
           }
       }
       expect {
-        post passenger_trips_path(50), params: new_trip
+        post passenger_trips_path(-1), params: new_trip
       }.wont_change "Trip.count"
 
       must_respond_with :bad_request
