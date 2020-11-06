@@ -1,4 +1,5 @@
 <div>
+
 <%= form_with model: @driver do |f| %>
 
   <%# if @driver.errors.any? %>
@@ -21,11 +22,13 @@
     <%= f.text_field :vin %>
   </div>
   <br>
-<!--    Unclear if this is needed. Don't need for new, should default to available, but what about edit-->
+
+  <% if @driver.persisted? %>
   <div>
-    <%= f.label :available %>
-    <%= f.text_field :available %>
+  <%= f.label :available %>
+  <%= f.check_box :available %>
   </div>
+  <% end %>
 
   <br>
   <%= f.submit action_name, class: "button" %>
