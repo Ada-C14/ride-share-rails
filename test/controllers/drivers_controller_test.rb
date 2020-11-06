@@ -100,7 +100,7 @@ describe DriversController do
       }.must_change "Driver.count", 1
     end
 
-    it 'does not create a driver if the form data violates Driver validations, and responds with a redirect' do
+    it 'does not update a driver if the form data violates Driver validations, and responds with a redirect' do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
@@ -120,7 +120,6 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-      # must_redirect_to
       must_respond_with :redirect
     end
   end
@@ -180,14 +179,25 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
+      driver
       # Assign the existing driver's id to a local variable
+      id = driver.id
       # Set up the form data so that it violates Driver validations
-
+      driver_params = {
+          driver: {
+              name: nil,
+              vin: nil,
+              available: false
+          },
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      expect {
+        patch driver_path(id), params: driver_params
+      }.must_differ "Driver.count", 0
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
     end
   end
 
