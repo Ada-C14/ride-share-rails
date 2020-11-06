@@ -2,7 +2,11 @@
   <p> Please provide the following information:</p>
   <div>
     <%= f.label :date %>
+<<<<<<< HEAD
     <%= f.date_field :date %>
+=======
+
+>>>>>>> css
 
     <%= f.label :driver %>
       <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
