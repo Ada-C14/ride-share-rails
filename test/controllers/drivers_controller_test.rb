@@ -141,7 +141,7 @@ describe DriversController do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
-      get edit_driver_path(driver.id)
+      driver_id = driver.id
       # Assign the existing driver's id to a local variable
       # Set up the form data
       edited_driver_hash = {
@@ -154,21 +154,21 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect {
-        patch driver_path(driver.id), params: edited_driver_hash
+        patch driver_path(driver_id), params: edited_driver_hash
       }.wont_change "Driver.count"
 
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
-      edited_driver = Driver.find_by(id: driver.id)
+      edited_driver = Driver.find_by(id: driver_id)
       expect(edited_driver.name).must_equal edited_driver_hash[:driver][:name]
       expect(edited_driver.vin).must_equal edited_driver_hash[:driver][:vin]
 
       must_respond_with :redirect
-      must_redirect_to driver_path(driver.id)
+      must_redirect_to driver_path(driver_id)
     end
 
-    it "does not update any driver if given an invalid id, and redirects to list of drivers" do
+    it "does not update any driver if given an invalid id, and responds with a 404" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
@@ -195,7 +195,7 @@ describe DriversController do
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
-      get edit_driver_path(driver.id)
+      driver_id = driver.id
 
       # Set up the form data so that it violates Driver validations
       edited_driver_hash = {
@@ -208,7 +208,7 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect {
-        patch driver_path(driver.id), params: edited_driver_hash
+        patch driver_path(driver_id), params: edited_driver_hash
       }.wont_change "Driver.count"
 
       # Assert
@@ -219,17 +219,13 @@ describe DriversController do
 
   describe "destroy" do
     it "destroys the driver instance in db when driver exists and has no trips, then redirects" do
-      driver
+      driver_id = driver.id
 
-
-      # Act
       expect {
-        delete driver_path(driver.id)
-
-        # Assert
+        delete driver_path(driver_id)
       }.must_change 'Driver.count', -1
 
-      deleted_driver = Driver.find_by(id: driver.id)
+      deleted_driver = Driver.find_by(id: driver_id)
 
       expect(deleted_driver).must_be_nil
 
@@ -238,35 +234,27 @@ describe DriversController do
     end
 
     it "does not change the db when driver exists and has trips, must respond with bad request" do
-      d1 = driver
+      driver_id = driver.id
       passenger = Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
-
-      trip1 = Trip.create(date: "2020-11-05",
+      Trip.create(date: "2020-11-05",
          rating: nil,
          cost: 1000,
-         passenger: passenger,
-         driver: d1)
+         passenger_id: passenger.id,
+         driver_id: driver_id)
 
-
-
-      # Act
       expect {
-        delete driver_path(d1.id)
-
-        # Assert
+        delete driver_path(driver_id)
       }.wont_change 'Driver.count'
 
-      deleted_driver = Driver.find_by(id: d1.id)
+      driver_with_trips = Driver.find_by(id: driver_id)
 
-      expect(deleted_driver).must_equal d1
+      expect(driver_with_trips).must_equal driver
 
       must_respond_with :redirect
-      must_redirect_to driver_path(d1.id)
+      must_redirect_to driver_path(driver_id)
     end
 
     it "does not change the db when the driver does not exist, then responds with not found" do
-      driver
-
       expect {
         delete driver_path(-1)
       }.wont_change 'Driver.count'
