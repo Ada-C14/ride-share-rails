@@ -1,6 +1,9 @@
 <%= form_with model: @trip, class: 'trip-form' do |f| %>
   <p> Please provide the following information:</p>
   <div>
+    <%= f.label :date %>
+    <%= f.date_field :date, value: :date, data:{ provide:'datepicker' }%>
+
     <%= f.label :driver %>
       <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
 
