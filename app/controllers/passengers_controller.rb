@@ -38,17 +38,18 @@ class PassengersController < ApplicationController
   end
 
   def update
-    @passengers = Passenger.find_by(id:params[:id])
+    @passengers = Passenger.find_by(id: params[:id])
 
     if @passengers.nil?
       head :not_found
       return
-    elsif @passengers.update(passengers_params)
+    elsif @passengers.update(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
       redirect_to passenger_path(@passengers.id)
       return
     else
       render :edit
     end
+
   end
 
   def destroy

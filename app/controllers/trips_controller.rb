@@ -83,7 +83,7 @@ class TripsController < ApplicationController
       head :not_found #redirect_to driver_path(@driver.id) # vs Head :not_found
       return
     elsif @trip.update(name:params[:driver][:name],vin: params[:driver][:vin])
-      redirect_to trip_path(@trip.id)
+      redirect_to trip_path(@trips.id)
       return
     else
       render :edit
