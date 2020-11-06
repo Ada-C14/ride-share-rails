@@ -7,14 +7,16 @@
     <li><b>Name: </b><%= @passenger.name %></li>
     <li><b>Telephone #: </b><%= @passenger.phone_num %></li>
   </ul>
-  <div class="info-edit">
-    <div class="profile-buttons">
-      <%= button_to "Edit Passenger", edit_passenger_path(@passenger), method: :get %>
-    </div>
-    <div class="profile-buttons">
-      <%= button_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?" } %>
-    </div>
-  </div>
+  <ul class="info-edit">
+    <li>
+      <div class="profile-buttons">
+        <%= button_to "Edit Passenger", edit_passenger_path(@passenger), method: :get %>
+      </div>
+      <div class="profile-buttons">
+        <%= button_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?" } %>
+      </div>
+    </li>
+  </ul>
 </div>
 
 <h3>Active Trips</h3>

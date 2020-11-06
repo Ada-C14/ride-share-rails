@@ -104,7 +104,7 @@ footer {
 .info-edit {
     grid-area: info-edit;
     align-self: center;
-    padding-left: 30px;
+//     padding-left: 30px;
 }
 
 .profile-container ul {
@@ -115,14 +115,9 @@ footer {
     display: inline-block;
 }
 
-.button-box {
-    display: flex;
-    justify-content: space-around;
-    padding: 5px 20%;
-}
-
-.button-collect {
+.trips {
     display: inline-block;
+    background-color: #7ECFD4;
 }
 
 
