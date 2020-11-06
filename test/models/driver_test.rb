@@ -68,11 +68,11 @@ describe Driver do
       # Your code here
     end
 
-    xdescribe "can go online" do
+    describe "can go online" do
       # Your code here
     end
 
-    xdescribe "can go offline" do
+    describe "can go offline" do
       # Your code here
     end
 

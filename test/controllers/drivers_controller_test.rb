@@ -3,25 +3,34 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
+  let (:driver) {
+    Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
+  }
+
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
+      driver
+      expect(Driver.count).must_equal 1
 
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+      expect(Driver.count).must_equal 0
 
       # Act
+      get drivers_path
 
       # Assert
-
+      must_respond_with :success
     end
   end
 
@@ -31,24 +40,30 @@ describe DriversController do
       # Ensure that there is a driver saved
 
       # Act
+      get driver_path(driver.id)
 
       # Assert
-
+      must_respond_with :success
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with redirect with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
 
       # Act
+      get driver_path(-1)
 
       # Assert
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+
+      must_respond_with :success
     end
   end
 
