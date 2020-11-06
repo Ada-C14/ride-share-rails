@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   root to: 'homepages#index'
 
   resources :passengers do
-    resources :trips, only: [:create]
+    resources :trips, only: [:create, :destroy]
   end
 
-  resources :drivers
+  resources :drivers do
+    resources :trips, only: [:destroy]
+  end
 
   resources :trips, except: [:index, :new]
 

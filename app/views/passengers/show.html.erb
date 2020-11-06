@@ -61,8 +61,8 @@
             <%= button_to "Edit", edit_trip_path(trip.id), method: :get, class: "btn btn-outline-warning btn-sm" %>
           </td>
           <td>
-            <%= button_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }, params: {passenger_id: @passenger.id}, class: "btn btn-outline-danger btn-sm" %>
-          </td
+            <%= button_to "Delete", passenger_trip_path(@passenger.id, trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }, class: "btn btn-outline-danger btn-sm" %>
+          </td>
         </tr>
         <% end %>
       </tbody>
