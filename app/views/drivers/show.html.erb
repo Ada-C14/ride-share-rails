@@ -30,13 +30,9 @@
 <h2>Driver: <%= @driver[:name] %></h2>
 <h3>Vin: <%= @driver[:vin] %></h3>
 <h3> Driver Id: <%=@driver[:id] %></h3>
-<% if @driver[:available] == "true" %>
-  <% availability = "yes" %>
-  <% else %>
-  <% availability = "no" %>
-  <% end %>
-<h4>Availability: <%= availability %></h4>
-  <%= link_to @driver.available.nil? ? "Driver: Offline": "Driver: Online", {action: :available, id: @driver.id}, method: :patch %>
+
+<h4>Availability: <%= driver_availability_string(@driver) %></h4>
+  <%= link_to driver_online_string(@driver), {action: :set_available, id: @driver.id}, method: :patch %>
   <%= link_to "Delete Driver?", destroy_driver_path, method: :delete, data: {confirm: "Are you sure?"} %>
   <%= link_to "Edit Driver", edit_driver_path %>
 
