@@ -8,8 +8,9 @@
   <li>
 
     Driver's Trips, total earnings, average rating
-    <%= @driver.trips.map { |trip| trip.date} %>
+    <%= @driver.trips.map{ |trip| trip.date} %>
     <%= @driver.total_revenue %>
+    <%= @driver.average_rating %>
   </li>
 
 
