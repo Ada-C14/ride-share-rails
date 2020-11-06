@@ -13,19 +13,10 @@ class Passenger < ApplicationRecord
     return Money.new(total_cost, "USD").format
   end
 
-  def self.request_trip
-    #  check if already on trip
-    trip = self.trips.where(rating: nil)
-    if trip
-      return 'in progress'
-    else
-      return 'request accepted'
-    end
-  end
 
-  def self.complete_trip
-    trip = self.trips.where(rating: nil)
-    trip.rating = rand(1...5)
-    self.save
-  end
+  # def self.complete_trip
+  #   trip = self.trips.where(rating: nil)
+  #   trip.rating = rand(1...5)
+  #   self.save
+  # end
 end
