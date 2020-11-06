@@ -1,11 +1,16 @@
 <h1>Driver Details</h1>
 <br/>
 
-<ul>
-  <li>Name: <%= @driver.name %></li>
-  <li>VIN: <%= @driver.vin %></li>
-  <li>Availability: <%= @driver.available ? "available" : "not available" %> <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
-</ul>
+<div class="profile-container">
+  <div><%= image_tag ("person_img.png") %></div>
+  <ul>
+    <li><b>Name: </b><%= @driver.name %></li>
+    <li><b>VIN: </b><%= @driver.vin %></li>
+    <li><b>Status: </b><%= @driver.available ? "available" : "not available" %> <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
+  </ul>
+</div>
+
+
 <br/>
 
 <h3>TRIPS</h3>
@@ -24,5 +29,3 @@
     <%= button_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 </div>
-
-<br/>

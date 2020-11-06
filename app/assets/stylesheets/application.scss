@@ -82,6 +82,17 @@ footer {
     text-align: center;
 }
 
+.profile-container {
+    display: flex;
+    background-color: #7ECFD4;
+    padding: 5px 5px;
+    align-items: center;
+}
+
+.profile-container ul {
+    list-style-type: none;
+}
+
 .button-box {
     display: flex;
     justify-content: space-around;

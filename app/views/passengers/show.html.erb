@@ -1,6 +1,13 @@
 <h1>Passenger Details</h1>
 <br />
-<p>PASSENGER: <%= @passenger.name + " - " + @passenger.phone_num %></p>
+
+<div class="profile-container">
+  <div><%= image_tag ("person_img.png") %></div>
+  <ul class="profile-details">
+    <li><b>Name: </b><%= @passenger.name %></li>
+    <li><b>Telephone #: </b><%= @passenger.phone_num %></li>
+  </ul>
+</div>
 
 <h3>Active Trips</h3>
 
