@@ -11,15 +11,18 @@
 
   <body>
   <header>
-    <nav>
-      <div>
-        <%= link_to "Return Home", root_path %>
-      </div>
-      <div>
-        <%= link_to "View Passengers", passengers_path %>
-      </div>
-      <div>
-        <%= link_to "View Drivers", drivers_path %>
+    <nav class="navbar">
+      <div class="container"">
+        <div class="name">RIDE SHARE RAILS</div>
+        <div class="nav-link">
+          <%= link_to "HOME", root_path %>
+        </div>
+        <div class="nav-link">
+          <%= link_to "VIEW PASSENGERS", passengers_path %>
+        </div>
+        <div class="nav-link">
+          <%= link_to "VIEW DRIVERS", drivers_path %>
+        </div>
       </div>
     </nav>
   </header>
