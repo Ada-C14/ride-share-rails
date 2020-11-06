@@ -25,7 +25,7 @@ class Driver < ApplicationRecord
   end
 
   def average_rating
-    total_rating = 0
+    total_rating = 0.0
     rated_trips = 0
 
     self.trips.each do |trip|
@@ -34,7 +34,7 @@ class Driver < ApplicationRecord
         rated_trips += 1
       end
     end
-    self.trips.length > 0 ? total_rating / rated_trips.to_f : total_rating
+    self.trips.length > 0 ? total_rating / rated_trips.round(2) : total_rating
   end
 end
 
