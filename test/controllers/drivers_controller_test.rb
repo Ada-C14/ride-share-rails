@@ -69,6 +69,7 @@ describe DriversController do
   end
 
   describe "create" do
+
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       driver_hash = {
@@ -183,12 +184,14 @@ describe DriversController do
     end
 
     it "does not edit a driver if the form data violates Driver validations, and responds with a redirect" do
+      Driver.create(name: "Jane Smith", vin: "aaaaaaa")
 
-      id = Driver.first.id
+
+      id = Driver.last.id
       invalid_driver_hash = {
           driver:{
               name:"janesmith2",
-              vin:""
+              vin:nil
           },
       }
       expect {
@@ -199,7 +202,7 @@ describe DriversController do
 
       driver = Driver.find_by(id: id)
       expect(driver.name).must_equal "Jane Smith"
-      expect(driver.vin).must_equal "sv1d65gb6ht1ws"
+      expect(driver.vin).must_equal "aaaaaaa"
     end
   end
 

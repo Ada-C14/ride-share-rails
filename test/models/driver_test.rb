@@ -63,7 +63,7 @@ describe Driver do
     describe "average rating" do
       it "will calculate average rating correctly" do
         new_driver.save
-        driver = Driver.first
+        driver = Driver.last
         new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
         trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
         trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
@@ -78,7 +78,7 @@ describe Driver do
     describe "total earnings" do
       it "will calculate total earnings correctly" do
         new_driver.save
-        driver = Driver.first
+        driver = Driver.last
         new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
         trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
         trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
