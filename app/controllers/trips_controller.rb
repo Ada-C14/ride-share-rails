@@ -12,7 +12,7 @@ class TripsController < ApplicationController
   def show
     @trip = find_trip
 
-    redirect_to passengers_path and return if @trip.nil?
+    redirect_to trips_path and return if @trip.nil?
   end
 
   def create
@@ -33,9 +33,11 @@ class TripsController < ApplicationController
   end
 
   def assign_rating
+    trip = find_trip
+    redirect_to trips_path and return if @trip.nil?
 
   end
-  
+
   def edit
     @trip = find_trip
 
