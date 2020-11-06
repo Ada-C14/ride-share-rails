@@ -58,7 +58,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(t)
+    elsif @trip.update(trip_params)
       redirect_to trip_path(@trip)
       return
     else

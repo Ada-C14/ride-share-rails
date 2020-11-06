@@ -18,7 +18,18 @@
   <tbody>
     <tr>
       <td><%= @trip.id %></td>
-      <td><%= @trip.rating %></td>
+      <td>
+        <% if @trip.rating.nil? %>
+
+          <%= form_with model: @trip do |f| %>
+            <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+            <%= f.submit "Set rating" %>
+          <% end %>
+
+        <% else %>
+          <%= @trip.rating %>
+        <% end %>
+      </td>
       <td><%= @trip.cost %></td>
       <td><%= @trip.date %></td>
       <td><%= link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id) %></td>

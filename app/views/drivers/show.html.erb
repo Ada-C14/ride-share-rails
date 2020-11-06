@@ -6,6 +6,8 @@
   <p>Status: <%= @driver.available ? "Available" : "Unavailable" %></p>
   <p>Average Rating: <%= @driver.avg_rating %> ★</p>
   <p>Total Earnings: $<%= @driver.total_earnings %></p>
+  <p>Rides Given: <%= @driver.trips.length %></p>
+
 <br>
 
 <%= button_to "Edit driver", edit_driver_path(@driver.id), method: :get %>
