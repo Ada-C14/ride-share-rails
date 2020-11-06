@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag 'homepages', media: 'all' %>
 
-<div class="homepage">
-  <li><%= link_to "Manage Passengers", passengers_path  %></li>
-  <li><%= link_to "Manage Drivers", drivers_path  %></li>
+<div class="homepage-links">
+  <%= link_to "Manage Passengers", passengers_path, class: "homepage-btn" %>
+  <%= link_to "Manage Drivers", drivers_path, class: "homepage-btn"  %>
 </div>

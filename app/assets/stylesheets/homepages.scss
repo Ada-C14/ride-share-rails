@@ -2,11 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
+// debug tool
+//body * {
+//  color:                    hsla(210, 100%, 100%, 0.88) !important;
+//  background:               hsla(210, 100%,  50%, 0.33) !important;
+//  outline:    0.25rem solid hsla(210, 100%, 100%, 0.50) !important;
+//}
 
 .homepages-index {
   background-image:url('driver.jpg');
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+
+.homepage-links{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  height: 100%
+}
+
+.homepage-btn {
+  padding: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.75rem;
+  //margin: auto;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.homepage-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
 }
