@@ -1,12 +1,7 @@
 <h2><%= @passenger.name %></h2>
 <h4>Phone Number: <%= @passenger.phone_num %></h4>
 
-<% sum = 0 %>
-<% @passenger.trips.each do |trip| %>
-  <% sum += trip[:cost] %>
-<% end %>
-
-<h4>Total spent on all trips: $<%= sum / 100 %></h4>
+<h4>Total spent on all trips: $<%= @passenger.total_spent %></h4>
 
 <h4><%= @passenger.name %>'s Trips:</h4>
 <ul>

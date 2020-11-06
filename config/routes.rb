@@ -8,12 +8,14 @@ Rails.application.routes.draw do
 
   resources :passengers do
     resources :trips, only: [:index, :new, :create]
+    patch 'trips/:id/complete', to: 'trips#complete', as: 'passenger_complete_trip'
   end
 
   resources :trips, except: [:index] do
     resources :drivers, only: [:index]
     resources :passengers, only: [:index]
   end
+
 
 
 end
