@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
   root to: 'homepages#index'
 
-  get 'homepages/index', to: 'homepages#index', as: 'homepages'
+  resources :homepages, only: [:index]
 
-  get '/trips', to: 'trips#index', as: 'trips'
-  get '/trips/:id', to: 'trips#show', as: 'trip'
-  get '/trips/:id/edit', to: 'trips#edit', as: 'edit_trip'
-  patch '/trips/:id', to: 'trips#update'
-  delete '/trips/:id', to: 'trips#destroy'
+  resources :trips, except: [:new, :create]
 
   resources :passengers
 
