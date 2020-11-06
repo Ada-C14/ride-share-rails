@@ -84,7 +84,34 @@ describe DriversController do
       end
 
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if a proper vin is not provided" do
+
+      driver_hash = {
+          driver: {
+              name: "Richard Salazar",
+              vin: "48765"
+          }
+      }
+
+      #Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
+    end
+
+      it "does not create a driver if a name is not provided" do
+
+        driver_hash = {
+            driver: {
+                name: nil,
+                vin: "abcdefghijklmnopq"
+            }
+        }
+
+        #Assert
+        expect {
+          post drivers_path, params: driver_hash
+        }.wont_change "Driver.count"
 
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
@@ -95,9 +122,9 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
-
     end
   end
+
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       driver = Driver.create(name: "Adie A", vin: "ABCDEFGHIJKLMNOPQ")
@@ -172,21 +199,37 @@ describe DriversController do
 
     end
 
+    it "does not create a driver if a proper vin is not provided" do
+
+      driver_hash = {
+          driver: {
+              name: "Richard Salazar",
+              vin: "48765"
+          }
+      }
+
+      #Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
+    end
+
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      driver = Driver.create(name: "Update Me", vin: "ABCDEFGHIJKLMNOPQ")
 
+      driver_hash = {
+          driver: {
+              name: "new name",
+              vin: nil
+          }
+      }
+      id = driver.id
+      #Assert
+      expect {
+        patch driver_path(id), params: driver_hash
+      }.wont_change 'Driver.count'
 
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+      must_respond_with :bad_request
     end
   end
 

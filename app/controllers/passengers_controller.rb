@@ -19,6 +19,7 @@ class PassengersController < ApplicationController
     else
       passenger = passenger.find_by(id: params[:id])
       passenger.trips.new
+      return
     end
   end
 
@@ -49,7 +50,7 @@ class PassengersController < ApplicationController
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path
       return
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end
