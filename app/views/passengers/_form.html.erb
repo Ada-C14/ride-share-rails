@@ -1,5 +1,4 @@
 <% if @passenger.errors.any? %>
-  <p>Errors:</p>
   <ul class="errors">
     <% @passenger.errors.each do |column, message| %>
       <li>
@@ -11,13 +10,15 @@
 
 <%= form_with model: @passenger, class: "create-passenger" do |f|  %>
   <p> Please provide or change for following information </p>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
-
-  <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>
-
+  <div class="new_field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="new_field">
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num %>
+  </div>
+  <div class="new_field">
+    <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>
+  </div>
 <% end %>

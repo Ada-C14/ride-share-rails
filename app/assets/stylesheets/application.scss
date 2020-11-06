@@ -124,3 +124,92 @@ nav {
   list-style-type: none;
 }
 
+
+// FORMS
+.errors {
+  text-align: center;
+  color: red;
+  list-style-type: none;
+  padding: 0;
+}
+
+.passengers-create,
+.passengers-new,
+.passengers-edit,
+.passengers-update,
+.drivers-create,
+.drivers-new,
+.drivers-edit,
+.drivers-update,
+.trips-edit,
+.trips-update {
+  text-align: center;
+}
+
+.create-passenger,
+.driver-form,
+.trip-form {
+  margin: 0 auto;
+}
+
+.create-passenger > div,
+.driver-form > div,
+.trip-form > div {
+
+  grid-template-columns: 1fr 1fr [center-start] 1.5fr [center-end] 1fr 1fr;
+  display: grid;
+  bottom-margin: 1rem;
+}
+
+.create-passenger > div > *:not(label),
+.driver-form > div > *:not(label),
+.trip-form > div > *:not(label){
+  grid-column: center;
+}
+
+// WHEN LINK IS NEW OR EDIT FORM
+.create-passenger > div label,
+.driver-form > div label,
+.trip-form > div label {
+  grid-column: 2 / center-start;
+  justify-self: end;
+  margin-right: 1rem;
+}
+
+// WHEN LINK IS CREATE OR UPDATE
+.create-passenger > div div:first-child,
+.driver-form > div div:first-child,
+.trip-form > div div:first-child {
+  grid-column: 2 / center-start;
+  justify-self: end;
+  margin-right: 1rem;
+}
+
+.create-passenger > div,
+.driver-form > div,
+.trip-form > div {
+  margin-bottom: 1rem;
+}
+
+.field_with_errors {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.passenger-button,
+.driver-button,
+.trip-button {
+  justify-self: center;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+
+
+
+
+

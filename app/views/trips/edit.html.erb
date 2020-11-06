@@ -1,21 +1,38 @@
+<h3>Edit Trip</h3>
+
+<%# if @trip.errors.any? %>
+<!--  <ul class="errors">-->
+    <%# @trip.errors.each do |column, message| %>
+<!--      <li>-->
+<!--        <strong><%#= column.capitalize %></strong> <%#= message %>-->
+<!--      </li>-->
+    <%# end %>
+<!--  </ul>-->
+<%# end %>
+
 <%= form_with model: @trip, class: 'trip-form' do |f| %>
   <p> Please provide the following information:</p>
   <div>
     <%= f.label :date %>
     <%= f.date_field :date %>
-
+  </div>
+  <div>
     <%= f.label :driver %>
       <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
-
+  </div>
+  <div>
     <%= f.label :passenger %>
       <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
-
+  </div>
+  <div>
     <%= f.label :rating %>
       <%= f.select :rating, [1,2,3,4,5]%>
-
+  </div>
+  <div>
     <%= f.label :cost %>
     <%= f.text_field :cost %>
-
+  </div>
+  <div>
     <%= f.submit "Edit Trip", class: "trip-button" %>
   </div>
 <% end %>
