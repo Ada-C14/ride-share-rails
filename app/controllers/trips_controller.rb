@@ -1,19 +1,5 @@
 class TripsController < ApplicationController
     
-  # def index
-  #   if params[:driver_id]
-  #     # This is the nested route, /driver/:driver_id/trips
-  #     driver = Driver.find_by(id: params[:driver_id])
-  #     @trips = driver.trips
-  #   elsif params[:passenger_id]
-  #     passenger = Passenger.find_by(id: params[:passenger_id]) 
-  #     @trips = passenger.trips
-  #   else
-  #     # This is the 'regular' route, /trips
-  #     @trips = Trip.all
-  #   end
-  # end
-
   def show # details of an instance of an object
 
     if params[:id]
@@ -45,5 +31,48 @@ class TripsController < ApplicationController
     redirect_to passenger_path(passenger.id)
       return
   end
+
+  def update
+    if params[:id]
+      @trip = Trip.find_by(id: params[:id])
+      if @trip.nil?
+        redirect_to root_path
+        return
+      elsif @trip.update(trip_params)# using strong params
+          redirect_to trips_path
+        return
+      else # save failed
+        render :edit
+        return
+      end
+    end
+  end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
+
+
+  def destroy
+    if params[:id]
+      @trip = Trip.find_by(id: params[:id])
+      if @trip.nil?
+        redirect_to root_path
+        return
+      else
+        @trip.destroy
+        redirect_to root_path
+      end
+    end
+  end
     
+  private
+    def trip_params
+      return params.require(:trip).permit(:driver_id, :passenger_id, :passenger_id, :rating, :cost)
+    end
+  
 end
