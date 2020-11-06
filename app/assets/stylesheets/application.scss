@@ -16,3 +16,34 @@
 @import "bootstrap";
 
 @import "**/*";
+
+.button {
+  border-radius: 10px;
+  background-color: dodgerblue;
+  padding: 10px;
+}
+
+.button a {
+  color: white;
+}
+
+.edit-delete-link {
+  font-size: medium;
+}
+
+.trip-list {
+  border-bottom: solid darkgrey;
+  padding-top: 75px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+.trips-border {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.passenger-section {
+  margin-left: auto;
+  margin-right: auto;
+}
