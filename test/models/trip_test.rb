@@ -8,7 +8,7 @@ describe Trip do
 
     @driver = Driver.create(name: "Dr. Kenton Berge",
                             vin: "12345678901234567",
-                            available: true
+                            available: false
     )
   end
   let (:new_trip) {
@@ -78,5 +78,41 @@ describe Trip do
   describe "custom methods" do
     # Your tests here
     # we don't have any custom methods for trip yet
+    describe "complete trip" do
+      # @driver_2 = Driver.create(name: "Dr. Kenton Berge",
+      #                         vin: "12345678901234567",
+      #                         available: false
+      # )
+      new_new_trip =
+
+      it "sets the driver to available when the trip is completed" do
+        new_trip.save
+
+        expect(new_trip.rating).must_equal 2
+
+        # p new_trip.driver.available
+
+        new_trip.complete_trip
+        new_trip.reload
+
+        # assert
+        # p new_trip.driver.available
+
+        expect(new_trip.driver.available).must_equal true
+
+      end
+
+      it "sets the driver to unavailable when rating is nil" do
+        new_trip.save
+        new_trip.update(rating: nil)
+        new_trip.reload
+
+
+        new_trip.complete_trip
+
+        expect(new_trip.rating).must_be_nil
+        expect(new_trip.driver.available).must_equal false
+      end
+    end
   end
 end
