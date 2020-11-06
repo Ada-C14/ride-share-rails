@@ -1,12 +1,13 @@
 require "test_helper"
 
 describe TripsController do
-  before do
-    Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
-    @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
-  end
+
   describe "show" do
+    before do
+      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
+    end
     it "can get a valid trip" do
 
       valid_trip_id = @trip.id
@@ -30,36 +31,58 @@ describe TripsController do
   end
 
   describe "create" do
-    # test if driver status changes
-    # test if found driver is available
-    # test if right passenger is selected
 
-    let (:invalid_trip) {
-      {
+    available_driver = Driver.first
+    available_driver.update(available: false)
+    let (:invalid_trip) { 
+      { 
           trip: {
-              date: "2016-04-05",
-              rating: 50,
-              cost: 12.0
-          }
-      }
+          driver_id: available_driver.id,  
+          date: "2016-04-05", 
+          rating: 5, 
+          cost: 12.0
+        }
+      }    
     }
-    it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
+    it "can create a new trip with valid information accurately, and redirect" do
+      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      # test if driver status changes
+      # Act 
+      expect {
+        post passenger_trips_path(@passenger.id)
+      }.must_differ 'Trip.count', 1
 
-      # Act-Assert
+      # Check that the controller redirected the user
+      must_respond_with :redirect
+      must_redirect_to passenger_path(@passenger.id)
+    end
+
+    it "does not create a trip if no driver is available" do
+      # test if found driver is available
+      # Arrange
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+
+      # Act
       expect {
         post passenger_trips_path(@passenger.id), params: invalid_trip
       }.wont_change 'Trip.count'
 
       # Assert
-      # Check that the controller redirects
-      must_redirect_to passenger_path(@trip.id)
+      must_respond_with :not_found
+    end
 
+    it "does not create a trip if non-existing passenger" do
+      # test if right passenger is selected
     end
   end
 
   describe "edit" do
+    before do
+      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
+    end
     it "responds with success when getting the edit page for an existing, valid trip" do
       # Arrange & Act
       get edit_trip_path(@trip.id)
@@ -79,6 +102,11 @@ describe TripsController do
   end
 
   describe "update" do
+    before do
+      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
+      @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
+      @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
+    end
     let (:valid_trip) { 
       { 
           trip: {
@@ -87,6 +115,16 @@ describe TripsController do
           cost: 12.0
         }
       }    
+    }
+
+    let (:invalid_trip) {
+      {
+          trip: {
+              date: "2016-04-05",
+              rating: 50,
+              cost: 12.0
+          }
+      }
     }
     it "can update an existing trip with valid information accurately, and redirect" do
       # Arrange
@@ -120,6 +158,21 @@ describe TripsController do
 
       # Assert
       must_respond_with :not_found
+    end
+
+    it "does not update a trip if the form data violates rating, and responds with a redirect" do
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      id = @trip.id
+
+      # Act-Assert
+      expect {
+        patch trip_path(id), params: invalid_trip
+      }.wont_change 'Trip.count'
+
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :bad_request
     end
   end
 

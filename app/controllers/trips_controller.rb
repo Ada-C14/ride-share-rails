@@ -73,7 +73,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(id: @trip[:id])
       return
     else
-      render :edit
+      render :edit, status: :bad_request  
       return
     end
   end
