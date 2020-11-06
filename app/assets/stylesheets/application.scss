@@ -83,14 +83,36 @@ footer {
 }
 
 .profile-container {
-    display: flex;
     background-color: #7ECFD4;
     padding: 5px 5px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "photo info"
+        "photo info-edit"
+}
+
+.photo {
+    grid-area: photo;
+}
+
+.info {
+    align-self: center;
+}
+
+.info-edit {
+    grid-area: info-edit;
+    align-self: center;
+    padding-left: 30px;
 }
 
 .profile-container ul {
     list-style-type: none;
+}
+
+.profile-buttons {
+    display: inline-block;
 }
 
 .button-box {
