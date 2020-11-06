@@ -1,8 +1,8 @@
 <h1>TRIP DETAILS</h1>
 
-<h1> TRIP ID: <%= @trip.id %> </h1>
 <ul>
   <li>
+    TRIP ID: <%= @trip.id %> </br>
     PASSENGER: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %> </br>
     DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
     DATE: <%= @trip.date %> </br>
@@ -10,16 +10,7 @@
   </li>
 </ul>
 
-<h2> SELECT RATE SCORE: </h2>
-<%= form_with model: @trip do |f| %>
-  <fieldset>
-    <%= f.label :rating %>
-    <%= f.select :rating, [ '1', '2', '3', '4', '5' ], :prompt => 'Select One' %>
-    <%= f.submit "Rate Trip" %>
-  </fieldset>
-<% end %>
 <ul>
   <li> <%= link_to "EDIT TRIP", edit_trip_path(@trip.id) %> </li>
   <li> <%= link_to "DELETE TRIP ", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %> </li>
 </ul>
-

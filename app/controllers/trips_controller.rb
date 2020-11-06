@@ -6,9 +6,9 @@ class TripsController < ApplicationController
     @trips = Trip.all.order(:date)
   end
 
+
   def show
     if @trip.nil?
-      # redirect_to passenger_path(params[:passenger_id])
       head :not_found
       return
     end
@@ -22,7 +22,11 @@ class TripsController < ApplicationController
   def create
     driver = Driver.find_by(available: true)
 
-    new_trip = Trip.create(
+    if params[:passenger_id].nil?
+      head :not_found
+    end
+
+    new_trip = Trip.new(
                        date: Time.now,
                        cost: rand(20..100),
                        passenger_id: params[:passenger_id],
@@ -59,13 +63,16 @@ class TripsController < ApplicationController
 
   #if we delete driver, will it delete trip so that passenger cant access it
   def destroy
-    if @trip
-      @trip.destroy
-      redirect_to passenger_path(@trip.passenger_id)
-    else
+    if @trip.nil?
       head :not_found
+      return
     end
 
+    if @trip
+      @trip.destroy
+      redirect_to root_path
+    else
+    end
   end
 
   private

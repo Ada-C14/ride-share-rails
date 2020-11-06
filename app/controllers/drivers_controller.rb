@@ -69,6 +69,14 @@ class DriversController < ApplicationController
     return
   end
 
+  def toggle_status
+    if @driver.available
+      return @driver.update(available: false)
+    else
+      return @driver.update(available: true)
+    end
+  end
+
   private
 
   def find_driver

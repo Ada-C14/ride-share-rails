@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  patch '/drivers/:id/toggle_status', to: 'drivers#toggle_status', as: 'toggle_status'
+
   root to: 'homepages#index'
   resources :trips
 
