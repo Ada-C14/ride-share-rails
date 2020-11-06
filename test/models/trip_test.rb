@@ -39,6 +39,9 @@ describe Trip do
       expect(found_passenger.trips).must_include new_trip
     end
 
+
+    #TODO: tests for required passenger and driver??
+
   end
 
   describe "validations" do
@@ -61,7 +64,6 @@ describe Trip do
       expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
     end
 
-  #TODO: tests for required passenger and driver??
 
   end
 
