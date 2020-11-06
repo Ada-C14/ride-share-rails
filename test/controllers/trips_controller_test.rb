@@ -1,10 +1,21 @@
 require "test_helper"
 
-describe TripsController do
+describe "TripsController" do
 
   before do
-    @driver = Driver.create(name: "Shane Doe", vin: "HKJS12345HJGS", availability_status: true)
+    @driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
     @passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
+  end
+
+
+  let (:trip) do
+    Trip.create(
+        rating: 1,
+        cost: 4.99,
+        date: Time.now - 4.days,
+        driver_id: @driver.id,
+        passenger_id: @passenger.id
+    )
   end
 
   describe "show" do
@@ -24,58 +35,44 @@ describe TripsController do
       # Ensure that there is an id that points to no trip
 
       # Act
-      get trip_path(100)
+      get trip_path(-1)
       # Assert
       must_respond_with :not_found
     end
   end
 
   describe "create" do
-    it "when new trip is created, availability status is true" do
-
-      trip_hash = {
-          trip: {
-              rating: 5,
-              cost: 12.32,
-              date: Time.now,
-              driver_id: @driver.id,
-              passenger_id: @passenger.id
-          }
-      }
-
-      post trips_path, params: trip_hash
-
-      d = trip.last
-
-      expect(d.availability_status).must_equal true
-
-    end
 
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
       trip_hash = {
-          trip: {
-              name: "Sally Sombody",
-              vin: "HKJHSIU3467854",
-          }
+        trip: {
+          rating: 5,
+          cost: 12.32,
+          date: Time.now,
+          driver_id: @driver.id,
+          passenger_id: @passenger.id
+        }
       }
+
       # Act-Assert
       # Ensure that there is a change of 1 in trip.count
       expect {
         post trips_path, params: trip_hash
       }. must_differ "trip.count", 1
 
+
       # Assert
       # Find the newly created trip, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
+      new_trip = Trip.last
 
-
-      new_trip = trip.last
-
-      expect(new_trip.name).must_equal trip_hash[:trip][:name]
-      expect(new_trip.vin).must_equal trip_hash[:trip][:vin]
-      expect(new_trip.availability_status).must_equal true
+      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
+      expect(new_trip.date).must_equal trip_hash[:trip][:date]
+      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
       must_redirect_to trip_path(new_trip.id)
@@ -85,34 +82,72 @@ describe TripsController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates trip validations
-      invalid_trip_hash = {
-          trip: {
-              name: "Name only"
-          }
+      invalid_trip_hash1 = {
+        trip: {
+          rating: 5,
+          cost: 12.32,
+          driver_id: @driver.id,
+          passenger_id: @passenger.id
+        }
+      }
+
+      invalid_trip_hash2 = {
+        trip: {
+          rating: 5,
+          date: Time.now,
+          driver_id: @driver.id,
+          passenger_id: @passenger.id
+        }
+      }
+
+      invalid_trip_hash3 = {
+        trip: {
+          rating: 50,
+          date: Time.now,
+          driver_id: @driver.id,
+          passenger_id: @passenger.id
+        }
       }
 
       # Act-Assert
       # Ensure that there is no change in trip.count
+
       expect{
-        post trips_path, params: invalid_trip_hash
+        post trips_path, params: invalid_trip_hash1
+      }.wont_change "trip.count"
+
+      expect{
+        post trips_path, params: invalid_trip_hash2
+      }.wont_change "trip.count"
+
+      expect{
+        post trips_path, params: invalid_trip_hash3
       }.wont_change "trip.count"
 
       # Assert
       # Check that the controller redirects
-      must_respond_with :success
+      must_redirect_to passenger_path(@passenger.id)
     end
   end
 
   before do
-    trip.create(name: "Anna Bobby", vin: "BFJHD2345654", availability_status: true)
+    Trip.create(
+      rating: 1,
+      cost: 20.46,
+      driver_id: @driver.id,
+      passenger_id: @passenger.id
+    )
   end
+
   let(:new_trip) {
     {
-        trip: {
-            name: "Sarah Copper",
-            vin: "CKJEU3245765KJBK",
-            availability_status: true,
-        },
+      trip: {
+        rating: 5,
+        cost: 12.32,
+        date: Time.now,
+        driver_id: @driver.id,
+        passenger_id: @passenger.id
+      }
     }
   }
 
@@ -120,7 +155,7 @@ describe TripsController do
     it "responds with success and redirect when getting the edit page for an existing, valid trip" do
       # Arrange
       # Ensure there is an existing trip saved
-      trip = trip.find_by(name: "Anna Bobby")
+      trip = Trip.find_by(name: "Anna Bobby")
       # Act
       get edit_trip_path(trip.id)
       # Assert
@@ -146,7 +181,7 @@ describe TripsController do
       # Assign the existing trip's id to a local variable
       # Set up the form data
 
-      found_trip = trip.find_by(name: "Anna Bobby")
+      found_trip = Trip.find_by(name: "Anna Bobby")
 
       # Act-Assert
       # Ensure that there is no change in trip.count
@@ -212,7 +247,7 @@ describe TripsController do
       must_redirect_to trip_path(found_trip.id)
 
       #check to make sure attempted save with invalid params did not overwrite previously saved object
-      refound_trip = trip.find_by(name: "Anna Bobby")
+      refound_trip = Trip.find_by(name: "Anna Bobby")
       expect(refound_trip).must_equal found_trip
     end
   end
@@ -221,7 +256,7 @@ describe TripsController do
     it "destroys the trip instance in db when trip exists, then redirects" do
       # Arrange
       # Ensure there is an existing trip saved
-      trip_to_delete = trip.find_by(name: "Anna Bobby")
+      trip_to_delete = Trip.find_by(name: "Anna Bobby")
       # Act-Assert
       # Ensure that there is a change of -1 in trip.count
       expect {
@@ -230,7 +265,7 @@ describe TripsController do
       # Assert
       # Check that the controller redirects
 
-      trip_to_delete = trip.find_by(name: "Anna Bobby")
+      trip_to_delete = Trip.find_by(name: "Anna Bobby")
 
       expect(trip_to_delete).must_be_nil
 
