@@ -8,6 +8,14 @@
 <p>Cost: <%= dollar_format(@trip.cost)%></p>
 <p>Date: <%= @trip.date %></p>
 
+<% if @trip.rating.nil? %>
+  <%= form_with model: @trip do |f| %>
+    <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]]%>
+    <%= f.submit "Rate" %>
+  <%end %>
+  </br>
+<% end %>
+
 <%= link_to 'Edit', edit_trip_path(@trip) %>
 <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
 
@@ -28,8 +36,8 @@
 
     <tr>
       <td><%=@trip.id %></td>
-      <td><%=@trip.passenger.name %></td>
-      <td><%=@trip.driver.name %></td>
+      <td><%=link_to @trip.passenger.name, passenger_path(@trip.passenger.id)%></td>
+      <td><%=link_to @trip.driver.name, driver_path(@trip.driver.id)%></td>
       <td><%=@trip.rating%></td>
       <td><%=dollar_format(@trip.cost)%></td>
       <td><%=@trip.date%></td>
