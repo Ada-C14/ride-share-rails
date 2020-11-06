@@ -21,6 +21,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.new(passenger_params)
 
     if @passenger.save
+      flash[:notice] = "Welcome Aboard!"
       redirect_to passenger_path(@passenger.id)
     else
       render :new, status: :bad_request

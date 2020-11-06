@@ -21,6 +21,7 @@ class DriversController < ApplicationController
     @driver = Driver.new(driver_params)
 
     if @driver.save
+      flash[:notice] = "Welcome Aboard!"
       redirect_to driver_path(@driver)
     else
       render :new, status: :bad_request
