@@ -1,9 +1,9 @@
-# require "test_helper"
-#
+require "test_helper"
+
 describe TripsController do
   before do
-    Passenger.create!(id: 57, name: "Anna Laura", phone_num: "999-999-0000")
-    Driver.create!(id: 20, name: "John Meyer", vin: "WEE7868967777", available: true)
+    Passenger.create(name: "Anna Laura", phone_num: "999-999-0000")
+    Driver.create(name: "John Meyer", vin: "WEE7868967777", available: "true")
   end
 
   describe "show" do
