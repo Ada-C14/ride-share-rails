@@ -32,6 +32,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def assign_rating
+
+  end
+  
   def edit
     @trip = find_trip
 
@@ -72,7 +76,5 @@ class TripsController < ApplicationController
     return Trip.find_by(id: params[:id].to_i)
   end
 
-  # def find_driver
-  #   return Driver.find_by(available: true)
-  # end
+
 end
