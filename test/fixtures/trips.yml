@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  driver_id: 1
-  passenger_id: 1
+trip_one:
+  driver: driver_one
+  passenger: pass_one
   date: 2020-11-03
   rating: 1
-  cost: 1
+  cost: 100
 
-two:
-  driver_id: 1
-  passenger_id: 1
+trip_two:
+  driver: driver_one
+  passenger: pass_one
   date: 2020-11-03
   rating: 1
-  cost: 1
+  cost: 100
