@@ -97,7 +97,7 @@ describe Driver do
 
     it "returns correct calculation" do
       new_driver.save
-      expect(new_driver.total_revenue).must_equal ((1234- 1.65) + (6334 - 1.65))*.8
+      expect(new_driver.total_revenue).must_equal ((1234- 1.65) + (6334 - 1.65))*0.8
       # expect(new_driver.total_revenue).must_be_close_to 7564.70, 0.01
     end
 
