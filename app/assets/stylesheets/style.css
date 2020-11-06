@@ -93,7 +93,7 @@ table {
 
 td, th {
     border: 1px solid #AAAAAA;
-    padding: 3px 2px;
+    padding: 3px 3px 3px 15px;
 }
 
 th {

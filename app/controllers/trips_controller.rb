@@ -18,17 +18,15 @@ class TripsController < ApplicationController
   def new
     @trip = Trip.new
 
-    if params[:passenger_id].nil?
+    if params[:passenger_id]
+      @trip = Trip.request_trip(params[:passenger_id])
+      @trip.save
+      @passenger = Passenger.find(@trip.passenger_id)
+      @driver = Driver.find(@trip.driver_id)
       return
     else
-      @trip.passenger_id = params[:passenger_id]
-      @driver = Driver.find_by(available: true)
-      @driver.available = false
-      @driver.save
-      @trip.driver_id = @driver.id
-      @trip.cost = rand(1..9999)
+      return
     end
-    return
 
   end
 
