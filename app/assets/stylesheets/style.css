@@ -145,4 +145,8 @@ ul.errors {
     width: 20%;
 }
 
-
+table {
+    max-height: 35em;
+    overflow: scroll;
+    display: inline-block;
+}
