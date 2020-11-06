@@ -1,5 +1,8 @@
 <div>
   <h1>Trip #<%= @trip.id %></h1>
+  <% if flash[:notice] %>
+    <h2><div class="notice"><%= flash[:notice] %></div></h2>
+  <% end %>
   <ul>
     <% begin %>
       <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>

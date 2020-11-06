@@ -1,9 +1,7 @@
+<h1><%= @driver.name %></h1>
 <% if flash[:notice] %>
   <h2><div class="notice"><%= flash[:notice] %></div></h2>
 <% end %>
-
-<h1><%= @driver.name %></h1>
-
 <ul>
   <li>Vin: <%= @driver.vin %></li>
   <li>Status: <%= @driver.available ? "Available" : "Unavailable" %></li>

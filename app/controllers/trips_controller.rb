@@ -25,6 +25,7 @@ class TripsController < ApplicationController
       passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, cost:rand(1000..4999), date:Date.today)
       if @trip.save
+        flash[:notice] = "Your Driver is On the Way! Current Location: Moon. Estimate Wait Time : 63 Days 2 Hours and 23 minutes."
         driver.update_attribute(:available, false)
 
         redirect_to trip_path(@trip.id)
