@@ -14,7 +14,7 @@
   <% else %>
     <p>Driver Not Available</p>
   <% end %>
-  <p>Cost: <%= @trip.cost %></p>
+  <p>Cost: $<%= @trip.cost.round(2) %></p>
   <% if @trip.rating.nil? %>
     <%= form_with model: @trip do |f| %>
       <%= f.label :rating%>:
