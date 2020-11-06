@@ -76,4 +76,8 @@ class DriversController < ApplicationController
     count = Driver.count
   end
 
+  def passenger_params
+    return params.require(:driver).permit(:driver_id, :vin, :available)
+  end
+
 end

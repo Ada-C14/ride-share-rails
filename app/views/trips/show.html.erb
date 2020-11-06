@@ -10,4 +10,4 @@
 
 <p class="buttons"><%= link_to "Back to Index", trips_path %></p>
 <p class="buttons"><%= link_to "Edit Trip Info", edit_trip_path(@trip.id) %></p>
-<p class="buttons" id="delete"><%= link_to "Delete Trip Info", trip_path(@trip.id), method: :delete  %></p>
+<p class="buttons" id="delete"><%= link_to "Delete Trip Info", trip_path(@trip.id), method: :delete,data: {confirm: "Are you sure?"}  %></p>

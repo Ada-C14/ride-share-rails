@@ -11,10 +11,12 @@ class Driver < ApplicationRecord
   def total_earnings
     gross_earnings = self.trips.map{|trip| trip.cost}.compact.sum
 
-    return gross_earnings > 165 ? ((gross_earnings - 1.65) * 0.8).round : 0
+    return gross_earnings > 165 ? ((gross_earnings - 165) * 0.8).round : 0
   end
 
   def avg_rating
     return self.trips.empty? ? 0 : (self.trips.map{|trip| trip.rating}.compact.sum/self.trips.length).round
   end
+
+
 end

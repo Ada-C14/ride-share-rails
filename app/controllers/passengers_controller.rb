@@ -51,7 +51,7 @@ class PassengersController < ApplicationController
   end
 
   def passenger_params
-    return params.require(:passenger).permit(:name, :phone_num)
+    return params.require(:passenger).permit(:passenger_id, :phone_num)
   end
 
   def find_passenger
