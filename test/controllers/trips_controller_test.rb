@@ -74,7 +74,7 @@ describe TripsController do
     it "Does not change count and redirects to trip_path when trip id is valid" do
 
       # Arrange
-      Trip.create!(driver_id: 20, passenger_id: 57, date: "09/15/2016", rating: 5.0, cost: 16.59)
+      Trip.create!(driver_id: 20, passenger_id: 57, date: Time.now, rating: 5.0, cost: 16.59)
       trip_hash = {
           trip: {
               date: "11/05/2020",
