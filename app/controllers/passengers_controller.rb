@@ -31,10 +31,10 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
-      redirect_to passengers_path
+      redirect_to passenger_path(@passenger.id)
       return
     else
-    render :new
+    render :new, status: :bad_request
     return
     end
   end
@@ -54,10 +54,10 @@ class PassengersController < ApplicationController
       head :not_found
       return "Passenger not found"
     elsif @passenger.update(passenger_params)
-      redirect_to passengers_path
+      redirect_to passenger_path(@passenger)
       return
     else
-    render :edit
+    render :edit, status: :bad_request
     return
     end
   end
