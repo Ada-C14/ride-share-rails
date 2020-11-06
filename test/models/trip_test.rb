@@ -26,11 +26,17 @@ describe Trip do
     # Your tests go here
 
     it "belongs to a Driver" do
-
+      found_driver = Driver.find_by(id: new_trip.driver_id)
+      expect(found_driver.valid?).must_equal true
+      expect(found_driver).must_be_kind_of Driver
+      expect(found_driver.trips).must_include new_trip
     end
 
     it "belongs to a Passenger" do
-
+      found_passenger = Passenger.find_by(id: new_trip.passenger_id)
+      expect(found_passenger.valid?).must_equal true
+      expect(found_passenger).must_be_kind_of Passenger
+      expect(found_passenger.trips).must_include new_trip
     end
 
   end
