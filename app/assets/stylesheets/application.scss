@@ -138,3 +138,25 @@ ul {
 .passenger_name a {
   padding-left: 2vw;
 }
+
+div.container-profile {
+  display: flex;
+  padding-left: 18vw;
+}
+
+.profile {
+  padding-left: 4vw;
+}
+
+.profile-pic img {
+  width: 15vw;
+}
+
+section {
+  height: 30vh;
+  margin-bottom: 3vh;
+}
+
+div.button-container {
+  display: flex;
+}
