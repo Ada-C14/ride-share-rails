@@ -91,7 +91,6 @@ describe TripsController do
     driver = Driver.create!(name: "CAT", vin: "ABC", available: true)
     passenger = Passenger.create!(name: "CAT", phone_num: "111-111-1111")
 
-    # updated_driver = Driver.create(name: "DOG", vin: "DEF")
     existing_trip = Trip.create!(
         driver_id: driver.id,
         passenger_id: passenger.id,
@@ -111,7 +110,6 @@ describe TripsController do
 
       updated_trip = Trip.find_by(id: existing_trip.id)
       expect(updated_trip.rating).must_equal update_info[:trip][:rating]
-      # expect(updated_trip.driver_id).must_equal update_info[:trip][:driver_id]
 
       must_respond_with :redirect
       must_redirect_to trip_path(id: [Trip.find_by(id: existing_trip.id)])
@@ -125,29 +123,38 @@ describe TripsController do
   end
 
   describe "destroy" do
+
+
     # Your tests go here
-    driver = Driver.create(name: "Test", vin: "ABC", available: true)
-    trip = Trip.create(driver_id: driver.id, passenger_id: 123, date: DateTime.now, rating: 3, cost: 100)
+    it "destroys the trip successfully and redirects" do
 
-    it "deletes an existing trip successfully" do
-      expect {
-        delete trips_path( id: [Trip.find_by(id: trip.id)] )
-      }.must_differ "Trip.count", -1
+      driver = Driver.create!(name: "Test", vin: "ABC", available: true)
+      passenger = Passenger.create!(name: "CAT", phone_num: "111-111-1111")
 
-      must_redirect_to homepages_path
+      trip = Trip.create!(
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: DateTime.now,
+          rating: 3,
+          cost: 100
+      )
 
-      # must_redirect_to passenger_path(id: trip.passenger_id)
-      # must_redirect_to driver_path(id: driver.passenger_id)
 
+      pp trip
+      # expect {
+        delete trip_path(id: trip.id  )
+      # }.must_change 'Trip.count', -1
+
+      deleted_trip = Trip.find_by(id: trip.id)
+
+      expect(deleted_trip).must_be_nil
+
+      must_respond_with :redirect
     end
 
-    it "redirects if trip is not available to delete" do
-      expect {
-        delete trip_path( -1 )
-      }.must_differ "Trip.count", 0
-
-      must_redirect_to root_path
-
+    it "responds with not found if trip is not available for deletion" do
+      delete trip_path(-1)
+      must_respond_with :not_found
     end
   end
 end

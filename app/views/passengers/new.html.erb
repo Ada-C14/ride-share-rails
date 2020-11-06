@@ -1,18 +1,9 @@
 <%# new.html.erb %>
 
-<header>
-  <h1><%= link_to "PASSENGERS", passengers_path, class:"header-link-text" %></h1>
-</header>
-
 <main>
   <h2>ADD NEW PASSENGER</h2>
 
   <%= render partial: "form", locals: { action_name: "NEW"} %>
 </main>
 
-<footer>
-  <div id="footer">
-    <h2>&#169; Kalki and Schanen 2020</h2>
-  </div>
-</footer>
 
