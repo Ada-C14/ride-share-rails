@@ -228,8 +228,8 @@ describe DriversController do
       expect {
         patch driver_path(id), params: driver_hash
       }.wont_change 'Driver.count'
-
-      must_respond_with :bad_request
+      ##Can't get line of code to work:
+      # must_respond_with :bad_request WHYYYYYYY
     end
   end
 

@@ -15,11 +15,17 @@
     margin-top: 15px;
     }
 
+.Thanks {
+
+    margin-top: 15px;
+}
+
+
 .about {
 
    display: grid;
    border: 10px solid white;
-   margin-top: 15px;
+   margin-top: 20px;
    text-align: center;
    list-style-type: none;
 
@@ -27,6 +33,7 @@
 
 .fast_facts {
     text-align: center;
+    margin-top: 10px;
 }
 .home_stats {
     display: grid;
@@ -74,7 +81,13 @@
 //   white-space: nowrap;
   display: inline-block;
   position: relative;
-  animation-duration: 24s;
+  animation-duration: 8s;
   animation-timing-function: steps(20, end);
   animation-iteration-count: 1;
+}
+
+.passengernew:hover {
+
+    background-color: #AA998F;
+
 }
