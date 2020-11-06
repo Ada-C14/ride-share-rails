@@ -15,6 +15,6 @@ class Driver < ApplicationRecord
   end
 
   def avg_rating
-    return (self.trips.map{|trip| trip.rating}.compact.sum/self.trips.length).round
+    return self.trips.empty? ? 0 : (self.trips.map{|trip| trip.rating}.compact.sum/self.trips.length).round
   end
 end
