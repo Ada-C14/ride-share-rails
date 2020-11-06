@@ -51,7 +51,7 @@ class DriversController < ApplicationController
     if result
       redirect_to driver_path(@driver.id)
     else
-      redirect_to drivers_path
+      render :edit
     end
   end
 

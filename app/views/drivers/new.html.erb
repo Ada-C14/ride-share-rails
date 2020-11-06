@@ -1,6 +1,7 @@
 <h2>New Driver</h2>
 
 <% if @driver.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
   <ul class="errors">
     <% @driver.errors.each do |column, message| %>
       <li>
