@@ -20,11 +20,11 @@
           </th>
           <th>
             <%= f.label :passenger %>  
-            <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+            <%= f.select :passenger_id, Passenger.all.order(name: :asc).map { |passenger| [passenger.name, passenger.id] } %>
           </th>  
           <th>  
             <%= f.label :driver %> 
-            <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+            <%= f.select :driver_id, Driver.all.order(name: :asc).map{ |driver| [driver.name, driver.id] } %>
           </th>  
           <th>
             <%= f.label :cost %> 
