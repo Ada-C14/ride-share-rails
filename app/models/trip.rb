@@ -3,8 +3,8 @@ class Trip < ApplicationRecord
   belongs_to :driver
 
   # attribute :rating, default: rand(1...5)
-  validates :date, presence: true
-  validates :driver, presence: true
-  validates :passenger, presence: true
-  validates :cost, presence: true
+  validates :date, presence: { message: "can't be blank" }
+  validates :driver, presence: { message: "can't be blank" }
+  validates :passenger, presence: { message: "can't be blank" }
+  validates :cost, presence: { message: "can't be blank" }
 end
