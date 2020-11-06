@@ -12,10 +12,11 @@
   <%= f.text_field :vin %>
   </div>
 
-<div>
+<%# <div>
   <%= f.label :available %>
-  <%= f.select :available, options_for_select([["Select One", ""], "Available", "Unavailable"]) %>
-</div>
+  <%# <%= f.select :available, options_for_select([["Select One", ""], "Available", "Unavailable"]) %>
+<%# </div> %>
+
 <div>
   <%= f.submit "Edit Driver", class: "edit-button", method: :patch %>
 <% end %>
