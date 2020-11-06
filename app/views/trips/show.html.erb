@@ -20,11 +20,9 @@
     <% rating = [] %>
     <% rating << @trip.rating %>
     <% if @trip.rating %>
-      <%  if @trip.rating != rating[0] %>
-        <% @trip.driver.complete_trip %>
-      <% end %>
       <li>Rating: <%= @trip.rating %></li>
-    <% else %>
+      <% @trip.driver.complete_trip if @trip.updated_at > @trip.created_at %>
+  <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
         <li>Add a Rating to Complete the Trip:
          <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
