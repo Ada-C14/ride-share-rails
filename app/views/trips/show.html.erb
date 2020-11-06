@@ -6,8 +6,8 @@
   <li>DRIVER ID: <%= link_to "#{@trip.driver_id}", driver_path(@trip.driver_id) %> </li>
   <li>DATE: <%= @trip.date %> </li>
   <li>RATING: <%= @trip.rating %> </li>
-  <li>COST: <%= @trip.cost %> </li>
+  <li>COST: $<%= "#{'%.2f' % (@trip.cost.to_f/100)}" %> </li>
 </ul>
 
 <%= button_to "Edit", edit_trip_path(@trip.id), method: :get%>
-<%= button_to "Delete", trip_path(@trip.id), method: :delete %>
+<%= button_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Confirm DELETE."}%>

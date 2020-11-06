@@ -5,11 +5,14 @@
   <li>NAME: <%= "#{@driver.name}"%></li>
   <li>VIN: <%= "#{@driver.vin}"%></li>
   <li>STATUS: <%= @driver.available ? "AVAILABLE" : "UNAVAILABLE" %> </li>
+  <br>
+  <li>TOTAL EARNED: $<%='%.2f' % (@driver.total_earned.to_f/100) %></li>
+  <li>AVERAGE RATING: <%=@driver.average_rating.round(2) %></li>
 </ul>
 
 <%= button_to "Edit", edit_driver_path(@driver.id), method: :get%>
-<%= button_to "Delete", driver_path(@driver.id), method: :delete %>
-
+<%= button_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+<br>
 <h1>TRIPS DRIVEN:</h1>
 
 <table>
@@ -27,7 +30,7 @@
       <td><%= link_to "#{trip.passenger_id}", passenger_path(trip.passenger_id) %> </td>
       <td><%= "#{trip.date}" %> </td>
       <td><%= "#{trip.rating}" %> </td>
-      <td><%= "#{trip.cost}" %> </td>
+      <td>$<%= "#{'%.2f' % (trip.cost.to_f/100)}" %> </td>
     </tr>
 <% end %>
 </table>

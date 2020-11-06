@@ -22,22 +22,33 @@
   font-family: "Orbitron"
 }
 
-//h1 {
-//  font-family: "Orbitron"
-//}
+h1 {
+  font-family: "Orbitron"
+}
 
 th {
-  border: 1px solid white;
+  border-bottom: 1px solid white;
+  border-width: thick;
   border-collapse: collapse;
-  text-align: right;
 }
 
 th, td {
   padding: 15px;
+  text-align: right;
 }
 
-th {
-  border-width: thick;
+td {
+  border-bottom: 1px solid white;
+}
+
+tr:hover {
+  background-color: #ffff99;
+  color: #660066;
+}
+
+tr:hover a {
+  background-color: #ffff99;
+  color: #660066;
 }
 
 nav {
@@ -57,7 +68,7 @@ nav {
 }
 
 .mid_no_border {
-  border-style: hidden hidden hidden solid;
+  border-style: hidden;
 }
 
 .no_border {

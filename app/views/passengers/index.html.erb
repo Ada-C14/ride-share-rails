@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Passenger ID</th>
+    <th>ID</th>
     <th>Name</th>
     <th>Phone Number</th>
     <th class="mid_no_border"></th>
@@ -14,7 +14,7 @@
       <td><%=  "#{passenger.name}" %> </td>
       <td><%=  "#{passenger.phone_num}" %> </td>
       <td class="mid_no_border"><%= button_to "Edit", edit_passenger_path(passenger.id), method: :get%></td>
-      <td class="no_border"><%= button_to "Delete", passenger_path(passenger.id), method: :delete %></td>
+      <td class="no_border"><%= button_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Confirm DELETE."}%> </td>
     </tr>
   <% end %>
 </table>

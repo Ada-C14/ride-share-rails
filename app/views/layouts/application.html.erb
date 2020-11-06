@@ -12,14 +12,15 @@
 
   <body>
     <div class="parallax">
-    <h1 class="title">🛸Ride Share Control Panel🛸</h1>
+    <h1 class="title"><%= link_to "🛸Ride Share Control Panel🛸", root_path %></h1>
+    <br>
     <nav>
-      <%= link_to "Homepage", root_path %>
       <%= link_to "Trips List", trips_path %>
       <%= link_to "Passengers List", passengers_path %>
       <%= link_to "Drivers List", drivers_path %>
     </nav>
-    <nav>
+    <br>
+    <nav class="nav_buttons">
       <%= link_to "Add New Passenger", new_passenger_path %>
       <%= link_to "Add New Driver", new_driver_path %>
       <%= link_to "Request Trip", new_trip_path %>

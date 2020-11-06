@@ -18,9 +18,9 @@
       <td><%= link_to "#{trip.driver_id}", driver_path(trip.driver_id) %> </td>
       <td><%= "#{trip.date}" %> </td>
       <td><%= "#{trip.rating}" %> </td>
-      <td><%= "#{trip.cost}" %> </td>
+      <td>$<%= "#{'%.2f' % (trip.cost.to_f/100)}" %> </td>
       <td class="mid_no_border"><%= button_to "Edit", edit_trip_path(trip.id), method: :get%> </td>
-      <td class="no_border"><%= button_to "Delete", trip_path(trip.id), method: :delete %></td>
+      <td class="no_border"><%= button_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Confirm DELETE."}%> </td>
     </tr>
 
     <% end %>

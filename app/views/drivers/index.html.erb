@@ -16,7 +16,7 @@
       <td><%= "#{driver.vin}" %> </td>
       <td><%= driver.available ? "Available" : "Unavailable" %> </td>
       <td class="mid_no_border"><%= button_to "Edit", edit_driver_path(driver.id), method: :get%></td>
-      <td class="no_border"><%= button_to "Delete", driver_path(driver.id), method: :delete %></td>
+      <td class="no_border"><%= button_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Confirm DELETE."}%> </td>
     </tr>
 
   <% end %>
