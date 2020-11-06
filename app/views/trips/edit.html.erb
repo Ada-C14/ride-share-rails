@@ -1,4 +1,4 @@
-<%= form_with model: @trips, class: 'edit-trip' do |f| %>
+<%= form_with model: @trips, class: 'rate-trip' do |f| %>
   <p>Please provide the following information to edit your task:</p>
 
   # How do we get names
@@ -21,3 +21,14 @@
   <%= f.submit "#{action_name}", class: "passenger-button" %>
 <% end %>
 <p><%= link_to "Return Home", path %></p>
+
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+
+  <%= f.submit "#{action_name}", class: "Rate-Me-Button" %>
+<% end %>
+<%= link_to "Back", passenger_trips_path(@passengers.id) %>
+<%=link_to "Homepage", homepages_path %> |
+<%= link_to "Rider List", passengers_path %> |
+<%= link_to "Driver List", drivers_path %> |
+
