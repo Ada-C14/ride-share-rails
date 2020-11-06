@@ -19,8 +19,8 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.find_by(id: 1000)
-    # driver = Driver.find_by(available: true)
+    # driver = Driver.find_by(id: 1000)
+    driver = Driver.find_by(available: true)
 
     if driver
       passenger = Passenger.find_by(id: params[:passenger_id])
