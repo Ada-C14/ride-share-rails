@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to :not_found
+      head :not_found
       return
     end
   end
@@ -25,7 +25,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to :not_found
+      head :not_found
       return
     elsif @trip.update(trip_params)
       redirect_to trip_path(@trip.id)
@@ -40,7 +40,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to :not_found
+      head :not_found
       return
     elsif @trip.destroy
       redirect_to trips_path
