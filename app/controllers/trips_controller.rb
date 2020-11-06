@@ -38,20 +38,10 @@ class TripsController < ApplicationController
     # how to set the same passenger id
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @driver = Driver.get_available_driver
-
-
-    @trip = Trip.new(date: Time.now.strftime("%Y-%m-%d"),
-                    driver_id: @driver.id ,
-                    # how to set the same passenger id?
-                    passenger_id: @passenger.id,
-                    rating: nil,
-                    # get a random number
-                    cost: rand(10..200)
-    )
+    @trip = Trip.request_trip(@driver, @passenger)
 
     if @trip.save
       redirect_to passenger_path(@trip.passenger)
-      # @driver.update(available: false)
       @driver.set_unavailable
       return
     else
@@ -82,7 +72,7 @@ class TripsController < ApplicationController
       if trip.update(trip_params)
         # redirecting to passenger details page
         trip.complete_trip
-        redirect_to passenger_path(trip.passenger)
+        redirect_to trip_path(trip)
         return
       else
         render :edit, status: :bad_request

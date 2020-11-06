@@ -12,4 +12,14 @@ class Trip < ApplicationRecord
     end
   end
 
+  def self.request_trip(driver, passenger)
+    return Trip.new(date: Time.now.strftime("%Y-%m-%d"),
+             driver_id: driver.id ,
+             # how to set the same passenger id?
+             passenger_id: passenger.id,
+             rating: nil,
+             # get a random number
+             cost: rand(10..200)
+    )
+  end
 end
