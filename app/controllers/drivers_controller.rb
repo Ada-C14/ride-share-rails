@@ -68,17 +68,14 @@ class DriversController < ApplicationController
     end
 
   def available
-    @driver = Driver.find_by(id: params[:id])
-
-    if @driver.nil?
-      head :not_found
-      return
+    @driver = Driver.find_by_id(params[:id])
+    if @driver.available.nil?
+      @driver.available = "true"
     else
-      availability = "false"
-      @driver.update(available: availability)
-      redirect_to driver_path
-      return
+      @driver.available = "false"
     end
+    @driver.save
+    redirect_to action: :index
   end
 
     private
