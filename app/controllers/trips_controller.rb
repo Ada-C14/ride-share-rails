@@ -25,7 +25,7 @@ class TripsController < ApplicationController
                        cost: rand(20..100),
                        passenger_id: params[:passenger_id],
                        driver_id: driver,
-                       rating :nil
+                       rating: nil
                      )
     if new_trip.save
       redirect_to trip_path(new_trip.id)

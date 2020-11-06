@@ -11,4 +11,10 @@ class Passenger < ApplicationRecord
     end
     return total
   end
+
+  def integer_to_string
+    # a method to
+  end
 end
+
+
