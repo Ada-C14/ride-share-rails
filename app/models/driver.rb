@@ -9,7 +9,18 @@ class Driver < ApplicationRecord
   end
 
   def average_rating
-    return (self.trips.inject(0) {|sum, trip| sum + trip.rating.to_f } ) / self.trips.count
+    return 0 if self.trips.empty?
+
+    count = 0
+    total= 0
+    self.trips.each do |trip|
+      if trip.rating
+        total += trip.rating.to_f
+        count += 1
+      end
+    end
+    return 0 if count == 0
+    return total/count
   end
 
 end

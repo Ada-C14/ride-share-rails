@@ -32,7 +32,7 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      driver_1 =Driver.create(driver)
+      driver_1 = Driver.create(driver)
 
       # Act
       get driver_path(driver_1.id)

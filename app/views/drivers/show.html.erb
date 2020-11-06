@@ -11,6 +11,7 @@
 </ul>
 
 <%= button_to "Edit", edit_driver_path(@driver.id), method: :get%>
+<br>
 <%= button_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
 <br>
 <h1>TRIPS DRIVEN:</h1>

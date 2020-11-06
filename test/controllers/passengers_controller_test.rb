@@ -104,7 +104,7 @@ describe PassengersController do
     it "responds with success when getting the edit page for an existing, valid passenger" do
       # Arrange
       # Ensure there is an existing passenger saved
-      passenger_1 =Passenger.create(passenger)
+      passenger_1 = Passenger.create(passenger)
       # Act
       get edit_passenger_path(passenger_1.id)
 
