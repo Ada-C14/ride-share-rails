@@ -64,17 +64,17 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
       expect {
-        post driver_path, params: new_driver_hash
+        post drivers_path, params: new_driver_hash
       }.must_change "Driver.count", 1
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
       new_driver = Driver.find_by(name:new_driver_hash[:driver][:name])
       expect(new_driver.vin).must_equal new_driver_hash[:driver][:vin]
-      expect(new_driver).must_equal new_driver_hash[:driver][:available]
+      expect(new_driver.available).must_equal true
 
       must_respond_with :redirect
-      must_redirect_to driver_path(new_driver.id)
+      must_redirect_to new_driver_path
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
