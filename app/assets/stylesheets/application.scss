@@ -32,3 +32,18 @@ body {
 #delete a, .errors{
   color: red;
 }
+
+nav{
+  background-image: linear-gradient(red, magenta);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.nav-link {
+  padding: 0 15px 0 0;
+  margin: 10px;
+}
