@@ -1,6 +1,11 @@
 module ApplicationHelper
   def dollar_format(cents)
-    dollars = number_to_currency(cents/100)
+    if cents.nil?
+      return "N/A"
+    else
+      dollars = number_to_currency(cents/100)
+    end
+
     return dollars
   end
 end

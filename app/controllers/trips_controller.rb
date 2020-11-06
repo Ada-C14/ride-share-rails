@@ -84,7 +84,7 @@ class TripsController < ApplicationController
 
     if @trip
       @trip.destroy
-      redirect_to trips_path
+      redirect_to passengers_path
       return
     else
       head :not_found
