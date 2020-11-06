@@ -31,7 +31,7 @@ class TripsController < ApplicationController
       # available_driver.save!
       redirect_to trip_path(@trip.id)
     else
-      render :new
+      redirect_to trips_path
     end
   end
 
