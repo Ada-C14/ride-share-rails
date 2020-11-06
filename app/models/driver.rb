@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :destroy
 
   validates :name, presence: true
   validates :vin, presence: true, length: { is: 17 }
@@ -42,6 +42,8 @@ class Driver < ApplicationRecord
 
   def self.select_available
     all_available = Driver.where(available: true)
+    return nil if all_available.empty?
+
     selected = all_available.min_by { |driver| driver.trips.length }
     selected.toggle_available
     return selected

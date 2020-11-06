@@ -1,26 +1,21 @@
 <h1>Driver Details</h1>
+<br/>
+
 <ul>
   <li><%= @driver.name %></li>
   <li><%= @driver.vin %></li>
   <li><%= @driver.available ? "available" : "not available" %> - <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
-  <li>Number of Trips Driven: <%= @driver.trips.count %></li>
-  <li>Average Rating: <%= @driver.average_rating %></li>
-  <li>Total Earnings: $<%= @driver.total_earnings %></li>
-  <li><%= link_to "#{@driver.name}'s Trips", driver_trips_path(@driver.id), method: :get %></li>
-
 </ul>
+<br/>
 
-<p>Trips by <%= @driver.name %></p>
-<ul>
-  <% @driver.trips.each do |trip| %>
-  <li>
-    <%= link_to trip.date, trip_path(trip) %> trip with passenger <%= trip.passenger_id %>
-  </li>
-  <% end %>
-</ul>
+<h3>TRIPS</h3>
+<p>TOTAL EARNED FROM ALL TRIPS: $<%= @driver.total_earnings %></p>
+<p>NUMBER OF TRIPS DRIVEN: <%= @driver.trips.count %></p>
+<p>AVERAGE RATING: <%= @driver.average_rating %></p>
+<br/>
 
-<ul>
-  <li><%= link_to "Edit Driver", edit_driver_path(@driver) %></li>
-  <li><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %></li>
-  <li><%= link_to "All Drivers", drivers_path %></li>
-</ul>
+<%= button_to "#{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %>
+<%= button_to "Edit Driver", edit_driver_path(@driver), method: :get %>
+<%= button_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to "All Drivers", drivers_path, method: :get %>
+<br/>

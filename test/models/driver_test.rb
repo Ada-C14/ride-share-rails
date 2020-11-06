@@ -167,8 +167,10 @@ describe Driver do
         expect(selected.available).wont_equal status
       end
 
-      it "does something something clever if no drivers are available" do
-        raise NotImplementedError
+      it "returns nil if there are no available drivers" do
+        new_driver.toggle_available
+
+        expect(Driver.select_available).must_be_nil
       end
 
       it "selects available driver with fewest trips" do

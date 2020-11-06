@@ -234,10 +234,13 @@ describe DriversController do
   end
 
   describe "destroy" do
+    let (:new_driver) {
+        Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
+    }
+
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
       new_driver.save
       driver_id = new_driver.id
 
@@ -255,7 +258,6 @@ describe DriversController do
     it "destroys the correct driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      new_driver = Driver.new(name: "Hedy Lamarr", vin: "1234567890abcdefg", available: true)
       new_driver.save
       driver_id = new_driver.id
 
@@ -281,6 +283,20 @@ describe DriversController do
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
       must_respond_with :redirect
+    end
+
+    it "destroys dependent trips" do
+      new_driver.save
+      driver_id = new_driver.id
+      new_passenger = Passenger.new(name: "Greta Garbo", phone_num: "385-293-2938")
+      new_passenger.save
+      new_trip = Trip.new(driver_id: driver_id, passenger_id: new_passenger.id, cost: 2938, date: Date.today, rating: 5)
+      trip_id = new_trip.id
+
+      delete driver_path(driver_id)
+
+      deleted_trip = Trip.find_by(id: trip_id)
+      expect(deleted_trip).must_be_nil
     end
   end
 end
