@@ -26,41 +26,15 @@ describe TripsController do
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
 
-      driver = Driver.create(name: "Li", vin: "ABC1234")
-      passenger = Passenger.create(name: "Jared", phone_num: "1112223333")
-
-      new_trip = {
-          trip: {
-              date: Date.today,
-              passenger_id: passenger.id,
-              driver_id: driver.id,
-              rating: nil,
-          }
-      }
       expect {
-        post passenger_trips_path(passenger), params: new_trip
+        post passenger_trips_path(@passenger)
       }.must_differ "Trip.count", 1
-
+      Trip.first.save
       must_respond_with :redirect
-      # must_redirect_to trip_path
-      expect(Trip.last.passenger.name).must_equal passenger.name
-      expect(Trip.last.driver.name).must_equal driver.name
+      expect(Trip.first.passenger.name).must_equal @passenger.name
+      expect(Trip.first.driver.name).must_equal @driver.name
     end
 
-    it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
-      passenger = Passenger.create(name: "Jared", phone_num: "1112223333")
-
-      new_trip = {
-          trip: {
-          }
-      }
-
-      expect {
-        post passenger_trips_path(passenger), params: new_trip
-      }.wont_change "Trip.count"
-
-      must_respond_with :redirect
-    end
   end
 
   describe "edit" do
