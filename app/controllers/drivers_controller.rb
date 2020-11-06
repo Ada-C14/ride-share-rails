@@ -32,7 +32,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to :not_found
+      redirect_to drivers_path
       return
     end
   end
@@ -41,7 +41,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to :not_found
+      head :not_found
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
@@ -56,7 +56,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to :not_found
+      head :not_found
       return
     elsif @driver.destroy
       redirect_to drivers_path
@@ -67,7 +67,7 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:id, :vin, :available)
+    return params.require(:driver).permit(:id, :name, :vin, :available)
   end
 
 end
