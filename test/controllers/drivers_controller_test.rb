@@ -218,28 +218,60 @@ describe DriversController do
   end
 
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
+    it "destroys the driver instance in db when driver exists and has no trips, then redirects" do
+      driver
 
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
 
-      # Assert
-      # Check that the controller redirects
+      # Act
+      expect {
+        delete driver_path(driver.id)
 
+        # Assert
+      }.must_change 'Driver.count', -1
+
+      deleted_driver = Driver.find_by(id: driver.id)
+
+      expect(deleted_driver).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+    it "does not change the db when driver exists and has trips, must respond with bad request" do
+      d1 = driver
+      passenger = Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      trip1 = Trip.create(date: "2020-11-05",
+         rating: nil,
+         cost: 1000,
+         passenger: passenger,
+         driver: d1)
 
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
 
+
+      # Act
+      expect {
+        delete driver_path(d1.id)
+
+        # Assert
+      }.wont_change 'Driver.count'
+
+      deleted_driver = Driver.find_by(id: d1.id)
+
+      expect(deleted_driver).must_equal d1
+
+      must_respond_with :redirect
+      must_redirect_to driver_path(d1.id)
+    end
+
+    it "does not change the db when the driver does not exist, then responds with not found" do
+      driver
+
+      expect {
+        delete driver_path(-1)
+      }.wont_change 'Driver.count'
+
+      must_respond_with :not_found
     end
   end
 end

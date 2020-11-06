@@ -55,15 +55,15 @@ class DriversController < ApplicationController
   def destroy
     @driver = Driver.find_by(id: params[:id])
 
-    if @driver.trips.empty?
+    if @driver.nil?
+      head :not_found
+      return
+    elsif @driver.trips.empty?
       @driver.destroy
       redirect_to drivers_path
       return
-    elsif @driver.trips.count > 0
-      redirect_to driver_path(@driver.id)
-      return
     else
-      head :not_found
+      redirect_to driver_path(@driver.id)
       return
     end
   end

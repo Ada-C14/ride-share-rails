@@ -222,6 +222,60 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "destroys the passenger instance in db when passenger exists and has no trips, then redirects" do
+      passenger
+
+
+      # Act
+      expect {
+        delete passenger_path(passenger.id)
+
+        # Assert
+      }.must_change 'Passenger.count', -1
+
+      deleted_passenger = Passenger.find_by(id: passenger.id)
+
+      expect(deleted_passenger).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
+
+    it "does not change the db when passenger exists and has trips, must respond with bad request" do
+      p1 = passenger
+      driver = Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
+
+      trip1 = Trip.create(date: "2020-11-05",
+                          rating: nil,
+                          cost: 1000,
+                          passenger: p1,
+                          driver: driver)
+
+
+
+      # Act
+      expect {
+        delete passenger_path(p1.id)
+
+        # Assert
+      }.wont_change 'Passenger.count'
+
+      deleted_passenger = Passenger.find_by(id: p1.id)
+
+      expect(deleted_passenger).must_equal p1
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(p1.id)
+    end
+
+    it "does not change the db when the passemger does not exist, then responds with not found" do
+      passenger
+
+      expect {
+        delete passenger_path(-1)
+      }.wont_change 'Passenger.count'
+
+      must_respond_with :not_found
+    end
   end
 end

@@ -55,15 +55,15 @@ class PassengersController < ApplicationController
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
 
-    if @passenger.trips.empty?
+    if @passenger.nil?
+      head :not_found
+      return
+    elsif @passenger.trips.empty?
       @passenger.destroy
       redirect_to passengers_path
       return
-    elsif @passenger.trips.count > 0
-      redirect_to passenger_path(@passenger.id)
-      return
     else
-      head :not_found
+      redirect_to passenger_path(@passenger.id)
       return
     end
   end

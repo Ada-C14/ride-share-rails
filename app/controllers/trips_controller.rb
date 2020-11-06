@@ -64,10 +64,25 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end
 
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+    passenger = @trip.passenger
+
+    if @trip.nil?
+      redirect_to passenger_path(passenger.id)
+      return
+    elsif @trip.rating
+      @trip.destroy
+      redirect_to passenger_path(passenger.id)
+      return
+    else
+      render :edit, status: :bad_request
+    end
+  end
 
 end
