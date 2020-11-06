@@ -2,17 +2,9 @@ require "test_helper"
 
 describe TripsController do
 
-  before do
-    @driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
-    @passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
-  end
-
-
   let (:trip) do
     driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
     passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
-    p driver
-    p passenger
     Trip.create(
         rating: 1,
         cost: 4.99,
@@ -50,13 +42,16 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+
+      driver = Driver.create(name: "Test Trip Driver", vin: "HKJS12345HJGS", availability_status: true)
+      passenger = Passenger.create(name: "Anna Bobby", phone_number: "BFJHD2345654")
       trip_hash = {
         trip: {
           rating: 5,
           cost: 12.32,
           date: Time.now,
-          driver_id: @driver.id,
-          passenger_id: @passenger.id
+          driver_id: driver.id,
+          passenger_id: passenger.id
         }
       }
 
@@ -64,7 +59,7 @@ describe TripsController do
       # Ensure that there is a change of 1 in trip.count
       expect {
         post trips_path, params: trip_hash
-      }. must_differ "trip.count", 1
+      }. must_differ "Trip.count", 1
 
 
       # Assert
@@ -74,7 +69,7 @@ describe TripsController do
 
       expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
       expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
-      expect(new_trip.date).must_equal trip_hash[:trip][:date]
+      expect(new_trip.date).must_equal trip_hash[:trip][:date].to_date
       expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
 
@@ -107,7 +102,6 @@ describe TripsController do
         }
       }
 
-
       # Act-Assert
       # Ensure that there is no change in trip.count
 
@@ -121,8 +115,10 @@ describe TripsController do
 
       # Assert
       # Check that the controller redirects
-      must_redirect_to passenger_path(@passenger.id)
+      must_redirect_to root_path
     end
+
+    #TODO: Add a test to check for trip creation from nested route?
   end
 
   before do

@@ -22,8 +22,11 @@ class TripsController < ApplicationController
     if @trip.save && params[:passenger_id].nil?
       redirect_to trip_path(@trip.id)
       return
-    else
+    elsif params[:passenger_id]
       redirect_to passenger_path(passenger.id)
+      return
+    else
+      redirect_to root_path
       return
     end
 
