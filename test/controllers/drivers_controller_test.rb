@@ -55,7 +55,7 @@ describe DriversController do
         driver: {
           name: "John Do",
             vin: "ww234444112345651",
-            available: false
+            available: true
         },
       }
       # Act-Assert
