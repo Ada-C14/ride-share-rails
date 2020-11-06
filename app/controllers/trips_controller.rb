@@ -92,6 +92,11 @@ class TripsController < ApplicationController
     end
   end
 
+  # def trip_params
+  # trip_params = (passenger_id: params[:trip][:passenger_id], driver_id: params[:trip][:driver_id],
+  #         cost: params[:trip][:cost], rating: params[:trip][:rating], date: params[:trip][:date] )
+  # end
+  #
   # def request_trip
   #   passenger = Passenger.find_by(id: params[:passenger_id])
   #   @trip = passenger.request_trip
