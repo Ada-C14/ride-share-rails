@@ -16,14 +16,13 @@
     AVERAGE RATING: <%= @driver.avg_rating %> </br>
     STATUS:
     <% if @driver.available %>
-      <button><%= link_to "AVAILABLE", driver_path(@driver.id), method: :put %></button>
+      <button><%= link_to "AVAILABLE", toggle_status_path(@driver.id), method: :patch %></button>
     <% else %>
-      <button><%= link_to "UNAVAILABLE", driver_path(@driver.id), method: :put %></button>
+      <button><%= link_to "UNAVAILABLE", toggle_status_path(@driver.id), method: :patch %></button>
     <% end %>
   </li>
 </ul>
 <!--ternary operator? FIX BUTTON LINK -->
-
 <h2> TRIPS TAKEN </h2>
   <table>
     <thead>
