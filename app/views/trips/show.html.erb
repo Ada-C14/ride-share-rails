@@ -17,8 +17,12 @@
 
     <li>Date: <%= @trip.date %></li>
     <li>Cost: $<%= @trip.cost/100 %></li>
-    <% rating = @trip.rating %>
+    <% rating = [] %>
+    <% rating << @trip.rating %>
     <% if @trip.rating %>
+      <%  if @trip.rating != rating[0] %>
+        <% @trip.driver.complete_trip %>
+      <% end %>
       <li>Rating: <%= @trip.rating %></li>
     <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
@@ -27,9 +31,8 @@
          <%= f.submit "Update", class: 'trip-button' %></li>
       <% end %>
     <% end %>
-    <%  if rating != @trip.rating %>
-      <% @trip.driver.complete_trip%>
-    <% end %>
+
+
 
       </ul>
   <%= link_to "Edit", edit_trip_path(@trip) %>
