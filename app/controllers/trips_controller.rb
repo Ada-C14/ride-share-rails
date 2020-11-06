@@ -59,7 +59,7 @@ class TripsController < ApplicationController
     end
 
     if @trip.destroy
-      redirect_to trips_path
+      redirect_to root_path
       return
     else #if .destroy fails
     redirect_to trip_path(@trip.id)
