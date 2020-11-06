@@ -10,5 +10,4 @@ Rails.application.routes.draw do
 
   delete '/drivers/:id', to: 'drivers#delete', as: 'delete_driver'
 
-  #root to: do the root
 end
