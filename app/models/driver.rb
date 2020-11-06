@@ -24,12 +24,14 @@ class Driver < ApplicationRecord
     end
   end
 
-  def change_status
-    if self.availability_status
-      self.availability_status = false
-    else
-      self.availability_status = true
-    end
+  def make_unavailable
+    self.availability_status = false
+    self.save
+    return
+  end
+
+  def make_available
+    self.availability_status = true
     self.save
     return
   end

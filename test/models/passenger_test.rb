@@ -95,7 +95,7 @@ describe Passenger do
 
         total_charged = @new_passenger.total_charged
 
-        expect(total_charged).must_equal expected_total_charged
+        expect(total_charged).must_be_close_to expected_total_charged, 0.01
       end
 
       it "correctly calculates total amount charged when a trip is deleted" do

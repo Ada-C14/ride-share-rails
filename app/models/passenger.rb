@@ -10,7 +10,7 @@ class Passenger < ApplicationRecord
 
   def request_trip
     driver = Driver.next_available
-    driver.change_status
+    driver.make_unavailable
     return Trip.new(rating: nil, cost: rand(5.00..30.00).round(2), passenger: self, driver: driver, date: Time.now)
   end
 

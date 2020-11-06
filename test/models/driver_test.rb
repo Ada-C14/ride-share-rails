@@ -129,14 +129,14 @@ describe Driver do
     describe "can go online" do
       it "changes an unavailable driver to available" do
         offline_driver = Driver.create(name: "New Driver", vin: "00000000999", availability_status: false)
-        offline_driver.change_status
+        offline_driver.make_available
         expect(offline_driver.availability_status).must_equal true
       end
     end
 
     describe "can go offline" do
       it "changes an available driver to unavailable" do
-        @new_driver.change_status
+        @new_driver.make_unavailable
         expect(@new_driver.availability_status).must_equal false
       end
     end
