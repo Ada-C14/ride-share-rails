@@ -110,18 +110,18 @@ describe Driver do
       expect(driver.total_revenue).must_equal 0
     end
   end
+  
+  describe "can go online" do
+    it "can become unavailable" do
+      new_driver.save
+      new_driver.change_status
+      expect(new_driver.available).must_equal false
+    end
+
+    it "can become available" do
+      new_driver.available = false
+      new_driver.change_status
+      expect(new_driver.available).must_equal true
+    end
+  end
 end
-
-    # Your code here
-
-  # describe "can go online" do
-  #   # Your code here
-  # end
-
-  # describe "can go offline" do
-  #   # Your code here
-  # end
-
-  #   # You may have additional methods to test
-  # end
-# end
