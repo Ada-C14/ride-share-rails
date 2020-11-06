@@ -20,7 +20,7 @@ class Driver < ApplicationRecord
     total = 0
     costs.each do |cost|
       total += cost
-      total = total.to_f / 100
+      total = total.to_f/100
     end
     return total.round(2)
   end
@@ -32,7 +32,7 @@ class Driver < ApplicationRecord
     if total < 0
       return 0
     end
-    return total
+    return total = total.round(2)
   end
 
   def set_availability

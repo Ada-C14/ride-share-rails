@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
   <style>
+    a {
+        color: purple;
+    }
       html, body {
           margin: 0;
           padding: 10px;
@@ -24,7 +26,7 @@
       }
 </style>
 <body>
-<a href="/homepages">Home</a> | <a href="/passengers">Passenger's Page</a> | <a href="/drivers">Driver's Page</a>
+<a href="/homepages">Home</a> | <a href="/passengers">Passenger Page</a> | <a href="/drivers">Driver Page </a>
 
 <h2>Passenger: <%= @passenger.name %></h2>
 <table>
@@ -55,7 +57,7 @@
   <h4>
   <li>Your phone number is: <%= @passenger.phone_num %></li>
   <li>Passenger id is: <%= @passenger.id %></li>
-  <li>Total amount billed: <%= @passenger.passenger_cost %></li>
+  <li>Total amount billed: $<%= @passenger.passenger_cost %></li>
 </h4>
 </ul>
 </body>
