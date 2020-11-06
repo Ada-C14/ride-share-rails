@@ -38,6 +38,7 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to trip_path(@trip) and return
     else
+      driver.toggle_available
       redirect_to trips_path
       return
     end
@@ -53,11 +54,13 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
+    passenger = Passenger.find_by(id: @trip.passenger_id)
 
     if @trip.nil?
       redirect_to trips_path and return
     elsif
       @trip.update(trip_params)
+      passenger.complete_trip(@trip)
       redirect_to trip_path(@trip)
     else
       render :edit, status: :bad_request

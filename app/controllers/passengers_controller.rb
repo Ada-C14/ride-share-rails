@@ -44,8 +44,7 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       redirect_to passengers_path
       return
-    elsif @passenger.update(passenger_params) #if this is true
-      redirect_to passengers_path
+    elsif @passenger.update(passenger_params) #if this is true redirect_to passengers_path
       return
     else #save failed
       render :edit

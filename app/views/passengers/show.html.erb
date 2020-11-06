@@ -17,7 +17,12 @@
   <% active_trips.each do |active_trip| %>
     <li>
       <%= active_trip.date %>
-      <%= link_to "Edit This Trip", edit_trip_path(active_trip) %>
+      <%= form_with model: active_trip do |f| %>
+        <%= f.label :rating %>
+        <%= f.select :rating, [1, 2, 3, 4, 5] %>
+        <%= f.submit "Rate", class: "submit_buttom", method: :patch %>
+      <% end %>
+      <%#= link_to "Edit This Trip", edit_trip_path(active_trip) %>
     </li>
   <% end %>
   </ul>
