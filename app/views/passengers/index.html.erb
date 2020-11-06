@@ -1,28 +1,12 @@
-<!--<h1> All Passengers</h1>-->
-<!--<p><%#= link_to "Create New Rider Account", new_passenger_path%></p>-->
-
-<!--<ul>-->
-  <%# @passengers.each do |passenger|  %>
-<!--    <li>-->
-      <%#= link_to passenger.name, passenger_path(passenger) %>
-<!--    </li>-->
-  <%# end %>
-<!--</ul>-->
-
 <h1> All Passengers</h1>
-<p><%= link_to "Create New Rider Account", new_passenger_path%></p>
+<p><%= link_to "Create New Passenger Account", new_passenger_path%></p>
 <ul id = "passengers">
   <% @passengers.each do |passenger| %>
     <li>
       <%= link_to passenger.name, passenger_path(passenger) %>
-      <%= link_to 'Add new trip', new_passenger_path(passenger) %>
-      <%= link_to 'Edit', edit_passenger_path(passenger[:id]) %>
-      <%#= link_to 'Delete', destroy_passenger_path(passenger), method: :delete, data: {confirm: 'Are you sure?' }  %>
-
-      <%#= link_to "Delete",  {action: :destroy, id: task.id}, me
-thod: :delete, data: {confirm: 'Are you sure?' } %>
-      <%#= link_to task.completed_at.nil? ? "Mark Complete": "Mark Incomplete", {action: :toggle_complete, id: task.id}, method: :patch %>
+      <%= link_to 'Add new trip |', new_passenger_path(passenger) %>
+      <%= link_to 'Edit |', edit_passenger_path(passenger[:id]) %>
+      <%= link_to 'Delete', destroy_passenger_path(passenger), method: :delete, data: {confirm: 'Are you sure?' }  %>
     </li>
   <% end %>
 </ul>
-<!--<p><%#= link_to "Add a new task", {action: :new }%></p>-->

@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
   <style>
-table, th, td {
+      html, body {
+          margin: 0;
+          padding: 10px;
+      }
+
+      thead:nth-child(odd){background-color: black;}
+      tr:nth-child(even) {background-color: #c8a2c8;}
+      table, th, td {
   border: 3px solid purple;
   padding: 10px;
   margin: 20px;
 }
+      thead {
+          color: white;
+      }
 </style>
-</head>
 <body>
-<h1>Passenger: <%= @passenger[:name] %></h1>
-<h2>Your phone number is: <%= @passenger[:phone_num] %></h2>
-<h2> Passenger id is: <%= @passenger[:id] %></h2>
+<a href="/homepages">Home</a> | <a href="/passengers">Passenger's Page</a> | <a href="/drivers">Driver's Page</a>
+
+<h2>Passenger: <%= @passenger.name %></h2>
 <table>
   <thead>
-  <tr>
+ <tr>
     <th>Trip ID</th>
+    <th>Driver</th>
+    <th>Passenger</th>
     <th>Trip Cost</th>
+    <th>Trip Rating</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody  >
   <% @passenger.trips.each do |trip|%>
   <tr>
-    <td><%= trip[:id] %></td>
-    <td>$<%= trip[:cost] %></td>
+    <td><%= trip.id %></td>
+    <td><%= trip.driver.name %></td>
+    <td><%= trip.passenger.name %></td>
+    <td>$<%= trip.cost %></td>
+    <td><%= trip.rating %></td>
   </tr>
   <% end %>
   </tbody>
 </table>
+<h2>Additional Passenger Information</h2>
+
+<ul>
+  <h4>
+  <li>Your phone number is: <%= @passenger.phone_num %></li>
+  <li>Passenger id is: <%= @passenger.id %></li>
+  <li>Total amount billed: <%= @passenger.passenger_cost %></li>
+</h4>
+</ul>
 </body>
 </html>
-<%#= @passenger.passenger_cost %>
