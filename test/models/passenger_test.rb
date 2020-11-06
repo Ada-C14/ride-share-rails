@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   let (:new_passenger) {
-    Passenger.create(name: "Kari", phone_num: 1111111)
+    Passenger.create!(name: "Kari", phone_num: 1111111)
   }
   it "can be instantiated" do
     # Assert
@@ -63,20 +63,21 @@ describe Passenger do
     before do
       new_driver = Driver.create(name: "Kari", vin: "123", available: true)
       @trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      @trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
     end
     describe "request a ride" do
-      skip
+
       # Your code here
     end
 
     describe "complete trip" do
-      skip
+      
       # Your code here
     end
 
     describe "net expenditures" do
       it "calculates net expenditures" do
-        expect(passenger.net_expenditures).must_equal 1234
+        expect(new_passenger.net_expenditures).must_equal 7568
       end
     end
 

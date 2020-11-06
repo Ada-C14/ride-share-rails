@@ -1,6 +1,6 @@
 class Passenger < ApplicationRecord
     has_many :trips
-    validates :phone_num, numericality: { only_integer: true }
+    validates :phone_num, presence: true
     validates :name, presence: true
 
     def net_expenditures
