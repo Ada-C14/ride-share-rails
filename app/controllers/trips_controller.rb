@@ -38,16 +38,16 @@ class TripsController < ApplicationController
 
   def update
 
-    trip = Trip.find_by(id: params[:id])
+    @trip = Trip.find_by(id: params[:id])
 
-    if trip.nil?
+    if @trip.nil?
       head :not_found
       return
     else
-      if trip.update(trip_params)
+      if @trip.update(trip_params)
         # redirecting to passenger details page
-        trip.complete_trip
-        redirect_to trip_path(trip)
+        @trip.complete_trip
+        redirect_to trip_path(@trip)
         return
       else
         render :edit, status: :bad_request
