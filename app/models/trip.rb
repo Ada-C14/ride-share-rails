@@ -12,5 +12,4 @@ class Trip < ApplicationRecord
     return '%.2f' % in_dollars
   end
 
-
 end
