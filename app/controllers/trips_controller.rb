@@ -35,19 +35,17 @@ class TripsController < ApplicationController
 
   def create
     create_params = {
-        driver_id: Driver.find_by(available: 'true').id,
+        driver_id: Trip.assign_driver,
         passenger_id: params[:passenger_id].to_i,
         date: Time.now,
         rating: nil,
-        cost: rand(8.0..35.0).round(2)
+        cost: Trip.generate_cost
     }
 
     @trip = Trip.new(create_params)
 
     if @trip.save
-      driver = Driver.find_by(id: @trip.driver_id)
-      driver.available = 'false'
-      driver.save
+      @trip.change_driver_status
       redirect_to trip_path(@trip.id)
       return
     else
