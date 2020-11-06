@@ -2,12 +2,12 @@ class TripsController < ApplicationController
   def index
     if params[:driver_id]
       #nested route: prefix driver_trips (/drivers/:driver_id/trips)
-      driver = Driver.find_by(id: params[:driver_id])
-      @trips = driver.trips
+      @driver = Driver.find_by(id: params[:driver_id])
+      @trips = @driver.trips
     elsif params[:passenger_id]
       #nested route: prefix passenger_trips (/passengers/:passenger_id/trips)
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trips = passenger.trips
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = @passenger.trips
     else
       @trips = Trip.all
     end
@@ -22,22 +22,23 @@ class TripsController < ApplicationController
   end
 
   def new
-    if params[:passenger_id]
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = passenger.trips.new
-    else
-      @trip = Trip.new
-    end
   end
 
   def create
-    @trip = Trip.new(trip_params)
-    #@trip = Trip.new(date: Date.today, cost: 1234, driver_id: params[:driver_id], passenger_id: params[:passenger_id])
+    driver = Driver.select_available #Driver.find_by(available: true)
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    cost = rand(1000..9999)
+
+    if passenger
+      @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, cost: cost)
+    else
+      redirect_to trips_path
+    end
 
     if @trip.save
       redirect_to trip_path(@trip) and return
     else
-      render :new, status: :bad_request
+      redirect_to trips_path
       return
     end
   end
@@ -77,7 +78,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    #return params.require(:trip).permit(:date, :cost, :passenger_id)
+    #return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id)
     #driver should be assigned, rating should not be entered when the trip is created
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end

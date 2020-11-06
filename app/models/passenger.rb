@@ -13,12 +13,17 @@ class Passenger < ApplicationRecord
     return total
   end
 
-  # def request_ride
-  #   found_driver = Driver.find_by(available: true)
-  #   if found_driver
-  #     new_ride = Trip.create(driver_id: found_driver.id, passenger_id: self.id, date: Date.today, cost: 1234)
-  #   end
-  #
-  #   return new_ride
-  # end
+  def request_ride
+    found_driver = Driver.find_by(available: true)
+    cost = rand(1000..9999)
+    if found_driver
+      @trip = Trip.new(driver_id: found_driver, passenger_id: self.id, date: Date.today, cost: cost)
+      return @trip
+    else
+      #no drivers are available, what to do?
+    end
+
+    #return @trip
+  end
+
 end

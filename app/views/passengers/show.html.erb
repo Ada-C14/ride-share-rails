@@ -5,11 +5,25 @@
 <%= button_to "Edit", edit_passenger_path(@passenger), method: :get %>
 <%= button_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?" } %>
 <%= button_to "#{@passenger.name}'s Trips", passenger_trips_path(@passenger), method: :get %>
-<%= button_to "#{@passenger.name} New Trip", new_passenger_trip_path(@passenger), method: :get %>
+<%= button_to "#{@passenger.name} New Trip", passenger_create_trip_path(@passenger), method: :post %>
 
 <h3>TRIPS:</h3>
 <p>TOTAL SPENT ON ALL TRIPS: $<%= @passenger.total_charged %></p>
 <p>NUMBER OF TRIPS TAKEN: <%= @passenger.trips.count %></p>
+
+<h3>Active Trips</h3>
+
+<% active_trips = @passenger.trips.where(rating: nil) %>
+<% if !active_trips.empty? %>
+  <ul>
+  <% active_trips.each do |active_trip| %>
+    <li>
+      <%= active_trip.date %>
+      <%= link_to "Edit This Trip", edit_trip_path(active_trip) %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
 
 <!--<table>-->
 <!--  <tr>-->
