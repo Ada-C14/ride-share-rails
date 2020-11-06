@@ -64,29 +64,53 @@ describe Driver do
       @new_driver = Driver.create(name: "Mike", vin: "123", available: true)
       @new_passenger = Passenger.create(name: "Mike", phone_num: "111-111-1211")
 
-      trip_1 = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 5, cost: 1000)
-      trip_2 = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-      trip_2 = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 3, cost: 1234)
     end
+    let(:trip_1) {
+      Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 5, cost: 1000)
+    }
+    let(:trip_2) {
+      Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+    }
+    let(:trip_3){
+      Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 3, cost: 1234)
+    }
     describe "average rating" do
       it "returns average rating" do
-        expect(@new_driver.average_rating).must_be_close_to 4.33, 0.01
+        trip_1
+        trip_2
+        trip_3
+        expect(@new_driver.average_rating).must_be_close_to 3.7
       end
 
       it "returns 0 if there is no trip" do
-        new_driver
-        expect(new_driver.average_rating).must_equal 0
+        expect(@new_driver.average_rating).must_equal 0
     end
   end
 
   describe "total_revenue" do
     it "returns total_revenue" do
-      expect(@new_driver.total_revenue).must_be_close_to 6850.44, 0.01
+      trip_1
+
+      expect(@new_driver.total_revenue).must_equal 668
+    end
+
+    it "returns total_revenue" do
+      trip_1
+      trip_2
+
+      expect(@new_driver.total_revenue).must_equal 5604
+    end
+
+    it "returns total_revenue" do
+      trip_1
+      trip_2
+      trip_3
+      
+      expect(@new_driver.total_revenue).must_equal 6459
     end
 
     it "returns 0.0 if there is no trip" do
-      new_driver
-      expect(new_driver.total_revenue).must_equal 0.0
+      expect(@new_driver.total_revenue).must_equal 0.0
     end
   end
 

@@ -13,17 +13,19 @@ class Driver < ApplicationRecord
 #  drivers total earnings
   #  driver gets 80% of the trip cost after a fee of $1.65 is subtracted
   def total_revenue
+    return 0 if self.trips.length == 0
+
     commission = 0.8
-    fee = 1.65
+    fee = 165
     total = 0
     self.trips.each do |trip|
       if trip.cost > fee
         total += (trip.cost - fee) * commission
       else
-        total += (trip * commission)
+        total += (trip.cost * commission)
       end
-      return total
     end
+    return total.ceil
   end
 
   def average_rating
@@ -36,7 +38,7 @@ class Driver < ApplicationRecord
         rated_trips += 1
       end
     end
-    self.trips.length > 0 ? total_rating / rated_trips.round(2) : total_rating
+    return self.trips.length > 0 ? (total_rating / rated_trips).round(1) : total_rating
   end
 end
 
