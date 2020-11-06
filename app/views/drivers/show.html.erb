@@ -15,6 +15,13 @@
           <p><strong>Average Rating: </strong> <%='%.1f' %@driver.average_rating %></p>
           <div class="button-container">
             <div>
+              <% if @driver.availability_status == true %>
+                <%= button_to "Change Availability", driver_path(@driver.id), method: :patch, params: {driver:{name: @driver.name, vin: @driver.vin, availability_status: false}}, class: "btn btn-secondary btn-sm" %>
+              <% else %>
+                <%= button_to "Change Availability", driver_path(@driver.id), method: :patch, params: {driver:{name: @driver.name, vin: @driver.vin, availability_status: true}}, class: "btn btn-secondary btn-sm" %>
+              <% end %>
+            </div>
+            <div>
             <%= button_to "Edit Driver", edit_driver_path(@driver.id), method: :get, class: "btn btn-warning btn-sm" %>
             </div>
             <div>
