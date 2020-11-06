@@ -4,25 +4,29 @@ describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
   describe "index" do
+    before do
+      @driver = Driver.create(name: "Driver 123", vin: "WBWSS52P9NEYLVDE9", available: true)
+    end
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      @driver = Driver.create(name: "Black 123", vin: "WBWSS52P9NEYLVDE9")
-
+      driver = @driver
       # Act
       get "/drivers"
       
       # Assert
-      expect(Driver.count).must_equal 1
+      expect(Driver.count).must_be :>=, 1
       must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
+      Driver.delete_all
+      
       # Ensure that there are zero drivers saved
-
       # Act
       get "/drivers"
+
       # Assert
       expect(Driver.count).must_equal 0
       must_respond_with :success
@@ -30,10 +34,6 @@ describe DriversController do
   end
 
   describe "show" do
-    before do
-      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    end
-
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
@@ -60,10 +60,6 @@ describe DriversController do
   end
 
   describe "new" do
-    before do
-      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    end
-
     it "can get the new_driver_path" do
       get new_driver_path
 
@@ -81,7 +77,7 @@ describe DriversController do
     let (:valid_driver) { 
       { 
         driver: {
-          name: "TEST123", 
+          name: "Create 123", 
           vin: "WBWSS52P9NEYLVDE9", 
           available: true
         }
@@ -156,10 +152,6 @@ describe DriversController do
   end
   
   describe "edit" do
-    before do
-      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    end
-
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
@@ -182,10 +174,6 @@ describe DriversController do
   end
 
   describe "update" do
-    before do
-      Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
-    end
-
     let (:valid_driver) { 
       { 
         driver: {
@@ -257,7 +245,7 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations - name, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations - name, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -276,7 +264,7 @@ describe DriversController do
       must_respond_with :bad_request
     end
 
-    it "does not create a driver if the form data violates Driver validations - vin, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations - vin, and responds with a redirect" do
       # Arrange
       id = Driver.first.id
 

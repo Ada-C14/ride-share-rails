@@ -41,7 +41,7 @@ class DriversController < ApplicationController
       render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
       return
     elsif @driver.update(driver_params)
-      redirect_to driver_path 
+      redirect_to driver_path(@driver.id) 
       return
     else 
       render :edit, status: :bad_request  

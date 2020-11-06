@@ -9,7 +9,7 @@ describe TripsController do
       @trip = Trip.create(driver_id: Driver.first.id, passenger_id: Passenger.first.id, date: "2016-04-05", rating: 3, cost: 1293)
     end
     it "can get a valid trip" do
-
+      # Arrange
       valid_trip_id = @trip.id
 
       # Act
@@ -20,6 +20,7 @@ describe TripsController do
     end
 
     it "will redirect for an invalid trip" do
+      # Arrange
       invalid_passenger_id = -1
 
       # Act
@@ -31,7 +32,6 @@ describe TripsController do
   end
 
   describe "create" do
-
     Driver.create(name: "TEST123", vin: "WBWSS52P9NEYLVDE9", available: true)
     available_driver = Driver.first
 
@@ -45,9 +45,11 @@ describe TripsController do
           }
       }
     }
+
     it "can create a new trip with valid information accurately, and redirect" do
+      # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
-      # test if driver status changes
+      
       # Act 
       expect {
         post passenger_trips_path(@passenger.id)
@@ -60,16 +62,14 @@ describe TripsController do
 
 
     it "does not create a trip if no driver is available" do
-      # test if found driver is available
       # Arrange
       @passenger = Passenger.create(name: "Judy", phone_num: "360-555-0987")
       available_driver.update(available: false)
       Driver.all.update(available: false)
 
-
       # Act
       expect {
-        post passenger_trips_path(@passenger.id)  #, params: invalid_trip
+        post passenger_trips_path(@passenger.id)  
       }.wont_change 'Trip.count'
 
       # Assert
@@ -77,7 +77,6 @@ describe TripsController do
     end
 
     it "does not create a trip for non-existing passenger" do
-      # test if right passenger is selected
       passenger_id = -1
 
       expect {
@@ -172,7 +171,6 @@ describe TripsController do
     end
 
     it "does not update a trip if the form data violates rating, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       id = @trip.id
 
@@ -182,7 +180,6 @@ describe TripsController do
       }.wont_change 'Trip.count'
 
       # Assert
-      # Check that the controller redirects
       must_respond_with :bad_request
     end
   end
