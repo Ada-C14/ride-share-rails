@@ -27,18 +27,7 @@ describe TripsController do
 
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
-
-      # Arrange
-      # trip_hash = {
-      #     trip: {
-      #         driver_id: 20,
-      #         passenger_id: 57,
-      #         date: "2020/11/05",
-      #         rating: nil,
-      #         cost: 27.58
-      #     }
-      # }
-
+      
       # Act-Assert
       expect {
         post passenger_trips_path(57)
