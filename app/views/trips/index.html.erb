@@ -1,5 +1,9 @@
-<h1> Trip list</h1>
-<%=link_to "Homepage", homepages_path %> |
+<h1> Trip List</h1>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+</nav>
+
 <div>
   <p> Total Cost: <%=@total_cost %></p>
     <ul>
@@ -10,9 +14,13 @@
         <%#link_to trip.date, trip_path(trip.id) %>
       </li>
       <% end %>
-
     </ul>
 </div>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+</nav>
+
 
 
 

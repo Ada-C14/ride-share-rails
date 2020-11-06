@@ -1,9 +1,10 @@
 <h1>Passenger List </h1>
+
 <nav>
   <%=link_to "Homepage", homepages_path %> |
-  <%= link_to "Add a New Passenger ", new_passenger_path%>
-
+  <%= link_to "Add a New Rider ", new_passenger_path%>
 </nav>
+
 <div>
   <%@passengers.each do |passenger|%>
     <ul>
@@ -11,6 +12,8 @@
     </ul>
   <%end%>
 </div>
+
 <nav>
+  <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Add a New Passenger", new_passenger_path%>
 </nav>

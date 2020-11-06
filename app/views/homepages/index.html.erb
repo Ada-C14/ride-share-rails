@@ -1,13 +1,22 @@
-<div class="homepage">
-  <div class="container">
-    <div class="main">
+<!--<div class="homepage">-->
+<!--  <div class="container">-->
+<!--    <div class="main">-->
+<!--      <h1>Rails Ride Share Homepage</h1>-->
+<!--        <p><%#=link_to "View all riders", passengers_path %></p>-->
+<!--        <p><%#=link_to "Create new rider",new_passenger_path%></p>-->
+<!--        <p><%#=link_to "View all drivers", drivers_path %></p>-->
+<!--        <p><%#=link_to "Create new driver", new_driver_path %></p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
-<h1>Rails Ride Share Homepage</h1>
-<p><%=link_to "View all riders", passengers_path %></p>
-<p><%=link_to "View all drivers", drivers_path %></p>
-<p><%=link_to "Create new rider",new_passenger_path%></p>
-<p><%link_to "Create new driver", new_driver_path %></p>
+<header>
+  <h1 class="homepage"> Rails Ride Share Homepage</h1>
+</header>
 
-    </div>
-  </div>
-</div>
+<section class="homepage_body">
+  <p><%=link_to "View all riders", passengers_path %></p>
+  <p><%=link_to "Create new rider",new_passenger_path%></p>
+  <p><%=link_to "View all drivers", drivers_path %></p>
+  <p><%=link_to "Create new driver", new_driver_path %></p>
+</section>

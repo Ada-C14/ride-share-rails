@@ -1,8 +1,19 @@
 <h2>Driver Details</h2>
 
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Driver List", drivers_path %> |
+  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
+</nav>
+
 <p>Driver ID: <%= @drivers.id %></p>
 <p>Driver Name: <%= @drivers.name %></p>
 <p>VIN: <%= @drivers.vin %></p>
 
 <!--Want to create loop that pulls driver trip details  -->
-<p><%= link_to "Return to Home", drivers_path %></p>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Driver List", drivers_path %> |
+  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
+</nav>
