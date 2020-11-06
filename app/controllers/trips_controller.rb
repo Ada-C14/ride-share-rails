@@ -37,29 +37,44 @@ class TripsController < ApplicationController
 
   def create
     # Want to use passenger id to create trip
+    passenger = Passenger.find_by(id:passenger_id)
+    if passenger.nil?
+      head :not_found
+      return
+    end
+
     # Want to select available driver
+    driver = Driver.find_by(available: true)
+    if driver.nil?
+      head :not_found
+      return
+    end
+
+    # Will create an ID when saved
     # Create new trip with these params
-
-    # driver = Driver.find_by(:available = true)
-    # if driver.nil?
-    #   redirect_to
-    # end
-
-    @trip =passenger.trips.new(
-        date: Date.today_to_s,
+    @trip = Trip.new(
+        date: Date.today.to_s,
         rating:nil,
-        cost: nil,
+        cost: rand(500..5000),
         driver_id: driver.id,
         passenger_id: passenger.id
     )
 
     if @trip.save
-
+      driver().save
+      redirect_to passenger_path(passenger.id)
+    else
+      # head :not_found
+      redirect_to redirect passenger_path(passenger.id)
     end
   end
 
   def edit
-
+    # @trip = Trip.find_by(id: params[:id])
+    # if @trip.nil?
+    #   redirect_to passenger_trips_path(@passengers.id)
+    #   return
+    # end
   end
 
   def update

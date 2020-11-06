@@ -19,7 +19,7 @@ class PassengersController < ApplicationController
   end
 
   def create
-    @passengers = Passenger.new(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
+    @passengers = Passenger.new(passengers_params)
     if @passengers.save # save returns true if the database insert succeeds
       redirect_to passengers_path(@passengers.id) # go to the index so we can see the task in the list
       return
@@ -43,7 +43,7 @@ class PassengersController < ApplicationController
     if @passengers.nil?
       head :not_found
       return
-    elsif @passengers.update(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
+    elsif @passengers.update(passengers_params)
       redirect_to passenger_path(@passengers.id)
       return
     else
@@ -67,8 +67,8 @@ class PassengersController < ApplicationController
 end
 
 
-# private
-#
-# def passengers_params
-#   return params.require(:passenger).permit(:name, :phone_num)
-# end
+private
+
+def passengers_params
+  return params.require(:passenger).permit(:name, :phone_num)
+end
