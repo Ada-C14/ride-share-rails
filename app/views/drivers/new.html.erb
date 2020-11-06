@@ -1,22 +1,3 @@
 <h2> New driver page</h2>
 
-<%= form_with model: @driver, class: 'create-driver' do |f| %>
-  <p>Please provide the following driver details:</p>
-
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :vin %>
-    <%= f.text_field :vin %>
-  </div>
-
-  <div>
-    <%= f.label :available %>
-    <%= f.text_field :available %>
-  </div>
-
-  <%= f.submit "Save Driver", class: "driver-button" %>
-<% end %>
+<%= render partial: "form", locals: { action_name: "New" } %>
