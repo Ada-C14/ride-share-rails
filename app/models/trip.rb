@@ -9,12 +9,7 @@ class Trip < ApplicationRecord
   #   db_trip.cost = helper.number_to_currency(@trip.cost>)
   #   return
   # end
-  def assign_driver
-    driver = Driver.all.select {|driver| driver.available == true }.sample
-    driver.available = false
-    driver.save
-    return driver
-  end
+
 
   def self.trip_cost
     return rand(500..10000)

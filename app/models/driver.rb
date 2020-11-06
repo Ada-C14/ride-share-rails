@@ -7,6 +7,14 @@ class Driver < ApplicationRecord
     return self.trips.map { |trip| 0.8 * (trip.cost/100.0 - 1.65) }.sum
   end
 
+
+  def self.assign_driver
+    driver = Driver.all.select {|driver| driver.available == true }.sample
+    driver.available = false
+    driver.save
+    return driver
+  end
+
   def average_rating
     trips_for_driver = self.trips
     ratings = 0
