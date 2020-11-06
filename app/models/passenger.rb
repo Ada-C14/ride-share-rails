@@ -12,5 +12,14 @@ class Passenger < ApplicationRecord
     )
     return new_trip
   end
+
+  def total_charged
+    total = 0
+
+    trips.each do |trip|
+      total += trip.cost
+
+    return total
+  end
 end
 
