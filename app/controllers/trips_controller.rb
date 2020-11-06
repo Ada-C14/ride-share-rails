@@ -21,7 +21,7 @@ class TripsController < ApplicationController
   def create
     driver = Driver.find_by(available: true)
     passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = Trip.create(
+    if @trip = Trip.create(
       driver_id: driver.id,
       passenger_id: passenger.id,
       date: Time.now,
@@ -29,7 +29,10 @@ class TripsController < ApplicationController
       cost: rand(1..1000)
     )
     redirect_to passenger_path(passenger.id)
+    else # create failed
+      render :new
       return
+    end
   end
 
   def new 
@@ -59,7 +62,6 @@ class TripsController < ApplicationController
       return
     end
   end
-
 
   def destroy
     if params[:id]

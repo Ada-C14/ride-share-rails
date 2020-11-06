@@ -67,24 +67,27 @@ describe Passenger do
     end
     describe "request a ride" do
 
-      trip_hash = {
-        trip: {
-          driver_id: @new_driver.id,
-          passenger_id: new_passenger.id,
-          date: Time.now,
-          rating: nil,
-          cost: rand(1..1000)
+      it "requests a trip for a driver" do
+        trip_hash = {
+          trip: {
+            driver_id: @new_driver.id,
+            passenger_id: new_passenger.id,
+            date: Time.now,
+            rating: nil,
+            cost: rand(1..1000)
+          }
         }
-      }
-      expect {
-        post passenger_trips_path, params: trip_hash
-      }.must_differ 'Trip.count', 1
+        expect {
+          post passenger_trips_path(new_passenger.id), params: trip_hash
+        }.must_differ 'Trip.count', 1
 
-      # post passenger_trips_path(new_passenger.id)
+        # trips_path
+        # post passenger_trips_path(new_passenger.id)
 
-      # must_respond_with :success
+        # must_respond_with :success
 
-      # Your code here
+        # Your code here
+      end
     end
 
     describe "complete trip" do

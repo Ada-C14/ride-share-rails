@@ -81,45 +81,27 @@ describe TripsController do
 
     end
 
-    it "does not create a trip if violate Validation rules" do
-      skip
+    it "does not create a trip if violate Validation rules-missing driver_id" do
        # Arrange
        trip_hash = {
         trip: {
-          phone_num: '123456',
+        passenger_id: @passenger.id,
+        date: Time.now,
+        rating: nil,
+        cost: rand(1..1000)
         }
       }
 
       # Act-Assert
+      # Ensure that there is no change in trip.count
       expect {
         post trips_path, params: trip_hash
       }.wont_change 'trip.count'
-
-      # Ensure that there is no change in trip.count
 
       # Assert
       must_respond_with :success
     end
 
-    it "does not create a trip if missing driver_id" do
-      skip
-      # Arrange
-      trip_hash = {
-       trip: {
-         phone_num: 123456,
-       }
-     }
-
-     # Act-Assert
-     expect {
-       post trips_path, params: trip_hash
-     }.wont_change 'trip.count'
-
-     # Ensure that there is no change in trip.count
-
-     # Assert
-     must_respond_with :success
-   end
   end
   
   describe "edit" do
