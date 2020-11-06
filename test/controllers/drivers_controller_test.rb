@@ -73,7 +73,7 @@ describe DriversController do
       # Set up the form data
       driver_hash = {
           driver: {
-              name: "new driver",
+              name: "New Driver",
               vin: "00000000000000000"
           }
       }
@@ -201,7 +201,7 @@ describe DriversController do
       edited_driver_hash = {
           driver: {
               name: "",
-              vin: "ABC"
+              vin: "123"
           }
       }
 

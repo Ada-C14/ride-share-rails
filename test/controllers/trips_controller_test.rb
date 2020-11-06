@@ -1,27 +1,29 @@
 require "test_helper"
 
 describe TripsController do
-  before do
-      Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
-      Passenger.create(name: "Test Passenger", phone_num: "2065550000")
-  end
+  let (:driver) {
+    Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
+  }
+
+  let (:passenger) {
+    Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
+  }
 
   let (:trip) {
-    Trip.create(date: "today",
+    Trip.create(date: "2020-11-05",
                 rating: nil,
-                cost: 2560,
-                passenger_id: Passenger.first.id,
-                driver_id: Driver.first.id)
+                cost: 1000,
+                passenger: passenger,
+                driver: driver)
   }
 
   describe "show" do
     # Your tests go here
-    # it "responds with success when showing an existing valid trip" do
-    #   trip
-    #   get trip_path(trip.id)
-    #
-    #   must_respond_with :success
-    # end
+    it "responds with success when showing an existing valid trip" do
+      get trip_path(trip.id)
+
+      must_respond_with :success
+    end
 
     it "responds with redirect with an invalid trip id" do
       get trip_path(-1)

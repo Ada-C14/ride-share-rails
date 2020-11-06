@@ -56,6 +56,9 @@ class TripsController < ApplicationController
     if @trip.nil?
       redirect_to root_path
       return
+    elsif @trip.update(rating: params[:trip][:rating]) && params[:trip][:rating].nil?
+      redirect_to trip_path(@trip.id)
+      return
     elsif @trip.update(rating: params[:trip][:rating])
       @trip.driver.update(available: true)
       redirect_to trip_path(@trip.id)

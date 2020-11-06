@@ -3,7 +3,7 @@ require "test_helper"
 describe PassengersController do
 
   let (:passenger) {
-    Passenger.create(name: "Test Passenger", phone_num: "2065550000")
+    Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
   }
 
   describe "index" do
@@ -76,13 +76,13 @@ describe PassengersController do
       # Set up the form data
       passenger_hash = {
           passenger: {
-              name: "new passenger",
-              phone_num: "4255550000"
+              name: "New Passenger",
+              phone_num: "425-555-5555"
           }
       }
 
       # Act-Assert
-      # Ensure that there is a change of 1 in passenger.count
+      # Ensure that there is a change of 1 in Passenger.count
       expect {
         post passengers_path, params: passenger_hash
       }.must_change "Passenger.count", 1
@@ -109,7 +109,7 @@ describe PassengersController do
       }
 
       # Act-Assert
-      # Ensure that there is no change in passenger.count
+      # Ensure that there is no change in Passenger.count
       expect {
         post passengers_path, params: passenger_hash
       }.wont_change "Passenger.count"
@@ -151,12 +151,12 @@ describe PassengersController do
       edited_passenger_hash = {
           passenger: {
               name: "Test passenger 2",
-              phone_num: "3605550000"
+              phone_num: "360-555-5555"
           }
       }
 
       # Act-Assert
-      # Ensure that there is no change in passenger.count
+      # Ensure that there is no change in Passenger.count
       expect {
         patch passenger_path(passenger.id), params: edited_passenger_hash
       }.wont_change "Passenger.count"
@@ -179,12 +179,12 @@ describe PassengersController do
       edited_passenger_hash = {
           passenger: {
               name: "Test passenger 2",
-              phone_num: "5095550000"
+              phone_num: "360-555-5555"
           }
       }
 
       # Act-Assert
-      # Ensure that there is no change in passenger.count
+      # Ensure that there is no change in Passenger.count
       expect {
         patch passenger_path(-1), params: edited_passenger_hash
       }.wont_change "Passenger.count"
@@ -210,7 +210,7 @@ describe PassengersController do
       }
 
       # Act-Assert
-      # Ensure that there is no change in passenger.count
+      # Ensure that there is no change in Passenger.count
       expect {
         patch passenger_path(passenger.id), params: edited_passenger_hash
       }.wont_change "Passenger.count"
