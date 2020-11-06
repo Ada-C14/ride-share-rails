@@ -1,6 +1,9 @@
 require "test_helper"
 
 describe TripsController do
+  describe "index" do
+    # Your tests go here
+  end
   describe "show" do
     # Your tests go here
   end

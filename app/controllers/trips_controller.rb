@@ -3,6 +3,28 @@ class TripsController < ApplicationController
     @trips = Trip.order(:id)
   end
 
+  def new
+    @trip = Trip.new
+  end
+
+  def first_available_driver
+    return Driver.find_by(available: true)
+  end
+
+  def create
+    driver= first_available_driver
+    @trip = Trip.new(passenger_id: params[:trip][:passenger_id], driver_id: driver.id, date: Date.today, rating: nil, cost: rand(1000...10000) )
+
+    if @trip.save
+      driver.available = false
+      driver.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :new
+    end
+  end
+
   def show
     @trip = Trip.find_by(id: params[:id])
 
