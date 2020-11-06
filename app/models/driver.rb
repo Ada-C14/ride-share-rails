@@ -4,6 +4,8 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
+  attribute :available, default: true
+
   def mark_unavailable
     self.available = false
     self.save
