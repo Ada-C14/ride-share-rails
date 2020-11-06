@@ -37,20 +37,23 @@
     <tr>
       <td><%= link_to trip.id, trip_path(trip) %></td>
       <td><%= trip.date %></td>
-      <td><%= trip.passenger_id %></td>
+
+
       <% if Passenger.find_by(id: trip.passenger_id) == nil %>
+        <td>N/A</td>
         <td>DELETED PASSENGER</td>
       <% else %>
+        <td><%= trip.passenger_id %></td>
         <td><%= link_to trip.passenger.name, passenger_path(trip.passenger) %></td>
       <% end %>
 
-      <td><%= trip.driver_id %></td>
-
       <% if Driver.find_by(id: trip.driver_id) == nil %>
+        <td>N/A</td>
         <td>DELETED DRIVER</td>
       <% else %>
+        <td><%= trip.driver_id %></td>
         <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
-        <% end %>
+      <% end %>
 
       <td><%= trip.cost_to_string %></td>
       <td><%= trip.rating %></td>

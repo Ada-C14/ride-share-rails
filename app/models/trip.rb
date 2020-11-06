@@ -3,7 +3,6 @@ class Trip < ApplicationRecord
   belongs_to :passenger
 
   def cost_to_string
-
     cost = self.cost.to_f / 100
     cost = '%.2f' % cost
     return " $#{cost} "
