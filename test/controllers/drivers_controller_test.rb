@@ -75,7 +75,7 @@ describe DriversController do
           driver: {
               name: "new driver",
               vin: "00000000000000000"
-          },
+          }
       }
 
       # Act-Assert
