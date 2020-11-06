@@ -6,10 +6,13 @@
 <section class="about">
   <p>Thank you for visiting our website We make it our goal to provide passengers and riders with the best experience possible! </p>
   <p class="fast_facts"><strong>Rideshare Rails Fast Facts</strong></p>
-  <ol class="home_stats">
-    <li>We have <strong><%= Passenger.count %></strong> passengers in our rider pool</li><br>
-    <li>We have <strong><%= Driver.count %></strong> drivers on our team</li><br>
-    <li> We've given <strong><%= Trip.count %></strong> trips...and counting!</li>
-  </ol>
+    <ul class="home_stats">
+    <li><i class="fa fa-car" aria-hidden="true"></i>
+      We have <strong><%= Passenger.count %></strong> passengers in our rider pool</li><br>
+    <li><i class="fa fa-car" aria-hidden="true"></i>
+      We have <strong><%= Driver.count %></strong> drivers on our team</li><br>
+    <li> <i class="fa fa-car" aria-hidden="true"></i>
+      We've given <strong><%= Trip.count %></strong> trips...and counting!</li>
+    </ul>
   <p><em>*Use the navigation bar above to view passengers, drivers, trips, and more!</em></p>
 </section>
