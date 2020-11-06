@@ -34,7 +34,7 @@ class TripsController < ApplicationController
     end
 
     if @trip.save
-      redirect_to trips_path(@trip.id) #send the user to the /tasks path
+      redirect_to trip_path(@trip.id) #send the user to the /tasks path
       return
     else
       # render :new, status: :bad_request

@@ -2,14 +2,27 @@ require "test_helper"
 
 describe TripsController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  let (:passenger) {
+    Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
+  }
+
+  let (:driver) {
+    Driver.create name: "sample driver", vin: "ghbgdsrklp2347bC9", available: true
+  }
+
+  let (:trip) {
+    Trip.create date: DateTime.now, rating: 4, driver_id: driver.id, passenger_id: passenger.id, cost: 2350
+  }
+
   describe "show" do
+
+
     it "responds with success when showing an existing valid trip" do
       # Arrange
       # Ensure that there is a trip saved
-      # trip
-      driver = Driver.create(name: "sample driver", vin: "ghbgdsrklp2347bC9", available: true)
-      passenger = Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
-      trip = Trip.create date: DateTime.now, rating: 4, driver_id: driver.id, passenger_id: passenger.id, cost: 2350
+      passenger
+      driver
+      trip
       # Act
       get trip_path(trip.id)
 
@@ -22,6 +35,7 @@ describe TripsController do
       # Ensure that there is an id that points to no trip
       # Act
       get trip_path(-1)
+
       # Assert
       must_redirect_to trips_path
       # must_respond_with :not_found
@@ -29,42 +43,43 @@ describe TripsController do
   end
 
   describe "create" do
-    before do
-      @driver = Driver.create(name: "sample driver", vin: "ghbgdsrklp2347bC9", available: true)
-      @passenger = Passenger.create(name: "sample passenger", phone_num: "000-000-0000")
-    end
+    let (:trip_hash) {
+      {
+        trip: {
+            date: Time.now,
+            rating: nil,
+            cost: nil,
+            driver_id: driver.id,
+            passenger_id: passenger.id,
+        }
+      }
+    }
     it "can create a new trip with valid information accurately, and redirect" do
-      skip
       # Arrange
       # Set up the form data
 
-        # Arrange
-        # Ensure there is an existing trip saved
-        trip = Trip.create(
-            passenger_id: @passenger.id,
-            driver_id: @driver.id,
-            date: Time.now,
-            rating: nil,
-            cost: rand(1...1000)
-        )
+
+      # Arrange
+      # Ensure there is an existing trip saved
+
       # Act-Assert
       # Ensure that there is a change of 1 in trip.count
       expect {
-        post passenger_trips_path(@passenger.id), params:trip
+        post passenger_trips_path(passenger.id), params: trip_hash
       }.must_change "Trip.count", 1
 
       # Assert
       # Find the newly created trip, and check that all its attributes match what was given in the form data
-      new_trip = Trip.find_by(trip.id)
+      new_trip = Trip.last
       # Check that the controller redirected the user
 
       expect(new_trip.rating).must_be_nil
       expect(new_trip.cost).must_be_kind_of Integer
       # expect(new_trip.date).must_equal trip_hash[:trip][:date]
-      expect(new_trip.driver_id).must_equal @driver.id
-      expect(new_trip.passenger_id).must_equal @passenger.id
+      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
 
-      must_redirect_to passenger_path(@passenger.id)
+      must_redirect_to trip_path(new_trip.id)
     end
 
     it "does not create a trip if the form data violates trip validations, and responds with a redirect" do
@@ -151,7 +166,7 @@ describe TripsController do
       }
     }
     it "can update an existing trip with valid information accurately, and redirect" do
-      
+      skip
       # Arrange
       # Ensure there is an existing trip saved
       # Assign the existing trip's id to a local variable
