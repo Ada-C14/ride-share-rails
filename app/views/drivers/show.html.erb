@@ -26,7 +26,11 @@
             <%= trip.date %>
           </td>
           <td>
-            <%= trip.passenger.name %>
+            <% if trip.passenger %>
+              <%= trip.passenger.name %>
+            <% else %>
+              <p><em>Not Available</em></p>
+            <% end %>
           </td>
           <td>
             $<%= '%.2f' %trip.cost %>

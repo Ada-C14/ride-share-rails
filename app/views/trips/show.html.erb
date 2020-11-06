@@ -4,8 +4,16 @@
 <main>
   <p>Data: <%= @trip.date %></p>
   <p>Trip ID: <%= @trip.id %></p>
-  <p>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %> </p>
-  <p>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></p>
+  <% if @trip.passenger %>
+    <p>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %> </p>
+  <% else %>
+    <p>Passenger Not Available</p>
+  <% end %>
+  <% if @trip.driver %>
+    <p>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></p>
+  <% else %>
+    <p>Driver Not Available</p>
+  <% end %>
   <p>Cost: <%= @trip.cost %></p>
   <% if @trip.rating.nil? %>
     <%= form_with model: @trip do |f| %>

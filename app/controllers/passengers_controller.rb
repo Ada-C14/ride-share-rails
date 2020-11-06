@@ -66,6 +66,8 @@ class PassengersController < ApplicationController
       return
     end
 
+    @passenger.trips.delete_all
+
     if @passenger.destroy
       redirect_to passengers_path
       return
