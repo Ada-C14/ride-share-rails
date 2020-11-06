@@ -1,20 +1,42 @@
 <h1>Driver Details</h1>
 <br>
-<ul>
-    <li> Name: <%= @driver.name %> </li>
-    <li> VIN: <%= @driver.vin %> </li>
-    <li> Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
-  <li>
 
-    Driver's Trips, total earnings, average rating
-    <%= @driver.trips.map { |trip| trip.date } %>
-    <%= @driver.total_revenue %>
-    <%= @driver.average_rating %>
-  </li>
+<table id="details">
+  <tr>
+    <th> Name: <%= @driver.name %> </th>
+    <th></th>
+  </tr>
+  <tr>
+    <td> VIN:</td>
+    <td><%= @driver.vin %> </td>
+  </tr>
+  <tr>
+    <td> Status</td>
+    <td> <%= @driver.available ? "Available" : "Unavailable" %></td>
+  </tr>
+  <tr>
+    <td> <%= @driver.name %>'s Trips</td>
+    <td>
+      <% @driver.trips.each do |trip| %>
+        <li>Trip <%= link_to trip.date, trip_path %>
+      <% end %></li></td>
+  </tr>
+  <tr>
+    <td> Total Earnings</td>
+    <td><%= number_to_currency(@driver.total_revenue.to_f / 100) %></td>
+  </tr>
+  <tr>
+    <td> Average Rating</td>
+    <td><%= @driver.average_rating.round(2) %></td>
+  </tr>
+  <tr>
+    <th>
+      <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
+      <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete,
+                       data: {confirm: 'Are you sure you would like to delete?'} %></li>
+    <th>
+      <li> <%= link_to "Back to Driver List", drivers_path %></li>
+    </th>
+  </tr>
+</table>
 
-
-  <li> <%= link_to "Edit driver info", edit_driver_path(@driver) %></li>
-  <li> <%= link_to "Delete driver from database", driver_path(@driver), method: :delete,
-                   data: {confirm: 'Are you sure you would like to delete?'} %></li>
-  <li> <%= link_to "Back to Driver List", drivers_path %></li>
-</ul>
