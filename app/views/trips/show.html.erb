@@ -20,15 +20,15 @@
       <tr>
         <th scope="row"><%= link_to "#{@trip.id}", trip_path(@trip.id) %></th>
         <td><%= @trip.date %></td>
-        <% if trip.passenger.nil? %>
+        <% if @trip.passenger.nil? %>
           <td>Passenger Deleted</td>
         <% else %>
-          <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
+          <td><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger_id)%></td>
         <% end %>
-        <% if trip.passenger.nil? %>
+        <% if @trip.passenger.nil? %>
           <td>Driver Deleted</td>
         <% else %>
-          <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
+          <td><%= link_to "#{@trip.driver.name}", driver_path(@trip.driver_id)%></td>
         <% end %>
         <td><%= @trip.format_cost %></td>
         <td><%= @trip.rating %></td>
