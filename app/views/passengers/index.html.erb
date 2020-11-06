@@ -1,4 +1,60 @@
-<h1> All Passengers</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RideShareRails</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+
+</head>
+<style>
+    /* Header/logo Title */
+    .header {
+        padding: 80px;
+        text-align: center;
+        background: rebeccapurple;
+        color: white;
+    }
+    /* Increase the font size of the heading */
+    .header h1 {
+        font-size: 40px;
+    }
+    /* Style the top navigation bar */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+    }
+    /* Style the navigation bar links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    /* Change color on hover */
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    /* Footer */
+    footer {
+        padding: 100px;
+        text-align: center;
+        background: #ddd;
+    }
+</style>
+<div class="header">
+  <h1> All Passengers</h1>
+</div>
+<div class="navbar">
+  <%= link_to "Home", homepages_path %>
+  <%= link_to "Passengers", passengers_path%>
+  <%= link_to "Drivers", drivers_path%>
+</div>
+
 <p><%= link_to "Create New Passenger Account", new_passenger_path%></p>
 <ul id = "passengers">
   <% @passengers.each do |passenger| %>

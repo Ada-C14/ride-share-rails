@@ -19,10 +19,14 @@
       thead {
           color: white;
       }
+      
+      a {
+          color: rebeccapurple;
+      }
   </style>
 </head>
 <body>
-<a href="/homepages">Home</a> | <a href="/passengers">Passengers' Page</a> | <a href="/drivers">Drivers' Page</a>
+<a href="/homepages">Home</a> | <a href="/passengers">Passenger Page</a> | <a href="/drivers">Driver Page</a>
 <h2>Driver: <%= @driver[:name] %></h2>
 <h3>Vin: <%= @driver[:vin] %></h3>
 <h3> Driver Id: <%=@driver[:id] %></h3>
