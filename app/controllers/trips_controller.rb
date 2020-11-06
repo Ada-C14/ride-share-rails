@@ -21,8 +21,8 @@ class TripsController < ApplicationController
       redirect_to passengers_path
       return
     else
-      driver = Driver.find_by(available: true )
-      driver.mark_unavailable
+      driver = Driver.find_by(available: true)
+      driver.mark_available
 
       @trip = Trip.new(
           passenger_id: passenger.id,
@@ -64,6 +64,7 @@ class TripsController < ApplicationController
   end
 
   def destroy
+
     trip = Trip.find_by(id: params[:id])
 
     if trip.nil?

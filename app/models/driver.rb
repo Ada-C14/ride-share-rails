@@ -1,3 +1,4 @@
+require 'money'
 class Driver < ApplicationRecord
   has_many :trips
 
@@ -6,8 +7,12 @@ class Driver < ApplicationRecord
 
   attribute :available, default: true
 
-  def mark_unavailable
-    self.available = false
+  def mark_available
+    if self.available
+      self.available = false
+    else
+      self.available = true
+    end
     self.save
   end
 #  drivers total earnings
@@ -25,7 +30,7 @@ class Driver < ApplicationRecord
         total += (trip.cost * commission)
       end
     end
-    return total.ceil
+    return Money.new(total.ceil, "USD").format
   end
 
   def average_rating

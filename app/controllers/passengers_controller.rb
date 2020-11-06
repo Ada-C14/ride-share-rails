@@ -59,7 +59,7 @@ class PassengersController < ApplicationController
       head :not_found
       return
     else
-      #need to go through all the trips associated with this specific passenger
+      
       passenger.destroy
       redirect_to passengers_path
     end
