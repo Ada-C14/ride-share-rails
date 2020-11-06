@@ -17,7 +17,7 @@
         <% if @driver.trips.length > 0 %>
             <% @driver.trips.each do |trip| %>
             <ul>
-                <li><%= link_to "Trip id #{trip.id}", trip_path(trip.id) %></li>            
+                <li><%= link_to "Trip id #{trip.id}", trip_path(trip.id) %></li>
             </ul>
             <% end %>
         <% end %>
