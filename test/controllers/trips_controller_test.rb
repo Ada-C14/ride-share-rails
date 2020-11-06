@@ -66,6 +66,8 @@ describe TripsController do
     end
 
     it "can create a new trip with valid information accurately, and redirect" do
+      @driver.update(available: true)
+
       trip_info = {
           trip: {
               driver_id: @driver.id,
@@ -89,7 +91,15 @@ describe TripsController do
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with bad request" do
+      new_trip = Trip.create(date: Date.today)
 
+      expect{
+        post passengers_path(new_trip)
+      }.wont_change "Passenger.count"
+
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :bad_request
     end
   end
 
