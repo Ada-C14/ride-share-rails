@@ -1,0 +1,45 @@
+<h1>Edit Trip</h1>
+
+<% if @trip.errors.any? %>
+  <ul>
+    <%@trip.errors.each do |column, message| %>
+      <li>
+        <%= column %> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+    <%= form_with model: @trip do |f| %>
+      <p>Please update the data for the trip:</p>
+      <div>
+        <%= f.label :date%>
+        <%= f.date_field :date%>
+      </div>
+
+      <div>
+        <%= f.label :rating%>
+        <%= f.select :rating, [1, 2, 3, 4, 5]%>
+      </div>
+
+      <div>
+        <%= f.label :cost%>
+        <%= f.text_field :cost%>
+      </div>
+
+      <div>
+        <%= f.label :passenger_id%>
+        <%= f.select :passenger_id, Passenger.all.map{ |auth| [auth.name, auth.id] } %>
+      </div>
+
+      <div>
+        <%= f.label :driver_id%>
+        <%= f.select :driver_id, Driver.all.map{ |auth| [auth.name, auth.id] } %>
+      </div>
+
+      <div>
+        <%= f.submit "Save Trip", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
