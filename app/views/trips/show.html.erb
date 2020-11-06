@@ -1,5 +1,5 @@
 <h1>Trip #<%= @trip.id %> Details</h1>
-<p>Cost: <%= @trip.cost %></p>
+<p>Cost: <%= number_to_currency(@trip.cost) %></p>
 <p>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></p>
 <p>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></p>
 <% if @trip.rating.nil? %>
