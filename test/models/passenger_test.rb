@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "111-111-1211")
+    Passenger.create(name: "Kari", phone_num: 1111111)
   }
   it "can be instantiated" do
     # Assert
@@ -60,13 +60,26 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    before do
+      new_driver = Driver.create(name: "Kari", vin: "123", available: true)
+      @trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+    end
     describe "request a ride" do
+      skip
       # Your code here
     end
 
     describe "complete trip" do
+      skip
       # Your code here
     end
+
+    describe "net expenditures" do
+      it "calculates net expenditures" do
+        expect(passenger.net_expenditures).must_equal 1234
+      end
+    end
+
     # You may have additional methods to test here
   end
 end
