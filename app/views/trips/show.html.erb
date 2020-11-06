@@ -1,5 +1,8 @@
 <div>
   <h1>Trip #<%= @trip.id %></h1>
+  <% if flash[:notice] %>
+    <h2><div class="notice"><%= flash[:notice] %></div></h2>
+  <% end %>
   <ul>
     <% begin %>
       <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>
@@ -17,11 +20,9 @@
 
     <li>Date: <%= @trip.date %></li>
     <li>Cost: $<%= @trip.cost/100 %></li>
-    <% rating = [] %>
-    <% rating << @trip.rating %>
     <% if @trip.rating %>
       <li>Rating: <%= @trip.rating %></li>
-      <% @trip.driver.complete_trip if @trip.updated_at > @trip.created_at %>
+      <% @trip.driver.complete_trip unless @trip.driver.trips.find {|trip| trip.rating.nil?} %>
   <% else %>
       <%= form_with model: @trip, class: 'rating-form' do |f| %>
         <li>Add a Rating to Complete the Trip:
@@ -39,3 +40,4 @@
 
 <p><%= link_to "Return to trips Database", trips_path %></p>
 <button><%= link_to "Home Page", homepages_path %></button>
+<footer>copyright 2020</footer>

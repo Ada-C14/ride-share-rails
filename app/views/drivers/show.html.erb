@@ -1,9 +1,7 @@
+<h1><%= @driver.name %></h1>
 <% if flash[:notice] %>
   <h2><div class="notice"><%= flash[:notice] %></div></h2>
 <% end %>
-
-<h1><%= @driver.name %></h1>
-
 <ul>
   <li>Vin: <%= @driver.vin %></li>
   <li>Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
@@ -46,3 +44,4 @@
   </h6>
 <p><%= link_to "Return to Drivers Database", drivers_path %></p>
 <button><%= link_to "Home Page", homepages_path %></button>
+<footer>copyright 2020</footer>

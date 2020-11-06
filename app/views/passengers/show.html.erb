@@ -1,8 +1,11 @@
-<% if flash[:notice] %>
-  <h2><div class="notice"><%= flash[:notice] %></div></h2>
-<% end %>
+
 <div>
   <h1><%= @passenger.name %></h1>
+
+  <% if flash[:notice] %>
+    <h2><div class="notice"><%= flash[:notice] %></div></h2>
+  <% end %>
+
   <h6>Phone Number: <%= @passenger.phone_num %></h6>
   <h6>Total Spending: $<%= @passenger.total_spent ? @passenger.total_spent.round(2) : 0 %></h6>
 
@@ -45,3 +48,4 @@
 
 <p><%= link_to "Return to Passengers Database", passengers_path %></p>
 <button><%= link_to "Home Page", homepages_path %></button>
+<footer>copyright 2020</footer>
