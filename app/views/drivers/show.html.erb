@@ -1,28 +1,35 @@
 <h1>Driver Details</h1>
 <br/>
 
-<ul>
-  <li>Name: <%= @driver.name %></li>
-  <li>VIN: <%= @driver.vin %></li>
-  <li>Availability: <%= @driver.available ? "available" : "not available" %> <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
-</ul>
+<div class="profile-container">
+  <div class="photo"><%= image_tag ("person_img.png") %></div>
+  <ul class="info">
+    <li><b>Name: </b><%= @driver.name %></li>
+    <li><b>VIN: </b><%= @driver.vin %></li>
+    <li><b>Status: </b><%= @driver.available ? "available" : "not available" %> <%= button_to "Change Status?",  { :action => "toggle_available" }, method: :patch %></li>
+
+  </ul>
+  <ul class="info-edit">
+    <li>
+      <div class="profile-buttons">
+        <%= button_to "Edit Driver", edit_driver_path(@driver), method: :get %>
+      </div>
+      <div class="profile-buttons">
+        <%= button_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
 <br/>
 
-<h3>TRIPS</h3>
+<h3 class="trips">TRIPS ~ </h3>
+<div class="trips"><%= button_to "#{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %></div>
+
 <p>TOTAL EARNED FROM ALL TRIPS: $<%= @driver.total_earnings %></p>
 <p>NUMBER OF TRIPS DRIVEN: <%= @driver.trips.count %></p>
 <p>AVERAGE RATING: <%= @driver.average_rating %></p>
 <br/>
-<div class="button-box">
-  <div class="button-collect">
-    <%= button_to "#{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %>
-  </div>
-  <div class="button-collect">
-    <%= button_to "Edit Driver", edit_driver_path(@driver), method: :get %>
-  </div>
-  <div class="button-collect">
-    <%= button_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?" } %>
-  </div>
-</div>
 
-<br/>
+
