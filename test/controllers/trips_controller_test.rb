@@ -287,7 +287,7 @@ describe TripsController do
 
       expect(trip_to_delete).must_be_nil
 
-      must_redirect_to trips_path
+      must_redirect_to root_path
 
     end
 
