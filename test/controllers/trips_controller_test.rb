@@ -75,7 +75,7 @@ describe TripsController do
 
       expect {
         post trips_path, params: invalid_hash
-      }.wont_change Trip.count
+      }.wont_change "Trip.count"
 
       must_respond_with :redirect
     end
@@ -85,8 +85,8 @@ describe TripsController do
       new_driver.save
 
       expect {
-        post passenger_create_trip_path(new_passenger)
-      }.must_differ Trip.count, 1
+        post passenger_create_trip_path(new_passenger.id)
+      }.must_differ "Trip.count", 1
 
       expect(new_driver.available).must_equal false
 
@@ -99,7 +99,7 @@ describe TripsController do
 
       expect {
         post passenger_create_trip_path(passenger_id)
-      }.wont_differ Trip.count
+      }.wont_differ "Trip.count"
 
       expect(new_driver.available).must_equal true
 
@@ -147,7 +147,7 @@ describe TripsController do
 
       expect {
         patch trip_path(trip_id), params: new_info
-      }.wont_change Trip.count
+      }.wont_change "Trip.count"
 
       updated_trip = Trip.find_by(id: trip_id)
 
@@ -176,7 +176,7 @@ describe TripsController do
 
       expect {
         patch trip_path(trip_id), params: new_info
-      }.wont_change Trip.count
+      }.wont_change "Trip.count"
 
       must_respond_with :redirect
     end
@@ -198,17 +198,55 @@ describe TripsController do
 
       expect {
         patch trip_path(trip_id), params: bad_info
-      }.wont_change Driver.count
+      }.wont_change "Trip.count"
 
       must_respond_with :bad_request
     end
 
     it "sets driver back to available after trip completed" do
-      raise NotImplementedError
+      new_driver.available = false
+      new_driver.save
+      new_passenger.save
+      new_trip.rating = nil
+      new_trip.save
+      trip_id = new_trip.id
+
+      new_info = {
+          trip: {
+              driver_id: new_driver.id,
+              passenger_id: new_passenger.id,
+              cost: 2958,
+              date: "2020-09-09",
+              rating: 3
+          }
+      }
+
+      patch trip_path(trip_id), params: new_info
+
+      expect new_driver.available = true
     end
 
     it "leaves driver unavailable if trip not completed" do
-      raise NotImplementedError
+      new_driver.available = false
+      new_driver.save
+      new_passenger.save
+      new_trip.rating = nil
+      new_trip.save
+      trip_id = new_trip.id
+
+      new_info = {
+          trip: {
+              driver_id: new_driver.id,
+              passenger_id: new_passenger.id,
+              cost: "dollars",
+              date: "2020-09-09",
+              rating: 3
+          }
+      }
+
+      patch trip_path(trip_id), params: new_info
+
+      expect new_driver.available = false
     end
   end
 
@@ -234,7 +272,7 @@ describe TripsController do
 
       expect {
         delete trip_path(trip_id)
-      }.wont_change Trip.count
+      }.wont_change "Trip.count"
 
       must_respond_with :redirect
     end

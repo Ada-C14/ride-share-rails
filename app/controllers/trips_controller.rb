@@ -25,12 +25,20 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.select_available #Driver.find_by(available: true)
     passenger = Passenger.find_by(id: params[:passenger_id])
-    cost = rand(1000..9999)
 
-    if passenger
-      @trip = Trip.new(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, cost: cost)
+    if params[:driver_id]
+      @trip = Trip.new(trip_params)
+    elsif passenger
+      selected_driver = Driver.select_available
+      cost = rand(1000..9999)
+      date = Date.today
+      @trip = Trip.new(
+          driver_id: selected_driver.id,
+          passenger_id: passenger.id,
+          date: date,
+          cost: cost
+      )
     else
       redirect_to trips_path
     end
@@ -38,7 +46,7 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to trip_path(@trip) and return
     else
-      driver.toggle_available
+      selected_driver.toggle_available unless selected_driver.nil?
       redirect_to trips_path
       return
     end
@@ -54,12 +62,12 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
-    passenger = Passenger.find_by(id: @trip.passenger_id)
 
     if @trip.nil?
       redirect_to trips_path and return
     elsif
       @trip.update(trip_params)
+      passenger = Passenger.find_by(id: @trip.passenger_id)
       passenger.complete_trip(@trip) unless @trip.rating.nil?
       redirect_to trip_path(@trip)
     else
