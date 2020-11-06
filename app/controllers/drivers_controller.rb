@@ -22,12 +22,15 @@ class DriversController < ApplicationController
     # driver_params_results = driver_params
     # driver_params_results[:available] = true
     # @driver = Driver.new(driver_params_results
-    @drivers = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin])
-    if @drivers.save
-      redirect_to drivers_path(@drivers.id)
+    # (name: params[:driver][:name], vin: params[:driver][:vin])
+    @driver = Driver.new(driver_params)
+    @driver.available = true
+
+    if @driver.save
+      redirect_to driver_path(@driver.id)
       return
     else
-      render :new
+      render :new , status: :not_found
       return
     end
   end
@@ -58,13 +61,13 @@ class DriversController < ApplicationController
 
   def destroy
     driver_id = params[:id]
-    @drivers = Driver.find_by(id:driver_id)
+    @driver = Driver.find_by(id:driver_id)
 
-    if @drivers.nil?
+    if @driver.nil?
       head :not_found
       return
     else
-      @drivers.destroy
+      @driver.destroy
       redirect_to drivers_path
     end
   end

@@ -51,7 +51,7 @@ describe DriversController do
   end
 
   describe "create" do
-    it "can create a new driver with valid information accurately, and redirect" do
+    it "can create a new driver with valid information accurately, and redirect" do #PASSING
       # Arrange
       # Set up the form data
       new_driver_hash = {
@@ -71,43 +71,51 @@ describe DriversController do
       # Check that the controller redirected the user
       new_driver = Driver.find_by(name:new_driver_hash[:driver][:name])
       expect(new_driver.vin).must_equal new_driver_hash[:driver][:vin]
-      expect(new_driver.available).must_equal true
+      # expect(new_driver.available).must_equal true
 
       must_respond_with :redirect
-      must_redirect_to new_driver_path
+      must_redirect_to driver_path(new_driver.id)
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do  #PASSING
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-
+      driver_hash = {
+          driver: {
+              name: nil,
+              vin: nil,
+          },
+      }
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
 
       # Assert
-      # Check that the controller redirects
-
+      must_respond_with :not_found
     end
   end
   
   describe "edit" do
-    it "responds with success when getting the edit page for an existing, valid driver" do
+    it "responds with success when getting the edit page for an existing, valid driver" do #PASSING
       # Arrange
       # Ensure there is an existing driver saved
-
+      get edit_driver_path(driver.id)
       # Act
-
+      must_respond_with :success
       # Assert
 
     end
 
-    it "responds with redirect when getting the edit page for a non-existing driver" do
+    it "responds with redirect when getting the edit page for a non-existing driver" do  #PASSING
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      get edit_driver_path(-10)
 
       # Act
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
       # Assert
 
     end
