@@ -19,7 +19,6 @@ class TripsController < ApplicationController
   end
 
   def create
-    # driver = Driver.find_by(id: 1000)
     driver = Driver.find_by(available: true)
 
     if driver
