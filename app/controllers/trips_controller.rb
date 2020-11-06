@@ -48,13 +48,8 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find_by(id: params[:id])
-    trip_id = params[:id]
-
-    begin
-      @trip = Trip.find(trip_id)
-    rescue ActiveRecord::RecordNotFound
-      @trip = nil
-    end
+    @drivers = Driver.order(:name)
+    @passengers = Passenger.order(:name)
 
     if @trip.nil?
       head :not_found

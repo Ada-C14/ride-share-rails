@@ -5,12 +5,12 @@
 
   <div>
     <%= f.label :driver_id %>
-    <%= f.text_field :driver_id %>
+    <%= f.collection_select :driver_id, @drivers, :id, :name %>
   </div>
 
   <div>
     <%= f.label :passenger_id%>
-    <%= f.text_field :passenger_id %>
+    <%= f.collection_select :passenger_id, @passengers, :id, :name %>
   </div>
 
   <div>
