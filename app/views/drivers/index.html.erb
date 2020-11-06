@@ -1,4 +1,6 @@
 <h1>Drivers Database</h1>
+<button><%= link_to "Home Page", homepages_path %></button>
+<button><%= link_to "Add driver", new_driver_path %></button>
 <ul>
   <% @drivers.each do |driver| %>
   <li>
@@ -9,6 +11,5 @@
   </li>
   <% end %>
 </ul>
-
-<button><%= link_to "Add driver", new_driver_path %></button>
+<button><%= link_to "Home Page", homepages_path %></button>
 <footer>copyright 2020</footer>

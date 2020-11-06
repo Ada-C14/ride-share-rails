@@ -1,4 +1,6 @@
 <h1>Passengers Database</h1>
+<button><%= link_to "Home Page", homepages_path %></button>
+<button><%= link_to "Add Passenger", new_passenger_path %></button>
 <ul>
   <% @passengers.each do |passenger| %>
   <li>
@@ -8,8 +10,5 @@
   </li>
   <% end %>
 </ul>
-
-
-
-<button><%= link_to "Add Passenger", new_passenger_path %></button>
+<button><%= link_to "Home Page", homepages_path %></button>
 <footer>copyright 2020</footer>
