@@ -62,6 +62,26 @@ describe Driver do
   describe "custom methods" do
     describe "average rating" do
       # Your code here
+      # new_driver = Driver.create(name: "Test", vin: "12345678912345678", available: true)
+      # trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 1234)
+      # trip_4 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: nil, cost: 6334)
+
+      it "returns float within range of 1.0 to 5.0" do
+        new_driver = Driver.new(name: "Kari Driver", vin: "12345678912345678", available: true)
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari Passenger", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today.to_s, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today.to_s, rating: 3, cost: 6334)
+
+
+        average = new_driver.avg_rating
+        expect(average).must_be_kind_of Float
+        expect(new_driver.trips.count).must_equal 2
+        # expect(average).must_be :>=, 1.0
+        # expect(average).must_be :<=, 5.0
+      end
+
+
     end
 
     describe "total earnings" do
