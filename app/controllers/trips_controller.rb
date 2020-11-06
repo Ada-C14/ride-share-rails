@@ -23,16 +23,17 @@ class TripsController < ApplicationController
   end
 
   def new
+    # @params = trip_params
     @trip = Trip.new
   end
-  
+
   def create
     first_available_driver = Driver.where(available: true).first
-    @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = Trip.new(driver_id: first_available_driver.id, passenger_id: @passenger.id, date: Date.today, cost: rand(1000..2000), rating: nil)
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    @trip = Trip.new(driver_id: first_available_driver.id, passenger_id: passenger.id, date: Date.today, cost: rand(1000..2000), rating: 1)
 
-    if @trip.save
-      first_available_driver.update(available: false)
+    if @trip.save!
+      # @first_available_driver.update(available: false)
       redirect_to trip_path(@trip)
       return
     else
@@ -56,7 +57,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(trip_params)
+    elsif @trip.update(t)
       redirect_to trip_path(@trip)
       return
     else
