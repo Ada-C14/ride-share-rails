@@ -35,7 +35,7 @@ class TripsController < ApplicationController
     end
 
     if available_driver.nil?
-      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+      redirect_to passenger_path(params[:passenger_id]), notice: "No driver is available now, please try again later."
       return
     end
 
