@@ -3,7 +3,7 @@ class TripsController < ApplicationController
   def index
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
-      @trips= passenger.trips
+      @trips = passenger.trips
     else
       @trips = Trip.all
     end
@@ -13,6 +13,7 @@ class TripsController < ApplicationController
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = find_driver
     #what if no drivers available?
+    # redirect to page that says "no driver"?
     driver.toggle_available
     @trip = passenger.trips.new(date: Date.current, cost: rand(100..9999), driver: driver)
 
