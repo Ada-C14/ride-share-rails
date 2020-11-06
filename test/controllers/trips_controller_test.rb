@@ -85,19 +85,33 @@ describe TripsController do
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with bad request" do
-
-      expect{
-        post passenger_trips_path(-99)
-      }.wont_change "Trip.count"
-
-      # Assert
-      # Check that the controller redirects
-      must_respond_with :bad_request
+      #
+      # expect{
+      #   post passenger_trips_path(-99)
+      # }.wont_change "Trip.count"
+      #
+      # # Assert
+      # # Check that the controller redirects
+      # must_respond_with :bad_request
     end
   end
 
   describe "edit" do
-    # Your tests go here
+    it "responds with success when getting the edit page for an existing, valid trip" do
+      passenger = Passenger.create(name: 'Kim Vitug', phone_num: '342-342-5435')
+      driver = Driver.create(name: 'Nathan Fielder', vin: 'DSAFHTS5465', available: true)
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: 70000, rating: nil)
+
+      get edit_trip_path(trip)
+
+      must_respond_with :success
+    end
+
+    it "responds with redirect when getting the edit page for a non-existing passenger" do
+      get edit_trip_path(-1)
+
+      must_respond_with :redirect
+    end
   end
 
   describe "update" do
