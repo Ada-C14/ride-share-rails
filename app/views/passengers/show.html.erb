@@ -108,6 +108,6 @@
     <li>Your phone number is: <%= @passenger.phone_num %></li>
   </h4>
 </ul>
-<%= link_to 'Add new trip |', passenger_trips_path(passenger), method: :post %>
+<%= link_to 'Add new trip |', passenger_trips_path(@passenger), method: :post %>
 </body>
 </html>
