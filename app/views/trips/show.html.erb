@@ -7,18 +7,18 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col">Trip ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">Passenger</th>
-      <th scope="col">Driver</th>
-      <th scope="col">Cost</th>
-      <th scope="col">Rating</th>
+      <th>Trip ID</th>
+      <th>Date</th>
+      <th>Passenger</th>
+      <th>Driver</th>
+      <th>Cost</th>
+      <th>Rating</th>
     </tr>
     </thead>
     <tbody>
 
       <tr>
-        <th scope="row"><%= link_to "#{@trip.id}", trip_path(@trip.id) %></th>
+        <th><%= link_to "#{@trip.id}", trip_path(@trip.id) %></th>
         <td><%= @trip.date %></td>
         <% if @trip.passenger.nil? %>
           <td>Passenger Deleted</td>

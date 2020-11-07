@@ -1,46 +1,69 @@
 
 <div>
-  <h2>Driver Information</h2>
-  <h3><%= @driver.name %></h3>
-  <h3><%= @driver.vin %></h3>
-  <h3><%= @driver.available ? "Available" : "Unavailable" %></h3>
+  <section>
+    <h2 class ="col-xs-1 text-center">Driver Information</h2>
+  </section>
+  <section>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Vin</th>
+        <th>Status</th>
+        <th>Average Rating</th>
+        <th>Total Earning</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @driver.name %></td>
+        <td><%= @driver.vin %></td>
+        <td><%= @driver.available ? "Available" : "Unavailable" %></td>
+        <td><%= @driver.average_rating %></td>
+        <td><%=@driver.total_revenue %></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
 
-  <button type="button" class="btn btn-primary btn-lg"><%= link_to "Edit", edit_driver_path(@driver.id)%></button>
-  <button type="button" class="btn btn-secondary btn-lg"><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+  <section class="d-flex justify-content-between" aria-label="Basic example">
+    <%= button_to "Delete", driver_path(@driver.id), {class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} }  %>
+    <%= button_to "Edit", edit_driver_path(@driver.id), {class: "btn btn-primary", method: :get } %>
+  </section>
+
 
   <%#= link_to "Edit", edit_driver_path(@driver.id) %>
   <%#= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %>
-
-  <table class="table table-striped">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">Trip ID</th>
-      <th scope="col">Passenger</th>
-      <th scope="col">Driver</th>
-      <th scope="col">Cost</th>
-      <th scope="col">Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @driver.trips.each do |trip| %>
+  <section>
+    <table class="table table-striped">
+      <thead class="thead-dark">
       <tr>
-        <td scope="row"><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
-        <% if trip.passenger.nil? %>
-          <td>Passenger Deleted</td>
-        <% else %>
-          <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
-        <%end %>
-        <% if trip.driver.nil? %>
-          <td>Driver Deleted</td>
-        <% else %>
-          <td><%= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>
-        <%end %>
-        <td><%= trip.format_cost %></td>
-        <td><%= trip.rating %></td>
+        <th>Trip ID</th>
+        <th>Passenger</th>
+        <!--      <th>Driver</th>-->
+        <th>Cost</th>
+        <th>Rating</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <p>Average Rating: <%= @driver.average_rating %></p>
-  <p>Total Earning: <%=@driver.total_revenue %></p>
+      </thead>
+      <tbody>
+      <% @driver.trips.each do |trip| %>
+        <tr>
+          <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+          <% if trip.passenger.nil? %>
+            <td>Passenger Deleted</td>
+          <% else %>
+            <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%></td>
+          <%end %>
+          <%# if trip.driver.nil? %>
+          <!--          <td>Driver Deleted</td>-->
+          <%# else %>
+          <!--          <td><%#= link_to "#{trip.driver.name}", driver_path(trip.driver_id)%></td>-->
+          <%#end %>
+          <td><%= trip.format_cost %></td>
+          <td><%= trip.rating %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </section>
 </div>

@@ -18,6 +18,27 @@
 @import "**/*";
 
 body {
-  background-color: lightgoldenrodyellow;
+  //background-color: lightgoldenrodyellow;
+  background-color: white;
+  background-image: url("abstract-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
+}
+
+main, header {
+  background-color: white;
+}
+
+main {
+  height: 100vh;
+}
+
+section {
+  padding: 15px 0;
+}
+
+form.button_to {
+  display: inline-block;
 }
