@@ -4,12 +4,11 @@ class Driver < ApplicationRecord
   has_many :trips
   validates :name, presence: true
   validates :vin, presence: true
-  # validates :available, presence: true
 
   def average_rating
     sum_of_ratings = 0.00
     average = 0.00
-    if self.trips.nil?
+    if self.trips.empty?
       average
     else
       self.trips.map do |trip|
@@ -40,9 +39,7 @@ class Driver < ApplicationRecord
             ((trip.cost.to_f - 165) * 0.80).round(2)
           end
       end
-      # return Money.new((total_income / 100.0).round(2), "USD")
       return "$#{(total_income / 100.0).round(2)}"
-      # number_to_currency((total_income / 100.0).round(2))
     end
   end
 end

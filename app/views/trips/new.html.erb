@@ -1,3 +1,4 @@
+
 <header><h1>Rosha RideShare App</h1></header>
 <body>
 <nav>
@@ -8,7 +9,6 @@
   <p><%= link_to "Sign Up Driver", new_driver_path %></p>
   <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
 </nav>
-
 
 <% if @trip.errors.any? %>
   <ul class="errors">
@@ -22,17 +22,16 @@
 
 <%= form_with model: @trip, class: 'create-trip' do |f|%>
   <h3>Please provide the following information to add a new trip to our database:</h3>
-
   <%= f.label :driver_id %>
   <%= f.select :driver_id, Driver.where(:available => true).map { |driver|  [driver.name, driver.id]} %>
   <%= f.label :passenger_id %>
   <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
   <%= f.label :date %>
   <%= f.date_field :date, :value => Date.today %>
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
-  <%= f.label :cost %>
-  <%= f.text_field :cost_in_dollars %>
+  <%#= f.label :rating %>
+  <%= f.hidden_field :rating %>
+  <%#= f.label :cost %>
+  <%= f.hidden_field :cost_in_dollars %>
   <%= f.submit "Add Trip", class: "Trip-button" %>
 <% end %>
 

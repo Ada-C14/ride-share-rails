@@ -51,8 +51,8 @@ describe DriversController do
     it 'can create a new driver with valid information accurately, and redirect' do
       driver_params = {
         driver: {
-          name: 'Ayesha',
-          vin: 'BCTSH52M8YERVGDK9',
+          name: 'Roshni',
+          vin: 'BCTSH52M8YERVGDKD9',
           available: true
         }
       }
@@ -73,7 +73,7 @@ describe DriversController do
     it 'will redirect to the driver_path' do
       driver_params = {
         driver: {
-          name: 'Ayesha',
+          name: 'Test Driver',
           vin: 'BCTSH52M8YERVGDK9',
           available: true
         }
@@ -83,7 +83,7 @@ describe DriversController do
 
       new_driver = Driver.find_by(name: driver_params[:driver][:name])
 
-      must_redirect_to driver_path(new_driver)
+      must_redirect_to driver_path(new_driver.id)
     end
 
     it 'will add a new driver to the database' do
