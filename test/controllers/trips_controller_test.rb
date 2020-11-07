@@ -54,21 +54,18 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
-
-      driver.save
       new_trip_info = {
         trip: {
         passenger_id: passenger.id,
         }
       }
-
       expect {
-        post passenger_trips_path(passenger.id), params: @new_trip_info
+        post passenger_trips_path(passenger.id), params: new_trip_info
       }.must_differ "Trip.count", 1
 
       new_trip = Trip.last
 
-      expect(new_trip.driver_id).must_equal driver.id
+      expect(new_trip.driver.available).must_equal false
       expect(new_trip.passenger_id).must_equal passenger.id
       expect(new_trip.date).must_equal Time.now.strftime("%Y-%m-%d")
 
