@@ -8,15 +8,20 @@
 <h2>Edit Trip</h2>
 <%= form_with model: @trip, class: 'create-trip' do |f|%>
   <p>Please provide the following information to edit trip information in our database:</p>
-  <%= f.label :driver_id %>
-  <%= f.select :driver_id, Driver.where(:available => true).map { |driver| [driver.name, driver.id]} %>
-  <%= f.label :passenger_id %>
-  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
-  <%= f.label :date %>
-  <%= f.date_field :date, :value => Date.today %>
+  <%#= f.label :driver_id, :value => @trip.driver.name %>
+  <%#= f.text_field :driver_id, :value => @trip.driver.name  %>
+  <%#= f.hidden_field :driver_id, :value => @trip.driver.name %>
+  <%#= f.select :driver_id, Driver.where(:available => true).map { |driver| [driver.name, driver.id]} %>
+  <%#= f.label :driver_name %>
+  <%#= f.text_field :driver_name, @trip.driver.name %>
+  <%#= f.label :passenger_id, :value => @trip.passenger.name %>
+  <%#= f.text_field :passenger_id, :value => @trip.passenger.name  %>
+  <%#= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+  <%#= f.label :date %>
+  <%#= f.date_field :date, :value => Date.today %>
   <%= f.label :rating %>
   <%= f.select :rating, [1, 2, 3, 4, 5] %>
-  <%= f.label :cost %>
-  <%= f.text_field :cost_in_dollars%>
+  <%#= f.label :cost %>
+  <%#= f.text_field :cost_in_dollars%>
   <%= f.submit "Edit Trip", class: "Trip-button" %>
 <% end %>
