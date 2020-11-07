@@ -135,28 +135,57 @@ describe TripsController do
 
       new_trip.reload
       expect(new_trip.cost).must_equal new_hash[:trip][:cost]
-      expect(new_trip.rating).must_equal new_hash[:trip][:rating]
+      expect(new_trip.passenger_id).must_equal new_hash[:trip][:passenger_id]
 
       must_redirect_to trip_path(new_trip.id)
     end
 
-    # it "does not update any passenger if given an invalid id, and responds with a 404" do
-    #
-    #   patch passenger_path(656676)
-    #   must_respond_with :not_found
-    # end
-    #
-    # it "does not edit a passenger if the form data violates Passenger validations, and responds with a redirect" do
-    #
-    #   passenger = Passenger.first
-    #
-    #   expect {
-    #     patch passenger_path(passenger.id), params: {passenger: { phone_num: ''} }
-    #   }.wont_change "passenger.phone_num"
-    # end
+    it "does not update any trip if given an invalid id, and responds with a 404" do
+
+      patch trip_path(656676)
+      must_respond_with :not_found
+    end
+
+    it "does not edit a trip if the form data violates Trip validations, and responds with a redirect" do
+      post trips_path, params: trip_hash
+
+      trip = Trip.first
+
+      expect {
+        patch trip_path(trip.id), params: {trip: { cost: nil } }
+      }.wont_change "trip.cost"
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    let (:trip_hash) {
+      {trip: {
+          passenger_id: @passenger.id,
+          driver_id: @driver.id,
+          rating: 5,
+          cost: 1234
+      }
+      }}
+
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      post trips_path, params: trip_hash
+
+      trip = Trip.first
+
+      expect {
+        delete trip_path(trip.id)
+      }.must_change 'Trip.count', -1
+
+      must_redirect_to trips_path
+    end
+
+    it "does not change the db when the trip does not exist, then responds with not found" do
+
+      expect {
+        delete trip_path(-1)
+      }.wont_change 'Trip.count'
+
+      must_respond_with :not_found
+    end
   end
 end
