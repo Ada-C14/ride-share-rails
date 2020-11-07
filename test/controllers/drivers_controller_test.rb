@@ -122,15 +122,26 @@ describe DriversController do
   end
 
   describe "update" do
-    it "can update an existing driver with valid information accurately, and redirect" do
+    it "can update an existing driver with valid information accurately, and redirect" do  #PASSING
       # Arrange
-      # Ensure there is an existing driver saved
+      # Ensure there is an existing driver saved'
+
+      driver_hash = {
+          driver:{
+              name: "new driver name",
+              vin: "driver vin info",
+              available: true,
+          }
+      }
       # Assign the existing driver's id to a local variable
       # Set up the form data
-
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      new_driver = Driver.find_by(name:driver_hash[:driver][:name])
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
