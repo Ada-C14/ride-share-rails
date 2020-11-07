@@ -25,4 +25,47 @@ class TripsController < ApplicationController
     driver.unavailable
   end
 
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      render :edit
+      return
+    end
+  end
+
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return
+    elsif @trip.update(trip_params)
+      flash[:success] = "Trip updated successfully"
+      redirect_to trip_path # go to the show so we can see the trip
+      return
+    else # save failed :(
+      flash.now[:error] = "Something happened. Trip not updated."
+      render :edit, status: :bad_request # show the new Trip form view again
+      return
+    end
+  end
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to root_path
+      return
+    else
+      @trip.destroy
+      redirect_to root_path
+    end
+  end
+
 end
+
+private
+
+def trip_params
+  return params.require(:trip).permit(:rating)
+end
+
