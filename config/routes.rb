@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   scope '/rideshare' do
     resources :passengers # only[:show, :index]
     resources :drivers
-    patch '/rideshare/drivers/:id/availability', to: 'drivers#availability', as: 'availability'
+    patch 'drivers/availability', to: 'drivers#availability', as: 'availability'
     resources :trips
   end
 end
