@@ -88,7 +88,7 @@ describe TripsController do
   end
 
   describe "update" do
-    it "can update an existing trip" do
+    it "can update an existing trip and make driver available again" do
       trip_id = trip.id
 
       edited_trip_hash = {
@@ -103,6 +103,7 @@ describe TripsController do
 
       edited_trip = Trip.find_by(id: trip_id)
       expect(edited_trip.rating).must_equal edited_trip_hash[:trip][:rating]
+      expect(edited_trip.driver.available).must_equal true
 
       must_respond_with :redirect
       must_redirect_to trip_path(trip_id)

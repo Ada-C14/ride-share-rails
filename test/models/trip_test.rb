@@ -10,7 +10,7 @@ describe Trip do
   }
 
   let (:new_trip) {
-    Trip.create(date: "2020-11-05",
+    Trip.new(date: "2020-11-05",
                 rating: nil,
                 cost: 1000,
                 passenger: passenger,
@@ -24,7 +24,7 @@ describe Trip do
   it "will have the required fields" do
     new_trip.save
     trip = Trip.first
-    
+
     [:date, :rating, :cost, :passenger, :driver].each do |field|
       expect(trip).must_respond_to field
     end
