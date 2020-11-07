@@ -22,10 +22,11 @@ class TripsController < ApplicationController
   def create
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @trip = Trip.new(
-    passenger_id = @passenger.id
+    passenger_id: @passenger.id
     )
     @trip.assign_trip
         @trip.save
+    redirect_to trip_path(@trip)
   end
 
   def edit
