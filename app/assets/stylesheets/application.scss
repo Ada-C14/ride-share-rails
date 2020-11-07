@@ -76,6 +76,11 @@ nav {
 
 .button a {
   color: white;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: lightskyblue;
 }
 
 .edit-delete-link {
@@ -94,7 +99,16 @@ nav {
   border-top: solid gray;
 }
 
+thead {
+  background-color: darkgrey;
+}
+
+tr:nth-of-type(even) {
+  background-color: lightgrey;
+}
+
 .passenger-section {
+  padding-top: 25px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -209,6 +223,16 @@ nav {
 .driver-button,
 .trip-button {
   justify-self: center;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  padding: 10px;
+  color: white
+}
+
+.passenger-button:hover,
+.driver-button:hover,
+.trip-button:hover {
+  background-color: lightskyblue;
 }
 
 h3 {
