@@ -78,17 +78,13 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found #redirect_to driver_path(@driver.id) # vs Head :not_found
       return
-    elsif @trip.update(name:params[:driver][:name],vin: params[:driver][:vin])
-      redirect_to trip_path(@trips.id)
+    elsif @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
       return
     else
       render :edit
       return
     end
-
-    # @trip = Trip.find_by(id: params[:id])
-    # if trip.nil?
-    #   render :edit
   end
 
   def destroy
@@ -105,11 +101,11 @@ class TripsController < ApplicationController
     end
   end
 
-  # private
-  #
-  # def trip_params
-  #   return params.require(:trip).permit(:passenger_id, :driver_id, :date, :cost, :rating) )
-  # end
-  #
+  private
+
+  def trip_params
+    return params.require(:trip).permit(:passenger_id, :driver_id, :date, :cost, :rating)
+  end
+
 
 end

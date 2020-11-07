@@ -7,7 +7,9 @@ class Driver < ApplicationRecord
   def mean_rating
     sum = 0
     trips.each do |trip|
-      sum += trip.cost
+      if trip.rating != nil
+        sum += trip.rating
+      end
     end
     mean = sum / trips.count
   return mean

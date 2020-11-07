@@ -11,7 +11,7 @@
   <p> Total Cost: <%=@total_cost %></p>
     <ul>
       <% @trips.each do |trip| %>
-        <li><strong><%= link_to trip.passenger.name, passenger_trips_path(trip.passenger.id) %></strong> : Trip Rating : <%=trip.rating %> | Passenger ID: <%=trip.passenger.id%> | Driver ID: <%=trip.driver.id%> | Cost: <%=trip.cost %> | <%= link_to "Edit Trip", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
+        <li><strong><%= link_to trip.passenger.name, passenger_trips_path(trip.passenger.id) %></strong> : Trip Rating : <%=trip.rating %> | Passenger ID: <%=trip.passenger.id%> | Driver ID: <%=trip.driver.id%> | Cost: <%=trip.cost %> | <%= link_to "Edit Rating", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
       <% end %>
     </ul>
 </div>

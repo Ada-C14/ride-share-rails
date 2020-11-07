@@ -6,7 +6,7 @@
 
 </nav>
 
-<%= form_with model: @trips, url: { action: "edit" }, method: :get,  class: 'edit-trip' do |f| %>
+<%= form_with model: @trip,  class: 'edit-rating' do |f| %>
   <p>Please provide the following information to edit your trip:</p>
 
    <%= f.label :rating %>
@@ -14,6 +14,7 @@
 
   <%= f.submit "#{action_name}", class: "trip-button" %>
 <% end %>
+
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Rider List", passengers_path %> |
