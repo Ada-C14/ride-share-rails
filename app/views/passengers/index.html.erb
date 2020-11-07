@@ -45,6 +45,11 @@
         text-align: center;
         background: #ddd;
     }
+
+    a {
+        color: rebeccapurple;
+    }
+
 </style>
 <div class="header">
   <h1> All Passengers</h1>
@@ -54,7 +59,7 @@
   <%= link_to "Passengers", passengers_path%>
   <%= link_to "Drivers", drivers_path%>
 </div>
-
+<br>
 <p><%= link_to "Create New Passenger Account", new_passenger_path%></p>
 <ul id = "passengers">
   <% @passengers.each do |passenger| %>

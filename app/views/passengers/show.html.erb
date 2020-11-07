@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-<!--  <link href="https://fonts.googleapis.com/css?family=Cherry+Swash&display=swap" rel="stylesheet">-->
+  <link href="https://fonts.googleapis.com/css?family=Cherry+Swash&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <%#= stylesheet_link_tag  'passenger' %>
@@ -93,7 +93,8 @@
     <td><%= trip.id %></td>
     <td><%= trip.driver.name %></td>
     <td><%= trip.passenger.name %></td>
-    <td>$<%= trip.cost %></td>
+    <td>$<%= trip.cost %>
+    </td>
     <td><%= trip.rating %></td>
   </tr>
   <% end %>
@@ -108,6 +109,6 @@
     <li>Your phone number is: <%= @passenger.phone_num %></li>
   </h4>
 </ul>
-<%= link_to 'Add new trip |', passenger_trips_path(@passenger), method: :post %>
+<%= link_to 'Add new trip', passenger_trips_path(@passenger), method: :post %>
 </body>
 </html>
