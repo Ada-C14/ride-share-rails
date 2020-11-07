@@ -10,7 +10,7 @@
 </nav>
 
 
-<h1>View Driver</h1>
+<h2>View Driver</h2>
 <h3>Driver #<%= @driver.id  %></h3>
 <ul>
   <li>Driver Name: <%= @driver.name %> </li>
@@ -26,4 +26,4 @@
 <p><%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
 
 </body>
-<footer>Copyright Rosha RideShare 2020</footer>
+<footer class="homepage">Copyright Rosha RideShare 2020</footer>

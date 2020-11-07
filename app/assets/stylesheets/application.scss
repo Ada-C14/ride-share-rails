@@ -46,18 +46,14 @@ nav ul li * {
 }
 
 header {
-  color: black;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 0px 0px 3px lightblue;
-  font-size: 100px;
-
-  font-weight: bold;
+  text-shadow: 0px 0px 5px lightblue;
   margin-top: 20px;
   padding: 30px;
 }
 
-footer {
+footer * {
   display: flex;
   flex-direction: row;
   bottom: 0;
@@ -66,16 +62,40 @@ footer {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-weight: bold;
 }
 
-nav.button {
-  background: transparent no-repeat scroll top right;
-  color: #444;
-  display: block;
-  float: left;
-  font: normal 12px arial, sans-serif;
-  height: 24px;
-  margin-right: 6px;
-  padding-right: 18px; /* sliding doors padding */
+.homepage {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: absolute;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+}
+.links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+a:hover, a:visited, a:link, a:active {
   text-decoration: none;
+  color: gray;
+}
+
+h1 {
+  font-family: "Arial Black";
+  font-size: 60px;
+  font-weight: bold;
+  color: dimgray;
+  text-shadow: 0px 0px 3px darkblue;
+
+}
+
+h2 {
+  font-family: "Big Caslon";
+  text-shadow: 0px 0px 5px lightblue;
 }

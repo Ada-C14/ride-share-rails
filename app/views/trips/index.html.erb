@@ -11,14 +11,14 @@
 
 
 <h2>Trips</h2>
-<% if @trips && @trips.length > 0 %>
-  <ul>
-    <% @trips.each do |trip| %>
-      <li> <%= link_to trip.id, trip_path(trip)%></li>
+    <% if @trips && @trips.length > 0 %>
+      <ul>
+        <% @trips.each do |trip| %>
+          <li> <%= link_to trip.id, trip_path(trip)%></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No trips in database</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>No trips in database</p>
-<% end %>
 </body>
 <footer>Copyright Rosha RideShare 2020</footer>
