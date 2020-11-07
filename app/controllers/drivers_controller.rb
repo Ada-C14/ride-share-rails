@@ -52,18 +52,13 @@ class DriversController < ApplicationController
   def destroy
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
-      redirect_to root_path
+      redirect_to drivers_path
       return
     else
       @driver.destroy
       redirect_to drivers_path
     end
   end
-
-  # def unavailable
-  #   @driver = Driver.find_by(id: params[:id])
-  #   @driver.mark_unavailable
-  # end
 
   private
 
