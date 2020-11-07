@@ -40,7 +40,7 @@ describe DriversController do
       # Ensure that there is an id that points to no driver
 
       # Act
-      get driver_path(4)
+      get driver_path(Driver.last.id + 1)
       # Assert
       must_respond_with :not_found
     end

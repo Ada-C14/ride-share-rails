@@ -64,9 +64,9 @@ class TripsController < ApplicationController
       head :not_found
       return
     elsif @trip.destroy
-      redirect_to root_path
+      redirect_to homepage_path
       return
-    else # to-do: what are we gonna do here huh
+    else
     render trip_path
     return
     end
