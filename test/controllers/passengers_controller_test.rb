@@ -124,7 +124,7 @@ describe PassengersController do
     it "can destroy a model and redirect to the index page" do
       #arrange
 
-      passenger_to_delete = Passenger.new(name: "Noor Hoda")
+      passenger_to_delete = Passenger.new(name: "Noor Hoda", phone_num: "123 444 2129")
       passenger_to_delete.save
       id = passenger_to_delete.id
 
