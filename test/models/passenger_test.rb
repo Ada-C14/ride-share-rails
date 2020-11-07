@@ -62,6 +62,7 @@ describe Passenger do
   describe "custom methods" do
     before do
       @new_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
+      Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", availability_status: true)
     end
 
     describe "request a ride" do
@@ -81,7 +82,9 @@ describe Passenger do
 
     describe "total charged" do
       before do
+        3.times do
           Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", availability_status: true)
+        end
         @requested_trip1 = @new_passenger.request_trip
         @requested_trip1.save
         @requested_trip2 = @new_passenger.request_trip
