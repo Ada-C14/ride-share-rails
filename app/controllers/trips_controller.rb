@@ -1,7 +1,4 @@
 class TripsController < ApplicationController
-  def homepage
-    
-  end
 
   def index
     if params[:passenger_id]
@@ -14,7 +11,6 @@ class TripsController < ApplicationController
       @trips = Trip.all
     end
   end
-
 
   def show
     trip_id = params[:id].to_i
@@ -71,7 +67,7 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      redirect_to passenger_trips_path(@passengers.id)
+      redirect_to trips_path
       return
     end
   end
@@ -89,7 +85,7 @@ class TripsController < ApplicationController
       render :edit
       return
     end
-    #
+
     # @trip = Trip.find_by(id: params[:id])
     # if trip.nil?
     #   render :edit
@@ -97,6 +93,16 @@ class TripsController < ApplicationController
 
   def destroy
 
+    trip_id = params[:id]
+    @trip = Trip.find_by(id:trip_id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    else
+      @trip.destroy
+      redirect_to trips_path
+    end
   end
 
   # private

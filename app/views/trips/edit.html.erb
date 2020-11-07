@@ -1,34 +1,21 @@
-<%= form_with model: @trips, class: 'rate-trip' do |f| %>
-  <p>Please provide the following information to edit your task:</p>
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Rider List", passengers_path %> |
+  <%= link_to "Driver List", drivers_path %> |
+  <%= link_to "Trips List", trips_path %> |
 
-  # How do we get names
-  <%#= f.label :passenger_id %>
-  <%#= f.text_field :passenger_id %>
+</nav>
 
-  <%#= f.label :driver_id %>
-  <%#= f.text_field :driver_id %>
+<%= form_with model: @trips, url: { action: "edit" }, method: :get,  class: 'edit-trip' do |f| %>
+  <p>Please provide the following information to edit your trip:</p>
 
-  <%#= f.label :cost %>
-  <%#= f.text_field :cost %>
-
-  <%= f.label :rating %>
+   <%= f.label :rating %>
   <%= f.text_field :rating %>
 
-  <%#= f.label :driver_id %>
-  <%#= f.text_field :driver_id %>
-
-
-  <%= f.submit "#{action_name}", class: "passenger-button" %>
+  <%= f.submit "#{action_name}", class: "trip-button" %>
 <% end %>
-<p><%= link_to "Return Home", path %></p>
-
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
-
-  <%= f.submit "#{action_name}", class: "Rate-Me-Button" %>
-<% end %>
-<%= link_to "Back", passenger_trips_path(@passengers.id) %>
-<%=link_to "Homepage", homepages_path %> |
-<%= link_to "Rider List", passengers_path %> |
-<%= link_to "Driver List", drivers_path %> |
-
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Rider List", passengers_path %> |
+  <%= link_to "Driver List", drivers_path %> |
+</nav>`

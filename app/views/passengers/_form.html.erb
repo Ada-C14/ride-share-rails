@@ -1,5 +1,5 @@
 <%= form_with model: @passengers, class: 'edit-passenger' do |f| %>
-  <p>Please provide the following information to edit your task:</p>
+  <p>Please provide the following information to edit your rider:</p>
 
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -9,4 +9,5 @@
 
   <%= f.submit "#{action_name}", class: "passenger-button" %>
 <% end %>
+
 <p><%= link_to "Return Rider List", passengers_path %></p>
