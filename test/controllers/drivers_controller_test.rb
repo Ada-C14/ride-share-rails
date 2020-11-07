@@ -12,9 +12,9 @@ describe DriversController do
   let (:driver_hash) {
     {
         driver: {
-            name: "New Driver",
-            vin: "XBWSS52P9NEYLVDE9",
-            available: "true"
+          name: "New Driver",
+          vin: "XBWSS52P9NEYLVDE9",
+          available: "true"
         }
     }
   }
@@ -22,9 +22,9 @@ describe DriversController do
   let (:invalid_driver_hash) {
     {
         driver: {
-            name: nil,
-            vin: "XBWSS52P9NEYLVDE9",
-            available: "true"
+          name: nil,
+          vin: "XBWSS52P9NEYLVDE9",
+          available: "true"
         }
     }
   }

@@ -3,7 +3,7 @@ require "test_helper"
 describe TripsController do
   before do
     Passenger.create!(id: 600, name: "Anna Laura", phone_num: "999-999-0000")
-    Driver.create!(id: 20, name: "John Meyer", vin: "WEE7868967777", available: "true")
+    Driver.create!(id: 600, name: "John Meyer", vin: "WEE7868967777", available: "true")
   end
 
   describe "show" do
@@ -34,7 +34,7 @@ describe TripsController do
       }.must_change "Trip.count", 1
 
       new_trip = Trip.find_by(passenger_id: 600)
-      expect(new_trip.driver_id).must_equal 20
+      expect(new_trip.driver_id).must_equal 600
 
       must_respond_with :redirect
       must_redirect_to trip_path(new_trip.id)
@@ -64,7 +64,7 @@ describe TripsController do
     it "Does not change count and redirects to trip_path when trip id is valid" do
 
       # Arrange
-      Trip.create!(driver_id: 20, passenger_id: 600, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59)
+      Trip.create!(driver_id: 600, passenger_id: 600, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59)
       trip_hash = {
           trip: {
               date: "11/05/2020",
@@ -87,10 +87,10 @@ describe TripsController do
 
     it "will redirect to the root page if given an invalid id" do
       # Arrange
-      Trip.create(driver_id: 20, passenger_id: 600, date: "11/05/2020", rating: 5.0 , cost: 32.53)
+      Trip.create(driver_id: 600, passenger_id: 600, date: "11/05/2020", rating: 5.0 , cost: 32.53)
       trip_hash = {
           trip: {
-              driver_id: 20,
+              driver_id: 600,
               passenger_id: 600,
               date: "11/05/2020",
               rating: 5.0,
@@ -111,7 +111,7 @@ describe TripsController do
   describe "destroy" do
     it "Should delete an existing trip and redirect to the page" do
       # Arrange
-      trip = Trip.new driver_id: 20, passenger_id: 600, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59
+      trip = Trip.new driver_id: 600, passenger_id: 600, date: Date.parse("2016/09/15"), rating: 5.0, cost: 16.59
 
       trip.save!
 

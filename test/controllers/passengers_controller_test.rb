@@ -3,15 +3,15 @@ require "test_helper"
 describe PassengersController do
 
   let (:passenger) {
-    Passenger.create name: "Passenger",
-                  phone_num: "999.999.9999"
+    Passenger.create  name: "Passenger",
+                      phone_num: "999.999.9999"
   }
 
   let (:passenger_hash) {
     {
         passenger: {
-            name: "Abigayle Rau Jr.",
-            phone_num: "1-761-352-4516 x63527"
+          name: "Abigayle Rau Jr.",
+          phone_num: "1-761-352-4516 x63527"
         }
     }
   }
@@ -77,14 +77,9 @@ describe PassengersController do
   end
 
   describe "create" do
-    it "can create a new passenger" do
+    it "can create a new passenger with valid information accurately, and redirect" do
       # Arrange
-      passenger_hash = {
-          passenger: {
-            name: "Nina Hintz Sr.",
-            phone_num: "560.815.3059"
-          }
-      }
+
       # Act-Assert
       expect {
         post passengers_path, params: passenger_hash
@@ -103,7 +98,7 @@ describe PassengersController do
 
       expect {
         post passengers_path, params: invalid_params
-      }.wont_change 'Passenger.count'
+      }.wont_change "Passenger.count"
     end
   end
 
