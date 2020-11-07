@@ -21,14 +21,14 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      redirect_to :new
+      render :new
     end
   end
 
   def edit
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
-      render :edit
+      redirect_to drivers_path
       return
     end
   end
