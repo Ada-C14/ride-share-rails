@@ -11,10 +11,12 @@
 
   <body>
   <header><h1><%= link_to "RideShare on Rails", root_path %></h1>
-      <nav> </nav>
-    </header>
+      <nav> <%= link_to "View all passengers", passengers_path %>  --
+        <%= link_to "View all drivers", drivers_path %>  --
+        <%= link_to "Create new passenger", new_passenger_path %>  --
+        <%= link_to "Create new driver", new_driver_path %></nav>
     <hr>
-    <br>
+    </header>
     <%= yield %>
   </body>
 </html>

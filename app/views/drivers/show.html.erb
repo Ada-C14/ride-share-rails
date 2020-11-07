@@ -8,10 +8,12 @@
   <li>Average rating: <%= @driver.avg_rating %></li>
 </ul>
 
-<%= link_to "Edit Driver Details", edit_driver_path(@driver.id) %>
+<%= link_to "Edit Driver Details", edit_driver_path(@driver.id) %>  --
 
 <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" } %>
+<p>* You can only delete a driver if they have no trips.*</p>
 
+<br>
 <h4>Trips: </h4>
 
 <ol>
@@ -25,4 +27,3 @@
   <% end %>
 </ol>
 
-<footer>* You can only delete a driver if they have no trips.</footer>
