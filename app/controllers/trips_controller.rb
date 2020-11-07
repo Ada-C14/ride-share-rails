@@ -33,6 +33,7 @@ class TripsController < ApplicationController
   end
 
   def assign_rating
+    raise
     trip = find_trip
     redirect_to trips_path and return if trip.nil?
 
@@ -46,6 +47,7 @@ class TripsController < ApplicationController
   end
 
   def update
+
     trip = find_trip
 
     redirect_to trips_path and return if trip.nil?

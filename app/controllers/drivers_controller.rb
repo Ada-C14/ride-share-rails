@@ -63,7 +63,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     end
-
+    driver.trips.destroy_all
     if driver.destroy
       redirect_to drivers_path
     else
