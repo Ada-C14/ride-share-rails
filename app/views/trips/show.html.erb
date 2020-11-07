@@ -1,10 +1,13 @@
-<p><%= link_to "Home", root_path %></p>
-<p><%= link_to "Drivers List", drivers_path %></p>
-<p><%= link_to "Passengers List", passengers_path %></p>
-<p><%= link_to "Trips List", trips_path %></p>
-
-<p><%= link_to "Sign Up Driver", new_driver_path %></p>
-<p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+<header><h1>Rosha RideShare App</h1></header>
+<body>
+<nav>
+  <p><%= link_to "Home", root_path %></p>
+  <p><%= link_to "Drivers List", drivers_path %></p>
+  <p><%= link_to "Passengers List", passengers_path %></p>
+  <p><%= link_to "Trips List", trips_path %></p>
+  <p><%= link_to "Sign Up Driver", new_driver_path %></p>
+  <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+</nav>
 
 <h1>View Trip</h1>
 <h3>Trip #<%= @trip.id  %></h3>
@@ -21,3 +24,6 @@
 
 <p><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
 <p><%= link_to "Edit Trip", edit_trip_path %></p>
+
+</body>
+<footer>Copyright Rosha RideShare 2020</footer>

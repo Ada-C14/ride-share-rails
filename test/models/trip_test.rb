@@ -30,7 +30,7 @@ describe Trip do
     it "can have a driver" do
       # Arrange
       passenger.save
-      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      new_driver = Driver.create(name: "Waldo", vin: "BCTSH52M8YERVGDK9")
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
 
       # Assert

@@ -83,7 +83,7 @@ describe DriversController do
 
       new_driver = Driver.find_by(name: driver_params[:driver][:name])
 
-      must_redirect_to driver_path(new_driver.id)
+      must_redirect_to driver_path(new_driver)
     end
 
     it 'will add a new driver to the database' do
@@ -157,7 +157,7 @@ describe DriversController do
         patch driver_path(id), params: new_driver_hash
       end.wont_change 'Driver.count'
 
-      must_redirect_to driver_path(id)
+      must_redirect_to driver_path
 
       driver = Driver.find_by(id: id)
       expect(driver.name).must_equal new_driver_hash[:driver][:name]
@@ -203,7 +203,7 @@ describe DriversController do
 
   describe 'destroy' do
     it 'destroys the driver instance in db when driver exists, then redirects to root_path' do
-      new_driver = Driver.create(name: 'Roshni', vin: 'BC57H3DM8YEBHGMI9', available: true)
+      new_driver = Driver.create(name: 'Roshni', vin: 'BCTSH52M8YERVGDK9', available: true)
 
       new_driver.save
 

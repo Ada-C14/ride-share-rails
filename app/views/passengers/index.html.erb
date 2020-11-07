@@ -1,12 +1,16 @@
-<p><%= link_to "Home", root_path %></p>
-<p><%= link_to "Drivers List", drivers_path %></p>
-<p><%= link_to "Passengers List", passengers_path %></p>
-<p><%= link_to "Trips List", trips_path %></p>
+<header><h1>Rosha RideShare App</h1></header>
+<body>
+<nav>
+  <p><%= link_to "Home", root_path %></p>
+  <p><%= link_to "Drivers List", drivers_path %></p>
+  <p><%= link_to "Passengers List", passengers_path %></p>
+  <p><%= link_to "Trips List", trips_path %></p>
+  <p><%= link_to "Sign Up Driver", new_driver_path %></p>
+  <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+</nav>
 
-<p><%= link_to "Sign up Driver", new_driver_path %></p>
-<p><%= link_to "Sign up Passenger", new_passenger_path %></p>
 
-<h1>Passengers</h1>
+<h2>Passengers</h2>
 <% if @passengers.length > 0 %>
   <ul>
     <% @passengers.each do |passenger| %>
@@ -16,3 +20,5 @@
 <% else %>
   <p>No passengers in database</p>
 <% end %>
+</body>
+<footer>Copyright Rosha RideShare 2020</footer>

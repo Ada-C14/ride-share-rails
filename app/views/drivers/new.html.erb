@@ -1,11 +1,16 @@
 <%#= render partial: "form", locals: { action_name: "Edit" } %>
 
-<p><%= link_to "Home", root_path %></p>
-<p><%= link_to "Drivers List", drivers_path %></p>
-<p><%= link_to "Passengers List", passengers_path %></p>
-<p><%= link_to "Trips List", trips_path %></p>
-<p><%= link_to "Sign Up Driver", new_driver_path %></p>
-<p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+<header><h1>Rosha RideShare App</h1></header>
+<body>
+<nav>
+  <p><%= link_to "Home", root_path %></p>
+  <p><%= link_to "Drivers List", drivers_path %></p>
+  <p><%= link_to "Passengers List", passengers_path %></p>
+  <p><%= link_to "Trips List", trips_path %></p>
+  <p><%= link_to "Sign Up Driver", new_driver_path %></p>
+  <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+</nav>
+
 
 <% if @driver.errors.any? %>
   <ul class="errors">
@@ -27,3 +32,6 @@
   <%= f.text_field :available, :value => :true %>
   <%= f.submit "Add Driver", class: "Driver-button" %>
 <% end %>
+
+</body>
+<footer>Copyright Rosha RideShare 2020</footer>
