@@ -4,10 +4,10 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def net_expenditures
-    if self.trips.empty?
+    if trips.empty?
       return 0
     else
-      self.trips.inject(0) do |total_cost, trip|
+      trips.inject(0) do |total_cost, trip|
         if trip.cost.nil?
           total_cost
         else
@@ -15,6 +15,6 @@ class Passenger < ApplicationRecord
         end
       end
     end
-  end  
+  end
 
 end

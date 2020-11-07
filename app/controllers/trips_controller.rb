@@ -57,7 +57,7 @@ class TripsController < ApplicationController
     end
     if @trip.rating
       @trip.driver.available = true
-      @trip.driver.save #save! or save 
+      @trip.driver.save #save! or save
     end
     redirect_to trip_path
   end
