@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "123456789ABCDEFGH", available: true)
   }
   it "can be instantiated" do
     # Assert
