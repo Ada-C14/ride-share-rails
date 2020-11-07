@@ -26,7 +26,12 @@ class Passenger < ApplicationRecord
             date: date
     }
 
-    return params
+    if params.values.include?(nil)
+      driver.toggle_available
+      return nil
+    else
+      return params
+    end
   end
 
   def complete_trip(trip)

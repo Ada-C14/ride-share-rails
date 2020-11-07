@@ -51,7 +51,6 @@ describe TripsController do
         post request_trip_path(new_passenger.id)
       }.must_differ "Trip.count", 1
 
-      expect(new_driver.available).must_equal false
       must_respond_with :redirect
     end
   end
@@ -232,16 +231,17 @@ describe TripsController do
       new_driver.save
       new_passenger.save
 
-      params = new_passenger.request_trip
-
-      expect(params[:driver_id]).must_equal new_driver.id
-      expect(params[:passenger_id]).must_equal new_passenger.id
-      expect(params[:cost]).must_be_kind_of Integer
-      expect(params[:date]).must_be_kind_of Date
+      expect {
+        post request_trip_path(new_passenger.id)
+      }.must_differ "Trip.count", 1
     end
 
     it "does not create a trip for an invalid passenger id" do
-      raise NotImplementedError
+      fake_passenger_id = -1
+
+      expect {
+        post request_trip_path(fake_passenger_id)
+      }.wont_change "Trip.count"
     end
   end
 end

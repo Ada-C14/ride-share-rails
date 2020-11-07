@@ -92,6 +92,7 @@ describe Passenger do
       it "selects an available driver" do
         new_driver.save
         new_passenger.save
+
         new_trip = new_passenger.request_trip
 
         new_driver_id = new_driver.id
