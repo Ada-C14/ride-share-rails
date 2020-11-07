@@ -23,6 +23,7 @@
   </tr>
 
   <th>
+    <li> <%= link_to "Request trip for this passenger", passenger_trips_path(@passenger.id), method: :post %></li>
     <li> <%= link_to "Edit passenger info", edit_passenger_path(@passenger) %></li>
     <li> <%= link_to "Delete passenger from database", passenger_path(@passenger), method: :delete,
                      data: {confirm: 'Are you sure you would like to delete?'} %></li>
