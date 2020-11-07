@@ -76,7 +76,6 @@
   <%= link_to "Passengers", passengers_path%>
   <%= link_to "Drivers", drivers_path%>
 </div>
-
 <table>
   <thead>
  <tr>
@@ -90,7 +89,8 @@
   <tbody  >
   <% @passenger.trips.each do |trip|%>
   <tr>
-    <td><%= trip.id %></td>
+    <td><%= trip.id %>,<%= link_to " Trip Details", trip_path(trip.id) %>
+    </td>
     <td><%= trip.driver.name %></td>
     <td><%= trip.passenger.name %></td>
     <td>$<%= trip.cost %>
@@ -101,7 +101,6 @@
   </tbody>
 </table>
 <h2>Additional Passenger Information</h2>
-
 <ul>
   <h4>
   <li>Passenger id is: <%= @passenger.id %></li>
