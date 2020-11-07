@@ -61,7 +61,7 @@ describe TripsController do
           cost: 1234
       }
       }}
-    it "can create a new driver with valid information accurately, and redirect" do
+    it "can create a new trip with valid information accurately, and redirect" do
 
       expect {
         post trips_path, params: trip_hash
