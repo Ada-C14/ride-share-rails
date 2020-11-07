@@ -132,7 +132,6 @@ describe DriversController do
 
       # Act
       get edit_driver_path(-1)
-
       # Assert
       must_respond_with :not_found
     end

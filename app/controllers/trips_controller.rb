@@ -26,6 +26,11 @@ class TripsController < ApplicationController
   def create
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @driver = Driver.find_by(available: true)
+    if @passenger.nil? || @driver.nil?
+      head :bad_request
+      return
+    end
+
     @cost = rand(1..1000)
     @date = Time.now.strftime("%Y/%m/%d")
     @rating = nil
