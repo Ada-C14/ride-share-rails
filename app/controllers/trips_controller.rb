@@ -25,12 +25,19 @@ class TripsController < ApplicationController
   end
 
   def create
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    if @passenger.nil?
+      redirect_to passengers_path and return
+    end
+
+    trip_params = @passenger.request_trip
+
     @trip = Trip.new(trip_params)
 
     if @trip.save
       redirect_to trip_path(@trip) and return
     else
-      render :new and return
+      redirect_to passenger_trips_path(@passenger.id)
     end
   end
 
@@ -65,23 +72,6 @@ class TripsController < ApplicationController
       redirect_to trips_path and return
     else
       redirect_to trips_path and return
-    end
-  end
-
-  def passenger_request_trip
-    @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.nil?
-      redirect_to passengers_path and return
-    end
-
-    trip_params = @passenger.request_trip
-
-    @trip = Trip.new(trip_params)
-
-    if @trip.save
-      redirect_to trip_path(@trip) and return
-    else
-      redirect_to passenger_trips_path(@passenger.id)
     end
   end
 
