@@ -20,6 +20,7 @@ class TripsController < ApplicationController
 
   def create
     driver = Driver.find_by(available: true)
+    driver.change_status
     passenger = Passenger.find_by(id: params[:passenger_id])
     if @trip = Trip.create(
       driver_id: driver.id,
@@ -28,6 +29,7 @@ class TripsController < ApplicationController
       rating: nil,
       cost: rand(1..1000)
     )
+    driver.save
     redirect_to passenger_path(passenger.id)
     else # create failed
       render :new
