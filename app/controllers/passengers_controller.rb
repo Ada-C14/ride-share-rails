@@ -10,8 +10,14 @@ class PassengersController < ApplicationController
   end
 
   def create
-    passenger = Passenger.new(passenger_params)
-    action_success_check(passenger.save, passenger_path(passenger.id))
+    @passenger = Passenger.create(passenger_params)
+    if @passenger.id.nil?
+      render :new
+    else
+      redirect_to passenger_path(@passenger)
+    end
+    # action_result = passenger.save
+    # action_success_check(action_result, passenger_path(passenger.id))
   end
 
   def new
@@ -25,11 +31,11 @@ class PassengersController < ApplicationController
   end
 
   def update
-    passenger = find_passenger
+    @passenger = find_passenger
 
-    redirect_to passengers_path and return if passenger.nil?
+    redirect_to passengers_path and return if @passenger.nil?
 
-    action_success_check(passenger.update(passenger_params), passenger_path)
+    action_success_check(@passenger.update(passenger_params), passenger_path, destination_view: :edit)
   end
 
   def destroy
