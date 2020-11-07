@@ -6,4 +6,12 @@ module DriversHelper
       return "Deleted Driver"
     end
   end
+
+  def driver_safe_name(driver)
+    if driver
+      return driver.name
+    else
+      return "Deleted Driver"
+    end
+  end
 end

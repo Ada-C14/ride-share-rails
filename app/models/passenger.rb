@@ -14,4 +14,5 @@ class Passenger < ApplicationRecord
     return total_cost
   end
 
+
 end

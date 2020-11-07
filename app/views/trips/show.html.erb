@@ -3,8 +3,9 @@
 <nav>
 <%=link_to "Homepage", homepages_path %> |
 <%=link_to "Edit trip details", edit_trip_path(@trip.id) %> |
-<%= link_to "Add a New Driver", new_driver_path%> |
-<%= link_to "Add a New Rider", new_passenger_path%> |
+ <%=link_to "View all riders", passengers_path %> |
+ <%=link_to "View all drivers", drivers_path %>
+
 </nav>
 
 <ul>
@@ -18,7 +19,7 @@
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%=link_to "Edit trip details", edit_trip_path(@trip.id) %> |
-  <%= link_to "Add a New Driver", new_driver_path%> |
-  <%= link_to "Add a New Rider", new_passenger_path%>
+  <%=link_to "View all riders", passengers_path %> |
+  <%=link_to "View all drivers", drivers_path %>
 </nav>
 

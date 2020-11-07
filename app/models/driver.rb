@@ -27,6 +27,6 @@ class Driver < ApplicationRecord
         sum += (trip.cost - 165) * 0.8
       end
     end
-    return sum/100
+    return sum
   end
 end
