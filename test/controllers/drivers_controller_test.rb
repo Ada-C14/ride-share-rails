@@ -152,13 +152,21 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
-
+      driver_hash = {
+          driver:{
+              name: "new driver name",
+              vin: "driver vin info"
+          }
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(-1), params: driver_hash
+      }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller gave back a 404
-
+      must_respond_with :not_found
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -181,13 +189,18 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-
+      driver_id = driver.id
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
+      expect {
+        delete driver_path(driver_id)
+      }.must
+      _change 'Driver.count', -1
 
       # Assert
       # Check that the controller redirects
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
