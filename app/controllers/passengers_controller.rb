@@ -27,8 +27,8 @@ class PassengersController < ApplicationController
   
   def edit
     @passenger = Passenger.find_by(id: params[:id])
-    if @passengers.nil?
-      render :edit 
+    if @passenger.nil?
+      redirect_to passengers_path
       return
     end
   end
@@ -52,7 +52,7 @@ class PassengersController < ApplicationController
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      redirect_to root_path
+      redirect_to passengers_path
       return
     else
       @passenger.destroy
