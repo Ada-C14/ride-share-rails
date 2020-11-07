@@ -56,12 +56,9 @@ describe Trip do
       )
 
       new_trip =  Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
-      new_trip.passenger_id = passenger.id
-      new_trip.driver_id = driver.id
 
-      expect(new_trip.passenger_id).must_equal passenger.id
-      #new_trip.passengers.each do |passenger|
-      #expect(passenger).must_be_instance_of Passenger
+      expect(new_trip.passenger).must_equal passenger
+      expect(new_trip.driver).must_equal driver
       end
     end
 

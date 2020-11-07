@@ -20,13 +20,12 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-def create_test_driver(name: "Michael Schumacher", vin: "QWERTY99189", available: true)
+def create_test_driver(name: "Michael Schumacher", vin: "QWERTY99189-helper", available: true)
   driver = Driver.create(
       name: name,
       vin: vin,
       available: available
   )
-  driver.save
   return driver
 end
 

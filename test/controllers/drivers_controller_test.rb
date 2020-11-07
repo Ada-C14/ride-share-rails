@@ -22,6 +22,7 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+
       drivers = Driver.all
       expect(drivers).must_be_empty
 
@@ -72,7 +73,7 @@ describe DriversController do
       driver_hash = {
           driver: {
               name: "Created Driver",
-              vin: "QWERTY99189",
+              vin: "QWERTY99189-1",
               available: true
           }
       }
@@ -118,7 +119,7 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create(name: "Michael Schumacher", vin: "QWERTY99189", available: true)
+      driver = Driver.create(name: "Michael Schumacher", vin: "QWERTY99189-2", available: true)
       driver.save
       # Act
       get edit_driver_path(driver.id)
@@ -139,7 +140,7 @@ describe DriversController do
 
   describe "update" do
     before do
-      Driver.create(name: "Michael Schumacher", vin: "QWERTY99189", available: true)
+      Driver.create(name: "Michael Schumacher", vin: "QWERTY99189-3", available: true)
     end
 
     it "can update an existing driver with valid information accurately, and redirect" do
