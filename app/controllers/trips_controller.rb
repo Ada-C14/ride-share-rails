@@ -59,7 +59,7 @@ class TripsController < ApplicationController
       return
     else
       @trip.destroy
-      redirect_to trips_path
+      redirect_to homepages_path
       return
     end
   end

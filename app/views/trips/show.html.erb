@@ -1,4 +1,33 @@
 <!--what you see here is what happens when you click trip id in passenger page-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+      html, body {
+          margin: 0;
+          padding: 10px;
+      }
+
+      thead:nth-child(odd){background-color: black;}
+      tr:nth-child(even) {background-color: #c8a2c8;}
+      table, th, td {
+          border: 3px solid purple;
+          padding: 10px;
+          margin: 20px;
+      }
+      thead {
+          color: white;
+      }
+
+      a {
+          color: rebeccapurple;
+      }
+  </style>
+</head>
+<body>
+<a href="/homepages">Home</a> | <a href="/passengers">Passenger Page</a> | <a href="/drivers">Driver Page</a>
 <table>
   <thead>
 <tr>
@@ -20,3 +49,9 @@
 
 </tbody>
 </table>
+
+<%= link_to 'Edit Trip', edit_trip_path(@trip[:id]) %>
+<%= link_to "Delete Trip?", destroy_trip_path, method: :delete, data: {confirm: "Are you sure?"} %>
+</body>
+</html>
+
