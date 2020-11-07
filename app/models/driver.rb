@@ -9,7 +9,7 @@ class Driver < ApplicationRecord
   def average_rating
     sum_of_ratings = 0.00
     average = 0.00
-    if self.trips.nil?
+    if self.trips.empty?
       average
     else
       self.trips.map do |trip|

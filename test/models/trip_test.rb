@@ -114,6 +114,25 @@ describe Trip do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    # Your tests here
+    describe "request a ride" do
+      it "can request a trip if there is a driver available" do
+        driver
+        passenger
+        trip = Trip.request_trip(passenger)
+        trip.save
+        expect(driver.trips.count).must_equal 1
+        expect(passenger.trips.count).must_equal 1
+      end
+
+      it "generates a random cost for the trip" do
+      end
+
+    end
+
+  it "cannot request a trip if there is no driver available" do
+    passenger
+    trip = Trip.request_trip(passenger)
+    expect{(trip)}.must_raise ArgumentError
+      end
+    end
   end
-end
