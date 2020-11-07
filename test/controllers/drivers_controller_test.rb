@@ -3,7 +3,7 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   before do
-    @driver = Driver.create name:'Test Driver', vin: '29384nsf93'
+    @driver = Driver.create name:'Test Driver', vin: '29384nsf93neiv093'
   end
 
   describe "index" do
@@ -98,27 +98,20 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
       driver_hash = {
           driver: {
-              name: "Test",
-              vin: "1209e3nv93",
+              name: "",
+              vin: "",
           }
       }
       # Act-Assert
       expect {
-        post tasks_path, params: task_hash
-      }.must_change "Task.count", 1
-
-      new_task = Task.find_by(name: task_hash[:task][:name])
-      expect(new_task.description).must_equal task_hash[:task][:description]
-      expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
-
-      must_respond_with :redirect
-      must_redirect_to task_path(new_task.id)
+        post drivers_path, params: driver_hash
+      }.wont_differ "Driver.count"
 
     end
   end
@@ -129,8 +122,10 @@ describe DriversController do
       # Ensure there is an existing driver saved
 
       # Act
+      get edit_driver_path(@driver.id)
 
       # Assert
+      must_respond_with :success
 
     end
 
@@ -139,8 +134,10 @@ describe DriversController do
       # Ensure there is an invalid id that points to no driver
 
       # Act
+      get edit_driver_path(-1)
 
       # Assert
+      must_respond_with :redirect
 
     end
   end
