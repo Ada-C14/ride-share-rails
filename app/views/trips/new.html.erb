@@ -1,1 +1,22 @@
+<h1> Requested Ride </h1>
 
+<tr>
+  <th>Trip ID</th>
+  <th>Driver</th>
+  <th>Passenger</th>
+  <th>Trip Cost</th>
+  <th>Trip Rating</th>
+</tr>
+</thead>
+<tbody  >
+
+  <tr>
+    <td><%= @rip.id %></td>
+    <td><%= @trip.driver.name %></td>
+    <td><%= @trip.passenger.name %></td>
+    <td>$<%= @trip.cost %></td>
+    <td><%= @trip.rating %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
