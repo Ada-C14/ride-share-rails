@@ -4,7 +4,7 @@
   <% if @passenger.errors.any? %>
     <ul>
       <% @passenger.errors.each do |column, message| %>
-        <div class="error-message">
+        <div class="error-message red">
           <li>
             <p><%= column %> <%= message %></p>
           </li>
