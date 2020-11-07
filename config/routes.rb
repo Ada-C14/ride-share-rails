@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'homepages#index'
 
   get '/homepages', to: 'homepages#index', as: 'homepages'
-  get '/drivers', to: 'drivers#index', as: 'drivers_path'
+  get '/drivers', to: 'drivers#index', as: 'drivers'
   get '/drivers/new', to: 'drivers#new', as: 'new_driver'
   post '/drivers', to: 'drivers#create'
   get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
@@ -23,4 +23,16 @@ Rails.application.routes.draw do
   post '/passengers', to: 'passengers#create'
   delete '/passengers/:id', to: 'passengers#destroy', as: 'destroy_passenger'
 
+  resources :passenger do
+    resources :trips, only: [:create]
+  end
+
+  get '/trips', to: 'trips#index', as: 'trips'
+  get '/trips/new', to: 'trips#new', as: 'new_trip'
+  post 'passenger/:id/trips', to: 'trips#create'
+  get '/trips/:id/edit', to: 'trips#edit', as: 'edit_trip'
+  patch '/trips/:id', to: 'trips#update'
+  get '/trips/:id', to: 'trips#show', as: "trip"
+  delete '/trips/:id', to: 'trips#destroy', as: 'destroy_trip'
+  
 end
