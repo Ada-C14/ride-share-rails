@@ -14,5 +14,17 @@ class Driver < ApplicationRecord
     mean = sum / trips.count
   return mean
   end
-end
 
+  #The driver gets 80% of the trip cost after a fee of $1.65 is subtracted
+  def total_earnings
+    sum = 0
+    trips.each do |trip|
+      if trip.cost < 0
+        return 0
+      else
+        sum += (trip.cost - 165) * 0.8
+      end
+    end
+    return sum.round(2)
+  end
+end
