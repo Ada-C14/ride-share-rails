@@ -46,7 +46,9 @@ background-color: #E6E6E6;
 }
 
 section {
-text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #details {
   font-family: Arial, Helvetica, sans-serif;
