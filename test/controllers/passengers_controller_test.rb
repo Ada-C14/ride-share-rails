@@ -3,7 +3,7 @@ require "test_helper"
 describe PassengersController do
 
   let (:passenger) {
-    Passenger.create(name: "Test Passenger", phone_num: "206-666-6666")
+    Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
   }
 
   describe "index" do
@@ -12,8 +12,6 @@ describe PassengersController do
       # Arrange
       # Ensure that there is at least one Passenger saved
       passenger
-      puts Passenger.first.phone_num
-      puts Passenger.last.phone_num
       expect(Passenger.count).must_equal 1
 
       # Act
@@ -26,7 +24,6 @@ describe PassengersController do
     it "responds with success when there are no passenger saved" do
       # Arrange
       # Ensure that there are zero passengers saved
-      puts Passenger.first.phone_num
       expect(Passenger.count).must_equal 0
 
       # Act
@@ -148,7 +145,7 @@ describe PassengersController do
       # Set up the form data
       edited_passenger_hash = {
           passenger: {
-              name: "Test passenger 2",
+              name: "Test Passenger 2",
               phone_num: "360-555-5555"
           }
       }
@@ -176,7 +173,7 @@ describe PassengersController do
       # Set up the form data
       edited_passenger_hash = {
           passenger: {
-              name: "Test passenger 2",
+              name: "Test Passenger 2",
               phone_num: "360-555-5555"
           }
       }
@@ -256,7 +253,7 @@ describe PassengersController do
       must_redirect_to passenger_path(passenger_id)
     end
 
-    it "does not change the db when the passemger does not exist, then responds with not found" do
+    it "does not change the db when the passenger does not exist, then responds with not found" do
       expect {
         delete passenger_path(-1)
       }.wont_change 'Passenger.count'

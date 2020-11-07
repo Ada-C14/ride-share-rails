@@ -74,7 +74,7 @@ describe DriversController do
       driver_hash = {
           driver: {
               name: "New Driver",
-              vin: "00000000000000000"
+              vin: "11111111111111111"
           }
       }
 

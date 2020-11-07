@@ -2,11 +2,11 @@ require "test_helper"
 
 describe Trip do
   let (:driver) {
-    Driver.create(name: "Test Driver", vin: "12345678912345678", available: true)
+    Driver.create(name: "Test Driver", vin: "66666666666666666", available: true)
   }
 
   let (:passenger) {
-    Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
+    Passenger.create(name: "Test Passenger", phone_num: "666-666-6666")
   }
 
   let (:new_trip) {
@@ -24,6 +24,7 @@ describe Trip do
   it "will have the required fields" do
     new_trip.save
     trip = Trip.first
+    
     [:date, :rating, :cost, :passenger, :driver].each do |field|
       expect(trip).must_respond_to field
     end
@@ -66,7 +67,7 @@ describe Trip do
     end
 
     it "must be an integer" do
-      new_trip.rating = "hotdog"
+      new_trip.rating = "0/10 would not recommend"
       new_trip.save
 
       expect(new_trip.valid?).must_equal false
@@ -79,6 +80,5 @@ describe Trip do
   # describe "custom methods" do
   #   # Your tests here
   # end
-
 end
 

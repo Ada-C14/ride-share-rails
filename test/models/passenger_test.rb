@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "666-666-6666")
+    Passenger.new(name: "Kari", phone_num: "111-111-1211")
   }
   it "can be instantiated" do
     # Assert
@@ -62,29 +62,29 @@ describe Passenger do
   describe "custom methods" do
     describe "total cost" do
       it "correctly calculates total cost as integer" do
-        new_passenger = Passenger.create!(name: "Kari", phone_num: "222-222-2222")
-        new_driver = Driver.create!(name: "Waldo", vin: "ALWSS52P9NEYLVDE8")
-        trip_1 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-        trip_2 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
-        cost = new_passenger.total_cost
-        expect(cost).must_be_kind_of Integer
-        expect(cost).must_equal(1234+6334)
+        charges = new_passenger.total_cost
+
+        expect(charges).must_be_kind_of Integer
+        expect(charges).must_equal 1234 + 6334
       end
 
       it "returns 0 if no trips" do
-        p1 = Passenger.create!(name: "Kari", phone_num: "222-222-9999")
+        new_passenger.save
 
-        expect(p1.total_cost).must_equal 0
+        expect(new_passenger.total_cost).must_equal 0
       end
     end
 
-
-    # describe "request a ride" do  --THIS WAS A TRIP CREATE --
+    # describe "request a ride" do  -- TRIP CREATE ACTION --
     #   # Your code here
     # end
 
-    # describe "complete trip" do -- THIS WAS A TRIP EDIT --
+    # describe "complete trip" do -- TRIP EDIT ACTION --
     #   # Your code here
     # end
     # You may have additional methods to test here
