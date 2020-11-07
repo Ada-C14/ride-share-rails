@@ -10,7 +10,7 @@ describe Passenger do
   end
 
   it "will have the required fields" do
-    # Arrange
+  # Arrange
     new_passenger.save
     passenger = Passenger.first
     [:name, :phone_num].each do |field|
