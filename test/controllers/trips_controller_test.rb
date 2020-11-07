@@ -25,7 +25,9 @@ require "test_helper"
 
 describe TripsController do
   before do
-    @trip = Trip.create!(driver_id: @driver.id, trip_id: @trip.id, date: Time.now, rating: nil, cost: rand(1..1000)
+    @driver = Driver.create!(name: "Test Driver", vin: "123456", available: true)
+    @passenger = Passenger.create!(name: "Test passenger", phone_num: 1232)
+    @trip = Trip.create!(driver_id: @driver.id, passenger_id: @passenger.id, date: Time.now, rating: nil, cost: rand(1..1000))
   end
 
   describe "show" do
@@ -59,25 +61,17 @@ describe TripsController do
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
-      trip_hash = {
-        driver_id: @driver.id,
-        passenger_id: @passenger.id,
-        date: Time.now,
-        rating: nil,
-        cost: rand(1..1000)
-        }
-      }
-
+    #need a passenger
+    new_passenger = Passenger.create!(name: "Test passenger", phone_num: 1232)
       expect {
-        post trips_path, params: trip_hash
-      }.must_differ 'trip.count', 1
+        post passenger_trips_path(new_passenger)
+      }.must_differ 'Trip.count', 1
 
-      new_trip = trip.find_by(name: trip_hash[:trip][:name])
-      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
-      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
+      new_trip = new_passenger.trips.first
+      expect(new_trip.driver.id).must_equal @driver.id
 
       must_respond_with :redirect
-      must_redirect_to trips_path(new_trip.id)
+      must_redirect_to trip_path(new_trip.id)
 
     end
 
@@ -96,7 +90,7 @@ describe TripsController do
       # Ensure that there is no change in trip.count
       expect {
         post trips_path, params: trip_hash
-      }.wont_change 'trip.count'
+      }.wont_change 'Trip.count'
 
       # Assert
       must_respond_with :success
@@ -122,22 +116,25 @@ describe TripsController do
     let (:new_trip_hash) {
       {
         trip: {
-          name: 'A Wrinkle in Time',
-          phone_num: 22222
+          driver_id: @driver.id,
+          passenger_id: @passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: rand(1..1000)
         }
       }
     }
     it "can update an existing trip with valid information accurately, and redirect" do
       # Act-Assert
+      # Ensure that there is no change in trip.count
       expect {
         patch trip_path(@trip.id), params: new_trip_hash # the params method set the data structure 
-        }.wont_change 'trip.count'
-      # Ensure that there is no change in trip.count
-
+        }.wont_change 'Trip.count'
+      
       # Assert
-      trip = trip.find_by(id: @trip.id)
-      expect(trip.name).must_equal new_trip_hash[:trip][:name]
-      expect(trip.phone_num).must_equal new_trip_hash[:trip][:phone_num]
+      trip = Trip.find_by(id: @trip.id)
+      expect(trip.driver_id).must_equal new_trip_hash[:trip][:driver_id]
+      expect(trip.passenger_id).must_equal new_trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
       must_redirect_to trips_path
@@ -150,7 +147,7 @@ describe TripsController do
       # Act-Assert
       expect {
         patch trip_path(-1), params: new_trip_hash # the params method set the data structure 
-        }.wont_change 'trip.count'
+        }.wont_change 'Trip.count'
       # Ensure that there is no change in trip.count
 
       # Assert
@@ -162,14 +159,17 @@ describe TripsController do
        # Arrange
        trip_hash = {
         trip: {
-          name: ""
+          passenger_id: @passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: rand(1..1000)
         }
       }
 
       # Act-Assert
       expect {
         patch trip_path(id: @trip.id), params: trip_hash
-      }.wont_change 'trip.count'
+      }.wont_change 'Trip.count'
 
       # Ensure that there is no change in trip.count
 
@@ -184,9 +184,9 @@ describe TripsController do
         delete trip_path(@trip.id)
 
       # Assert
-      }.must_change 'trip.count', -1
+      }.must_change 'Trip.count', -1
     
-      trip = trip.find_by(name: @trip.name)
+      trip = Trip.find_by(id: @trip.id)
 
       expect(trip).must_be_nil
 
@@ -197,7 +197,7 @@ describe TripsController do
     it "does not change the db when the trip does not exist, then responds with redirect " do
       expect {
         delete trip_path(-1)
-      }.wont_change 'trip.count'
+      }.wont_change 'Trip.count'
 
       must_respond_with :redirect
       must_redirect_to trips_path

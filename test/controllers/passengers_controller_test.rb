@@ -86,15 +86,15 @@ describe PassengersController do
       }
 
       # Act-Assert
+      # Ensure that there is no change in passenger.count
       expect {
         post passengers_path, params: passenger_hash
       }.wont_change 'Passenger.count'
 
-      # Ensure that there is no change in passenger.count
-
       # Assert
       must_respond_with :success
     end
+
     it "does not create a passenger if missing name" do
       # Arrange
       passenger_hash = {
@@ -104,11 +104,12 @@ describe PassengersController do
      }
 
      # Act-Assert
+     # Ensure that there is no change in passenger.count
      expect {
        post passengers_path, params: passenger_hash
      }.wont_change 'Passenger.count'
 
-     # Ensure that there is no change in passenger.count
+     
 
      # Assert
      must_respond_with :success
@@ -140,10 +141,10 @@ describe PassengersController do
     }
     it "can update an existing passenger with valid information accurately, and redirect" do
       # Act-Assert
+      # Ensure that there is no change in passenger.count
       expect {
         patch passenger_path(@passenger.id), params: new_passenger_hash # the params method set the data structure 
         }.wont_change 'Passenger.count'
-      # Ensure that there is no change in passenger.count
 
       # Assert
       passenger = Passenger.find_by(id: @passenger.id)
@@ -159,10 +160,10 @@ describe PassengersController do
       patch passenger_path(-1)
 
       # Act-Assert
+      # Ensure that there is no change in passenger.count
       expect {
         patch passenger_path(-1), params: new_passenger_hash # the params method set the data structure 
         }.wont_change 'Passenger.count'
-      # Ensure that there is no change in passenger.count
 
       # Assert
       must_respond_with :redirect
@@ -181,8 +182,6 @@ describe PassengersController do
       expect {
         patch passenger_path(id: @passenger.id), params: passenger_hash
       }.wont_change 'Passenger.count'
-
-      # Ensure that there is no change in passenger.count
 
       # Assert
       must_respond_with :success
