@@ -31,11 +31,11 @@ class TripsController < ApplicationController
     first_available_driver = Driver.where(available: true).first
     passenger = Passenger.find_by(id: params[:passenger_id])
 
-    if passenger
-      @trip = Trip.new(driver_id: first_available_driver.id, passenger_id: passenger.id, date: Date.today, cost: rand(1000..2000), rating: nil)
-    else
+    if passenger.nil?
       render status: :bad_request
       return
+    else
+      @trip = Trip.new(driver_id: first_available_driver.id, passenger_id: passenger.id, date: Date.today, cost: rand(1000..2000), rating: nil)
     end
 
     if @trip.save!
