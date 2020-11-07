@@ -37,7 +37,7 @@ describe TripsController do
       invalid_id = -1
 
       expect {
-        post request_trip_path(invalid_id)
+        post passenger_create_trip_path(invalid_id)
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
@@ -48,7 +48,7 @@ describe TripsController do
       new_driver.save
 
       expect {
-        post request_trip_path(new_passenger.id)
+        post passenger_create_trip_path(new_passenger.id)
       }.must_differ "Trip.count", 1
 
       must_respond_with :redirect
@@ -223,25 +223,6 @@ describe TripsController do
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
-    end
-  end
-
-  describe "passenger_request_trip" do
-    it "creates a new trip when a passenger requests one" do
-      new_driver.save
-      new_passenger.save
-
-      expect {
-        post request_trip_path(new_passenger.id)
-      }.must_differ "Trip.count", 1
-    end
-
-    it "does not create a trip for an invalid passenger id" do
-      fake_passenger_id = -1
-
-      expect {
-        post request_trip_path(fake_passenger_id)
-      }.wont_change "Trip.count"
     end
   end
 end
