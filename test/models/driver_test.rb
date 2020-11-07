@@ -61,21 +61,53 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+      it "calculates average" do
+        # Arrange
+        driver = create_test_driver
+        trip_1 = create_test_trip(driver: driver, rating: 5)
+        trip_2 = create_test_trip(driver: driver, rating: 3)
+        driver.reload
+
+        #Act and assert
+        expect(driver.average_rating).must_equal 4
+      end
+      it "return 0 if driver has no rating" do
+        #Arrange
+        driver = create_test_driver
+
+        #act and assert
+        expect(driver.average_rating).must_equal 0
+      end
     end
 
     describe "total earnings" do
-      # Your code here
+      it "calculates how much driver had earned" do
+        #arrange
+        driver = create_test_driver
+        trip_1 = create_test_trip(driver: driver, cost: 1000)
+        trip_2 = create_test_trip(driver: driver, cost: 500)
+        driver.reload
+        # Act, Assert
+        expect(driver.earned).must_equal 936.0
+      end
+
+      it "return 0 driver has no trips" do
+        #Arrange
+        driver = create_test_driver
+
+        #act and assert
+        expect(driver.earned).must_equal 0
+      end
     end
 
-    describe "can go online" do
-      # Your code here
-    end
-
-    describe "can go offline" do
-      # Your code here
-    end
-
-    # You may have additional methods to test
+    # describe "can go online" do
+    #   # Your code here
+    # end
+    #
+    # describe "can go offline" do
+    #   # Your code here
+    # end
+    #
+    # # You may have additional methods to test
   end
 end

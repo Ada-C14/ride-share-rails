@@ -26,7 +26,9 @@ class Driver < ApplicationRecord
         count += 1
       end
     end
-    average = (sum / count.to_f).round(2)
+    if count > 0
+      average = (sum / count.to_f).round(2)
+    end
     return average
   end
 

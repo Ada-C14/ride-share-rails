@@ -71,7 +71,7 @@ describe DriversController do
       # Set up the form data
       driver_hash = {
           driver: {
-              name: "Michael Schumacher",
+              name: "Created Driver",
               vin: "QWERTY99189",
               available: true
           }

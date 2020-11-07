@@ -19,3 +19,42 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+def create_test_driver(name: "Michael Schumacher", vin: "QWERTY99189", available: true)
+  driver = Driver.create(
+      name: name,
+      vin: vin,
+      available: available
+  )
+  driver.save
+  return driver
+end
+
+def create_test_passenger(name: "Mary Poppins", phone_num: "2064539189")
+  passenger = Passenger.create(
+      name: name,
+      phone_num: phone_num
+  )
+  passenger.save
+  return passenger
+end
+
+def create_test_trip(driver: nil, passenger: nil, cost: 123, rating: 1)
+  if driver.nil?
+    driver = create_test_driver()
+  end
+
+  if passenger.nil?
+    passenger = create_test_passenger()
+  end
+
+  trip = Trip.create(
+      driver_id: driver.id,
+      passenger_id: passenger.id,
+      date: "2020/11/06",
+      rating: rating,
+      cost: cost)
+  trip.save
+
+  return trip
+end
