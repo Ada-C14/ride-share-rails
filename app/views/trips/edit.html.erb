@@ -7,7 +7,8 @@
 </nav>
 
 <%= form_with model: @trip,  class: 'edit-rating' do |f| %>
-  <p>Please provide the following information to edit your trip:</p>
+  <p>Please rate your trip:</p>
+  <p> 0 = Poor - 5 = Terrific </p>
 
    <%= f.label :rating %>
   <%= f.text_field :rating %>

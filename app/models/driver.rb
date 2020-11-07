@@ -16,7 +16,6 @@ class Driver < ApplicationRecord
   return mean
   end
 
-
   #The driver gets 80% of the trip cost after a fee of $1.65 is subtracted
   def total_earnings
     return 0 if self.trips.empty?

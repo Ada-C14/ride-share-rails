@@ -15,7 +15,7 @@ describe DriversController do
       # Assert
     end
 
-    it "responds with success when there are no drivers saved" do
+    it "responds with success when there are no passengers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
       # Act
