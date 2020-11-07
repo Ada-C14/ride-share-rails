@@ -1,20 +1,14 @@
 <h3>Please provide the following information to create a new Passenger account.</h3>
 <%= form_with model: @passenger do |f| %>
-  <div>
-    <label>Name</label>:
-    <%= f.text_field :name %>
-  </div>
-<br>
-  <div>
-    <label>Phone</label>:
-    <%= f.text_field :phone_num %>
-  </div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <br>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
   <%= f.submit "Create New Passenger" %>
 <% end %>
 <br>
 <hr />
-
 
 

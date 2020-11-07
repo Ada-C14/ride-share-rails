@@ -4,7 +4,7 @@
   <title>RideShareRails</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
 
 </head>
 <style>
@@ -45,6 +45,10 @@
         text-align: center;
         background: #ddd;
     }
+
+    a {
+        color: rebeccapurple;
+    }
 </style>
 <div class="header">
 <h1 class="header">All Drivers</h1>
@@ -55,8 +59,10 @@
   <%= link_to "Drivers", drivers_path%>
 </div>
 <div>
+  <br>
   <%= link_to 'Add New Driver', new_driver_path %>
 </div>
+<br>
 <ul id = "drivers">
   <% @drivers.each do |driver|  %>
     <li>
