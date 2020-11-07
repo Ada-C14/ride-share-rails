@@ -62,6 +62,11 @@ describe Passenger do
   describe "custom methods" do
     describe "complete trip" do
       it "calculates net expenditures" do
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+  
         expect(new_passenger.net_expenditures).must_equal 7568
       end
     end
