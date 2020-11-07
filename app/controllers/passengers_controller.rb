@@ -4,12 +4,8 @@ class PassengersController < ApplicationController
   end
 
   def show
-    passenger_id = params[:id]
-    @passenger = Passenger.find_by(id: passenger_id)
-
+    @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      redirect_to passenger_path
-      return
       head :not_found
       return
     end
@@ -21,7 +17,6 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
-
     if @passenger.save
       redirect_to passenger_path(@passenger)
       return
@@ -33,7 +28,6 @@ class PassengersController < ApplicationController
 
   def edit
     @passenger = Passenger.find_by(id: params[:id])
-
     if @passenger.nil?
       head :not_found
       return
@@ -42,7 +36,6 @@ class PassengersController < ApplicationController
 
   def update
     @passenger = Passenger.find_by(id: params[:id])
-
     if @passenger.nil?
       head :not_found
       return
@@ -52,12 +45,10 @@ class PassengersController < ApplicationController
       render :edit
       return
     end
-
   end
 
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
-
     if @passenger.nil?
       head :not_found
       return
