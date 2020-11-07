@@ -6,10 +6,16 @@ Rails.application.routes.draw do
 
   resources :rideshare, only: [:index]
 
-  scope '/rideshare' do
-    resources :passengers # only[:show, :index]
-    resources :drivers
-    patch '/rideshare/drivers/:id/availability', to: 'drivers#availability', as: 'availability'
-    resources :trips
+  resources :drivers
+
+  resources :trips
+
+  resources :passengers do
+    resources :trips, only: [:create]
   end
+
+
+
+  patch '/rideshare/drivers/:id/availability', to: 'drivers#availability', as: 'availability'
+
 end

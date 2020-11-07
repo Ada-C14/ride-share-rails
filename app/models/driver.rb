@@ -6,7 +6,7 @@ class Driver < ApplicationRecord
 
   validates :vin, uniqueness: true, length: { is: 17 }
 
-  validates :available
+  validates :available, presence: true
 
   def first_available_driver
     first_available_driver = nil

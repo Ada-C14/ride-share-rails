@@ -17,12 +17,22 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    first_available_driver = Driver.where(available: true).first
+    passenger = Passenger.find_by(id: params[:passenger_id])
+
+    if passenger.nil?
+      redirect_to root_path
+      return
+    end
+
+    @trip = Trip.new(passenger_id: params[:passenger_id], driver_id: first_available_driver.id, date: Date.today, cost: rand(500...2500), rating: nil)
+
     if @trip.save # save returns true if the database insert succeeds
-      redirect_to trip_path(@trip.id)
+      first_available_driver.update_attribute(:available, false)
+      redirect_to trip_path(@trip)
       return
     else
-      render :new
+      redirect_to root_path
       return
     end
   end
@@ -59,6 +69,11 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
     @trip.destroy
     redirect_to trips_path
+  end
+
+  def find_by_id
+    trip_id = params[:id].to_i
+    trip = Trip.find_by(id: trip_id)
   end
 
 

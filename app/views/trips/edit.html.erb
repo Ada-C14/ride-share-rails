@@ -10,8 +10,7 @@
 
   <div>
     <%= f.label :rating %>
-    <%= f.text_field :rating %>
-  </div>
+    <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>  </div>
   <br>
 
   <div>
@@ -21,14 +20,14 @@
   <br>
 
   <div>
-    <%= f.label :driver_id %>
-    <%= f.text_field :driver_id %>
+    Driver Name:
+    <%= @trip.driver.name %>
   </div>
   <br>
 
   <div>
-    <%= f.label :passenger_id %>
-    <%= f.text_field :passenger_id %>
+    Passenger Name:
+    <%= @trip.passenger.name %>
   </div>
   <br>
 
@@ -36,4 +35,3 @@
 
   <% end %>
 </div>
-
