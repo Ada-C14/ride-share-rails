@@ -29,8 +29,9 @@ describe PassengersController do
 
   describe "show" do
     it "can get a valid passenger" do
+      passenger = new_passenger.save
       # Act
-      get passenger_path(new_passenger.id)
+      get passenger_path(passenger.id)
 
       # Assert
       must_respond_with :success

@@ -15,8 +15,10 @@ describe TripsController do
   }
   describe "show" do
     it "can get a valid trip" do
+      trip = new_trip.save
+
       # Act
-      get trip_path(new_trip.id)
+      get trip_path(trip.id)
 
       # Assert
       must_respond_with :success
@@ -50,6 +52,7 @@ describe TripsController do
 
   describe "edit" do
     it "can get the edit page for an existing trip" do
+      trip = Trip.first
       # Act
       get edit_trip_path(trip.id)
 
@@ -70,7 +73,7 @@ describe TripsController do
     it "can update an existing task" do
       trip = Trip.first
       expect {
-        patch trip_path(trip.id), params: trip_hash
+        patch trip_path(trip), params: trip_hash
       }.wont_change "Trip.count"
 
       must_redirect_to root_path
