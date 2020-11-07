@@ -100,6 +100,8 @@ describe Trip do
 
 
   describe "custom methods" do
-    # Your tests here
+    it "money" do
+      expect(new_trip.money).must_equal "7.77"
+    end
   end
 end

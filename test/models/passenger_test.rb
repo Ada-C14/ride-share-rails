@@ -72,8 +72,11 @@ describe Passenger do
       end
     end
 
-    describe "complete trip" do
-      # Your code here
+    describe "total_charged" do
+      it "correctly displays total charged"do
+        Trip.create(date: Date.current, cost: 7777, driver: Driver.new(name: "Kari", vin: "WBWSS52P9NEYLVDE9", available: false), passenger: new_passenger)
+        expect(new_passenger.total_charged).must_equal "77.77"
+      end
     end
 
   end
