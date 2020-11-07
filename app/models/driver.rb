@@ -8,6 +8,7 @@ class Driver < ApplicationRecord
 
   validates :available, presence: true
 
+
   def first_available_driver
     first_available_driver = nil
     drivers.each do |driver|

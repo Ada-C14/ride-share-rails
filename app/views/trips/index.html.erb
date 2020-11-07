@@ -1,20 +1,22 @@
 <h1>Trips</h1>
 
-<ul>
+<div class="flex-container">
   <% @trips.each do |trip| %>
-    <li>
-
-      <div>
-        Trip ID: <%= trip.id %>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          | <%= trip.date %> | <br>
+          | <%= trip.driver.name %> | <br>
+          | <%= trip.passenger.name %> |
+        </div>
+        <div class="flip-card-back">
+          | <%= link_to "Show", trip_path(trip.id) %> | <br>
+          | <%= link_to "Edit", edit_trip_path(trip) %> | <br>
+          | <%= link_to "Delete", trip_path(trip.id), method: :delete,
+                        data: {confirm: 'Are you sure you would like to delete?'} %> |
+        </div>
       </div>
-      <div>
-        <%= link_to "Show", trip_path(trip.id) %> |
-        <%= link_to "Edit", edit_trip_path(trip) %> |
-        <%= link_to "Delete", trip_path(trip.id), method: :delete,
-                    data: {confirm: 'Are you sure you would like to delete?'} %> |
-      </div>
-    </li>
-
+    </div>
   <% end %>
-</ul>
+</div>
 

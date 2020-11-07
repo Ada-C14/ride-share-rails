@@ -3,11 +3,11 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "456789ABCDEFGH123", available: true)
   }
   before do
     Driver.create(name: "Kari",
-                  vin: "123",
+                  vin: "123456789ABCDEFGH",
                   available: true)
   end
 
@@ -15,7 +15,7 @@ describe DriversController do
     {
       driver: {
         name: "Sisi",
-        vin: "321",
+        vin: "98765432112345678",
         available: false
       }
     }
@@ -158,7 +158,7 @@ describe DriversController do
       expect(new_driver.available).must_equal driver_hash[:driver][:available]
     end
 
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "does not update any driver if given an invalid id, and responds with a 302" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
@@ -174,7 +174,7 @@ describe DriversController do
 
 
       # Assert
-      must_respond_with :not_found
+      must_respond_with :redirect
     end
   end
 

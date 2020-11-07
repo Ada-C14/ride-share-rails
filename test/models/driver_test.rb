@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "123456789ABCDEFGH", available: true)
   }
   it "can be instantiated" do
     # Assert
@@ -54,7 +54,7 @@ describe Driver do
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
-      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:vin]).must_equal ["is the wrong length (should be 17 characters)"]
     end
   end
 
@@ -69,17 +69,20 @@ describe Driver do
     end
 
     describe "can go on/off line" do
-      driver = Driver.first
+
       it "can access the availability path" do
+        new_driver.save
         # Act
-        patch availability_path(driver.id)
+        patch availability_path(new_driver.id)
 
         # Assert
         must_redirect_to root_path
       end
       it "will not change other statistics" do
+        new_driver.save
+
         expect {
-          patch availability_path(driver.id)
+          patch availability_path(new_driver.id)
         }.wont_change "Driver.count", Driver.name
 
         must_redirect_to root_path

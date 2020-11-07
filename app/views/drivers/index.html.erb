@@ -5,23 +5,21 @@
 </div>
 <br>
 
-<ul>
-<!--  <div class="flex-container">-->
-    <% @drivers.each do |driver| %>
-      <li>
-
-        <div>
-          Driver: <%= driver.name %>
+<div class="flex-container">
+  <% @drivers.each do |driver| %>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+         <%= driver.name %>
         </div>
-        <div>
-          <%= link_to "Show", driver_path(driver.id) %> |
-          <%= link_to "Edit", edit_driver_path(driver) %> |
-          <%= link_to "Delete", driver_path(driver.id), method: :delete,
+        <div class="flip-card-back">
+          | <%= link_to "Show", driver_path(driver.id) %> | <br>
+          | <%= link_to "Edit", edit_driver_path(driver) %> | <br>
+          | <%= link_to "Delete", driver_path(driver.id), method: :delete,
                       data: {confirm: 'Are you sure you would like to delete?'} %> |
         </div>
-      </li>
 
-    <% end %>
-<!--  </div>-->
-</ul>
-
+      </div>
+    </div>
+  <% end %>
+</div>
