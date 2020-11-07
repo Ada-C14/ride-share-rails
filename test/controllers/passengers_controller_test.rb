@@ -106,7 +106,6 @@ describe PassengersController do
 
       # Assert
       # Check that the controller redirects
-      # must_redirect_to
       must_respond_with :redirect
     end
   end

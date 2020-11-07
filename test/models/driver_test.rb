@@ -76,11 +76,11 @@ describe Driver do
 
     describe "total earnings" do
       it "returns the total earnings for the driver" do
-      new_driver.save
-      new_passenger = Passenger.create! name: 'Roshni', phone_num: '123.456.7890'
-      trip_1 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-       expect(new_driver.total_earnings).must_equal "$57.9"
+        new_driver.save
+        new_passenger = Passenger.create! name: 'Roshni', phone_num: '123.456.7890'
+        trip_1 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create!(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        expect(new_driver.total_earnings).must_equal "$57.9"
       end
 
       it "returns 0 for the total earnings if the driver has no trips" do
@@ -88,16 +88,6 @@ describe Driver do
         expect(new_driver.total_earnings).must_equal "$0.0"
       end
     end
-
-    describe "can go online" do
-      # Your code here
     end
-
-    describe "can go offline" do
-      # Your code here
-    end
-
-    # You may have additional methods to test
-  end
   end
 end

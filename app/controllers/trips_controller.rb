@@ -18,7 +18,7 @@ class TripsController < ApplicationController
   end
 
   def new
-    #Found the passenger that will be assigned to the "new trip"
+    # Found the passenger that will be assigned to the "new trip"
     passenger = Passenger.find_by(id: params[:passenger_id])
     # Making a new trip using a class helper method
     @trip = Trip.request_trip(passenger)
@@ -28,10 +28,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     available_driver = Driver.find_by_id(@trip.driver_id)
     if @trip.save
-      # available_driver.toggle!(:available)
       available_driver.update({available: false})
-      #available_driver.available = false
-      # available_driver.save!
       redirect_to trip_path(@trip.id)
     else
       redirect_to trips_path
@@ -57,7 +54,7 @@ class TripsController < ApplicationController
     end
     if @trip.rating
       @trip.driver.available = true
-      @trip.driver.save #save! or save
+      @trip.driver.save
     end
     redirect_to trip_path
   end

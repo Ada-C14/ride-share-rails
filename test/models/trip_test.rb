@@ -2,11 +2,11 @@ require "test_helper"
 
 describe Trip do
   let(:driver) do
-    Driver.create! name: 'Ayesha', vin: 'BCTSH52M8YERVGDK9', available: true
+    Driver.create name: 'Ayesha', vin: 'BCTSH52M8YERVGDK9', available: true
   end
 
   let(:passenger) do
-    Passenger.create! name: 'Roshni', phone_num: '123.456.7890'
+    Passenger.create name: 'Roshni', phone_num: '123.456.7890'
   end
 
   let (:new_trip) {
@@ -21,7 +21,6 @@ describe Trip do
     new_trip.save
     trip = Trip.first
     %i[driver_id passenger_id date rating cost].each do |field|
-
       expect(trip).must_respond_to field
     end
   end
@@ -87,18 +86,6 @@ describe Trip do
       expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
     end
 
-    # it "must have a rating" do
-    #   # Arrange
-    #   new_trip.rating = nil
-    #
-    #   # Assert
-    #   # expect(new_trip.valid?).must_equal false
-    #   expect(new_trip.errors.messages).must_include :rating
-    #   # expect(new_trip.errors.messages[:rating]).must_equal ["can't be blank", "is not a number"]
-    #   # expect(new_trip.errors.messages[:rating]).must_be_between 1..5 ASK ABOUT THIS
-    #
-    # end
-
     it "must have a cost" do
       # Arrange
       new_trip.cost = nil
@@ -107,8 +94,6 @@ describe Trip do
       expect(new_trip.valid?).must_equal false
       expect(new_trip.errors.messages).must_include :cost
       expect(new_trip.errors.messages[:cost]).must_equal ["can't be blank", "is not a number"]
-      #expect(new_trip.errors.messages[:cost]).must_be_greater_than 0
-
     end
   end
 
@@ -123,16 +108,6 @@ describe Trip do
         expect(driver.trips.count).must_equal 1
         expect(passenger.trips.count).must_equal 1
       end
-
-      it "generates a random cost for the trip" do
-      end
-
-    end
-
-  it "cannot request a trip if there is no driver available" do
-    passenger
-    trip = Trip.request_trip(passenger)
-    expect{(trip)}.must_raise ArgumentError
-      end
     end
   end
+end

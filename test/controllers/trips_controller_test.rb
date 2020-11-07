@@ -161,7 +161,6 @@ describe TripsController do
           cost: 10
         }
       }
-
     end
     it "can update an existing trip with valid information accurately, and redirect" do
       id = Trip.first.id
@@ -178,7 +177,6 @@ describe TripsController do
       expect(trip.date).must_equal new_trip_hash[:trip][:date]
       expect(trip.rating).must_equal new_trip_hash[:trip][:rating]
       expect(trip.cost).must_equal new_trip_hash[:trip][:cost]
-
     end
 
     it "does not update any trip if given an invalid id, and responds with a 404" do
