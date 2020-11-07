@@ -158,7 +158,6 @@ nav {
 .create-passenger > div,
 .driver-form > div,
 .trip-form > div {
-
   grid-template-columns: 1fr 1fr [center-start] 1.5fr [center-end] 1fr 1fr;
   display: grid;
   bottom-margin: 1rem;
@@ -168,6 +167,7 @@ nav {
 .driver-form > div > *:not(label),
 .trip-form > div > *:not(label){
   grid-column: center;
+
 }
 
 // WHEN LINK IS NEW OR EDIT FORM
@@ -186,6 +186,12 @@ nav {
   grid-column: 2 / center-start;
   justify-self: end;
   margin-right: 1rem;
+}
+
+.create-passenger > div div:last-child  > *,
+.driver-form > div div:last-child > *,
+.trip-form > div div:last-child > * {
+  width: 100%;
 }
 
 .create-passenger > div,
