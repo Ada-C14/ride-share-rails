@@ -3,11 +3,14 @@ require "test_helper"
 describe Trip do
 
   let (:passenger) {
-    Passenger.create(name: "Anna Laura", phone_num: "999-999-0000")
+    Passenger.create(name: "Anna Laura",
+                     phone_num: "999-999-0000")
   }
 
   let (:driver) {
-    Driver.create(name: "John Meyer", vin: "WEE7868967777", available: "true")
+    Driver.create(name: "John Meyer",
+                  vin: "WEE7868967777",
+                  available: "true")
   }
 
   let (:trip_hash) {
@@ -85,7 +88,7 @@ describe Trip do
   describe "custom methods" do
     it "generate_cost: generates a floating point cost between 8 and 35" do
       cost = Trip.generate_cost
-      expect(cost).must_be_within_delta 8, 27
+      expect(cost).must_be_within_delta 8, 27, 0.01
     end
 
     it "assign_driver: returns a valid driver id if there are available drivers" do
@@ -94,7 +97,7 @@ describe Trip do
     end
 
     it "assign_driver: returns nil if there are no available drivers" do
-      assert_nil(Trip.assign_driver)
+      assert_nil(Trip.assign_driver).must_equal true
     end
 
     it "change_driver_status: can change an assigned driver's status to unavailable" do
