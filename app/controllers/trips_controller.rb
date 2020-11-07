@@ -1,3 +1,5 @@
+require 'date'
+
 class TripsController < ApplicationController
 
   def index
@@ -14,15 +16,26 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.find_by(available: true)
-    passenger = Passenger.find_by(id: params[:pasenger_id])
+    @driver = Driver.find_by(available: true)
+    @passenger = Passenger.find_by(id: params[:passenger_id])
 
     @trip = Trip.new(
-        driver_id = driver.id,
-        passenger_id = passenger.id
+        driver_id: @driver.id,
+        passenger_id: @passenger.id,
+        cost: rand(100..99999),
+        date: Date.today, 
+        rating: nil
     )
     @trip.save
-    driver.unavailable
+    @driver.mark_unavailable
+
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+    else 
+      flash.now[:error] = "Something happened. Trip not requested."
+      redirect_to passenger_path(passenger.id)
+    end 
+
   end
 
   def edit
@@ -66,6 +79,6 @@ end
 private
 
 def trip_params
-  return params.require(:trip).permit(:rating)
+  return params.require(:trip).permit(:driver_id, :passenger_id, :rating, :date, :cost)
 end
 

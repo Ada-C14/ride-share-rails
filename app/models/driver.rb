@@ -25,6 +25,8 @@ class Driver < ApplicationRecord
   def average_rating
     ratings = self.trips.map { |trip| trip[:rating] }
 
+    ratings.compact!
+
     if ratings.length == 0
       mean = 0
     else
