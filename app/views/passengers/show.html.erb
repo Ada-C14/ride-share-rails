@@ -1,7 +1,7 @@
 <section>
-  <article>
-    <h2><%= @passenger.name %></h2>
-    <table class="driver-table">
+  <article class="table-border">
+    <h2>Passenger: <%= @passenger.name %></h2>
+    <table class="show-table">
         <tr>
           <th>Passenger ID</th>
           <th>Phone Number</th>
@@ -21,9 +21,9 @@
     </table>
   </article>
   <br/>
-  <article>
+  <article class="table-border">
     <h4><%= @passenger.name %>'s Trips:</h4>
-    <table class="trip-table">
+    <table class="show-table">
       <tr>
           <th>Trip ID</th>
           <th>Date</th>
@@ -31,7 +31,6 @@
           <th>Passenger</th>
           <th>Cost</th>
           <th>Rating</th>
-          <th>Note</th>
       </tr>
       <% @passenger.trips.order(id: :asc).each do |trip| %>
         <tr>
@@ -62,15 +61,17 @@
       <br/>  
     </table>  
   </article>
-  <article>
-    <%= form_with model: @trip, class: 'new_passenger_trip', url: passenger_trips_path(@passenger.id) do |f|  %>
-      <% f.submit "Request Trip", data: { confirm: 'Your confirm message' } %>
-    <% end %>
-    <% flash.each do |type, msg| %>
-      <div>
-        <%= msg %>
-      </div>
-    <% end %>
+  <article class="table-border">
+    <div>
+      <%= form_with model: @trip, class: 'new_passenger_trip', url: passenger_trips_path(@passenger.id) do |f|  %>
+        <% f.submit "Request Trip", data: { confirm: 'Your confirm message' } %>
+      <% end %>
+      <% flash.each do |type, msg| %>
+        <div class="flash-msg">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>  
   </article>
 </section>
 

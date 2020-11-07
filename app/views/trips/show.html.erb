@@ -1,7 +1,7 @@
 <section>
-  <article>
+  <article class="table-border">
     <h2>Trip ID: <%= @trip.id %></h2>
-    <table class="driver-table">
+    <table class="show-table">
         <tr>
           <th>Date</th>
           <th>Passenger</th>
@@ -36,7 +36,7 @@
 
           <th>
             <% if @trip.rating.nil? == false %>
-              Rating: <%= @trip.rating %>
+              <%= @trip.rating %>
             <% elsif @trip.complete == true && @trip.rating.nil? %>
               <%= form_for @trip do |f| %>
                 <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
@@ -63,7 +63,7 @@
         </tr>  
     </table>
     <% flash.each do |type, msg| %>
-      <div>
+      <div class="flash-msg">
         <%= msg %>
       </div>
     <% end %>

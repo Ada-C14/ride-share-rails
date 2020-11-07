@@ -1,7 +1,7 @@
 <section>
-  <article>
-    <h2><%= @driver.name %></h2>
-    <table class="driver-table">
+  <article class="table-border">
+    <h2>Driver: <%= @driver.name %> </h2>
+    <table class="show-table">
         <tr>
             <th>Driver ID</th>
             <th>VIN#</th>
@@ -36,9 +36,9 @@
     </table> 
   </article>
   <br/>
-  <article>
+  <article class="table-border">
     <h4><%= @driver.name %>'s Trips:</h4>
-    <table class="trip-table">
+    <table class="show-table">
         <tr>
             <th>Trip ID</th>
             <th>Date</th>
