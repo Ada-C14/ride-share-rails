@@ -5,12 +5,13 @@
   <%= link_to "Return to Driver List", drivers_path %> |
   <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
 </nav>
-
-<p>Driver ID: <%= @drivers.id %></p>
 <p>Driver Name: <%= @drivers.name %></p>
-<p>Driver Avg. Rating: <%= @drivers.mean_rating %></p>
-<p> Driver Total Earnings: <%= @drivers.total_earnings/100 %></p>
 <p>VIN: <%= @drivers.vin %></p>
+<p>Driver ID: <%= @drivers.id %></p>
+<p>Available: <%= @drivers.available %></p>
+<p>Driver Avg. Rating: <%= @drivers.mean_rating %></p>
+<p> Driver Total Earnings: <%= @drivers.total_earnings.round(2) %></p>
+
 
 <!--Want to create loop that pulls driver trip details  -->
 
