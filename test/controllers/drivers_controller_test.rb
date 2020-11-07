@@ -102,6 +102,13 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      driver_hash = {
+          driver: {
+              name: ,
+              vin: "1209e3nv93",
+          },
+      }
+
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
