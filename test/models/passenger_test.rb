@@ -60,42 +60,7 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    before do
-      @new_driver = Driver.create!(name: "Kari", vin: "123", available: true)
-      @trip_1 = Trip.create!(driver_id: @new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      @trip_2 = Trip.create!(driver_id: @new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-    end
-    describe "request a ride" do
-
-      it "requests a trip for a driver" do
-        trip_hash = {
-          trip: {
-            driver_id: @new_driver.id,
-            passenger_id: new_passenger.id,
-            date: Time.now,
-            rating: nil,
-            cost: rand(1..1000)
-          }
-        }
-        expect {
-          post passenger_trips_path(new_passenger.id), params: trip_hash
-        }.must_differ 'Trip.count', 1
-
-        # trips_path
-        # post passenger_trips_path(new_passenger.id)
-
-        # must_respond_with :success
-
-        # Your code here
-      end
-    end
-
     describe "complete trip" do
-      
-      # Your code here
-    end
-
-    describe "net expenditures" do
       it "calculates net expenditures" do
         expect(new_passenger.net_expenditures).must_equal 7568
       end
