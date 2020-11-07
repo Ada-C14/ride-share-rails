@@ -1,5 +1,15 @@
 <h2>Edit trip page</h2>
 
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |attribute, message| %>
+      <li>
+        <strong><%= attribute.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @trip, class: 'edit-trip' do |f| %>
   <p>Please make changes:</p>
 
@@ -20,7 +30,7 @@
 
   <div>
     <%= f.label :rating %>
-    <%= f.text_field :rating %>
+    <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]]%>
   </div>
 
   <div>

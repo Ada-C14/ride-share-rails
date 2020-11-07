@@ -152,6 +152,10 @@ describe TripsController do
             expect(trip.rating).must_equal updated_trip[:trip][:rating]
             expect(trip.cost).must_equal updated_trip[:trip][:cost]
     end
+
+    it "doesn't update a trip if form.. " do
+
+    end
   end
 
   describe "destroy" do

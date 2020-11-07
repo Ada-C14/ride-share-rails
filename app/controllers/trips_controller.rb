@@ -64,6 +64,9 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
+    @drivers = Driver.order(:name)
+    @passengers = Passenger.order(:name)
+
     if @trip.nil?
       head :not_found
       return
@@ -71,7 +74,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else # save failed
-    render :edit
+    render :edit, status: :bad_request
     return
     end
   end
