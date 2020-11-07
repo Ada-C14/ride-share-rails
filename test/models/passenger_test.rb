@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "111-111-1211")
+    Passenger.new(name: "Kari", phone_num: "666-666-6666")
   }
   it "can be instantiated" do
     # Assert

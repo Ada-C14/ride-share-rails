@@ -3,7 +3,7 @@ require "test_helper"
 describe PassengersController do
 
   let (:passenger) {
-    Passenger.create(name: "Test Passenger", phone_num: "206-555-5555")
+    Passenger.create(name: "Test Passenger", phone_num: "206-666-6666")
   }
 
   describe "index" do
@@ -12,6 +12,8 @@ describe PassengersController do
       # Arrange
       # Ensure that there is at least one Passenger saved
       passenger
+      puts Passenger.first.phone_num
+      puts Passenger.last.phone_num
       expect(Passenger.count).must_equal 1
 
       # Act
@@ -24,6 +26,7 @@ describe PassengersController do
     it "responds with success when there are no passenger saved" do
       # Arrange
       # Ensure that there are zero passengers saved
+      puts Passenger.first.phone_num
       expect(Passenger.count).must_equal 0
 
       # Act
