@@ -3,7 +3,17 @@
 <ul>
   <li>Trip ID: <%= @trip.id %></li>
   <li>Date: <%= @trip.date %></li>
-  <li>Rating: <%= @trip.rating %></li>
+  <li>Rating:
+    <% if @trip.rating.nil? %>
+      <%= form_with model: @trip do |f| %>
+        <%= f.label :rating %>
+        <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: true  %>
+        <%= f.submit "Rate & Complete Trip", class: "submit_buttom", method: :patch %>
+      <% end %>
+      <% else %>
+        <%= @trip.rating %>
+      <% end %>
+  </li>
   <li>Cost: $ <%= ((@trip.cost) / 100.0).round(2) %></li>
   <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></li>
   <!-- TODO: currently, the link in "passenger" doesn't work - should work after merge with passenger_branch? -->
