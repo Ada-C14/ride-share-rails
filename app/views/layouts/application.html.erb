@@ -12,7 +12,14 @@
   <header>
     <h1>Madeline & Jessica Ride Share</h1>
     <nav>
-        <h3><%= link_to "Homepage", root_path %></h3>
+        <ul>
+        <li><%= link_to "Home Page", root_path %></li>
+        <li><%= link_to "See all Passengers", passengers_path %></li>
+        <li><%= link_to "See all Drivers", drivers_path %></li>
+        <li><%= link_to "Add a Passenger", new_passenger_path %></li>
+        <li><%= link_to "Add a Driver", new_driver_path %></li>
+      </ul>
+
     </nav>
   </header>
 

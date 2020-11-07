@@ -33,7 +33,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
     else 
       flash.now[:error] = "Something happened. Trip not requested."
-      redirect_to passenger_path(passenger.id)
+      redirect_to passenger_path(@passenger.id)
     end 
 
   end
