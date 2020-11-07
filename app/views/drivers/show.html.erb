@@ -24,12 +24,13 @@
 
 <br/>
 
-<h3 class="trips">TRIPS ~ </h3>
-<div class="trips"><%= button_to "#{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %></div>
-
-<p>TOTAL EARNED FROM ALL TRIPS: $<%= @driver.total_earnings %></p>
-<p>NUMBER OF TRIPS DRIVEN: <%= @driver.trips.count %></p>
-<p>AVERAGE RATING: <%= @driver.average_rating %></p>
-<br/>
-
-
+<div class="trip-header">
+  <h3 class="trips">TRIPS ~ </h3>
+  <div class="trips all-trips-button"><%= button_to "All #{@driver.name}'s Trips", driver_trips_path(@driver), method: :get %></div>
+</div>
+<div class="trip-info">
+  <p><b>TOTAL EARNED FROM ALL TRIPS: </b>$<%= @driver.total_earnings %></p>
+  <p><b>NUMBER OF TRIPS GIVEN: </b><%= @driver.trips.count %></p>
+  <p><b>AVERAGE RATING: </b><%= @driver.average_rating %></p>
+  <br/>
+</div>
