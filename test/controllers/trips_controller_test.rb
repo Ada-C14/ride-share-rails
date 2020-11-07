@@ -7,15 +7,29 @@ describe TripsController do
   describe "show" do
     it "responds with success when showing an existing trip" do
     # Arrange
-    trip = Driver.new(name: "sample driver", vin: "ABC0000000000", available: true)
+    driver = Driver.create(
+              name: "Michael Schumacher",
+              vin: "QWERTY99189",
+              available: true
+          )
+    driver.save
+
+    passenger = Passenger.create(
+              name: "Mary Poppins",
+              phone_num: "2064539189"
+              )
+    passenger.save
+
+    trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2020/11/06", rating: 3, cost: 2300)
     trip.save
+
     # Act
     get trip_path(trip.id)
     # Assert
     must_respond_with :success
     end
 
-    it "responds with success when showing an existing trip" do
+    it "responds with 404 with invalid trip id" do
       # Arrange
       # Act
       get trip_path(-1)
@@ -102,6 +116,13 @@ describe TripsController do
       # Assert
       must_respond_with :success
     end
+
+    it "respond with not found when getting the edit page for a non-existing trip" do
+      #Act
+      get edit_trip_path(-1)
+      #Assert
+      must_respond_with :not_found
+    end
   end
 
   describe "update" do
@@ -153,12 +174,115 @@ describe TripsController do
             expect(trip.cost).must_equal updated_trip[:trip][:cost]
     end
 
-    it "doesn't update a trip if form.. " do
+    it "doesn't update a trip if form has no cost and respond with bad request" do
+      # Arrange
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true
+      )
+      driver.save
 
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+      passenger.save
+
+      trip = Trip.create(
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: "123456",
+          rating: 2,
+          cost: 123
+      )
+      trip.save
+
+      updated_trip = {
+          trip: {
+              driver_id: driver.id,
+              passenger_id: passenger.id,
+              date: "2020/02/02",
+              rating: 5,
+              cost: nil
+          }
+      }
+      # Act
+      expect {
+        patch trip_path(trip.id), params: updated_trip
+      }.wont_change 'Trip.count'
+      # Assert
+      must_respond_with :bad_request
     end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "destroys the trip in the db then redirect to the list of passengers page" do
+      #Arrange
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true
+      )
+      driver.save
+
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+      passenger.save
+
+      trip_to_delete = Trip.create(
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: "123456",
+          rating: 2,
+          cost: 123
+      )
+      trip_to_delete.save
+      # Act
+      expect {
+              delete trip_path(trip_to_delete.id)
+                  }.must_change 'Trip.count', -1
+      # Assert
+      trip_to_delete = Trip.find_by(id: trip_to_delete.id)
+      expect(trip_to_delete).must_be_nil
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
+
+    it "does not change the db when the trip does not exist, then responds with not found" do
+      # Arrange
+      #Arrange
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true
+      )
+      driver.save
+
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+      passenger.save
+
+      trip_to_delete = Trip.create(
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: "123456",
+          rating: 2,
+          cost: 123
+      )
+      trip_to_delete.save
+
+      # Act-Assert
+      expect {
+        delete trip_path(-1)
+      }.wont_change 'Trip.count'
+
+      # Assert
+      must_respond_with :not_found
+    end
   end
 end
