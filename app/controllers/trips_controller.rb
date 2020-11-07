@@ -21,7 +21,6 @@ class TripsController < ApplicationController
   def create
     driver = Driver.find_by(available: true)
     driver.change_status
-
     passenger = Passenger.find_by(id: params[:passenger_id])
     if driver.nil? || passenger.nil?
       redirect_to root_path
@@ -34,8 +33,8 @@ class TripsController < ApplicationController
       rating: nil,
       cost: rand(1..1000)
     )
-    driver.save
-    redirect_to trip_path(@trip.id)
+      driver.save
+      redirect_to trip_path(@trip.id)
     else # create failed
       render :new
       return
@@ -50,10 +49,10 @@ class TripsController < ApplicationController
     if params[:id]
       @trip = Trip.find_by(id: params[:id])
       if @trip.nil?
-        redirect_to root_path
+        redirect_to trips_path
         return
       elsif @trip.update(trip_params)# using strong params
-          redirect_to trips_path
+          redirect_to root_path
         return
       else # save failed
         render :edit

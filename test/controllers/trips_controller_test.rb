@@ -46,7 +46,7 @@ describe TripsController do
       get trip_path(bad_id)
 
       # Assert
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
 
   end
@@ -93,7 +93,7 @@ describe TripsController do
       }.wont_change 'Trip.count'
 
       # Assert
-      must_respond_with :success
+      must_redirect_to root_path
     end
 
   end
@@ -108,7 +108,7 @@ describe TripsController do
       get trip_path(-1)
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
   end
 
@@ -137,7 +137,7 @@ describe TripsController do
       expect(trip.passenger_id).must_equal new_trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
 
     it "does not update any trip if given an invalid id, and responds with a redirect" do
@@ -174,7 +174,7 @@ describe TripsController do
       # Ensure that there is no change in trip.count
 
       # Assert
-      must_respond_with :success
+      must_redirect_to root_path
     end
   end
 
@@ -191,7 +191,7 @@ describe TripsController do
       expect(trip).must_be_nil
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
 
     it "does not change the db when the trip does not exist, then responds with redirect " do
@@ -200,7 +200,7 @@ describe TripsController do
       }.wont_change 'Trip.count'
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
   end
 end
