@@ -1,7 +1,7 @@
 class HomepagesController < ApplicationController
 
   def index
-    drivers = Driver.all #would it better to write these in a driver model method etc.?  Probably too much logic should move to Driver model
+    drivers = Driver.all 
 
     if drivers.empty?
       @driver_count = 0
@@ -26,28 +26,9 @@ class HomepagesController < ApplicationController
     else
       @trip_count = trips.size
     end
-    #@trip_count = 0
 
-    #should move this logic to trips model?
-    ratings = []
-    if @trip_count == 0
-      @average_rating = "Not available"
-    else
-      trips.each do |trip|
-        unless trip.rating.nil?
-          ratings << trip.rating
-        end
-      end
-      unless ratings.length == 0
-        @average_rating = (ratings.sum) / ratings.length
-      end
-    end
+    @average_rating = Trip.average_rating
 
-    @total_revenue = 0
-    if @trip_count == 0
-      @total_revenue = "N/A"
-    else
-      trips.each {|trip| @total_revenue += trip.cost }
-    end
+    @total_revenue = Trip.total_revenue
   end
 end

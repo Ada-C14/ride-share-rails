@@ -1,3 +1,54 @@
 // Place all the styles related to the Homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.home-container {
+
+    padding: 5px 5px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 150px 200px 150px;
+    grid-template-rows: min-content min-content min-content;
+    justify-content: center;
+    grid-template-areas:
+        "a b c"
+        "a d c"
+        "e f g"
+}
+
+.elem {
+    background-color: #7ECFD4;
+    padding: 20px 20px;
+    border-radius: 15px;
+//     justify-content: center;
+//     align-items: center;
+//     align-self: center;
+}
+
+.driver-count {
+    grid-area: a;
+}
+
+.available-drivers {
+    grid-area: b;
+}
+
+.unavailable-drivers {
+    grid-area: d;
+}
+
+.passenger-count {
+    grid-area: e;
+}
+
+.trip-count {
+    grid-area: c;
+}
+
+.average-rating {
+    grid-area: f;
+}
+
+.revenue {
+    grid-area: g;
+}
