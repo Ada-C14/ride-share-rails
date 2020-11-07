@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/passengers', to: 'passengers#index', as: 'passengers_path'
   get '/passengers/new', to: 'passengers#new', as: 'new_passenger'
-  get '/passengers/edit', to: 'passengers#edit', as: 'edit_passenger'
+  get '/passengers/:id/edit', to: 'passengers#edit', as: 'edit_passenger'
   patch '/passengers/:id', to: 'passengers#update'
   get '/passengers/:id', to: 'passengers#show', as: "passenger"
   post '/passengers', to: 'passengers#create'
