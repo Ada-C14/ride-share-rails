@@ -60,6 +60,10 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    let (:new_driver) {
+      Driver.new(name: "Carrie", vin: "11112222333344445", available: true)
+    }
+
     it "correctly gives the total charged for all the passenger's trips" do
       new_passenger.save
 
@@ -76,9 +80,53 @@ describe Passenger do
       expect(total).must_equal 75.68
     end
 
-    describe "request a ride" do
-      it "if we're not gonna define this method let's delete it and the test" do
-        raise NotImplementedError
+    describe "request a trip" do
+      it "returns a hash of trip parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        expect(new_trip).must_be_kind_of Hash
+      end
+
+      it "selects an available driver" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        new_driver_id = new_driver.id
+        hash_driver_id = new_trip[:driver_id]
+
+        expect(new_driver_id).must_equal hash_driver_id
+      end
+
+      it "adds passenger id to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        new_passenger_id = new_passenger.id
+        hash_passenger_id = new_trip[:passenger_id]
+
+        expect(new_passenger_id).must_equal hash_passenger_id
+      end
+
+      it "assigns a cost to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        expect(new_trip[:cost]).must_be_kind_of Integer
+      end
+
+      it "assigns the current date to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        today = Date.today
+
+        expect(new_trip[:date]).must_equal today
       end
     end
 
