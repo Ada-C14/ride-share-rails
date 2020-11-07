@@ -1,12 +1,24 @@
 <h2>Trip: <%= @trips[:id]%></h2>
 
 <ul>
-  <li>Driver ID: <%= @trips.driver_id %></li>
-  <li>Passenger ID: <%= @trips.passenger_id %></li>
+  <li>Driver ID: <%= link_to @trips.driver_id, driver_path(@trips.driver_id) %></li>
+  <li>Passenger ID: <%= link_to @trips.passenger_id, passenger_path(@trips.passenger_id) %></li>
   <li>Date: <%= @trips.date %></li>
   <li>Cost: <%= number_to_currency @trips.cost/100.00 %></li>
   <li>Rating: <%= @trips.rating %></li>
 
 </ul>
 
-<div><%= link_to "Back to Trips", trips_path %></div>
+<div>
+<% if @trips.rating == 0 %>
+<%= link_to "Edit Trip", edit_trip_path %>
+<% end %>
+</div>
+
+<div>
+<%= link_to "Delete Trip", trip_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+</div>
+
+<div>
+<%= link_to "Back to Trips", trips_path %>
+</div>

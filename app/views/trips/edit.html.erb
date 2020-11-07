@@ -1,0 +1,14 @@
+<%= form_with model: @trip, class: "edit-trip" do |f| %>
+  <p>Please provide the following information to edit your trip in our database:</p>
+
+<div>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %> 
+  </div>
+
+
+<div>
+  <%= f.submit "Edit Trip", class: "edit-button", method: :patch %>
+<% end %>
+
+</div>

@@ -1,6 +1,6 @@
 <h2><%= @driver.name %></h2>
 <h3><%= @driver.vin %></h3>
-<h3><% if @driver.available = true%>
+<h3><% if @driver.available %>
       <%= "Available" %>
     <% else %>
       <%= "Unavailable" %>

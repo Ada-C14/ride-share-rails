@@ -2,6 +2,10 @@
 
 <h3><%= @passengers.phone_num %></h3>
 
+<div>
+<h3><%= button_to "Request a Trip", passenger_trips_path(@passengers.id) %></h3>
+</div>
+
 <h4>List of Trips:</h4>
 <ul>
   <% @passengers.trips.each do |trip| %>
