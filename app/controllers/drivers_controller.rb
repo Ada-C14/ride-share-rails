@@ -34,7 +34,7 @@ class DriversController < ApplicationController
       redirect_to driver_path @driver.id
       return
     else # if save is failed
-      render :new
+      render :new, status: :bad_request #shows new book form again
       return
     end
   end
@@ -69,7 +69,7 @@ class DriversController < ApplicationController
       redirect_to driver_path # go to the driver details page
       return
     else # save failed
-      render :edit # show the new driver form view again
+      render :edit, status: :bad_request # show the new driver form view again
       return
     end
   end
