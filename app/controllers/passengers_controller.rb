@@ -21,7 +21,7 @@ class PassengersController < ApplicationController
   def create
     @passengers = Passenger.new(passengers_params)
     if @passengers.save # save returns true if the database insert succeeds
-      redirect_to passengers_path(@passengers.id) # go to the index so we can see the task in the list
+      redirect_to passenger_path(@passengers.id) # go to the index so we can see the task in the list
       return
     else # save failed :(
     render :new # show the new task form view again

@@ -2,8 +2,15 @@ require "test_helper"
 
 describe PassengersController do
   let(:passenger) {
-    Passenger.create name: "passenger name", phone_num: "phone number"
+    Passenger.create! name: "passenger name", phone_num: "phone number"
   }
+  # def what_let_does
+  #   if $global.nil?
+  #     $global = Passenger.create! name: "passenger name", phone_num: "phone number"
+  #   end
+  #   return $global
+  # end
+
   describe "index" do
     it "responds with success when there are many passengers saved" do #PASSING
       # Arrange
@@ -29,11 +36,10 @@ describe PassengersController do
       get passenger_path(passenger.id)
       # Act
       must_respond_with :success
-
       # Assert
     end
 
-    it "responds with 404 with an invalid driver id" do  #Passing
+    it "responds with not found with an invalid driver id" do  #Passing
       #Arrange
       get passenger_path(-10)
       # Act
@@ -57,19 +63,17 @@ describe PassengersController do
             phone_num: "call ( me ) beep me"
         }
     }
-                                                                                    # Act-Assert # Ensure that there is a change of 1 in Driver.count
+
     expect {
-      post passenger_path, params: new_passenger_hash
+      post passengers_path, params: new_passenger_hash
     }.must_change "Passenger.count", 1
-                                                                                    # Assert
-                                                                                    # Find the newly created Driver, and check that all its attributes match what was given in the form data
-                                                                                    # Check that the controller redirected the user
+
     new_passenger = Passenger.find_by(name: new_passenger_hash[:passenger][:name])
-    expect(new_passenger.phone_num).must_equal new_passenger_hash[:driver][:phone_num]
-                                                                                    # expect(new_driver.available).must_equal true
+    expect(new_passenger.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
+
 
     must_respond_with :redirect
-    must_redirect_to passenger_path(new_passenger.id) # Your tests go here
+    must_redirect_to passenger_path(new_passenger.id)
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do  #PASSING
@@ -93,23 +97,23 @@ describe PassengersController do
   end
 
   describe "edit" do
-    it "responds with success when getting the edit page for an existing, valid driver" do #PASSING
-                                                                                           # Arrange
-                                                                                           # Ensure there is an existing driver saved
-
-                                                                                           # Assert
+    it "responds with success when getting the edit page for an existing, valid passenger" do
+      # Arrange
+      # Ensure there is an existing driver saved
+      get edit_passenger_path(passenger.id)
+      # Act
+      must_respond_with :success
+      # Assert
 
     end
-    # Your tests go here
-    #
-    it "responds with redirect when getting the edit page for a non-existing driver" do  #PASSING
-                                                                                         # Arrange
+
+    it "responds with redirect when getting the edit page for a non-existing passenger" do
 
     end
   end
 
   describe "update" do
-    it "can update an existing driver with valid information accurately, and redirect" do  #PASSING
+    it "can update an existing passenger with valid information accurately, and redirect" do  #PASSING
                                                                                            # Arrange
                                                                                            # Ensure there is an existing driver saved' # Assert
                                                                                            # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
@@ -117,7 +121,7 @@ describe PassengersController do
 
     end
 
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "does not update any passenger if given an invalid id, and responds with a 404" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
@@ -130,7 +134,7 @@ describe PassengersController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -146,7 +150,7 @@ describe PassengersController do
     end  end
 
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
+    it "destroys the passenger instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
 

@@ -3,7 +3,7 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let(:driver) {
-    Driver.create name: "driver name", vin: "vin number", available: true
+    Driver.create! name: "driver name", vin: "vin number", available: true
   }
   describe "index" do
     it "responds with success when there are many drivers saved" do #PASSING

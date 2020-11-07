@@ -3,7 +3,6 @@
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Driver List", drivers_path %> |
-  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
 </nav>
 <p>Driver Name: <%= @drivers.name %></p>
 <p>VIN: <%= @drivers.vin %></p>
@@ -12,11 +11,14 @@
 <p>Driver Avg. Rating: <%= @drivers.mean_rating %></p>
 <p> Driver Total Earnings: $<%= @drivers.total_earnings.round(2) %></p>
 
-
-<!--Want to create loop that pulls driver trip details  -->
+<ul>
+  <% @drivers.trips.each do |trip| %>
+    <li><strong><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></strong> : Trip ID: <%=trip.id %> | Trip Rating : <%=trip.rating %> | Passenger ID: <%=trip.passenger.id%> | Driver ID: <%=trip.driver.id%> | Cost: <%=trip.cost %> | <%= link_to "Edit Rating", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
+  <% end %>
+</ul>
 
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Driver List", drivers_path %> |
-  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
+  <%=link_to "View Driver Trips", driver_path(@drivers.id) %> |
 </nav>

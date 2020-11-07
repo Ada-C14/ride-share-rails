@@ -5,12 +5,12 @@ class Passenger < ApplicationRecord
   validates :phone_num, uniqueness: true
 
 
-  def cost
+  def total_expenditure
     total_cost = 0
 
     trips.each do |trip|
       total_cost += trip.cost
-      end
+    end
     return total_cost
   end
 

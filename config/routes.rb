@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   get '/homepages', to: 'homepages#index', as: 'homepages'
 
   resources :drivers do
-    resources :trips
+    # resources :trips
   end
   resources :passengers do
-    resources :trips
-    end
+    resources :trips, only: [:create]
+  end
   resources :trips
+
 end
 

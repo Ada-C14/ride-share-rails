@@ -30,8 +30,8 @@ describe TripsController do
   #                                                        # Act
   #   must_respond_with :not_found
   #                                                        # Assert
-  #   end
-  # end
+    end
+  end
 
   describe "create" do
     # Your tests go here
