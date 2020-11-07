@@ -2,7 +2,7 @@ class Driver < ApplicationRecord
   has_many :trips
 
   validates :name, presence: true
-  validates :vin, presence: true, length: { is: 17}
+  validates :vin, presence: true, length: {is: 17}, format: /[^\D]/
 
   def mark_unavailable
     self.available = false
@@ -24,7 +24,12 @@ class Driver < ApplicationRecord
   # calculate average rating
   def average_rating
     ratings = self.trips.map { |trip| trip[:rating] }
-    mean = (ratings.sum.to_f) / (ratings.length)
+
+    if ratings.length == 0
+      mean = 0
+    else
+      mean = (ratings.sum.to_f) / (ratings.length)
+    end
 
     return mean
   end

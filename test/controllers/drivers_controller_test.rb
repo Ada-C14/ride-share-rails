@@ -104,17 +104,21 @@ describe DriversController do
       # Set up the form data so that it violates Driver validations
       driver_hash = {
           driver: {
-              name: ,
+              name: "Test",
               vin: "1209e3nv93",
-          },
+          }
       }
-
-
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        post tasks_path, params: task_hash
+      }.must_change "Task.count", 1
 
-      # Assert
-      # Check that the controller redirects
+      new_task = Task.find_by(name: task_hash[:task][:name])
+      expect(new_task.description).must_equal task_hash[:task][:description]
+      expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
+
+      must_respond_with :redirect
+      must_redirect_to task_path(new_task.id)
 
     end
   end

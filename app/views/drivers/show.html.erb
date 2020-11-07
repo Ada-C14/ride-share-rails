@@ -1,6 +1,11 @@
 <h2><%= @driver.name %></h2>
 <h3><%= @driver.vin %></h3>
-<h3><%= @driver.available %></h3>
+<h3><% if @driver.available = true%>
+      <%= "Available" %>
+    <% else %>
+      <%= "Unavailable" %>
+    <% end %>
+    </h3>
 
 <h4>List of Trips:</h4>
 <ul>
@@ -9,9 +14,9 @@
   <% end %>
 </ul>
 
-    <h2>Total Earnings <%= @driver.total_earnings.nil? ? "0" : number_to_currency(@driver.total_earnings) %>
+<h2>Total Earnings <%= @driver.total_earnings.nil? ? "0" : number_to_currency(@driver.total_earnings) %></h2>
 
-    <h2>Average Rating <%= @driver.average_rating.nil? ? "0" : (@driver.average_rating).round(2) %>
+<h2>Average Rating <%= @driver.average_rating.nil? ? "0" : (@driver.average_rating).round(2) %> </h2>
 
 
 <ul>
