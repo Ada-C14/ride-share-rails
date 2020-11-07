@@ -191,6 +191,18 @@ h1 {
     grid-column: 2 /3;
     padding: 1rem;
     color: red;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 900;
+}
+
+// For back to top button
+.bk-top-grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+}
+.bk-top {
+    grid-column: 2 /3;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
 }
