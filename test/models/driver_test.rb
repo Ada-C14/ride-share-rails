@@ -61,6 +61,43 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+
+    describe "next available" do
+      it "returns the next available driver from a list of new drivers (no trips)" do
+
+        driver1 = Driver.create(name: "Mary", vin: "1565dsf", availability_status: true)
+        driver2 = Driver.create(name: "Tom", vin: "15BJKHDf", availability_status: true)
+        new_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
+        Trip.create(cost: 34.34, date: Time.now, rating: nil, passenger_id: new_passenger.id, driver_id: driver2.id)
+        next_driver = Driver.next_available
+
+        expect(next_driver.name).must_equal driver1.name
+        expect(next_driver.vin).must_equal driver1.vin
+        expect(next_driver.availability_status).must_equal driver1.availability_status
+
+        expect(next_driver.trips.count).must_equal 0
+      end
+
+      it "in the absence of new drivers, will select the driver with the longest time since last trip" do
+
+        driver1 = Driver.create(name: "Mary", vin: "1565dsf", availability_status: true)
+        driver2 = Driver.create(name: "Tom", vin: "15BJKHDf", availability_status: true)
+        passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
+
+        trip_1 = Trip.create(driver_id: driver1.id, passenger_id: passenger.id, date: Date.today + 6.days, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: driver2.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: driver2.id, passenger_id: passenger.id, date: Date.today, rating: 2, cost: 6334)
+
+        next_driver = Driver.next_available
+        p Driver.all
+        expect(next_driver.name).must_equal driver1.name
+        expect(next_driver.vin).must_equal driver1.vin
+        expect(next_driver.availability_status).must_equal driver1.availability_status
+
+      end
+
+      # TODO: implement tests for logic for what to return in cases of no available drivers
+    end
     before do
       @new_driver = Driver.create(name: "Kari", vin: "123", availability_status: true)
       new_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
@@ -126,22 +163,8 @@ describe Driver do
 
     end
 
-    describe "next available" do
-      it "returns the next available driver from a list of new drivers (no trips)" do
 
-        expect {
-          next_driver = Driver.next_available
-        }.must_differ "next_driver.trips.count", 1
 
-        expect(next_driver.count).must_equal 1
-      end
-
-      it "in the absence of new drivers, will select the driver with the longest time since last trip" do
-
-      end
-
-      # TODO: implement tests for logic for what to return in cases of no available drivers
-    end
 
     describe "can go online" do
       it "changes an unavailable driver to available" do
