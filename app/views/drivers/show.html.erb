@@ -10,9 +10,10 @@
   <li>AVERAGE RATING: <%=@driver.average_rating.round(2) %></li>
 </ul>
 
+<div class="buttons">
 <%= button_to "Edit", edit_driver_path(@driver.id), method: :get%>
-<br>
 <%= button_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+</div>
 <br>
 <h1>TRIPS DRIVEN:</h1>
 

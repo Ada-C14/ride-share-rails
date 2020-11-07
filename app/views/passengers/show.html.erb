@@ -8,8 +8,11 @@
   <li>TOTAL SPENT: $<%='%.2f' % (@passenger.total_spent.to_f/100) %></li>
 </ul>
 
+<div class="buttons">
 <%= button_to "Edit", edit_passenger_path(@passenger.id), method: :get%>
 <%= button_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+<div>
+
 <br>
 <h1>TRIPS TAKEN:</h1>
 <table>

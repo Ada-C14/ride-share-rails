@@ -9,5 +9,7 @@
   <li>COST: $<%= "#{'%.2f' % (@trip.cost.to_f/100)}" %> </li>
 </ul>
 
+<div class="buttons">
 <%= button_to "Edit", edit_trip_path(@trip.id), method: :get%>
 <%= button_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+</div>
