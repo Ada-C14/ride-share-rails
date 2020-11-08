@@ -225,22 +225,6 @@ describe DriversController do
       must_respond_with :redirect
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
-      # schanen - i don't think we need two tests for using the same form in update and new **********
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
-    end
   end
 
   describe "destroy" do

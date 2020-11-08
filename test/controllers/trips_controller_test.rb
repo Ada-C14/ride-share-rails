@@ -56,7 +56,7 @@ describe TripsController do
 
       must_respond_with :redirect
       passenger_path(new_trip.passenger_id)
-      must_redirect_to passenger_path(new_trip.passenger_id) #trip_path(id: new_trip.id)
+      must_redirect_to passenger_path(new_trip.passenger_id)
     end
 
   end
