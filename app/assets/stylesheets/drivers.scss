@@ -2,34 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.scroll-top {
+    height: 100px;
+    width: 100%;
+    color: white;
+    opacity:0.0;
+}
 
 table {
   width: 100%;
+  padding: 10px;
 }
 
 th {
   height: 50px;
 }
 
-
-tr:hover {background-color: lightpink;}
 th {
-  background-color: rebeccapurple;
+  background-color: #8acfd1;
   color: white;
 }
+
 td {
-  height: 50px;
-  vertical-align: bottom;
+  height: 40px;
+  text-align: center;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+.table-link {
+    text-decoration: none;
+    color: #0067ab;
 }
 
-// td {
-//   text-align: center;
-// }
-// tr:nth-child(even) {background-color: lightblue;}
+.table-link:hover {
+    color: #8acfd1;
+}
+
+.table-link:visited {
+    color: white;
+}
+
+.table-link:visited:hover {
+    color: #8acfd1;
+}
+
+.table-content {
+    color: white;
+}
+
