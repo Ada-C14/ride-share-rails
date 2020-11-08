@@ -21,7 +21,7 @@ class PassengersController < ApplicationController
   def create
     @passengers = Passenger.new(passengers_params)
     if @passengers.save # save returns true if the database insert succeeds
-      redirect_to passenger_path(@passengers.id) # go to the index so we can see the task in the list
+      redirect_to passengers_path(@passengers.id) # go to the index so we can see the task in the list
       return
     else # save failed :(
     render :new # show the new task form view again
@@ -38,18 +38,17 @@ class PassengersController < ApplicationController
   end
 
   def update
-    @passengers = Passenger.find_by(id: params[:id])
+    @passengers = Passenger.find_by(id:params[:id])
 
     if @passengers.nil?
       head :not_found
       return
-    elsif @passengers.update(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
+    elsif @passengers.update(passengers_params)
       redirect_to passenger_path(@passengers.id)
       return
     else
       render :edit
     end
-
   end
 
   def destroy

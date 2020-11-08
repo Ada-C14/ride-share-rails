@@ -45,7 +45,6 @@ describe DriversController do
   end
 
   describe "new" do
-
     it "responds with success" do
     end
   end

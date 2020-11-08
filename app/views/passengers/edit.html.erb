@@ -4,15 +4,7 @@
   <%= link_to "Return to Rider List", passengers_path %> |
   <%=link_to "View Rider Trips", passenger_trips_path(@passengers.id) %> |
 </nav>
-<% if @passengers.errors.any? %>
-  <ul class="errors">
-    <% @passengers.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+
 <%= render partial: "form", locals: { action_name: "Edit Rider" } %>
 
 <nav>
