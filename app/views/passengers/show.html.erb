@@ -17,6 +17,7 @@
   <div class="edit-delete">
     <div><%= link_to "DELETE PASSENGER", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete #{@passenger.name}?"}, class: 'table-link' %></div>
     <div><%= link_to "EDIT PASSENGER", edit_passenger_path, class: 'table-link' %></div>
+    <div><%= link_to "REQUEST TRIP", trips_path(passenger_id: @passenger.id), method: :post, class: 'table-link' %></div>
   </div>
 
 </div>

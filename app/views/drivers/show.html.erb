@@ -29,47 +29,47 @@
 
 </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>TRIP ID </th>
-        <th>TRIP DATE </th>
-        <th>PASSENGER ID </th>
-        <th>PASSENGER NAME </th>
-        <th>DRIVER ID </th>
-        <th>DRIVER NAME </th>
-        <th>COST </th>
-        <th>RATING </th>
-      </tr>
-    </thead>
+<table>
+  <thead>
+    <tr>
+      <th>TRIP ID </th>
+      <th>TRIP DATE </th>
+      <th>PASSENGER ID </th>
+      <th>PASSENGER NAME </th>
+      <th>DRIVER ID </th>
+      <th>DRIVER NAME </th>
+      <th>COST </th>
+      <th>RATING </th>
+    </tr>
+  </thead>
 
-    <tbody>
-    <% @driver.trips.each do |trip| %>
-      <tr>
-        <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
-        <td class="table-content"><%= trip.date %></td>
+  <tbody>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
+      <td class="table-content"><%= trip.date %></td>
 
-        <% if Passenger.find_by(id: trip.passenger_id) == nil %>
-          <td class="table-content">N/A</td>
-          <td class="table-content">DELETED PASSENGER</td>
-        <% else %>
-          <td class="table-content"><%= trip.passenger_id %></td>
-          <td class="table-content"><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
-        <% end %>
+      <% if Passenger.find_by(id: trip.passenger_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED PASSENGER</td>
+      <% else %>
+        <td class="table-content"><%= trip.passenger_id %></td>
+        <td class="table-content"><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
+      <% end %>
 
-        <% if Driver.find_by(id: trip.driver_id) == nil %>
-          <td class="table-content">N/A</td>
-          <td class="table-content">DELETED DRIVER</td>
-        <% else %>
-          <td class="table-content"><%= trip.driver_id %></td>
-          <td class="table-content"><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
-        <% end %>
+      <% if Driver.find_by(id: trip.driver_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED DRIVER</td>
+      <% else %>
+        <td class="table-content"><%= trip.driver_id %></td>
+        <td class="table-content"><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
+      <% end %>
 
-        <td class="table-content"><%= trip.cost_to_string %></td>
-        <td class="table-content"><%= trip.rating %></td>
+      <td class="table-content"><%= trip.cost_to_string %></td>
+      <td class="table-content"><%= trip.rating %></td>
 
-      </tr>
-    <% end %>
-    </tbody>
+    </tr>
+  <% end %>
+  </tbody>
 
-  </table>
+</table>
