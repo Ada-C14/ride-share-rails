@@ -1,4 +1,4 @@
-<nav>
+<nav class="nav-list">
   <ul>
     <li><button><a href="<%= new_driver_path %>">Add a driver</a></button></li>
   </ul>
@@ -13,21 +13,18 @@
 
 <table>
   <thead>
-  <th>Id</th>
   <th>Name</th>
   <th>VIN number</th>
-  <th>Options</th>
+  <th>Total Earnigns</th>
+  <th>Avg. Rating</th>
   </thead>
   <tbody>
     <% @drivers.each do |driver| %>
       <tr>
-        <td><%= driver.id %></td>
         <td><%= link_to driver.name, driver_path(driver.id) %></td>
         <td><%= driver.vin %></td>
-        <td>
-            <%= link_to "Edit", edit_driver_path(driver.id) %> |
-            <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %>
-        </td>
+        <td><%= number_to_currency(driver.total_earnings.round(2))%></td>
+        <td><%= driver.average_rating.nil? ? nil :driver.average_rating.round(2) %></td>
       </tr>
     <% end %>
   </tbody>

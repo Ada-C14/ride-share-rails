@@ -13,11 +13,20 @@
     <header>
       <div class="image-txt-container">
         <img src="/images/rideshare.png" alt="main" />
+        <h1 ><%= link_to "A&A RIDESHARE", root_path %></h1>
+        <nav>
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Drivers", drivers_path %></li>
+            <li><%= link_to "Passengers", passengers_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+          </ul>
+        </nav>
       <div class="image-txt-container">
     </header>
     <main>
 
-      <h1 ><%= link_to "RIDESHARE", root_path %></h1>
+
       <div>
         <%= yield %>
       </div>

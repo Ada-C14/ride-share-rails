@@ -1,29 +1,14 @@
 <h3>Trip # <%= @trip.id %></h3>
-<section>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Driver</th>
-        <th>Passenger</th>
-        <th>Price</th>
-        <th>Rating</th>
-        <th>Option</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @trip.date.strftime("%m/%d/%Y") %></td>
-        <td><%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></td>
-        <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %></td>
-        <td><%= number_to_currency(@trip.cost) %></td>
-        <td><%= @trip.rating %></td>
-        <td>
-          <%= link_to "Edit", edit_trip_path(@trip.id) %> |
-          <%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %> |
-          <%= link_to "Back", trips_path %></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
+<div class="perfil">
+  <ul>
+      <li>Date: <%= @trip.date.strftime("%m/%d/%Y") %></li>
+      <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %></li>
+      <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %></li>
+      <li>Price: <%= number_to_currency(@trip.cost) %></li>
+      <li>Rating: <%= @trip.rating %></li>
+      <li><button><%= link_to "Edit", edit_trip_path(@trip.id) %></button>
+          <button><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Please confirm deletion." } %></button>
+          <button> <%= link_to "Back", trips_path %></button>
+      </li>
+  </ul>
+</div>
