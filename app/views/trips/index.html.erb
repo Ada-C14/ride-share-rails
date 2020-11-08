@@ -2,7 +2,7 @@
 
 <h1>Trips</h1>
 
-<div><%= link_to "Add A Trip", new_trip_path %></div>
+<div><%= link_to "Add A Trip", new_trip_path, class: "link-button" %></div>
 
 <div>
 
@@ -20,8 +20,8 @@
 
       <tr>
         <td><%= link_to trip.id, trip_path(trip) %></td>
-        <td><%= link_to Driver.find(trip.driver_id).name, driver_path(trip.driver_id) %></td>
-        <td><%= link_to Passenger.find(trip.passenger_id).name, passenger_path(trip.passenger_id) %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver_id) %></td>
+        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %></td>
         <td><%= trip.date %></td>
         <td><%= trip.rating %></td>
         <td><%= trip.cost %></td>
