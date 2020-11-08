@@ -1,7 +1,7 @@
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Driver List", drivers_path %> |
-  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
+  <%=link_to "View Driver Trips", drivers_path(@drivers.id) %> |
 </nav>
 
 
@@ -13,5 +13,5 @@
 <nav>
   <%=link_to "Homepage", homepages_path %> |
   <%= link_to "Return to Driver List", drivers_path %> |
-  <%=link_to "View Driver Trips", driver_trips_path(@drivers.id) %> |
+  <%=link_to "View Driver Trips", driver_path(@drivers.id) %> |
 </nav>
