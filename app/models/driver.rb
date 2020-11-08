@@ -5,7 +5,6 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
   validates :vin, presence: true
-  validates :vin, numericality: { only_integer: true}
 
   def average_rating
     ratings = trips.map {|trip| trip.rating}
