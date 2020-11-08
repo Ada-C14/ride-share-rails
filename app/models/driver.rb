@@ -5,7 +5,7 @@ class Driver < ApplicationRecord
     validates :vin, presence: true
 
     def average_rating
-        return self.trips.average(:rating)
+        return (self.trips.average(:rating)).round(2)
     end
 
     def total_earnings
