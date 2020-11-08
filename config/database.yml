@@ -83,3 +83,8 @@ production:
   database: ride_share_rails_production
   username: ride_share_rails
   password: <%= ENV['RIDE_SHARE_RAILS_DATABASE_PASSWORD'] %>
+
+production:
+   <<: *default
+   adapter: postgresql
+   database: db/production.sqlite3
