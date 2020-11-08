@@ -34,8 +34,11 @@ class TripsController < ApplicationController
                        rating: nil
                      )
     if new_trip.save
+
+      driver.update(available: false)
       redirect_to passenger_path(params[:passenger_id]) #trip_path(new_trip.id)
     else
+
       redirect_to passenger_path(params[:passenger_id])   #passsenger show page
     end
   end
