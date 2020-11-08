@@ -171,7 +171,20 @@ describe DriversController do
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
+      driver_hash = {
+          driver: {
+              name: nil,
+              vin: nil,
+          },
+      }
+      # Act-Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change "Driver.count"
+
+      # Assert
+      must_respond_with :not_found
+    end
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
@@ -202,20 +215,17 @@ describe DriversController do
       must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect " do
       # Arrange
-      #
+      driver_id = driver.id
       # driver_id = driver.id
       # # Act-Assert
-      # # Ensure that there is a change of -1 in Driver.count
-      # expect {
-      #   delete driver_path(driver_id)
-      # }.wont_change 'Driver.count'
-      #
-      # # Assert
+      expect {
+        delete driver_path(-10)
+      }.wont_change 'Driver.count'
+
       # # Check that the controller responds or redirects with whatever your group decides
-      # must_respond_with :redirect
-      # must_redirect_to drivers_path
+      must_respond_with :not_found
 
     end
   end
