@@ -38,28 +38,28 @@
   <tbody>
   <% @passenger.trips.each do |trip| %>
     <tr>
-      <td><%= link_to trip.id, trip_path(trip) %></td>
-      <td><%= trip.date %></td>
+      <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
+      <td class="table-content"><%= trip.date %></td>
 
 
       <% if Passenger.find_by(id: trip.passenger_id) == nil %>
-        <td>N/A</td>
-        <td>DELETED PASSENGER</td>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED PASSENGER</td>
       <% else %>
-        <td><%= trip.passenger_id %></td>
-        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger) %></td>
+        <td class="table-content"><%= trip.passenger_id %></td>
+        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
       <% end %>
 
       <% if Driver.find_by(id: trip.driver_id) == nil %>
-        <td>N/A</td>
-        <td>DELETED DRIVER</td>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED DRIVER</td>
       <% else %>
-        <td><%= trip.driver_id %></td>
-        <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
+        <td class="table-content"><%= trip.driver_id %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
       <% end %>
 
-      <td><%= trip.cost_to_string %></td>
-      <td><%= trip.rating %></td>
+      <td class="table-content"><%= trip.cost_to_string %></td>
+      <td class="table-content"><%= trip.rating %></td>
 
     </tr>
   <% end %>

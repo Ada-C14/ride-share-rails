@@ -1,4 +1,10 @@
-<h1>EDIT DRIVER </h1>
+<div class="scroll-top"></div>
 
-<%= render partial: "form", locals: { action_name: "Update Driver" } %>
+<h2 class="form-header">EDIT DRIVER - <%= @driver.name.upcase %></h2>
+
+<div class="driver-form">
+
+<%= render partial: "form", locals: { action_name: "UPDATE DRIVER" }, class: 'forms' %>
+
+</div>
 
