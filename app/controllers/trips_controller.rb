@@ -16,7 +16,6 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-
   end
 
   def create
@@ -39,7 +38,6 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
-
     if @trip.nil?
       head :not_found
       return
@@ -53,7 +51,6 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
-
     if @trip.nil?
       head :not_found
       return

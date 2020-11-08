@@ -5,68 +5,7 @@
   <link href="https://fonts.googleapis.com/css?family=Cherry+Swash&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <%#= stylesheet_link_tag  'passenger' %>
 </head>
-  <style>
-      /* Header/logo Title */
-      .header {
-          padding: 80px;
-          text-align: center;
-          background: rebeccapurple;
-          color: white;
-      }
-      /* Increase the font size of the heading */
-      .header h1 {
-          font-size: 40px;
-      }
-      /* Style the top navigation bar */
-      .navbar {
-          overflow: hidden;
-          background-color: #333;
-      }
-      /* Style the navigation bar links */
-      .navbar a {
-          float: left;
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 20px;
-          text-decoration: none;
-      }
-
-      /* Right-aligned link */
-      .navbar a. right {
-          float: right;
-      }
-       /*Change color on hover*/
-      .navbar a:hover {
-          background-color: #ddd;
-          color: black;
-      }
-      /* Footer */
-      footer {
-          padding: 100px;
-          text-align: center;
-          background: #ddd;
-      }
-
-    /*table styling*/
-      thead:nth-child(odd){background-color: black;}
-      tr:nth-child(even) {background-color: #c8a2c8;}
-      table, th, td {
-  border: 3px solid purple;
-  padding: 10px;
-  margin: 20px;
-}
-      thead {
-          color: white;
-      }
-
-      a {
-          color: rebeccapurple;
-      }
-
-</style>
 <body>
 <div class="header">
   <h1> Passenger: <%= @passenger.name %></h1>
@@ -76,8 +15,8 @@
   <%= link_to "Passengers", passengers_path%>
   <%= link_to "Drivers", drivers_path%>
 </div>
-<table>
-  <thead>
+<table >
+  <thead class ="table-center">
  <tr>
     <th>Trip ID</th>
     <th>Driver</th>
@@ -86,15 +25,15 @@
     <th>Trip Rating</th>
   </tr>
   </thead>
-  <tbody  >
+  <tbody >
   <% @passenger.trips.each do |trip|%>
   <tr>
-    <td><%= trip.id %>,<%= link_to " Trip Details", trip_path(trip.id) %>
+    <td>
+      <%= trip.id %>,<%= link_to " Trip Details", trip_path(trip.id) %>
     </td>
     <td><%= trip.driver.name %></td>
     <td><%= trip.passenger.name %></td>
-    <td>$<%= trip.cost %>
-    </td>
+    <td><%= number_to_currency(Trip.format_money(trip.cost)) %></td>
     <td><%= trip.rating %></td>
   </tr>
   <% end %>
@@ -108,8 +47,12 @@
     <li>Your phone number is: <%= @passenger.phone_num %></li>
   </h4>
 </ul>
-
 <%= link_to 'Add new trip', passenger_trips_path(@passenger), method: :post %>
-
+<footer>
+Sandy and Rachael (c) 2020
+</footer>
 </body>
 </html>
+
+
+

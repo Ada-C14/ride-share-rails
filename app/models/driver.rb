@@ -2,6 +2,11 @@
 class Driver < ApplicationRecord
   # after_initialize :set_availability
   has_many :trips
+  validates :name, presence: true
+  validates :name, length: { minimum: 2 }
+  validates :vin, presence: true
+  validates :vin, numericality: { only_integer: true}
+
   def average_rating
     ratings = trips.map {|trip| trip.rating}
     if ratings = 0
@@ -20,9 +25,9 @@ class Driver < ApplicationRecord
     total = 0
     costs.each do |cost|
       total += cost
-      total = total.to_f/100
+      total = total.to_f
     end
-    return total.round(2)
+    return total.round(2)/100
   end
 
   def after_fee
@@ -34,11 +39,4 @@ class Driver < ApplicationRecord
     end
     return total = total.round(2)
   end
-
-  # def set_availability
-  #   self.available ||= "available"
-  #
-  # end
-
-
 end

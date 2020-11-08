@@ -1,5 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RideShareRails</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <h1> Requested Ride </h1>
-
 <tr>
   <th>Trip ID</th>
   <th>Driver</th>
@@ -13,7 +20,7 @@
     <td><%= @trip.id %></td>
     <td><%= @trip.driver.name %></td>
     <td><%= @trip.passenger.name %></td>
-    <td>$<%= @trip.cost %></td>
+    <td><%= number_to_currency(Trip.format_money(trip.cost)) %></td>
     <td><%= @trip.rating %></td>
   </tr>
 </tbody>

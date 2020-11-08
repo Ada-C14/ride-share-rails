@@ -1,11 +1,19 @@
+<body class = "passenger-color">
 <%= form_with model: @driver, class: 'edit-driver' do |f| %>
-
-  <p>Please provide the following information to edit your task in our database:</p>
-
+  <h3>Please provide the following information to edit your driver.</h3>
+  <% if @driver.errors.any? %>
+<ul>
+  <% @driver.errors.messages.each do |column, message| %>
+    <li>
+     <p> <%= column %> <%= message %></p>
+    </li>
+  <% end %>
+</ul>
+  <% end %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :vin %>
     <%= f.text_field :vin %>
-
   <%= f.submit "Edit Driver", class: "driver-button" %>
 <% end %>
+

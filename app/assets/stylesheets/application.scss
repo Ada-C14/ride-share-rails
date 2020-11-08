@@ -16,3 +16,89 @@
 @import "bootstrap";
 @import "**/*";
 
+      /* Header/logo Title */
+      .header {
+          padding: 80px;
+          text-align: center;
+          background: rebeccapurple;
+          color: white;
+      }
+      /* Increase the font size of the heading */
+      .header h1 {
+          font-size: 40px;
+      }
+      /* Style the top navigation bar */
+      .navbar {
+          overflow: hidden;
+          background-color: #333;
+      }
+      /* Style the navigation bar links */
+      .navbar a {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 20px;
+          text-decoration: none;
+      }
+
+      /*Change color on hover*/
+      .navbar a:hover {
+          background-color: #ddd;
+          text-decoration: none;
+          color: black;
+      }
+      /* Footer */
+      footer {
+          padding: 100px;
+          text-align: center;
+          background: #ddd;
+      }
+
+      /*table styling*/
+      thead:nth-child(odd){background-color: black;}
+      tr:nth-child(even) {background-color: #c8a2c8;}
+      table, th, td {
+          border: 3px black;
+          padding: 40px;
+          margin: 40px;
+      }
+
+      .table-center {
+         text-align: center;
+      }
+
+      thead {
+          color: white;
+          font-size: 18px;
+      }
+
+      table {
+       margin-left: auto;
+       margin-right: auto;
+       table-layout: fixed;
+       border-collapse: collapse;
+       width: 70%;
+      }
+
+      td {
+      border: 1px solid #000;
+      font-size: 14px;
+      font-weight: bold;
+      width: 40px;
+      }
+
+      td+td {
+      width: auto;
+      }
+
+      a {
+      color: rebeccapurple;
+      }
+
+      .passenger-color {
+            background-color: #c8a2c8;
+
+      }
+
+

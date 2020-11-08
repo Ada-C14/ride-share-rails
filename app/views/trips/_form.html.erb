@@ -1,5 +1,6 @@
+<body class = "passenger-color">
 <%= form_with model: @trip, class: 'edit-trip' do |f| %>
-  <p>Please provide the following information to edit your task in our database:</p>
+  <h3>Please provide the following information to edit your trip.</h3>
 
   <%= f.label :driver_id %>
   <%= f.text_field :driver_id %>
@@ -15,7 +16,6 @@
 
   <%= f.label :cost %>
   <%= f.text_field :cost %>
-
 
   <%= f.submit "Edit Trip", class: "trip-button" %>
 <% end %>
