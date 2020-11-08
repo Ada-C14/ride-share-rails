@@ -64,7 +64,7 @@ nav li a:visited:hover {
     -webkit-text-stroke: 1px #39b8db;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     letter-spacing: 3px;
     padding: 15px;
@@ -82,7 +82,7 @@ img {
 
 #footer {
     text-align: center;
-    color: white;
+    color: #0067ab;
     font-size: 15px;
     padding: 15px;
 }
@@ -92,5 +92,7 @@ header {
     background-color: #f5c182;
     width: 100%;
 }
+
+
 
 
