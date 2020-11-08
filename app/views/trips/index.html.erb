@@ -8,9 +8,10 @@
 </nav>
 
 <div>
+  <%=cents_dollars(@trips.total_earnings) %>
     <ul>
       <% @trips.each do |trip| %>
-        <li><strong><%= link_to  trip.passenger.name, passenger_path(trip.passenger.id) %></strong> : Trip ID: <%=trip.id %> | Trip Rating : <%=trip.rating %> | Passenger ID: <%=trip.passenger.id%> | Driver ID: <%= trip.driver_id%> | Cost: <%=trip.cost %> | <%= link_to "Edit Rating", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
+        <li><strong><%= link_to  trip.passenger.name, passenger_path(trip.passenger.id) %></strong> : Trip ID: <%=trip.id %> | Trip Rating : <%=trip.rating %> | Passenger ID: <%=trip.passenger.id%> | Driver ID: <%= trip.driver_id%> | Cost: <%=cents_dollars(trip.cost) %> | <%= link_to "Edit Rating", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
       <% end %>
     </ul>
 </div>
