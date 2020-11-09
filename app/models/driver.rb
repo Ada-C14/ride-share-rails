@@ -3,7 +3,7 @@ class Driver < ApplicationRecord
   # after_initialize :set_availability
   has_many :trips
   validates :name, presence: true
-  validates :name, length: { minimum: 2 }
+  # validates :name, length: { minimum: 2 }
   validates :vin, presence: true
 
   def average_rating
