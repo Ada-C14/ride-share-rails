@@ -3,8 +3,10 @@
   <h3>Thank you <%= @passenger.name %>!</h3>
   <h2>Your Trip Request is Completed!</h2>
 
-  <%= link_to "Edit", edit_trip_path(@trip) , class: "link-button"%>
-  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+  <div>
+    <%= link_to "Edit", edit_trip_path(@trip) , class: "link-button"%>
+    <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+  </div>
 
   <table>
     <tbody>

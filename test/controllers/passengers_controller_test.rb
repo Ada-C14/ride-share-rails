@@ -130,7 +130,7 @@ describe PassengersController do
 
     it "will delete a passenger" do
       expect{
-        delete passenger_path(Passenger.first.id)
+        delete passenger_path(Passenger.find_by(id: 1))
       }.must_change 'Passenger.count', 1
 
       must_respond_with :redirect
