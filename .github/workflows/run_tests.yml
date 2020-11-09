@@ -38,7 +38,9 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
         run: |
+          rm *.lock
           gem install bundler
+          yarn
           bundle install --jobs 4 --retry 3
           bin/rails db:setup
   
