@@ -1,4 +1,4 @@
-<h1>Trips#edit</h1>
+<div class="scroll-top"></div>
 
 <%#= render partial: "form", locals: { action_name: "Update Trip" } %>
 <h1>EDIT TRIP</h1>
@@ -9,7 +9,12 @@
     PASSENGER: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %> </br>
     DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
     DATE: <%= @trip.date %> </br>
-    RATING: <%= @trip.rating %> </br>
+    RATING:
+    <% if @trip.rating == nil %>
+      PENDING
+    <% else %>
+      <% @trip.rating %> </br>
+    <% end %> </br>
   </li>
 </ul>
 
