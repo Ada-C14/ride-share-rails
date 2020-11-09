@@ -31,7 +31,7 @@ describe PassengersController do
   end
 
   describe "show" do
-    it "responds with success when showing an existing valid oassenger" do
+    it "responds with success when showing an existing valid passenger" do
       # Act
       get passenger_path(@passenger.id)
 

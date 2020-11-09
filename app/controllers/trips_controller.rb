@@ -15,6 +15,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def new
+    @trip = Trip.new
+  end
+
   def create
     @driver = Driver.find_by(available: true)
     @passenger = Passenger.find_by(id: params[:passenger_id])

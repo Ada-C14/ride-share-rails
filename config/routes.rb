@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :homepages, only: [:index]
 
-  resources :trips, except: [:new, :create]
+  resources :trips
 
   resources :passengers
 

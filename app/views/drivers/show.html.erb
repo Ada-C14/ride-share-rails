@@ -1,18 +1,31 @@
 <h2><%= @driver.name %></h2>
 <h3><%= @driver.vin %></h3>
 <h3><% if @driver.available %>
-      <%= "Available" %>
+      <%= "Status: Available" %>
     <% else %>
-      <%= "Unavailable" %>
+      <%= "Status: Unavailable" %>
     <% end %>
     </h3>
 
 <h4>List of Trips:</h4>
-<ul>
+<table>
+  <tr>
+    <th>Trip ID:</th>
+    <th>Passenger ID:</th>
+    <th>Date:</th>
+    <th>Cost:</th>
+    <th>Rating:</th>
+  </tr>
   <% @driver.trips.each do |trip| %>
-    <li>Trip ID: <%= link_to trip.id, trip_path(trip.id) %> Trip Date: <%= trip.date %></li>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip.id) %></td>
+      <td><%= link_to trip.passenger_id, passenger_path(trip.passenger_id) %></td>
+      <td><%= trip.date %></td>
+      <td><%= number_to_currency trip.cost/100.00 %></td>
+      <td><%= trip.rating %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <h2>Total Earnings <%= @driver.total_earnings.nil? ? "0" : number_to_currency(@driver.total_earnings) %></h2>
 

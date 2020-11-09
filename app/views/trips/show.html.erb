@@ -1,13 +1,21 @@
 <h2>Trip: <%= @trips[:id]%></h2>
 
-<ul>
-  <li>Driver ID: <%= link_to @trips.driver_id, driver_path(@trips.driver_id) %></li>
-  <li>Passenger ID: <%= link_to @trips.passenger_id, passenger_path(@trips.passenger_id) %></li>
-  <li>Date: <%= @trips.date %></li>
-  <li>Cost: <%= number_to_currency @trips.cost/100.00 %></li>
-  <li>Rating: <%= @trips.rating %></li>
-
-</ul>
+<table>
+  <tr>
+    <th>Driver ID:</th>
+    <th>Passenger ID:</th>
+    <th>Date:</th>
+    <th>Cost:</th>
+    <th>Rating:</th>
+  </tr>
+  <tr>
+    <td><%= link_to @trips.driver_id, driver_path(@trips.driver_id) %></td>
+    <td><%= link_to @trips.passenger_id, passenger_path(@trips.passenger_id) %></td>
+    <td><%= @trips.date %></td>
+    <td><%= number_to_currency @trips.cost/100.00 %></td>
+    <td><%= @trips.rating %></td>
+  </tr>
+</table>
 
 <div>
 <% if @trips.rating.nil? %>

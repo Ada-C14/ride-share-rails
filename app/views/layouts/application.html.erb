@@ -7,15 +7,88 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+    <style>
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      nav li {
+        float: left;
+      }
+
+      nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      nav li a:hover {
+        background-color: #111;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      header h1 {
+        font-family: Impact, Charcoal, sans-serif;
+      }
+
+      html {
+        padding: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table td, table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      table tr:nth-child(even){background-color: #f2f2f2;}
+
+      table tr:hover {background-color: #ddd;}
+
+      table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      footer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px;
+      }
+    </style>
   </head>
 
   <header>
     <h1>Madeline & Jessica Ride Share</h1>
     <nav>
         <ul>
-        <li><%= link_to "Home Page", root_path %></li>
-        <li><%= link_to "See all Passengers", passengers_path %></li>
-        <li><%= link_to "See all Drivers", drivers_path %></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Passengers", passengers_path %></li>
+        <li><%= link_to "Drivers", drivers_path %></li>
         <li><%= link_to "Add a Passenger", new_passenger_path %></li>
         <li><%= link_to "Add a Driver", new_driver_path %></li>
       </ul>
