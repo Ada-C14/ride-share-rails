@@ -55,8 +55,13 @@
         <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
       <% end %>
 
-      <td><%= trip.cost_to_string %></td>
-      <td><%= trip.rating %></td>
+      <td class="table-content"><%= trip.cost_to_string %></td>
+      <td class="table-content">
+        <% if trip.rating == nil %>
+          PENDING
+        <% else %>
+          <% trip.rating %> </br>
+        <% end %></td>
 
     </tr>
   <% end %>

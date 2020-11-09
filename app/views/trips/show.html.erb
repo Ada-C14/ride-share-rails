@@ -15,7 +15,12 @@
       DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
     <% end %>
     DATE: <%= @trip.date %> </br>
-    RATING: <%= @trip.rating %> </br>
+    RATING:
+    <% if @trip.rating == nil %>
+      PENDING
+    <% else %>
+      <% @trip.rating %> </br>
+    <% end %>
   </li>
 </ul>
 
