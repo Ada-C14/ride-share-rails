@@ -42,9 +42,9 @@ describe DriversController do
 
     it "redirects for an invalid driver id" do
       # Arrange
-      bad_id = -9999
       # Ensure that there is an id that points to no driver
-
+      bad_id = -9999
+      
       # Act
       get driver_path(bad_id)
 

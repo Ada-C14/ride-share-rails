@@ -109,8 +109,6 @@ describe PassengersController do
        post passengers_path, params: passenger_hash
      }.wont_change 'Passenger.count'
 
-     
-
      # Assert
      must_respond_with :success
    end

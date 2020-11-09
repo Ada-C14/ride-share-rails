@@ -37,7 +37,6 @@ describe TripsController do
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
-      #need a passenger
       Trip.destroy_all
 
       new_passenger = Passenger.create!(name: "Test passenger", phone_num: 1232)
