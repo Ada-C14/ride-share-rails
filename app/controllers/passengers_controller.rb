@@ -27,11 +27,6 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
-      puts @passenger.errors.to_a.length
-      @passenger.errors.each do |column, message|
-        puts column.capitalize
-        puts message
-      end
       render :new, status: :bad_request
       return
     end

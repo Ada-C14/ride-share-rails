@@ -1,23 +1,27 @@
-<h1>DETAILS for: <%= @passenger.name %></h1>
+<div class="scroll-top"></div>
 
-<button><%= link_to "Back to Passengers List", passengers_path %></button>
-<button><%= link_to "Edit Passengers", edit_passenger_path %></button>
-<button><%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete #{@passenger.name}?"}%></button>
-<button><%= link_to "Request Trip", trips_path(passenger_id: @passenger.id), method: :post %></p></button>
+<h2 class="details-header">PASSENGER DETAILS - <%= @passenger.name.upcase %></h2>
 
+<div class="detail-layout">
 
-<ul class="passenger-details">
+  <div class="details">
+    <ul>
+      <li>
+        <span class="detail-header">PHONE NUMBER: </span><%= @passenger.phone_num %> </br>
+        <span class="detail-header">PASSENGER ID: </span><%= @passenger.id %> </br>
+        <span class="detail-header">TOTAL CHARGED: </span><%= @passenger.total_charged %> </br>
+      </li>
+    </ul>
+  </div>
 
-  <li>
-    PASSENGER ID: <%= @passenger.id %> </br>
-    NAME: <%= @passenger.name %> </br>
-    PHONE NUMBER: <%= @passenger.phone_num %> </br>
-    TOTAL CHARGED:<%= @passenger.total_charged %> </br>
-  </li>
+  <div class="edit-delete">
+    <div><%= link_to "DELETE PASSENGER", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete #{@passenger.name}?"}, class: 'table-link' %></div>
+    <div><%= link_to "EDIT PASSENGER", edit_passenger_path, class: 'table-link' %></div>
+    <div><%= link_to "REQUEST TRIP", trips_path(passenger_id: @passenger.id), method: :post, class: 'table-link' %></div>
+  </div>
 
-</ul>
+</div>
 
-<h2> TRIPS TAKEN </h2>
 <table>
   <thead>
   <tr>
@@ -35,24 +39,24 @@
   <tbody>
   <% @passenger.trips.each do |trip| %>
     <tr>
-      <td><%= link_to trip.id, trip_path(trip) %></td>
-      <td><%= trip.date %></td>
+      <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
+      <td class="table-content"><%= trip.date %></td>
 
 
       <% if Passenger.find_by(id: trip.passenger_id) == nil %>
-        <td>N/A</td>
-        <td>DELETED PASSENGER</td>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED PASSENGER</td>
       <% else %>
-        <td><%= trip.passenger_id %></td>
-        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger) %></td>
+        <td class="table-content"><%= trip.passenger_id %></td>
+        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
       <% end %>
 
       <% if Driver.find_by(id: trip.driver_id) == nil %>
-        <td>N/A</td>
-        <td>DELETED DRIVER</td>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED DRIVER</td>
       <% else %>
-        <td><%= trip.driver_id %></td>
-        <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
+        <td class="table-content"><%= trip.driver_id %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
       <% end %>
 
       <td class="table-content"><%= trip.cost_to_string %></td>
@@ -62,6 +66,7 @@
         <% else %>
           <% trip.rating %> </br>
         <% end %> </td>
+
 
     </tr>
   <% end %>

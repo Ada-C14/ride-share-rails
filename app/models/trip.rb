@@ -19,10 +19,12 @@ class Trip < ApplicationRecord
 
   def driver_name
     if self.driver.name != nil
-      return self.trip.driver.name
+      self.driver.name
+      return
     else
       self.driver.name = "DELETED PASSENGER"
-      return self.trip.driver.name
+      self.driver.name
+      return
     end
   end
 

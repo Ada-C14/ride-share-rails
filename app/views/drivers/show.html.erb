@@ -1,32 +1,36 @@
-<h1>DETAILS for: <%= @driver.name %></h1>
+<div class="scroll-top"></div>
 
-<button><%= link_to "Back to Drivers List", drivers_path %></button>
-<button><%= link_to "Edit Driver", edit_driver_path %></button>
-<button><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete #{@driver.name}?"}%></button>
+<h2 class="details-header">DRIVER DETAILS - <%= @driver.name.upcase %></h2>
 
+<div class="detail-layout">
 
+  <div class="details">
+    <ul>
+      <li>
+        <span class="detail-header">VIN: </span><%= @driver.vin %> </br>
+        <span class="detail-header">EARNINGS: </span><%= @driver.total_earnings %> </br>
+        <span class="detail-header">AVERAGE RATING: </span><%= @driver.avg_rating %> </br>
+        <span class="detail-header">STATUS:</span>
+        <% if @driver.available %>
+          <%= link_to "AVAILABLE", toggle_status_path(@driver), method: :patch, class: 'table-link', id: 'avail' %>
+        <% else %>
+          <%= link_to "UNAVAILABLE", toggle_status_path(@driver), method: :patch, class: 'table-link', id: 'unavail' %>
+        <% end %>
+        </br><span class="detail-header">DRIVER ID: </span><%= @driver.id %> </br>
+      </li>
+    </ul>
+  </div>
 
-<ul class="driver-details">
+  <div class="edit-delete">
+    <div><%= link_to "DELETE DRIVER", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete #{@driver.name}?"}, class: 'table-link' %></div>
+    <div><%= link_to "EDIT DRIVER", edit_driver_path, class: 'table-link' %></div>
+    <div><%= link_to "CHANGE AVAILABILITY", toggle_status_path(@driver), method: :patch, class: 'table-link' %></div>
+  </div>
 
-  <li>
-    DRIVER ID: <%= @driver.id %> </br>
-    NAME: <%= @driver.name %> </br>
-    VIN: <%= @driver.vin %> </br>
-    TOTAL EARNINGS:<%= @driver.total_earnings %> </br>
-    AVERAGE RATING: <%= @driver.avg_rating %> </br>
-    STATUS:
-    <% if @driver.available %>
-      <button><%= link_to "AVAILABLE", toggle_status_path(@driver), method: :patch %></button>
-    <% else %>
-      <button><%= link_to "UNAVAILABLE", toggle_status_path(@driver), method: :patch %></button>
-    <% end %>
+</div>
 
-  </li>
-</ul>
-<!--ternary operator? FIX BUTTON LINK -->
-<h2> TRIPS TAKEN </h2>
-  <table>
-    <thead>
+<table>
+  <thead>
     <tr>
       <th>TRIP ID </th>
       <th>TRIP DATE </th>
@@ -37,35 +41,35 @@
       <th>COST </th>
       <th>RATING </th>
     </tr>
-    </thead>
+  </thead>
 
-    <tbody>
-    <% @driver.trips.each do |trip| %>
-      <tr>
-        <td><%= link_to trip.id, trip_path(trip)%></td>
-        <td><%= trip.date %></td>
+  <tbody>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
+      <td class="table-content"><%= trip.date %></td>
 
-        <% if Passenger.find_by(id: trip.passenger_id) == nil %>
-          <td>N/A</td>
-          <td>DELETED PASSENGER</td>
-        <% else %>
-          <td><%= trip.passenger_id %></td>
-          <td><%= link_to trip.passenger.name, passenger_path(trip.passenger)%></td>
-        <% end %>
+      <% if Passenger.find_by(id: trip.passenger_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED PASSENGER</td>
+      <% else %>
+        <td class="table-content"><%= trip.passenger_id %></td>
+        <td class="table-content"><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
+      <% end %>
 
-        <% if Driver.find_by(id: trip.driver_id) == nil %>
-          <td>N/A</td>
-          <td>DELETED DRIVER</td>
-        <% else %>
-          <td><%= trip.driver_id %></td>
-          <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
-        <% end %>
+      <% if Driver.find_by(id: trip.driver_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED DRIVER</td>
+      <% else %>
+        <td class="table-content"><%= trip.driver_id %></td>
+        <td class="table-content"><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
+      <% end %>
 
-        <td><%= trip.cost_to_string %></td>
-        <td><%= trip.rating %></td>
+      <td class="table-content"><%= trip.cost_to_string %></td>
+      <td class="table-content"><%= trip.rating %></td>
 
-      </tr>
-    <% end %>
-    </tbody>
+    </tr>
+  <% end %>
+  </tbody>
 
-  </table>
+</table>

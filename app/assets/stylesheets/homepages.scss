@@ -2,52 +2,98 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-body {
-  background-image: url("https://assets.recogmedia.net/1/69/Entry_Uploads/50033-thumb.jpg");
-  background-color: lavender;
-  background-size: cover;
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #f5c182;
 }
 
+// .body {
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+// }
 
-.navbar {
-  list-style: none;
-  width: 100%;
-  text-align: right;
-  display: flex;
-  margin-right: 2rem;
-  float: right;
-  position: fixed;
-  top: 0;
+main {
 
 }
 
-.navbar a:link {
-  display: block;
-  font-size: 2.2rem;
-  padding: 2.5rem;
-  color: purple;
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: space-around;
 }
 
-.navbar a:visited {
-  color: blue;
+nav {
+    padding: 1px;
+    text-align: center;
+    border-top: #ffedd1 1px solid;
+    border-bottom: #ffedd1 2px solid;
 }
 
-.navbar a:hover {
-  background: deepskyblue;
+nav li a {
+    text-decoration: none;
+    color: #0067ab;
+    font-size: 14px;
 }
 
-ul {
-  padding: 0;
-  margin: 0;
+nav li a:hover {
+    color: #8acfd1;
+}
+
+nav li a:visited {
+    color: white;
+}
+
+nav li a:visited:hover {
+    color: #8acfd1;
+}
+
+.h1_title {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-right: 10px;
+    border-right: white 2px solid;
+    text-decoration: none;
+    color: white;
+    -webkit-text-stroke: 1px #0067ab;
+    font-size: 40px;
+}
+
+.h1_title:hover {
+    -webkit-text-stroke: 1px #39b8db;
+}
+
+h1, h2 {
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 15px;
+}
+
+small {
+    color: white;
+    vertical-align: text-top;
+}
+
+img {
+    width: 100%;
+    height: 60%;
+}
+
+#footer {
+    text-align: center;
+    color: #0067ab;
+    font-size: 15px;
+    padding: 15px;
+}
+
+header {
+    position: fixed;
+    background-color: #f5c182;
+    width: 100%;
+    z-index: 2;
 }
 
 
-footer {
-  text-align: right;
-  color: white;
-  font-size: 20px;
-  width: 100%;
-  height : 60px;
-  display: inline-block;
-}
+
 

@@ -60,13 +60,18 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
 
-    describe "complete trip" do
-      # Your code here
+    describe "total_charged" do
+      it 'can format passenger changes as correctly and as a string' do
+      # Act
+      #
+      passenger = Passenger.find_by(name: 'Becca')
+      result = passenger.total_charged
+      # Assert
+      expect(result).must_be_kind_of String
+      expect(result).must_equal " $2.00"
+      end
     end
-    # You may have additional methods to test here
   end
+
 end

@@ -14,8 +14,9 @@ class Passenger < ApplicationRecord
 
       dollars += trip.cost
     end
-    dollars = (dollars.to_f / 100)
-    return " $#{dollars.to_s}"
+    dollars = sprintf('%.2f', (dollars.to_f / 100))
+
+    return " $#{dollars}"
   end
 
 end

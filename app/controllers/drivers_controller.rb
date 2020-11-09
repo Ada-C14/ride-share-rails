@@ -70,13 +70,16 @@ class DriversController < ApplicationController
   end
 
   def toggle_status
-    if @driver.available
-      return @driver.update(available: false)
+    if @driver.available == true
+      @driver.update(available: false)
+      redirect_to driver_path(@driver)
+      return
     else
-      return @driver.update(available: true)
+      @driver.update(available: true)
+      redirect_to driver_path(@driver)
+      return
     end
-    redirect_to driver_path
-    return
+
   end
 
   private
@@ -86,6 +89,7 @@ class DriversController < ApplicationController
   end
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin, :available)
+    params.require(:driver).permit(:name, :vin, :available)
   end
+
 end

@@ -28,16 +28,17 @@ class TripsController < ApplicationController
 
     new_trip = Trip.new(
                        date: Time.now,
-                       cost: rand(20..100),
+                       cost: rand(2000..10000),
                        passenger_id: params[:passenger_id],
-
                        driver: driver,
-
                        rating: nil
                      )
     if new_trip.save
-      redirect_to trip_path(new_trip.id)
+
+      driver.update(available: false)
+      redirect_to passenger_path(params[:passenger_id]) #trip_path(new_trip.id)
     else
+
       redirect_to passenger_path(params[:passenger_id])   #passsenger show page
     end
   end
@@ -86,6 +87,6 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+    params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end

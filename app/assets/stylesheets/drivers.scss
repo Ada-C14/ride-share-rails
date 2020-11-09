@@ -2,34 +2,136 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.scroll-top {
+    height: 100px;
+    width: 100%;
+    color: white;
+    opacity:0.0;
+}
 
 table {
   width: 100%;
+  padding: 10px;
 }
 
 th {
   height: 50px;
-}
-
-
-tr:hover {background-color: lightpink;}
-th {
-  background-color: rebeccapurple;
+  background-color: #8acfd1;
   color: white;
 }
+
 td {
-  height: 50px;
-  vertical-align: bottom;
+  height: 40px;
+  text-align: center;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+.table-link {
+    text-decoration: none;
+    color: #0067ab;
 }
 
-// td {
-//   text-align: center;
+.table-link:hover {
+    color: #8acfd1;
+}
+
+.table-link:visited {
+    color: white;
+}
+
+.table-link:visited:hover {
+    color: #8acfd1;
+}
+
+.table-content {
+    color: white;
+}
+
+.detail-layout {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.details-header {
+    color: #0067ab;
+}
+
+.details ul {
+    color: #0067ab;
+    list-style: none;
+    padding-top: 5px;
+    line-height: 1.5;
+}
+
+.detail-header {
+    color: #003c63;
+}
+
+.edit-delete div {
+    padding: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.edit-delete div a {
+    text-decoration: none;
+    color: white;
+    -webkit-text-stroke: 1px #0067ab;
+}
+
+#avail {
+    color: green;
+}
+
+#unavail {
+    color: red;
+}
+
+// .a-form {
+//     padding: 0px;
+//     padding-bottom: 0px;
+//     height: 250px;
+//     background-color: #8acfd1;
+//     display: flex;
+//     flex-wrap: nowrap;
+//     justify-content: space-around;
 // }
-// tr:nth-child(even) {background-color: lightblue;}
+
+.form-header {
+    background-color: #8acfd1;
+    color: #0067ab;
+}
+
+#form-lines {
+    line-height: 1.5;
+    background-color: #8acfd1;
+    margin: 0px;
+    margin-top: 20px;
+}
+
+label {
+    background-color: #8acfd1;
+    color: #0067ab;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    color: #0067ab;
+}
+
+select {
+    color: #0067ab;
+}
+
+form {
+    background-color: #8acfd1;
+        padding: 0px;
+        padding-bottom: 0px;
+        height: 250px;
+        background-color: #8acfd1;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+}

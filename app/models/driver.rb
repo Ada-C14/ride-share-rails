@@ -28,7 +28,7 @@ class Driver < ApplicationRecord
     if self.trips.empty?
       return 0
     end
-    total_rating = (trips.map {|trip| trip.rating}).sum
+    total_rating = (trips.map {|trip| trip.rating.to_i}).sum
     return (total_rating.to_f / trips.size).round(1)
   end
 

@@ -1,18 +1,9 @@
-<%#edit.html.erb%>
+<div class="scroll-top"></div>
 
-<header>
-  <h1><%= link_to "PASSENGERS", passengers_path, class:"header-link-text" %></h1>
-</header>
+<h2 class="form-header">EDIT PASSENGER - <%= @passenger.name.upcase %></h2>
 
-<main>
-  <h2>EDIT PASSENGER</h2>
+<div class="passenger-form">
 
   <%= render partial: "form", locals: { action_name: "EDIT" } %>
 
-</main>
-
-<footer>
-  <div id="footer">
-    <h2>&#169; Kalki and Schanen 2020</h2>
-  </div>
-</footer>
+</div>
