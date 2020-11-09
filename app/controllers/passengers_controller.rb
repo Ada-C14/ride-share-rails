@@ -18,11 +18,10 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
-      redirect_to passenger_path(@passenger)
+      redirect_to passenger_path(@passenger.id)
       return
     else
-      # raise
-      render :new, status: :bad_request
+      render :new
       return
     end
   end
@@ -63,5 +62,6 @@ class PassengersController < ApplicationController
   private
   def passenger_params
     return params.require(:passenger).permit(:name, :phone_num)
+   end
   end
-end
+

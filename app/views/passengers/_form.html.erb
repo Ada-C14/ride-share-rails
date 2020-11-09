@@ -1,5 +1,5 @@
 <body class = "passenger-color">
-<%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
+<%= form_with model: @passenger do |f| %>
   <h3>Please provide the following information to edit a Passenger.</h3>
   <% if @passenger.errors.any? %>
     <ul>
@@ -14,5 +14,5 @@
   <%= f.text_field :name %>
   <%= f.label :phone_num %>
   <%= f.text_field :phone_num %>
-  <%= f.submit "Edit Passenger", class: "passenger-button" %>
+  <%= f.submit %>
 <% end %>

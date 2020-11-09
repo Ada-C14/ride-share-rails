@@ -1,15 +1,4 @@
-<body class = "passenger-color">
-<h3>Please provide the following information to create a new Passenger account.</h3>
-<%= form_with model: @passenger do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= render partial: "form" %>
 
-  <%= f.label :phone_num %>
-  <%= f.text_field :phone_num %>
-
-  <%= f.submit "Create New Passenger" %>
-<% end %>
-<br>
-<hr />
 
 
