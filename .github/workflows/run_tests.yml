@@ -43,7 +43,8 @@ jobs:
           gem install bundler
           yarn
           bundle install --jobs 4 --retry 3
-          bin/rails db:setup
+          bin/rails db:create
+          bin/rails db:migrate
   
       - name: Run Tests 
         env:
