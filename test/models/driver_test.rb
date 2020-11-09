@@ -58,7 +58,6 @@ describe Driver do
     end
   end
 
-  # Tests for methods you create should go here
   describe "custom methods" do
     before do
       @driver = Driver.create(name: "Kari", vin: "123", available: true)
@@ -94,7 +93,7 @@ describe Driver do
       @trip_1 = Trip.create(driver_id: @driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       @trip_2 = Trip.create(driver_id: @driver.id, passenger_id: @new_passenger.id, date: Date.today, rating: 3, cost: 6334)
     end
-    # You add tests for the total_revenue method
+
     it "returns float" do
       expect(@driver.total_revenue).must_be_kind_of Float
     end
@@ -105,12 +104,13 @@ describe Driver do
 
     it "return 0 if no driven trips" do
       driver = Driver.new(
-        id: 54,
         name: "Rogers Bartell IV",
+        vin: "12535faa",
         available: false
       )
       expect(driver.total_revenue).must_equal 0
     end
+
   end
   
   describe "can go online" do

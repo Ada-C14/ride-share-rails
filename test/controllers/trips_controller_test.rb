@@ -44,7 +44,9 @@ describe TripsController do
         post passenger_trips_path(new_passenger)
       }.must_differ 'Trip.count', 1
 
-      new_trip = new_passenger.trips.first
+      new_passenger.reload #
+      new_trip = new_passenger.trips.order(:created_at) # sorting the trip list 
+      new_trip = new_trip.last
       expect(new_trip.driver.id).must_equal @driver.id
 
       must_respond_with :redirect
