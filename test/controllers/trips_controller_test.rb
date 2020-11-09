@@ -55,7 +55,8 @@ describe TripsController do
       # expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
 
       must_respond_with :redirect
-      must_redirect_to trip_path(id: new_trip.id)
+      passenger_path(new_trip.passenger_id)
+      must_redirect_to passenger_path(new_trip.passenger_id)
     end
 
   end

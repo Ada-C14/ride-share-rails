@@ -2,7 +2,7 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
-  let (:driver) {
+  let(:driver) {
     Driver.create name: 'test_driver0', vin: 'ABCDEFGHIJKLMN0', available: true
   }
 
@@ -225,22 +225,6 @@ describe DriversController do
       must_respond_with :redirect
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
-      # schanen - i don't think we need two tests for using the same form in update and new **********
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
-    end
   end
 
   describe "destroy" do

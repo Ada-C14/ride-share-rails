@@ -1,3 +1,38 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#trips-height {
+    height: 250px;
+}
+
+#trip-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 85px;
+}
+
+#trip-details {
+    padding-top: 30px;
+}
+
+
+form.trip-form {
+    background-color: #f5c182;
+    justify-content: space-between;
+}
+
+form.trip-form select {
+    background-color: white;
+}
+
+.bottom-border {
+    width: 100%;
+    border-bottom: #ffedd1 2px solid;
+}
+
+#rating-header {
+    padding-left: 0px;
+
+}
