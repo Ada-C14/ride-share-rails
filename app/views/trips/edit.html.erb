@@ -1,27 +1,41 @@
-<h1>Trips#edit</h1>
+<div class="scroll-top"></div>
 
-<%#= render partial: "form", locals: { action_name: "Update Trip" } %>
-<h1>EDIT TRIP</h1>
 
-<ul>
-  <li>
-    TRIP ID: <%= @trip.id %> </br>
-    PASSENGER: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %> </br>
-    DRIVER: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %> </br>
-    DATE: <%= @trip.date %> </br>
-    RATING: <%= @trip.rating %> </br>
-  </li>
-</ul>
+<div id="trip-edit-page">
 
-<h2> SELECT RATE SCORE: </h2>
-<%= form_with model: @trip do |f| %>
-  <fieldset>
-    <%= f.label :rating %>
-    <%= f.select :rating, [ '1', '2', '3', '4', '5' ], :prompt => 'Select One' %>
-    <%= f.submit "Rate Trip" %>
-  </fieldset>
-<% end %>
-<ul>
-  <li> <%= link_to "EDIT TRIP", edit_trip_path(@trip.id) %> </li>
-  <li> <%= link_to "DELETE TRIP ", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %> </li>
-</ul>
+  <h2 class="details-header">EDIT - TRIP <%= @trip.id %></h2>
+
+  <div class="detail-layout", id="trips-height">
+
+    <div class="details", id="trip-details">
+
+      <ul>
+          <li>
+            <span class="detail-header">TRIP ID: </span><%= @trip.id %> </br>
+            <span class="detail-header">PASSENGER: </span><%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)), class: 'table-link' %> </br>
+            <span class="detail-header">DRIVER: </span><%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)), class: 'table-link' %> </br>
+            <span class="detail-header">DATE: </span><%= @trip.date %> </br>
+
+            <div>
+              <%= form_with model: @trip, :html => {:class => 'trip-form'} do |f| %>
+                  <span class="detail-header", id="rating-header">RATING: </span>
+                  <%= f.select :rating, [ '1', '2', '3', '4', '5' ] %>
+                  <%= f.submit "RATE TRIP" %>
+
+              <% end %>
+            </div>
+
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="edit-delete", id="trip-edit">
+      <div> <%= link_to "DELETE TRIP ", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %> </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bottom-border"></div>
