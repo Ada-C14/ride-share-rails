@@ -40,7 +40,7 @@ describe TripsController do
       # Arrange
     #need a passenger
     Trip.destroy_all
-    
+
     new_passenger = Passenger.create!(name: "Test passenger", phone_num: 1232)
       expect {
         post passenger_trips_path(new_passenger)
@@ -48,6 +48,11 @@ describe TripsController do
 
       new_passenger.reload #
       new_trip = new_passenger.trips.order(:created_at) # sorting the trip list 
+      
+      puts trips.count
+      puts passenger.count
+      puts driver.count 
+
       new_trip = new_trip.first
       expect(new_trip.driver.id).must_equal @driver.id
 
