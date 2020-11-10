@@ -18,7 +18,7 @@
 
       /* Header/logo Title */
       .header {
-          padding: 80px;
+          padding: 100px;
           text-align: center;
           background: rebeccapurple;
           color: white;
@@ -64,6 +64,10 @@
           margin: 40px;
       }
 
+      .table-center {
+         text-align: center;
+      }
+
       thead {
           color: white;
           font-size: 18px;
@@ -74,22 +78,32 @@
        margin-right: auto;
        table-layout: fixed;
        border-collapse: collapse;
-       width: 50%;
+       width: 80%;
       }
 
       td {
       border: 1px solid #000;
       font-size: 14px;
       font-weight: bold;
-      width: 40px;
+      width: 30px;
       }
 
       td+td {
       width: auto;
       }
 
+      @media screen and (max-width: 700px) {
+          .table-responsive {
+              width: 130%;
+              margin-bottom: 15px;
+              overflow-y: hidden;
+              border: 1px solid #ddd;
+          }
+       }
+
       a {
             color: rebeccapurple;
       }
+
 
 
