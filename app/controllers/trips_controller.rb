@@ -25,7 +25,7 @@ class TripsController < ApplicationController
     )
     @trip.assign_trip
         @trip.save
-    redirect_to trip_path(@trip)
+    redirect_to passenger_path(@trip.passenger.id)
   end
 
   def edit
@@ -42,7 +42,7 @@ class TripsController < ApplicationController
       head :not_found
       return
     elsif @trip.update(trip_params)
-      redirect_to trips_path
+      redirect_to passenger_path(@trip.passenger.id)
       return
       render :edit
       return
