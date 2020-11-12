@@ -3,7 +3,7 @@ require "test_helper"
 describe TripsController do
   before do
     @passenger = Passenger.create name: "Test Passenger", phone_num: "293-293-2938"
-    @driver = Driver.create name: "Test Driver", vin: "29384nsf93neiv093"
+    @driver = Driver.create name: "Test Driver", vin: "29384nsf93neiv093", available: true
 
     @trip = Trip.create(
       driver_id: @driver.id,
@@ -33,13 +33,21 @@ describe TripsController do
 
   describe "create" do
     it "can create a new trip with valid information and redirect" do
-      # new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-      # id = new_passenger.id
-      # expect {
-      #   post passenger_trips_path(id)
-      # }.must_differ "Trip.count", 1
-      #
-      # must_respond_with :redirect
+      trip_hash = {
+          trip: {
+              driver_id: @driver.id,
+              passenger_id: @passenger.id,
+              cost: 12.95,
+              date: "11/08/2020",
+              rating: nil
+          },
+      }
+      id = @passenger.id
+      expect {
+        post passenger_trips_path(id), params: trip_hash
+      }.must_differ "Trip.count", 1
+
+      must_respond_with :redirect
     end
 
   end
