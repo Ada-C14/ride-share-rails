@@ -60,12 +60,20 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    it "request a ride" do
-      # Your code here
+    before do
+      new_passenger.save
+      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+    end
+    it "requests a ride" do
+
     end
 
     it "complete trip" do
-      # Your code here
+
+
     end
     # You may have additional methods to test here
   end

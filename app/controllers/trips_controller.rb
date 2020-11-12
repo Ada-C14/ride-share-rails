@@ -45,7 +45,7 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      render :edit
+      redirect_to root_path
       return
     end
   end

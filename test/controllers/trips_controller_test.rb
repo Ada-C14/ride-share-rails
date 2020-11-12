@@ -53,6 +53,26 @@ describe TripsController do
   end
 
   describe "edit" do
+    it "responds with success when getting the edit page for an existing, valid trip" do
+      # Act
+      get edit_trip_path(@trip.id)
+
+      # Assert
+      must_respond_with :success
+
+    end
+
+    it "responds with redirect when getting the edit page for a non-existing driver" do
+      # Arrange
+      # Ensure there is an invalid id that points to no driver
+
+      # Act
+      get edit_trip_path(-1)
+
+      # Assert
+      must_respond_with :redirect
+
+    end
   end
 
   describe "destroy" do
