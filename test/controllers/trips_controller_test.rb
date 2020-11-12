@@ -32,6 +32,16 @@ describe TripsController do
   end
 
   describe "create" do
+    it "can create a new trip with valid information and redirect" do
+      # new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      # id = new_passenger.id
+      # expect {
+      #   post passenger_trips_path(id)
+      # }.must_differ "Trip.count", 1
+      #
+      # must_respond_with :redirect
+    end
+
   end
 
   describe "edit" do

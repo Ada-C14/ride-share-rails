@@ -1,16 +1,45 @@
 require "test_helper"
 
 describe Trip do
+  let (:new_driver) {
+    Driver.new(name: "Kari", vin: "123", available: true)
+  }
+  let (:new_passenger) {
+    Passenger.new(name: "Kari", phone_num: "111-111-1211")
+  }
+  let (:new_trip) {
+    Trip.new(driver_id: new_driver.id, passenger_id: new_passenger.id, cost: 900, date: Date.today, rating: nil)
+  }
   it "can be instantiated" do
-    # Your code here
+    new_driver.save
+    new_passenger.save
+    expect(new_trip.valid?).must_equal true
   end
 
   it "will have the required fields" do
-    # Your code here
+    new_driver.save
+    new_passenger.save
+    new_trip.save
+    trip = Trip.first
+    [:driver_id, :passenger_id, :cost, :date, :rating].each do |field|
+
+      # Assert
+      expect(trip).must_respond_to field
+    end
   end
 
   describe "relationships" do
-    # Your tests go here
+    it "belongs to a passenger" do
+      new_driver.save
+      new_passenger.save
+      new_trip.save
+
+      trip = Trip.first
+      passenger = Passenger.find_by(id: trip.passenger_id)
+
+      expect(passenger).must_be_instance_of Passenger
+
+    end
   end
 
   describe "validations" do
