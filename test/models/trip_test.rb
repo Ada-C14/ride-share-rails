@@ -38,12 +38,40 @@ describe Trip do
       passenger = Passenger.find_by(id: trip.passenger_id)
 
       expect(passenger).must_be_instance_of Passenger
+    end
 
+    it "belongs to a driver" do
+      new_driver.save
+      new_passenger.save
+      new_trip.save
+
+      trip = Trip.first
+      driver = Driver.find_by(id: trip.driver_id)
+
+      expect(driver).must_be_instance_of Driver
     end
   end
 
   describe "validations" do
-    # Your tests go here
+    it "must have a cost" do
+      # Arrange
+      new_trip.cost = nil
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :cost
+      expect(new_trip.errors.messages[:cost]).must_equal ["can't be blank"]
+    end
+
+    it "must have a date" do
+      # Arrange
+      new_trip.date = nil
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :date
+      expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
+    end
   end
 
   # Tests for methods you create should go here
