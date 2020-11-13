@@ -1,0 +1,169 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+body {
+  height: 125vh;
+  background-size: cover;
+  font-family: Sans-Serif;
+  margin-top: 80px;
+  padding: 30px;
+}
+
+.index {
+  top: 1em;
+  left: 1em;
+  right: 1em;
+  left: 1em;
+  display: flex;
+  min-height: 40vh;
+  justify-items: center;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.edit-delete{
+  justify-items: center;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.mini-title{
+  color: darkslateblue;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+
+.info{
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+main {
+  color: black;
+}
+
+h1{
+  font-size: 4em;
+  font-weight: bold;
+  font-family: geometric, Sans-Serif;
+  font-stretch: condensed;
+}
+
+h2{
+  color: darkslateblue;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding-bottom: 1em;
+}
+
+a {
+  color: darkslateblue;
+  text-decoration: none;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+a:hover {
+  color: cadetblue;
+}
+
+header {
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+
+}
+
+footer {
+  color: black;
+  background-color: transparent;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.7em
+
+}
+nav {
+  background-color: darkslateblue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 25px 0 black;
+  justify-content: space-around;
+}
+
+nav * {
+  display: inline;
+}
+
+nav li {
+  margin: 20px;
+  justify-content: space-around;
+
+}
+
+nav li a {
+  color: cadetblue;
+  text-decoration: none;
+  justify-content: space-around;
+}
+
+table {
+  width: 100%
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: darkslateblue;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px
+}
+
+.errors {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: red
+}
+
+.cancel {
+  margin-top: .5em
+}

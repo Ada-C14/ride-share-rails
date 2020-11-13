@@ -1,0 +1,23 @@
+<h2>All Passengers</h2>
+
+<table id="index-table">
+  <tr>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th>Total Spending</th>
+  </tr>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td>
+       <%= link_to "#{passenger.name}", passenger_path(passenger.id)%>
+      </td>
+      <td>
+        <%= passenger.phone_num %>
+      </td>
+      <td>
+        $<%= sprintf("%.2f", passenger.total_amount_charged/100) %>
+      </td>
+    </tr>
+  <% end %>
+  <%= paginate @passengers %>
+</table>

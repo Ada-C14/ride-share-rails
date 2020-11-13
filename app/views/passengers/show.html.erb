@@ -1,0 +1,44 @@
+<h2>Passenger: <%= @passenger.name %></h2>
+
+<div class="edit-delete">
+  <p><%= link_to "Edit #{@passenger.name}", edit_passenger_path(@passenger.id) %></p>
+  <p><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger.id), method: :delete, data:{confirm: 'Please confirm you would like to delete this passenger.'} %></p>
+  <p><%= link_to "Return to Passenger list", passengers_path %></p>
+</div>
+
+<div class="mini-title">
+  <p>Phone Number: <%= @passenger.phone_num %></p>
+  <p>Total Amount Charged: $<%= sprintf("%.2f", @passenger.total_amount_charged/100) %></p>
+</div>
+
+<div class="mini-title">
+<p><%= @passenger.name %>'s Trips</p>
+</div>
+
+<table id="trip-table">
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+      <td><%= trip.date %></td>
+      <% if trip.driver.nil? %>
+        <td>DELETED</td>
+      <% else %>
+        <td><%= trip.driver.name %></td>
+      <% end %>
+      <td><%= trip.passenger.name %></td>
+      <td><%= trip.rating %></td>
+      <td>$<%= sprintf("%.2f", trip.cost/100) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= button_to "Add trip for #{@passenger.name}", passenger_trips_path(@passenger.id) %></p>
+

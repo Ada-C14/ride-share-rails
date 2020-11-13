@@ -58,15 +58,35 @@ describe Passenger do
     end
   end
 
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
+#   describe "custom methods" do
+#     describe "request a ride" do
+#       # Your code here
+#     end
+#
+#     describe "complete trip" do
+#       # Your code here
+#     end
+#     # You may have additional methods to test here
+#   end
+# end
+
+# Tests for methods you create should go here
+  describe "total amount charged" do
+    driver1 = Driver.create(name: "Driver 1", vin: "123456")
+    passenger1 = Passenger.create(name: "Passenger1", phone_num: "1111111111")
+    trip_1 = Trip.create(driver_id: driver1.id, passenger_id: passenger1.id, date: Date.today, rating: 1, cost: 50)
+    trip_2 = Trip.create(driver_id: driver1.id, passenger_id: passenger1.id, date: Date.today, rating: 2, cost: 25)
+    trip_3 = Trip.create(driver_id: driver1.id, passenger_id: passenger1.id, date: Date.today, rating: 5, cost: 50)
+
+
+    it "calculates the total amount charged for passenger" do
+      expect(passenger1.total_amount_charged).must_equal 125
     end
 
-    describe "complete trip" do
-      # Your code here
+    it "returns 0 if the passenger has no trips" do
+      passenger2 = Passenger.new(name: "Passenger 3", phone_num: "2222222222")
+      expect(passenger2.total_amount_charged).must_equal 0
     end
-    # You may have additional methods to test here
   end
+
 end

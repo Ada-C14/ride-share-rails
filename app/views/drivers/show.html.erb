@@ -1,0 +1,53 @@
+<h2><%= @driver.name %></h2>
+
+<div class="edit-delete">
+  <p><%= link_to "Edit Driver", edit_driver_path(@driver.id) %></p>
+  <p><%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
+  <p><%= link_to "Return to Drivers list", drivers_path %></p>
+</div>
+
+
+<div class="mini-title">
+  <% if @driver.average_rating.nil? %>
+    <p>0</p>
+  <% else %>
+    <p>Average Rating: <%= @driver.average_rating %></p>
+  <% end %>
+  <p>Total Earnings: $<%= sprintf("%.2f", @driver.total_earnings/100) %></p>
+  <% if @driver.available %>
+    <p>Current Status: Available</p>
+  <% else %>
+    <p>Current Status: Unavailable</p>
+  <% end %>
+
+  <p><%= @driver.name %>'s Trips</p>
+</div>
+
+<table id="trip-table">
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+      <td><%= trip.date %></td>
+      <td><%= trip.driver.name %></td>
+      <% if trip.passenger.nil? %>
+        <td>DELETED</td>
+      <% else %>
+        <td><%= trip.passenger.name %></td>
+      <% end %>
+      <% if trip.rating.nil? %>
+        <td>no rating</td>
+      <% else %>
+        <td><%= trip.rating %></td>
+      <% end %>
+      <td>$<%= sprintf("%.2f", trip.cost/100) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# link_to href="../../assets/stylesheets/application.scss" rel="stylesheet"%>
+
+  </head>
+
+  <header>
+    <h1>Ride Share</h1>
+  </header>
+  <body>
+  <header>
+    <nav>
+      <%= link_to "Home", root_path %>
+      <%= link_to "View Passengers", passengers_path %>
+      <%= link_to "View Drivers", drivers_path %>
+      <%= link_to "Add Passenger", new_passenger_path %>
+      <%= link_to "Add Driver", new_driver_path %>
+    </nav>
+  </header>
+
+  <%= yield %>
+  </body>
+
+  <footer>
+    Copyright Group 1 - Alice D & Genevieve - 2020
+  </footer>
+
+</html>
