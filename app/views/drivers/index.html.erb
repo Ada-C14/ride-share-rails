@@ -1,0 +1,15 @@
+<h2> Drivers list page </h2>
+<h3> List of drivers</h3>
+
+<!--<p>-->
+  <%#= link_to "New driver", new_driver_path %>
+<!--</p>-->
+<ul>
+  <% @drivers.each do |driver|  %>
+    <li>
+      <a href="/drivers/<%=driver.id %>"><%= driver.name %></a>
+    </li>
+  <% end %>
+</ul>
+
+

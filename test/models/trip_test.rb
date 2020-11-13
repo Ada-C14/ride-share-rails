@@ -1,24 +1,90 @@
 require "test_helper"
 
 describe Trip do
+
+  describe "can be instantiated" do
+
   it "can be instantiated" do
-    # Your code here
+    driver = Driver.create(
+        name: "Michael Schumacher",
+        vin: "QWERTY99189",
+        available: true )
+
+    passenger = Passenger.create(
+        name: "Mary Poppins",
+        phone_num: "2064539189"
+    )
+
+    new_trip =  Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+    expect(new_trip.valid?).must_equal true
   end
 
-  it "will have the required fields" do
-    # Your code here
+    it "will have the required fields" do
+      # Arrange
+      #new_trip = Trip.first
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true )
+
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+
+      new_trip =  Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+      [:passenger_id, :driver_id, :cost, :rating, :date].each do |field|
+        expect(new_trip).must_respond_to field
+      end
+    end
+
   end
+
 
   describe "relationships" do
-    # Your tests go here
-  end
+    it "can have one passenger:many to 1" do
+      # Arrange
+
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true )
+
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+
+      new_trip =  Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+
+      expect(new_trip.passenger).must_equal passenger
+      expect(new_trip.driver).must_equal driver
+      end
+    end
 
   describe "validations" do
-    # Your tests go here
+
+    it "must have a cost" do
+      # Arrange
+      driver = Driver.create(
+          name: "Michael Schumacher",
+          vin: "QWERTY99189",
+          available: true )
+
+      passenger = Passenger.create(
+          name: "Mary Poppins",
+          phone_num: "2064539189"
+      )
+      new_trip =  Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: nil)
+
+      # Assert
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :cost
+    end
+
   end
 
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    # Your tests here
-  end
+
+
 end
+

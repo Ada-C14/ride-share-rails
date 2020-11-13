@@ -64,8 +64,23 @@ describe Passenger do
       # Your code here
     end
 
-    describe "complete trip" do
-      # Your code here
+    describe "total spent" do
+      it "calculates summary of all trips costs" do
+        #arrange
+        passenger = create_test_passenger
+        trip_1 = create_test_trip(passenger: passenger, cost: 1000)
+        trip_2 = create_test_trip(passenger: passenger, cost: 500)
+        # act, assert
+        expect(passenger.total_spent).must_equal 1500
+      end
+
+      it "return 0 if passenger has no trips" do
+        #Arrange
+        passenger = create_test_passenger
+
+        #act and assert
+        expect(passenger.total_spent).must_equal 0
+      end
     end
     # You may have additional methods to test here
   end

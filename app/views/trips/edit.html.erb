@@ -1,0 +1,42 @@
+<h2>Edit trip page</h2>
+
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |attribute, message| %>
+      <li>
+        <strong><%= attribute.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @trip, class: 'edit-trip' do |f| %>
+  <p>Please make changes:</p>
+
+  <div>
+    <%= f.label :driver_id %>
+    <%= f.collection_select :driver_id, @drivers, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :passenger_id%>
+    <%= f.collection_select :passenger_id, @passengers, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]]%>
+  </div>
+
+  <div>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+  </div>
+
+  <%= f.submit "Save Edit", class: "trip-button" %>
+<% end %>

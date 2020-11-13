@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+  <body>
+  <header>
+    <nav>
+      <ul>
+        <li><%= link_to "Home", homes_path%></li>
+        <li><%= link_to "Passengers", passengers_path%></li>
+        <li><%= link_to "Drivers", drivers_path %></li>
+      </ul>
+    </nav>
+  </header>
+  <%= yield %>
+  </body>
+  <footer>
+    <p>Copyright OlMa</p>
+  </footer>
+</html>

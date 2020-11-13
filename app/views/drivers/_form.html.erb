@@ -1,0 +1,20 @@
+<%= form_with model: @driver, class: 'edit-driver' do |f| %>
+  <p>Please provide the following information:</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+  </div>
+
+  <div>
+    <%= f.label :available %>
+    <%= f.text_field :available %>
+  </div>
+
+  <%= f.submit "Save", class: "driver-button" %>
+<% end %>
