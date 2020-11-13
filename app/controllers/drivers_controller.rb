@@ -39,11 +39,9 @@ class DriversController < ApplicationController
       head :not_found
       return
     elsif @driver.update(driver_params)
-      flash[:success] = "Driver updated successfully"
       redirect_to driver_path # go to the show so we can see the driver
       return
     else # save failed :(
-      flash.now[:error] = "Something happened. Driver not updated."
       render :edit, status: :bad_request # show the new driver form view again
       return
     end

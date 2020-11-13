@@ -1,5 +1,4 @@
 class PassengersController < ApplicationController
-
   def index
     @passengers = Passenger.all
   end
@@ -24,7 +23,7 @@ class PassengersController < ApplicationController
       render :new, status: :bad_request
     end
   end
-  
+
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
@@ -39,13 +38,11 @@ class PassengersController < ApplicationController
       head :not_found
       return
     elsif @passenger.update(passenger_params)
-      flash[:success] = "passenger updated successfully"
       redirect_to passenger_path # go to the show so we can see the passenger
       return
     else # save failed :(
-    flash.now[:error] = "Something happened. passenger not updated."
-    render :edit, status: :bad_request # show the new passenger form view again
-    return
+      render :edit, status: :bad_request # show the new passenger form view again
+      return
     end
   end
 
@@ -65,5 +62,4 @@ class PassengersController < ApplicationController
   def passenger_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
-
 end

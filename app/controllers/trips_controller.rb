@@ -1,7 +1,6 @@
-require 'date'
+require "date"
 
 class TripsController < ApplicationController
-
   def index
     @trips = Trip.all
   end
@@ -24,22 +23,21 @@ class TripsController < ApplicationController
     @passenger = Passenger.find_by(id: params[:passenger_id])
 
     @trip = Trip.new(
-        driver_id: @driver.id,
-        passenger_id: @passenger.id,
-        cost: rand(100..99999),
-        date: Date.today, 
-        rating: nil
+      driver_id: @driver.id,
+      passenger_id: @passenger.id,
+      cost: rand(100..99999),
+      date: Date.today,
+      rating: nil,
     )
     @trip.save
     @driver.mark_unavailable
 
     if @trip.save
       redirect_to trip_path(@trip.id)
-    else 
+    else
       flash.now[:error] = "Something happened. Trip not requested."
       redirect_to passenger_path(@passenger.id)
-    end 
-
+    end
   end
 
   def edit
@@ -50,18 +48,15 @@ class TripsController < ApplicationController
     end
   end
 
-
   def update
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       head :not_found
       return
     elsif @trip.update(trip_params)
-      flash[:success] = "Trip updated successfully"
       redirect_to trip_path # go to the show so we can see the trip
       return
     else # save failed :(
-      flash.now[:error] = "Something happened. Trip not updated."
       render :edit, status: :bad_request # show the new Trip form view again
       return
     end
@@ -77,7 +72,6 @@ class TripsController < ApplicationController
       redirect_to root_path
     end
   end
-
 end
 
 private
@@ -85,4 +79,3 @@ private
 def trip_params
   return params.require(:trip).permit(:driver_id, :passenger_id, :rating, :date, :cost)
 end
-

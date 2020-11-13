@@ -9,6 +9,11 @@ class Driver < ApplicationRecord
     self.save
   end
 
+  def mark_available
+    self.available = true
+    self.save
+  end
+
   # calculate total earnings
   def total_earnings
     if self.trips.empty?

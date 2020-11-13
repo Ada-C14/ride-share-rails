@@ -10,7 +10,7 @@ describe TripsController do
       passenger_id: @passenger.id,
       cost: 12.95,
       date: "11/08/2020",
-      rating: nil
+      rating: nil,
     )
   end
 
@@ -34,13 +34,13 @@ describe TripsController do
   describe "create" do
     it "can create a new trip with valid information and redirect" do
       trip_hash = {
-          trip: {
-              driver_id: @driver.id,
-              passenger_id: @passenger.id,
-              cost: 12.95,
-              date: "11/08/2020",
-              rating: nil
-          },
+        trip: {
+          driver_id: @driver.id,
+          passenger_id: @passenger.id,
+          cost: 12.95,
+          date: "11/08/2020",
+          rating: nil,
+        },
       }
       id = @passenger.id
       expect {
@@ -49,7 +49,6 @@ describe TripsController do
 
       must_respond_with :redirect
     end
-
   end
 
   describe "edit" do
@@ -59,7 +58,6 @@ describe TripsController do
 
       # Assert
       must_respond_with :success
-
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
@@ -71,7 +69,6 @@ describe TripsController do
 
       # Assert
       must_respond_with :redirect
-
     end
   end
 

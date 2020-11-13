@@ -63,18 +63,24 @@ describe Passenger do
     before do
       new_passenger.save
       new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1651)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 2806)
     end
+
+    it "calculates total charges" do
+      passenger = Passenger.first
+
+      expect(passenger.total_charges).must_equal 44.57
+    end
+
     it "requests a ride" do
-
+      passenger = Passenger.first
+      driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      
+      expect {
+        trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1651)
+      }.wont_be_nil
     end
 
-    it "complete trip" do
-
-
-    end
-    # You may have additional methods to test here
   end
 end

@@ -78,7 +78,10 @@ describe Driver do
     end
 
     it "can go online" do
-      # Your code here
+      driver = Driver.first
+      driver.mark_available
+
+      expect(driver.available).must_equal true
     end
 
     it "can go offline" do
