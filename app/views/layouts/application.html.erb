@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body onload="makeTableScroll();">
+  <main class="container">
+    <header class="header">
+      RideShare
+    </header>
+
+    <nav class="nav">
+      <%= link_to "Home", root_path, class: "nav-list"%>
+      <%= link_to "Drivers", drivers_path, class: "nav-list"%>
+      <%= link_to "Add", new_driver_path, class: "nav-list"%>
+      <%= link_to "Passengers", passengers_path, class: "nav-list"%>
+      <%= link_to "Add", new_passenger_path, class: "nav-list"%>
+      <%= link_to "Trips", trips_path, class: "nav-list"%>
+    </nav>
+
+    <div class="content">
+      <%= yield %>
+    </div>
+
+    <footer class="footer">
+      Copyright © 2020 India & Jing. All Rights Reserved.
+    </footer>
+
+  </main>
+
+
+  </body>
+</html>

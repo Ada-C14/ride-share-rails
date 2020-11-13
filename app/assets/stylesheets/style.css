@@ -1,0 +1,152 @@
+.container {
+    min-height: 800px;
+    min-width: 800px;
+    max-width: 2000px;
+    display: grid;
+    grid-template-rows: [nav-start] 50px [nav-end content-start] auto [content-end footer-start] 50px[footer-end];
+    grid-template-columns: [content-start] 40% [nav-start] 15% 15% 15% 15% [content-end nav-end];
+}
+
+.header{
+    background-color: #0b3c5d;
+    color: white;
+    grid-column: 1 /2;
+    font-family: "Source Code Pro", Monaco, monospace;
+    font-size: xx-large;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.nav {
+    background-color: #0b3c5d;
+    color: white;
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-list {
+    color: white;
+    font-family: "Source Code Pro", Monaco, monospace;
+    font-size: 1em;
+    text-align: center;
+    padding: 10px 5px 10px 10px;
+    min-width: 100px;
+}
+
+[href="/"] {background-color: #d9b310;}
+nav > [href="/drivers"] {background-color: #f7882f}
+nav > [href="/drivers/new"] {background-color: #58A4B0}
+nav > [href="/passengers"] {background-color: #328cc1}
+nav > [href="/passengers/new"] {background-color: #286da8}
+nav > [href="/trips"] {background-color: #1c4a77}
+
+.nav-list, a {
+    color: white;
+    text-decoration: none;
+}
+
+a.nav-list:hover {
+    filter: brightness(1.2);
+}
+
+.link-button {
+    background-color: #d9b310;
+    border-radius: 3px;
+}
+
+.link-button:hover { filter: brightness(1.2)}
+
+
+.content {
+    background-color: #2E5C6E;
+    color: white;
+    grid-area: content;
+    padding: 10px 10px 10px 10px;
+}
+
+.footer {
+    background-color: #0b3c5d;
+    color: white;
+    grid-row: footer;
+    grid-column: 1 / -1;
+    text-align: right;
+    padding: 5px 5px;
+}
+
+ul {
+    text-align: left;
+    list-style-type: none;
+}
+
+table {
+    border: 1px solid #1C6EA4;
+    width: 80%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+td, th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 3px 3px 15px;
+}
+
+th {
+    background: #0F4C3A;
+    font-size: 1.5em;
+    font-family: Verdana;
+    text-align: center;
+    border-bottom: 2px solid floralwhite;
+}
+
+tr:nth-child(even) {
+    background: #4F726C;
+}
+
+tr:hover td {
+    background-color: #0f80aa;
+}
+
+a:hover {
+    color: antiquewhite;
+}
+
+div.form {
+    text-align: left;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.errors {
+    font-family: "Courier New";
+    font-size: 1em;
+}
+
+ul.errors {
+    list-style-type: circle;
+}
+
+.create-page-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.create-page-flex > div {
+    margin: 10px;
+    padding: 20px;
+    width: 20%;
+}
+
+table {
+    max-height: 35em;
+    overflow: scroll;
+    display: inline-block;
+}

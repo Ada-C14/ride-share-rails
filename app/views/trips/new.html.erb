@@ -1,0 +1,47 @@
+<%# in app/views/new.html.erb %>
+<%if params[:passenger_id] %>
+  <h3>Thank you <%= @passenger.name %>!</h3>
+  <h2>Your Trip Request is Completed!</h2>
+
+  <div>
+    <%= link_to "Edit", edit_trip_path(@trip) , class: "link-button"%>
+    <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}, class: "link-button"%>
+  </div>
+
+  <table>
+    <tbody>
+    <tr>
+      <th>Driver</th>
+      <td><%= link_to @driver.name, driver_path(@driver.id) %></td>
+    </tr>
+    <tr>
+      <th>Passenger</th>
+      <td><%= link_to @passenger.name, passenger_path(@trip.passenger_id) %></td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @trip.date %></td>
+    </tr>
+    <tr>
+      <th>Rating</th>
+      <td><%= @trip.rating %></td>
+    </tr>
+    <tr>
+      <th>Cost</th>
+      <td><%= @trip.cost %></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p><%= link_to "Return to Passenger List", passengers_path, class: "link-button" %></p>
+
+
+
+
+<%else %>
+  <h1>Add New Trip</h1>
+  <p>Please provide the following information to create a trip:</p>
+
+  <%= render partial: "form", locals: { action_name: "New" } %>
+
+<%end %>
