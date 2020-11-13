@@ -29,8 +29,7 @@ class Driver < ApplicationRecord
     else
       total_income = 0
 
-      self.trips.each do |trip|
-        total_income +=
+      total_income = self.trips.sum do |trip|
           if trip.cost.nil?
             0
           elsif trip.cost <= 165
