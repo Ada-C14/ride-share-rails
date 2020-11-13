@@ -1,0 +1,27 @@
+<h2>New Passenger</h2>
+
+<% if @passenger.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="new-passenger">
+  <%= form_with model: @passenger do |f| %>
+    <%= f.label :name%>
+    <br>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :phone_num %>
+    <br>
+    <%= f.text_area :phone_num %>
+    <br>
+
+    <%= f.submit %>
+  <% end %>
+</div>

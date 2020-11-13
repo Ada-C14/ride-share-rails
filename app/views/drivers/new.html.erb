@@ -1,0 +1,27 @@
+<h2>New Driver</h2>
+
+<% if @driver.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="new-driver">
+  <%= form_with model: @driver do |f| %>
+    <%= f.label :name%>
+    <br>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :vin %>
+    <br>
+    <%= f.text_area :vin %>
+    <br>
+
+    <%= f.submit %>
+  <% end %>
+</div>

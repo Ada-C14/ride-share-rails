@@ -1,0 +1,34 @@
+<h2>New Trip</h2>
+
+<% if @trip.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!--check error messages-->
+
+<div class="new-trip">
+  <%= form_with model: @trip do |f| %>
+    <%= f.label :date%>
+    <br>
+    <%= f.text_field :date %>
+    <br>
+    <%= f.label :rating %>
+    <br>
+    <%= f.text_area :rating %>
+    <br>
+    <%= f.label :cost %>
+    <br>
+    <%= f.text_area :cost %>
+    <br>
+
+
+    <%= f.submit %>
+  <% end %>
+</div>

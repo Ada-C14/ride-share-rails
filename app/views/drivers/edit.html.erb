@@ -1,0 +1,30 @@
+<h2>Edit Driver</h2>
+
+<% if @driver.errors.any? %>
+  <span class="errors"><strong>Please check the errors below:</strong></span>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="edit-driver">
+  <%= form_with model: @driver do |f| %>
+    <%= f.label "Name:"%>
+    <br>
+    <%= f.text_field :name %>
+    <br>
+    <br>
+    <%= f.label "VIN:" %>
+    <br>
+    <%= f.text_area :vin %>
+    <br>
+    <%= f.select :available, [['Available', true], ['Not Available', false]] %>
+    <br>
+    </div>
+    <br>
+    <%= f.submit %>
+  <% end %>
