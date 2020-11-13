@@ -11,13 +11,13 @@ class Driver < ApplicationRecord
     if self.trips.empty?
       average
     else
-      self.trips.map do |trip|
+      sum_of_ratings = self.trips.map { |trip|
         if trip.rating.nil?
-          next
+          0.0
         else
-          sum_of_ratings += trip.rating.to_f
+          trip.rating.to_f
         end
-      end
+      }.sum
       average = (sum_of_ratings / trips.length).to_f.round(2)
       return average
     end
