@@ -1,0 +1,15 @@
+<h2>Trip Details</h2>
+
+<ul>
+  <li>ID: <%= @trip.id %></li>
+  <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
+  <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
+  <li>Cost: <%= number_to_currency(@trip.cost/100) %></li>
+  <li>Rating: <%= @trip.rating %></li>
+</ul>
+
+<p> <%= link_to "Edit Trip Details", edit_trip_path(@trip.id) %> </p>
+
+<p><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" } %> </p>
+
+<footer>* You can only delete a trip that has been rated.</footer>

@@ -1,0 +1,29 @@
+<h2>Driver Details</h2>
+
+<ul>
+  <li>Name: <%= @driver.name %></li>
+  <li>VIN: <%= @driver.vin %></li>
+  <li>Available? <%= @driver.available %></li>
+  <li>Total earnings: <%= number_to_currency(@driver.total_earnings/100) %></li>
+  <li>Average rating: <%= @driver.avg_rating %></li>
+</ul>
+
+<%= link_to "Edit Driver Details", edit_driver_path(@driver.id) %>  --
+
+<%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" } %>
+<p>* You can only delete a driver if they have no trips.*</p>
+
+<br>
+<h4>Trips: </h4>
+
+<ol>
+  <% @driver.trips.each do |trip| %>
+    <li> ID: <%= link_to trip.id, trip_path(trip) %> --
+      Driver: <%= trip.driver.name %> --
+      Passenger: <%= trip.passenger.name %> --
+      Cost: <%= number_to_currency(trip.cost/100) %> --
+      Rating: <%= trip.rating %>
+    </li>
+  <% end %>
+</ol>
+
