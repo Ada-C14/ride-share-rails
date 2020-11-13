@@ -24,7 +24,7 @@ describe Passenger do
     it "can have many trips" do
       # Arrange
       new_passenger.save
-      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      new_driver = Driver.create(name: "Jared", vin: "ALWSS52P9NEYLVDE9")
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
@@ -60,13 +60,21 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+
     describe "request a ride" do
-      # Your code here
+      it "can will add trip count" do
+        @passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        @driver = Driver.create(name: "Jared", vin: "ALWSS52P9NEYLVDE9")
+
+        expect{
+           Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, rating: 5, cost: 1234)
+        }.must_change "Trip.count", 1
+      end
     end
 
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
+    # describe "complete trip" do
+    #   # Your code here
+    # end
+    # # You may have additional methods to test here
   end
 end

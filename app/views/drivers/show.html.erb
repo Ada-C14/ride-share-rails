@@ -1,0 +1,47 @@
+<h1><%= @driver.name %></h1>
+<% if flash[:notice] %>
+  <h2><div class="notice"><%= flash[:notice] %></div></h2>
+<% end %>
+<ul>
+  <li>Vin: <%= @driver.vin %></li>
+  <li>Status: <%= @driver.available ? "Available" : "Unavailable" %></li>
+  <li>Total Earnings: <%= @driver.total_earnings ? @driver.total_earnings.round(2) : 0 %></li>
+  <li>Average Rating: <%= @driver.average_rating ? @driver.average_rating.round(2) : "" %></li>
+</ul>
+
+<h6>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Trip Date</th>
+      <th>Driver Name</th>
+      <th>Passenger Name</th>
+      <th>Trip Cost</th>
+      <th>Trip Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip) %></td>
+        <td><%= trip.date %></td>
+        <td><%= @driver.name %></td>
+        <% begin %>
+          <td><%= trip.passenger.name %></td>
+        <% rescue %>
+          <%= flash.alert = "Passenger not found" %>
+        <% end %>
+        <td>$<%= trip.cost/100%></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <button><%= link_to "Edit Driver", edit_driver_path(@driver) %></button>
+  <button><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%></button>
+  </h6>
+<p><%= link_to "Return to Drivers Database", drivers_path %></p>
+<button><%= link_to "Home Page", homepages_path %></button>
+<footer>copyright 2020</footer>

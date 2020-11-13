@@ -1,0 +1,43 @@
+<div>
+  <h1>Trip #<%= @trip.id %></h1>
+  <% if flash[:notice] %>
+    <h2><div class="notice"><%= flash[:notice] %></div></h2>
+  <% end %>
+  <ul>
+    <% begin %>
+      <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>
+    <% rescue %>
+      <%= flash.alert = "Driver not found" %>
+      <% link_to drivers_path(@trip.driver), flash.alert = "User not found."  %>
+    <% end %>
+
+    <% begin %>
+      <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></li>
+    <% rescue %>
+      <%= flash.alert = "Passenger not found" %>
+      <% link_to passengers_path(@trip.driver)%>
+    <% end %>
+
+    <li>Date: <%= @trip.date %></li>
+    <li>Cost: $<%= @trip.cost/100 %></li>
+    <% if @trip.rating %>
+      <li>Rating: <%= @trip.rating %></li>
+      <% @trip.driver.complete_trip unless @trip.driver.trips.find {|trip| trip.rating.nil?} %>
+  <% else %>
+      <%= form_with model: @trip, class: 'rating-form' do |f| %>
+        <li>Add a Rating to Complete the Trip:
+         <%= f.select :rating, ["", 1, 2, 3, 4, 5] %>
+         <%= f.submit "Update", class: 'trip-button' %></li>
+      <% end %>
+    <% end %>
+
+
+
+      </ul>
+  <%= link_to "Edit", edit_trip_path(@trip) %>
+  <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%>
+</div>
+
+<p><%= link_to "Return to trips Database", trips_path %></p>
+<button><%= link_to "Home Page", homepages_path %></button>
+<footer>copyright 2020</footer>

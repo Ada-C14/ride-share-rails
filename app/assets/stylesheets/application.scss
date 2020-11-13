@@ -1,0 +1,95 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+body {
+  height: 100%;
+  font-family: "American Typewriter";
+  color: cadetblue;
+  background: mistyrose;
+}
+
+form {
+  background: mistyrose;
+  text-align: center;
+  color: teal;
+
+}
+
+table.table {
+  alignment: center;
+  background: white;
+}
+
+ul {
+  color: teal;
+  text-align: left;
+  background: mistyrose;
+}
+
+ul.main {
+  padding: 3rem;
+  font-size: x-large;
+  list-style: none;
+  text-align: center;
+}
+
+th {
+  color: lightpink;
+  background: cadetblue;
+}
+
+h1 {
+  padding: 2rem;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  text-align: center;
+  letter-spacing: 0.20rem;
+  text-transform: uppercase;
+  color: black;
+  text-shadow: 4px 4px #f09b93,
+  8px 8px #ebd6d7,
+  12px 12px #f9ebd9,
+  16px 16px #e9dd8a,
+  20px 20px #439093,
+  24px 24px #f09b93,
+  28px 28px #ebd6d7,
+  32px 32px #f9ebd9,
+  36px 36px #e9dd8a;
+}
+
+h2 {
+  background: white;
+  color: rosybrown;
+   text-align: center;
+}
+header {
+  grid-area: header;
+  background: white;
+}
+
+footer {
+  grid-area: footer;
+  background: white;
+  alignment: center;
+  text-align: center;
+  color: rosybrown;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+}
