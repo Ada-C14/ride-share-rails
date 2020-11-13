@@ -61,7 +61,13 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+      it "properly calculates mean total" do
+        skip
+      ratings =
+
+
+      expect(ratings.mean_rating).must_equal 5
+      end
     end
 
     describe "total earnings" do
@@ -75,7 +81,6 @@ describe Driver do
     describe "can go offline" do
       # Your code here
     end
-
     # You may have additional methods to test
   end
 end

@@ -1,0 +1,17 @@
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Driver List", drivers_path %> |
+  <%=link_to "View Driver Trips", drivers_path(@drivers.id) %> |
+</nav>
+
+
+<%= render partial: "form", locals: { action_name: "Edit Driver" } %>
+
+
+
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Driver List", drivers_path %> |
+  <%=link_to "View Driver Trips", driver_path(@drivers.id) %> |
+</nav>

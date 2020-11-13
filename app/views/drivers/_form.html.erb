@@ -1,0 +1,14 @@
+<%= form_with model: @drivers, class: 'create-driver' do |f| %>
+  <p>Please provide the following information to save your driver:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+
+  <%= f.submit "#{action_name}", class: "change-button" %>
+<% end%>
+
+<p><%= link_to "Return Driver List", drivers_path %></p>

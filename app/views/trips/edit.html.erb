@@ -1,0 +1,23 @@
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Rider List", passengers_path %> |
+  <%= link_to "Driver List", drivers_path %> |
+  <%= link_to "Trips List", trips_path %> |
+
+</nav>
+
+<%= form_with model: @trip,  class: 'edit-rating' do |f| %>
+  <p>Please rate your trip:</p>
+  <p> 0 = Poor - 5 = Terrific </p>
+
+   <%= f.label :rating %>
+  <%= f.text_field :rating %>
+
+  <%= f.submit "#{action_name}", class: "trip-button" %>
+<% end %>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Rider List", passengers_path %> |
+  <%= link_to "Driver List", drivers_path %> |
+</nav>`

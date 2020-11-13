@@ -1,0 +1,29 @@
+<h2>Rider Details</h2>
+
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Rider List", passengers_path %> |
+  <%= link_to "Create a new trip", passenger_trips_path(@passengers.id), method: :post %>
+</nav>
+
+<p>Passenger ID: <%= @passengers.id %></p>
+<p>Passenger Name: <%= @passengers.name %></p>
+<p>Passenger Phone Number: <%= @passengers.phone_num %></p>
+
+<div>
+  <p> Total Cost: <%=cents_dollars(@passengers.total_expenditure)%></p>
+  <ul>
+    <% @passengers.trips.each do |trip| %>
+      <li><strong><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></strong> : Trip ID: <%=trip.id %> | Trip Rating : <%=trip.rating %> | Driver ID: <%=driver_safe_id(trip.driver)%> | Driver Name: <%=driver_safe_name(trip.driver) %> | Cost: <%=cents_dollars(trip.cost)%> | <%= link_to "Rating", edit_trip_path(trip.id)%> | <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %> |</li>
+    <% end %>
+  </ul>
+</div>
+
+<!--Want to create loop that pulls passenger trip details  -->
+<nav>
+  <%=link_to "Homepage", homepages_path %> |
+  <%= link_to "Return to Rider List", passengers_path %> |
+  <%= link_to "Add a New Rider ", new_passenger_path%>
+</nav>
+
+
