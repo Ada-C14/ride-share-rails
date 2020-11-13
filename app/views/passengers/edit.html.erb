@@ -1,0 +1,24 @@
+<header><h1>Rosha RideShare App</h1></header>
+<body>
+<nav>
+  <p><%= link_to "Home", root_path %></p>
+  <p><%= link_to "Drivers List", drivers_path %></p>
+  <p><%= link_to "Passengers List", passengers_path %></p>
+  <p><%= link_to "Trips List", trips_path %></p>
+  <p><%= link_to "Sign Up Driver", new_driver_path %></p>
+  <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+</nav>
+
+
+<h2>Edit Passenger</h2>
+<%= form_with model: @passenger, class: 'create-passenger' do |f|%>
+  <p>Please provide the following information to edit passenger information in our database:</p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+  <%= f.submit "Edit Passenger", class: "Passenger-button" %>
+<% end %>
+
+</body>
+<footer class="homepage">Copyright Rosha RideShare 2020</footer>

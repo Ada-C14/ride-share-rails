@@ -1,0 +1,29 @@
+<header><h1>Rosha RideShare App</h1></header>
+<body>
+<nav>
+  <p><%= link_to "Home", root_path %></p>
+  <p><%= link_to "Drivers List", drivers_path %></p>
+  <p><%= link_to "Passengers List", passengers_path %></p>
+  <p><%= link_to "Trips List", trips_path %></p>
+  <p><%= link_to "Sign Up Driver", new_driver_path %></p>
+  <p><%= link_to "Sign Up Passenger", new_passenger_path %></p>
+</nav>
+
+
+<h2>View Driver</h2>
+<h3>Driver #<%= @driver.id  %></h3>
+<ul>
+  <li>Driver Name: <%= @driver.name %> </li>
+  <li>Driver VIN: <%= @driver.vin %> </li>
+  <li>Driver Availability: <%= @driver.available %> </li>
+  <li>Driver Earnings: <%= @driver.total_earnings %> </li>
+  <li>Driver Rating: <%= @driver.average_rating %> </li>
+  <% @trips.each do |trip| %>
+    <li> <%= link_to trip.id, trip_path(trip)%></li>
+  <% end %>
+</ul>
+<p><%= link_to "Edit Driver", edit_driver_path %></p>
+<p><%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></p>
+
+</body>
+<footer class="homepage">Copyright Rosha RideShare 2020</footer>

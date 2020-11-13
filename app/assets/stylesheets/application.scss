@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  background-size: cover;
+  font-family: Sans-Serif;
+  margin-top: 20px;
+  padding: 30px;
+  background-color: whitesmoke;
+  background-image: url("homepage.png");
+}
+
+nav {
+  display: inline;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-shadow: 0px 0px 3px lightblue;
+
+  font-size: 35px;
+}
+
+nav ul li * {
+  margin: 20px;
+  justify-content: space-between;
+}
+
+header {
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0px 0px 5px lightblue;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+footer * {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: absolute;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: absolute;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+}
+.links {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  color: gray;
+}
+
+h1 {
+  font-family: "Arial Black";
+  font-size: 60px;
+  font-weight: bold;
+  color: dimgray;
+  text-shadow: 0px 0px 3px darkblue;
+
+}
+
+h2 {
+  font-family: "Big Caslon";
+  text-shadow: 0px 0px 5px lightblue;
+}
