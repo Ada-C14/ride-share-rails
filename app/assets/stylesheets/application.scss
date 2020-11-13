@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+header{
+    background-color: #4A6FA5;
+    color: #DBE9EE;
+}
+
+header h1{
+    padding: 10px;
+}
+
+li{
+    list-style-type: none;
+}
+
+header a{
+    color: #DBE9EE;
+}
+
+header a:hover{
+    color: #4F6D7A;
+}
+
+table {
+    width: 100%;
+    vertical-align: middle
+}
+
+table th{
+    background-color: #166088;
+    color: #DBE9EE;
+}
+
+tr:nth-child(even){
+    background-color: #DBE9EE;
+}
+

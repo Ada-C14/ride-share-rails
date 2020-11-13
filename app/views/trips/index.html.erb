@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trips</title>
+</head>
+<body>
+<%= render partial: "drivers/navigation"%>
+<main>
+  <h2>Trips Database</h2>
+  <table class = "trips">
+    <tr>
+      <th>Trip ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Passenger</th>
+      <th>Cost</th>
+      <th>Rating</th>
+      <th>View Trip</th>
+    </tr>
+    <% @trips.each do |trip| %>
+      <tr>
+        <td><%=trip.id%></td>
+        <td><%=trip.date%></td>
+        <td><%=trip.driver.name%> <%= link_to content_tag(:p, "View"), driver_path(trip.driver.id), method: :get %></td>
+        <td><%=trip.passenger.name%> <%= link_to content_tag(:p, "View"), passenger_path(trip.passenger.id), method: :get %></td>
+        <td><%= '$%.2f' % (trip.cost)%></td>
+        <td><%if trip.rating.nil?%>
+            Pending <%= link_to content_tag(:mark, "Rate"), rate_trip_path(id: trip.id), method: :get %>
+          <% else%>
+            <%=trip.rating%>
+          <% end%></td>
+        <td><%= link_to content_tag(:p, "View"), trip_path(trip.id), method: :get %></td>
+      </tr>
+    <% end %>
+  </table>
+</main>
+</body>
+</html>

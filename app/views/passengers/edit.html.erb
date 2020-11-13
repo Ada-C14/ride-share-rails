@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit: <%=@passenger.name %></title>
+</head>
+<body>
+<%= render partial: "drivers/navigation"%>
+<h2>Edit: <%=@passenger.name %></h2>
+<main id = "form">
+  <h2>Fill out the below:</h2>
+  <%= render partial: "form", locals: { action_name: "Edit" } %>
+</main>
+</body>
+</html>

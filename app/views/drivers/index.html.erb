@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Drivers</title>
+</head>
+<body>
+<%= render partial: "navigation"%>
+<main>
+  <h2>All Drivers</h2>
+  <%= link_to content_tag(:h3,"Add new driver"), new_driver_path, method: :get %>
+  <ul class = "drivers">
+    <% @drivers.each do |driver|  %>
+      <%= link_to content_tag(:li, driver[:name]), driver_path(driver.id), method: :get %>
+    <% end %>
+  </ul>
+</main>
+</body>
+</html>
