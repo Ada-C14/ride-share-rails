@@ -1,0 +1,87 @@
+// Place all the styles related to the Homepages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+
+.container {
+    background: #CC8B86;
+    height: 100%;
+    display: flex;
+    padding-top: 2em;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid white;
+    margin-top: 15px;
+    }
+
+.Thanks {
+
+    margin-top: 15px;
+}
+
+
+.about {
+
+   display: grid;
+   border: 10px solid white;
+   margin-top: 20px;
+   text-align: center;
+   list-style-type: none;
+
+}
+
+.fast_facts {
+    text-align: center;
+    margin-top: 10px;
+}
+.home_stats {
+    display: grid;
+    text-align: center;
+    position: relative;
+    list-style-type: none;
+
+}
+
+@keyframes typewriter {
+    0%, 100% {
+        width: 0;
+        }
+    20%, 80% {
+        width: 3em;
+    }
+}
+
+@keyframes caret {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes text1 {
+  0%, 50%, 100% {
+    width: 0;
+  }
+  10%, 40% {
+    width: 5em;
+  }
+}
+
+.text_1 {
+  animation: text1;
+}
+
+.text_1 {
+  overflow: hidden;
+  font-size: 40px;
+//   white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  animation-duration: 8s;
+  animation-timing-function: steps(20, end);
+  animation-iteration-count: 1;
+}

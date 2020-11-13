@@ -1,0 +1,22 @@
+
+<section class="container">
+  <h1><span class="text_1">Welcome!</span></h1>
+</section>
+
+<section class="about">
+  <p class="Thanks">Thank you for visiting our website We make it our goal to provide RideShare passengers  with the best rider experience possible!</p>
+  <p class="fast_facts"><strong>Rideshare Rails Fast Facts</strong></p>
+    <ul class="home_stats">
+    <li><i class="fa fa-car" aria-hidden="true"></i>
+      We have <strong><%= Passenger.count %></strong> passengers in our rider pool</li><br>
+    <li><i class="fa fa-car" aria-hidden="true"></i>
+      We have <strong><%= Driver.count %></strong> drivers on our team</li><br>
+    <li> <i class="fa fa-car" aria-hidden="true"></i>
+      We've given <strong><%= Trip.count %></strong> trips...and counting!</li>
+    </ul>
+  <p class="drivernew"><%=  link_to "Join our Driver Crew", new_driver_path %></p>
+    <p class="passengernew"><%=  link_to "Sign-Up to Ride with Us!", new_passenger_path%></p>
+
+  <p><em>*Use the navigation bar above to view passengers, drivers, trip data, and more!</em></p>
+
+</section>

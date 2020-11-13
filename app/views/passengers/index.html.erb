@@ -1,0 +1,16 @@
+<h2>Rideshare Passengers</h2>
+
+<% if @passengers.length > 0 %>
+
+<ol>
+<% @passengers.each do |passenger| %>
+    <li><i class="fa fa-user" aria-hidden="true"></i> <strong><%= link_to passenger.name, passenger_path(passenger.id)%></strong></li>
+    <div class="passenger_crud"> <%= link_to 'Edit Passenger', edit_passenger_path(passenger.id) %> |
+       <%= link_to 'Delete Passenger', passenger_path(passenger.id), method: :delete, data: {confirm: "WARNING: YOU HAVE ASKED TO DELETE THIS PASSENGER. THIS ACTION CANNOT BE UNDONE. PRESS OK TO CONFIRM YOU WOULD LIKE TO DELETE"} %></div>
+    <br>
+  <% end  %>
+</ol>
+<% else %>
+  <h3>No passengers to display </h3>
+<%end %>
+

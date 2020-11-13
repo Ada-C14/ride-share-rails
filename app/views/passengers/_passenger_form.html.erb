@@ -1,0 +1,25 @@
+<% if @passenger.errors.any? %>
+  <p class="oops_msg"><strong>Oops! Your data doesn't look quite right:</strong></p>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+        <li> <%= column.capitalize %> <%= message %>.
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%=form_with model: @passenger, class: 'passenger_form' do |f| %>
+  <p>Please update Passenger Information here:</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+  <div>
+    <%= f.label :phone_number %>
+    <%= f.text_area :phone_num %>
+  </div>
+
+  <%= f.submit "Update Passenger!" %>
+<% end %>

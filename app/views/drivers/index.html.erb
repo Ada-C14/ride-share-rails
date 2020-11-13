@@ -1,0 +1,18 @@
+
+<h2>Rideshare Drivers</h2>
+
+<% if @drivers.length > 0 %>
+  <ol class="driver_list">
+    <% @drivers.each do |driver| %>
+      <li><i class="fa fa-user" aria-hidden="true"></i> <strong><%= link_to driver.name, driver_path(driver.id)%></strong></li>
+      <div class="sub_line"><em>Average Rating: <%= driver.average_rating %></em> |
+        <%= link_to 'Edit Driver', edit_driver_path(driver.id) %> |
+        <%= link_to 'Delete Driver', driver_path(driver.id), method: :delete, data: {confirm: "WARNING: YOU HAVE ASKED TO DELETE THIS DRIVER. THIS ACTION CANNOT BE UNDONE. PRESS OK TO CONFIRM YOU WOULD LIKE TO DELETE"} %></div>
+      <br>
+    <% end  %>
+
+  </ol>
+
+<% else %>
+  <h3>No drivers to display </h3>
+<%end %>

@@ -1,0 +1,24 @@
+<% if @trip.errors.any? %>
+  <div class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <p>
+        Oops! Your data doesn't look quite right: <strong><%= column.capitalize %></strong> <%= message %>.
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<%=form_with model: @trip, class: 'trip_form' do |f| %>
+  <p>Please update trip Information here:</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_area :vin %>
+  </div>
+
+  <%= f.submit "Request Trip!" %>
+<% end %>

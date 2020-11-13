@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "12384756473829345", available: true)
   }
   it "can be instantiated" do
     # Assert
@@ -23,10 +23,10 @@ describe Driver do
   describe "relationships" do
     it "can have many trips" do
       # Arrange
-      new_driver.save
-      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+      new_driver.save!
+      new_passenger = Passenger.create!(name: "Kari", phone_num: "111-111-1211")
+      Trip.create!(driver: new_driver, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      Trip.create!(driver: new_driver, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
       # Assert
       expect(new_driver.trips.count).must_equal 2
@@ -54,7 +54,7 @@ describe Driver do
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
-      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:vin]).must_include "can't be blank"
     end
   end
 
