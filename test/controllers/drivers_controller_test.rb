@@ -205,7 +205,6 @@ describe DriversController do
     it 'destroys the driver instance in db when driver exists, then redirects to root_path' do
       new_driver = Driver.create(name: 'Roshni', vin: 'BCTSH52M8YERVGDK9', available: true)
 
-      new_driver.save
 
       id = new_driver.id
 
