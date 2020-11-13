@@ -60,13 +60,90 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
+    let (:new_driver) {
+      Driver.new(name: "Carrie", vin: "11112222333344445", available: true)
+    }
+
+    it "correctly gives the total charged for all the passenger's trips" do
+      new_passenger.save
+
+      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+      new_driver.save
+      trip_2.save
+      trip_1.save
+
+      total = new_passenger.total_charged
+
+      expect(total).must_equal 75.68
+    end
+
+    describe "request a trip" do
+      it "returns a hash of trip parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        expect(new_trip).must_be_kind_of Hash
+      end
+
+      it "selects an available driver" do
+        new_driver.save
+        new_passenger.save
+
+        new_trip = new_passenger.request_trip
+
+        new_driver_id = new_driver.id
+        hash_driver_id = new_trip[:driver_id]
+
+        expect(new_driver_id).must_equal hash_driver_id
+      end
+
+      it "adds passenger id to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        new_passenger_id = new_passenger.id
+        hash_passenger_id = new_trip[:passenger_id]
+
+        expect(new_passenger_id).must_equal hash_passenger_id
+      end
+
+      it "assigns a cost to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        expect(new_trip[:cost]).must_be_kind_of Integer
+      end
+
+      it "assigns the current date to the parameters" do
+        new_driver.save
+        new_passenger.save
+        new_trip = new_passenger.request_trip
+
+        today = Date.today
+
+        expect(new_trip[:date]).must_equal today
+      end
     end
 
     describe "complete trip" do
-      # Your code here
+      it "sets driver status to available" do
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9", available: false)
+        new_driver.save
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_1.save
+
+        new_passenger.complete_trip(trip_1)
+
+        driver = Driver.find_by(name: "Waldo")
+        expect(driver.available).must_equal true
+      end
     end
-    # You may have additional methods to test here
   end
 end

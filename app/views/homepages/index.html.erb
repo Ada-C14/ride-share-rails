@@ -1,0 +1,31 @@
+<h1>HOMEPAGE</h1>
+
+<p>Welcome to our RideShare app!  </p>
+<div class="home-container">
+  <div class="driver-count elem">
+    <b># of Drivers: </b><br/><%= @driver_count %>
+  </div>
+  <div class="available-drivers elem">
+    <b># of Available Drivers: </b><br /><%= @available_drivers %>
+  </div>
+  <div class="unavailable-drivers elem">
+    <b># of Unavailable Drivers: </b><br /><%= @unavailable_drivers %>
+  </div>
+  <div class="passenger-count elem">
+    <b># of Passengers: </b><br /><%= @passenger_count %>
+  </div>
+  <div class="trip-count elem">
+    <b># of Trips: </b><br /><%= @trip_count %>
+  </div>
+  <div class="average-rating elem">
+    <b>Average Rating (completed trips): </b><br /><%= @average_rating %>
+  </div>
+  <div class="revenue elem">
+    <b>Total Revenue: $</b><br />
+    <% if @total_revenue.is_a?(String) %>
+      <%= @total_revenue %>
+    <% else %>
+      <%= number_with_delimiter(((@total_revenue)/100.0).round(2), :delimiter => ',') %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<h1>Passenger Details</h1>
+<br />
+
+<div class="profile-container">
+  <div class="photo"><%= image_tag ("person_img.png") %></div>
+  <ul class="info">
+    <li><b>Name: </b><%= @passenger.name %></li>
+    <li><b>Telephone #: </b><%= @passenger.phone_num %></li>
+  </ul>
+  <ul class="info-edit">
+    <li>
+      <div class="profile-buttons">
+        <%= button_to "Edit Passenger", edit_passenger_path(@passenger), method: :get %>
+      </div>
+      <div class="profile-buttons">
+        <%= button_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?" } %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h3>Active Trips</h3>
+
+<% active_trips = @passenger.trips.where(rating: nil) %>
+<% if !active_trips.empty? %>
+  <ul>
+    <% active_trips.each do |active_trip| %>
+      <li>
+        <%= active_trip.date %>
+        <%= form_with model: active_trip do |f| %>
+          <%= f.label :rating %>
+          <%= f.select :rating, [1, 2, 3, 4, 5], include_blank: true  %>
+          <%= f.submit "Rate & Complete Trip", class: "submit_buttom", method: :patch %>
+        <% end %>
+        <%#= link_to "Edit This Trip", edit_trip_path(active_trip) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="red">No active trips.  Request a new trip below!  </p>
+<% end %>
+
+<% if Driver.where(available: true).empty? %>
+  <div class="red"><%= "Sorry, there are no available drivers. Check back later to request a trip." %></div>
+<% else %>
+  <%= button_to "Request Trip", passenger_create_trip_path(@passenger), method: :post %>
+<% end %><br />
+
+<div class="trip-header">
+  <h3 class="trips">TRIPS ~ </h3>
+  <div class="trips all-trips-button"><%= button_to "All #{@passenger.name}'s Trips", passenger_trips_path(@passenger), method: :get %></div>
+</div>
+<div class="trip-info">
+  <p><b>TOTAL SPENT ON ALL TRIPS: $</b><%= @passenger.total_charged %></p>
+  <p><b>NUMBER OF TRIPS TAKEN: </b><%= @passenger.trips.count %></p>
+</div>
+
+

@@ -1,0 +1,31 @@
+<% if @driver %>
+  <h1><%= @driver.name %>'s Trips</h1>
+<% elsif @passenger %>
+  <h1><%= @passenger.name %>'s Trips</h1>
+<% else %>
+  <h1>Trips</h1>
+<% end %>
+
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Cost</th>
+    <th>Rating</th>
+  </tr>
+
+  <% @trips.each do |trip| %>
+
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip) %></td>
+      <td><%= trip.date %></td>
+      <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+      <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+      <td>$ <%= ((trip.cost).to_f / 100).round(2) %></td>
+      <td><%= trip.rating %></td>
+    </tr>
+  <% end %>
+</table>
+<br />

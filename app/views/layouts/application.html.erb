@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <section class="title">R&R RideShare App</section>
+      <nav>
+      <ul>
+        <li><%= link_to "HOME", root_path %></li>
+        <li><%= link_to "DRIVERS", drivers_path %></li>
+        <li><%= link_to "PASSENGERS", passengers_path %></li>
+        <li><%= link_to "TRIPS", trips_path %></li>
+      </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>&copy 2020 Ringo & Richelle</p>
+    </footer>
+  </body>
+</html>
