@@ -1,0 +1,48 @@
+<section class="passenger-section">
+  <h1><%= @driver.name %>
+    <%= link_to "Edit", edit_driver_path(@driver), class: "edit-delete-link" %>
+    <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}, class: "edit-delete-link" %>
+  </h1>
+
+
+
+  <% if @driver.available %>
+    <p><strong>STATUS: </strong>AVAILABLE</p>
+    <% else %>
+    <p><strong>STATUS: </strong>NOT AVAILABLE</p>
+    <% end %>
+  <p><strong>VIN:</strong> <%= @driver.vin %></p>
+  <p><strong>Average Rating: </strong> <%= @driver.average_rating %></p>
+  <p><strong>Total Earnings:</strong> <%= number_to_currency(@driver.total_earnings) %> </p>
+
+
+  <h4 class="trip-list'"><strong>Trips List</strong></h4>
+</section>
+<table class="trips-border">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Delete</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @driver.trips.each do |trip| %>
+  <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip) %></td>
+      <td><%= trip.date %></td>
+      <td><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger) %></td>
+      <td><%= trip.rating %></td>
+      <td><%= number_to_currency(trip.cost) %></td>
+      <td><%= link_to "Delete", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %></td>
+  </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+

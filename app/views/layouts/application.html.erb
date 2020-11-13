@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class=<%= "#{controller.controller_path.parameterize.gsub('-', '_')}-#{controller.action_name}" %>>
+    <header>
+      <nav>
+        <div class="home-link"><%= link_to "Rideshare Rails", root_path %></div>
+        <div class="right-nav-links">
+        <%= link_to "Passenger List", passengers_path  %>
+        <%= link_to "Add Passenger", new_passenger_path %>
+        <%= link_to "Driver List", drivers_path  %>
+        <%= link_to "Add Driver", new_driver_path %>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+
+  </body>
+</html>
