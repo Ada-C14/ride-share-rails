@@ -1,0 +1,26 @@
+<header>
+  <h1>Drivers</h1>
+</header>
+<main>
+  <ul>
+    <% @drivers.each do |driver|  %>
+      <li>
+        <div class="container-2">
+          <div class="driver">
+            <%= image_tag "driver_avatar.png", alt: "driver avatar", class: "driver" %>
+          </div>
+          <div class="driver driver_name">
+            <%= link_to driver.name, driver_path(driver.id) %>
+          </div>
+          <div class="driver">
+            <%= button_to "Edit Driver", edit_driver_path(driver.id), method: :get, class: "btn btn-warning btn-sm" %>
+          </div>
+          <div class="driver">
+            <%= button_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+
+  </ul>
+</main>

@@ -1,0 +1,71 @@
+<header>
+  <h1>Passenger Details</h1>
+</header>
+<main>
+  <section class="show">
+    <div class="container-profile">
+      <div class="profile-pic">
+        <%= image_tag "passenger_avatar.png", alt: "passenger avatar", class: "passenger" %>
+      </div>
+      <div class="profile">
+        <p><strong>Passenger Name:</strong> <%= @passenger.name %></p>
+        <p><strong>Phone Number: </strong> <%= @passenger.phone_number %></p>
+        <p><strong>Total Charged:</strong> $<%= '%.2f' %@passenger.total_charged %></p>
+        <div class="button-container">
+          <div>
+            <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get, class: "btn btn-warning btn-sm" %>
+          </div>
+          <div>
+            <%= button_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure you want to delete this passenger?" }, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+        <div id="request-trip">
+        <%= button_to "Request Trip", passenger_trips_path(@passenger.id), class: "btn btn-success"  %>
+        </div>
+    </div>
+  </section>
+  <% if @passenger.trips.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Trip ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Rating</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @passenger.trips.each do |trip| %>
+        <tr>
+          <th scope="row"><%= link_to trip.id, trip_path(trip.id) %></th>
+          <td>
+            <%= trip.date %>
+          </td>
+          <td>
+            <% if trip.driver %>
+              <%= link_to trip.driver.name, driver_path(trip.driver.id) %>
+            <% else %>
+              <p><em>Not Available<em></p>
+            <% end %>
+          </td>
+          <td>
+            $<%= '%.2f' %trip.cost %>
+          </td>
+          <td>
+            <%= trip.rating %>
+          </td>
+          <td>
+            <%= button_to "Edit", edit_trip_path(trip.id), method: :get, class: "btn btn-outline-warning btn-sm" %>
+          </td>
+          <td>
+            <%= button_to "Delete", passenger_trip_path(@passenger.id, trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }, class: "btn btn-outline-danger btn-sm" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</main>

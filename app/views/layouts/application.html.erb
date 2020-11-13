@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+    <nav class="navbar">
+      <div class="container"">
+        <div class="name">RIDE SHARE RAILS</div>
+        <div class="nav-link">
+          <%= link_to "HOME", root_path %>
+        </div>
+        <div class="nav-link">
+          <%= link_to "VIEW PASSENGERS", passengers_path%>
+        </div>
+        <div class="nav-link">
+          <%= link_to "VIEW DRIVERS", drivers_path %>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <%= yield %>
+  <footer>
+    <%= button_to "Add New Passenger", new_passenger_path, method: :get, class: "btn btn-success" %>
+    <%= button_to "Add New Driver", new_driver_path, method: :get, class: "btn btn-primary" %>
+  </footer>
+  </body>
+</html>

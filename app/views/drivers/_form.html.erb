@@ -1,0 +1,31 @@
+<header>
+  <h1><%= header_title %></h1>
+</header>
+<main>
+  <section class="error_messages">
+    <% if @driver.errors.any?%>
+      <ul >
+      <% @driver.errors.each do |attribute, error_message| %>
+        <li>
+          Error: <%= attribute.capitalize %> <%= error_message %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
+
+  <%= form_with model: @driver do |f| %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+    </div>
+
+    <%= f.submit action_name, class: "btn btn-success" %>
+
+  <% end %>
+</main>

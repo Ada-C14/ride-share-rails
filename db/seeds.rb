@@ -9,7 +9,7 @@ CSV.foreach(DRIVER_FILE, :headers => true) do |row|
   driver.id = row['id']
   driver.name = row['name']
   driver.vin = row['vin']
-  driver.available = row['available']
+  driver.availability_status = row['available']
   successful = driver.save
   if !successful
     driver_failures << driver
@@ -32,7 +32,7 @@ CSV.foreach(PASSENGER_FILE, :headers => true) do |row|
   passenger = Passenger.new
   passenger.id = row['id']
   passenger.name = row['name']
-  passenger.phone_num = row['phone_num']
+  passenger.phone_number = row['phone_num']
   successful = passenger.save
   if !successful
     passenger_failures << passenger
@@ -57,8 +57,8 @@ CSV.foreach(TRIP_FILE, :headers => true) do |row|
   trip.driver_id = row['driver_id']
   trip.passenger_id = row['passenger_id']
   trip.date = Date.strptime(row['date'], '%Y-%m-%d')
-  trip.rating = row['rating']
-  trip.cost = row['cost']
+  trip.rating = row['rating'].to_i
+  trip.cost = row['cost'].to_f / 100
   successful = trip.save
   if !successful
     trip_failures << trip

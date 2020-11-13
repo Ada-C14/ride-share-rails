@@ -1,0 +1,79 @@
+<header>
+  <h1>Driver Details</h1>
+</header>
+<main>
+  <section class="show">
+      <div class="container-profile">
+        <div class="profile-pic">
+          <%= image_tag "driver_avatar.png", alt: "driver avatar", class: "driver" %>
+        </div>
+        <div class="profile">
+          <p><strong>Driver Name: </strong><%= @driver.name %></p>
+          <p><strong>Vin: </strong><%= @driver.vin %></p>
+          <p><strong>Availability Status:</strong><%= @driver.availability_status ? "AVAILABLE" : "UNAVAILABLE" %></p>
+          <p><strong>Total Earnings: </strong> $<%= '%.2f' %@driver.total_earnings %></p>
+          <p><strong>Average Rating: </strong> <%='%.1f' %@driver.average_rating %></p>
+          <div class="button-container">
+            <div>
+              <% if @driver.availability_status == true %>
+                <%= button_to "Change Availability", driver_path(@driver.id), method: :patch, params: {driver:{name: @driver.name, vin: @driver.vin, availability_status: false}}, class: "btn btn-secondary btn-sm" %>
+              <% else %>
+                <%= button_to "Change Availability", driver_path(@driver.id), method: :patch, params: {driver:{name: @driver.name, vin: @driver.vin, availability_status: true}}, class: "btn btn-secondary btn-sm" %>
+              <% end %>
+            </div>
+            <div>
+            <%= button_to "Edit Driver", edit_driver_path(@driver.id), method: :get, class: "btn btn-warning btn-sm" %>
+            </div>
+            <div>
+            <%= button_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% if @driver.trips.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Trip ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Passenger</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Rating</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @driver.trips.each do |trip| %>
+        <tr>
+          <th scope="row"><%= link_to trip.id, trip_path(trip.id) %></th>
+          <td>
+            <%= trip.date %>
+          </td>
+          <td>
+            <% if trip.passenger %>
+              <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>
+            <% else %>
+              <p><em>Not Available</em></p>
+            <% end %>
+          </td>
+          <td>
+            $<%= '%.2f' %trip.cost %>
+          </td>
+          <td>
+            <%= trip.rating %>
+          </td>
+          <td>
+            <%= button_to "Edit", edit_trip_path(trip.id), method: :get, class: "btn btn-outline-warning btn-sm" %>
+          </td>
+          <td>
+            <%= button_to "Delete", driver_trip_path(@driver.id, trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }, class: "btn btn-outline-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</main>
+
