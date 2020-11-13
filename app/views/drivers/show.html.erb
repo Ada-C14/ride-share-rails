@@ -1,0 +1,21 @@
+<h3>Drivers Details</h3>
+
+<div class="perfil">
+  <img src="/images/driver_photo.jpeg" alt="drive_photo" />
+  <ul>
+    <li>Name: <%= @driver.name %></li>
+    <li>VIN: <%= @driver.vin %></li>
+    <li>Status: <%= @driver.available == 'true' ? 'Available' : "Trip in-progress" %></li>
+    <li>Total Earnigns: <%= number_to_currency(@driver.total_earnings) %></li>
+    <li>Avg. Rating: <%= @driver.average_rating.nil? ? nil : @driver.average_rating.round(2) %></li>
+    <li><button><%= link_to "Edit", edit_driver_path(@driver.id) %> </button>
+      <button> <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Please confirm deletion." } %></button>
+      <button><%= link_to "Back", drivers_path %></button></li>
+     <li> <button><%= link_to "Change status", toggle_availability_path(@driver.id), method: :patch %></button></li>
+
+  </ul>
+</div>
+<section>
+  <h3><%=@driver.name %>'strips</h3>
+  <%= render partial: "trips" %>
+</section>

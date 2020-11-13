@@ -1,0 +1,23 @@
+<h3>Passengers Details</h3>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+  <div class="perfil">
+      <img src="/images/driver_photo.jpeg" alt="drive_photo" />
+      <ul>
+        <li>Name: <%= @passenger.name %></li>
+        <li>Phone Number: <%= @passenger[:phone_num] %></li>
+        <li>Total Spent on Rides: <%= number_to_currency(@passenger.lifetime_cost) %></li>
+         <li><button><%= link_to "Edit", edit_passenger_path(@passenger.id) %></button>
+              <button><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Please confirm deletion." } %></button>
+              <button><%= link_to "Back", passengers_path %></button>
+         </li>
+          <li><button class="request_trip"><%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post %></button></li>
+      </ul>
+  </div>
+
+<section>
+  <h3><%= @passenger.name %>'s trips</h3>
+  <%= render partial: "trips" %>
+</section>

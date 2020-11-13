@@ -1,0 +1,28 @@
+<h3>Rideshare Trips </h3>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= paginate @trips %>
+
+<table>
+  <thead>
+    <th>Date</th>
+    <th>Driver</th>
+    <th>Passenger</th>
+    <th>Price</th>
+    <th>Rating</th>
+  </thead>
+  <tbody>
+  <% @trips.each do |trip|  %>
+    <tr>
+      <td><%= link_to trip.date.strftime("%m/%d/%Y"), trip_path(trip.id) %></td>
+      <td><%= trip.driver.name %></td>
+      <td><%= trip.passenger.name %></td>
+      <td><%= number_to_currency(trip.cost) %></td>
+      <td><%= trip.rating %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>

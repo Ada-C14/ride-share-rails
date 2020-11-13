@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>RideShareRails</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+  <body>
+    <header>
+      <div class="image-txt-container">
+        <img src="/images/rideshare.png" alt="main" />
+        <h1 ><%= link_to "A&A RIDESHARE", root_path %></h1>
+        <nav>
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Drivers", drivers_path %></li>
+            <li><%= link_to "Passengers", passengers_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+          </ul>
+        </nav>
+      <div class="image-txt-container">
+    </header>
+    <main>
+
+
+      <div>
+        <%= yield %>
+      </div>
+    </main>
+    <footer>&copy Alice B. & Anna K. 2020</footer>
+  </body>
+</html>

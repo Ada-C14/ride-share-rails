@@ -1,0 +1,47 @@
+<% if @driver.errors.any? %>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= form_with model: @driver do |f| %>
+  <div class="container">
+    <p>Please provide the information for a driver</p>
+    <div class="row">
+      <div class="col-25">
+        <%= f.label :name %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+        <%= f.label :vin %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :vin %>
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+        <%= f.label :available %>
+      </div>
+      <div class="col-75">
+        <%= f.text_field :available %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="submit">
+        <%= f.submit action_name %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= link_to "Return to drivers list", drivers_path, class:"return"%>
+</div>
+

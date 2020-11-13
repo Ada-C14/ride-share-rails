@@ -2,8 +2,21 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "123", available: "true")
   }
+
+  let (:new_passenger) {
+    Passenger.create(name: "Kari", phone_num: "111-111-1211")
+  }
+
+  let (:trip_1) {
+    Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 12.34)
+  }
+
+  let (:trip_2) {
+    Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 63.34)
+  }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
@@ -24,9 +37,8 @@ describe Driver do
     it "can have many trips" do
       # Arrange
       new_driver.save
-      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+      trip_1
+      trip_2
 
       # Assert
       expect(new_driver.trips.count).must_equal 2
@@ -60,22 +72,40 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "average rating" do
-      # Your code here
+    it "average rating: will return nil if there were no trips or ratings recorded" do
+      new_driver.save
+      assert_nil(new_driver.average_rating)
     end
 
-    describe "total earnings" do
-      # Your code here
+    it "average rating: will return an average rating for recorded trips and ratings" do
+      new_driver.save
+      trip_1
+      trip_2
+
+      expect(new_driver.average_rating).must_equal 4
     end
 
-    describe "can go online" do
-      # Your code here
+    it "total earnings: returns 0 if no driven trips" do
+      new_driver.save
+      expect(new_driver.total_earnings).must_equal 0
     end
 
-    describe "can go offline" do
-      # Your code here
+    it "total earnings: returns proper net earnings if valid trips" do
+      new_driver.save
+      trip_1
+      trip_2
+      expect(new_driver.total_earnings).must_be_within_delta (12.34 + 63.34 - 2 * 1.65) * 0.8, 0.01
     end
 
-    # You may have additional methods to test
+    it "can go online and offline" do
+      new_driver.save
+      new_driver.toggle_availability
+      new_driver.reload
+      expect(new_driver.available).must_equal 'false'
+
+      new_driver.toggle_availability
+      new_driver.reload
+      expect(new_driver.available).must_equal 'true'
+    end
   end
 end

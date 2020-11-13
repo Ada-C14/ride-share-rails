@@ -1,0 +1,32 @@
+<nav class="nav-list">
+  <ul>
+    <li><button><a href="<%= new_driver_path %>">Add a driver</a></button></li>
+  </ul>
+</nav>
+
+<h3>Rideshare Drivers </h3>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= paginate @drivers %>
+
+<table>
+  <thead>
+  <th>Name</th>
+  <th>VIN number</th>
+  <th>Total Earnigns</th>
+  <th>Avg. Rating</th>
+  </thead>
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= link_to driver.name, driver_path(driver.id) %></td>
+        <td><%= driver.vin %></td>
+        <td><%= number_to_currency(driver.total_earnings.round(2))%></td>
+        <td><%= driver.average_rating.nil? ? nil :driver.average_rating.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
