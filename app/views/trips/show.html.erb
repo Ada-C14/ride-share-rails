@@ -1,0 +1,38 @@
+<!--each passenger info-->
+<div>
+  <h2>Trip Information</h2>
+  <%= link_to "Edit", edit_trip_path(@trip.id) %>
+  <%= link_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Date</th>
+      <th>Passenger</th>
+      <th>Driver</th>
+      <th>Cost</th>
+      <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th><%= link_to "#{@trip.id}", trip_path(@trip.id) %></th>
+        <td><%= @trip.date %></td>
+        <% if @trip.passenger.nil? %>
+          <td>Passenger Deleted</td>
+        <% else %>
+          <td><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger_id)%></td>
+        <% end %>
+        <% if @trip.passenger.nil? %>
+          <td>Driver Deleted</td>
+        <% else %>
+          <td><%= link_to "#{@trip.driver.name}", driver_path(@trip.driver_id)%></td>
+        <% end %>
+        <td><%= @trip.format_cost %></td>
+        <td><%= @trip.rating %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

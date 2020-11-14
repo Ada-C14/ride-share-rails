@@ -1,0 +1,14 @@
+<h1 class ="col-xs-1 text-center">Drivers</h1>
+
+
+<%= link_to "Create new Driver Account",  new_driver_path %>
+
+<ul class="list-group list-group-flush">
+  <% @drivers.each do |driver|%>
+    <li class="list-group-item">
+      <%= driver.name %> | <%= link_to "Details", driver_path(driver.id) %>
+    </li>
+  <% end %>
+</ul>
+
+
