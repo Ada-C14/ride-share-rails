@@ -1,0 +1,17 @@
+<% content_for :title, "Passengers" %>
+
+<div class="container-content">
+  <h1>Passenger List</h1>
+
+  <div class="summary">
+    <% if @passengers %>
+      <ol>
+        <% @passengers.each do |passenger| %>
+          <li><%= link_to passenger.name, passenger_path(passenger) %></li>
+        <% end %>
+      </ol>
+    <% else %>
+      <p>No passengers in the system!</p>
+    <% end %>
+  </div>
+</div>

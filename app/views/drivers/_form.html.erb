@@ -1,0 +1,35 @@
+<div class="container-content">
+
+  <h1><%= form_title %></h1>
+  <div class="summary">
+    <p> Please provide the following information: </p>
+
+    <ul>
+      <% @driver.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+    <%= form_with model: @driver do |f| %>
+
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :vin %>
+        <%= f.text_field :vin %>
+      </div>
+      <div>
+        <%= f.label :available %>
+        <% if action_name == "New" %>
+          <%= f.check_box :available, checked: true %>
+        <% else %>
+          <%= f.check_box :available %>
+        <%end %>
+      </div>
+        <%= f.submit action_name %>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-content">
+
+  <h1><%= form_title %></h1>
+  <div class="summary">
+    <p> Please provide the following information: </p>
+
+    <ul>
+      <% @passenger.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+    <%= form_with model: @passenger do |f| %>
+
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div>
+        <%= f.label :phone_num, "Phone Number" %>
+        <%= f.text_field :phone_num %>
+      </div>
+
+      <%= f.submit "#{action_name} Passenger", class: "passenger_button" %>
+    <% end %>
+  </div>
+</div>

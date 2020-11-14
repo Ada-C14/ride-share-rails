@@ -1,0 +1,33 @@
+<% content_for :title, "#{@passenger.name}" %>
+
+
+<div class="container-content">
+  <h1>Passenger Details</h1>
+  <div class="summary">
+    <p><strong> Name:</strong> <%= @passenger.name %> </p>
+    <p><strong>Phone Number: </strong><%= @passenger.phone_num %></p>
+    <p><strong>Total Charged: </strong><%= number_to_currency(@passenger.total_charged/100.00) %></p>
+    <br>
+
+    <section class="trip-list">
+      <strong>List of Trips</strong>
+      <ol>
+        <% @passenger.trips.each do |trip| %>
+          <br>
+          <li><%= link_to trip.date, trip_path(trip) %></li>
+        <% end %>
+      </ol>
+    </section>
+
+
+  <%= link_to "Add New Trip", new_passenger_trip_path(@passenger) %> |
+
+  <%= link_to "Edit Passenger", edit_passenger_path(@passenger) %> |
+
+  <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete passenger: '#{@passenger.name}?'" } %>
+
+  </div>
+</div>
+
+
+
