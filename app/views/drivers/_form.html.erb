@@ -1,0 +1,30 @@
+
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+
+<!--This code is not working, we spent many hours with TA and instructor help. See Schanen's getting help thread on the-->
+<!--  subject for more information.-->
+  <%# if @driver.errors.any? %>
+<!--    <ul class="errors">-->
+      <%# @driver.errors.each do |column, message| %>
+<!--        <li>-->
+<!--          <p><strong><%#= column.capitalize %></strong> <%#= message %></p>-->
+<!--        </li>-->
+      <%# end %>
+<!--    </ul>-->
+  <%# end %>
+<!--  <select id="count" name="count"><option>true</option><option>false</option>-->
+  <div id="form-lines">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'input' %> </br>
+
+    <%= f.label :vin %>
+    <%= f.text_field :vin, class: 'input' %> </br>
+
+    <%= f.label :available  %>
+    <%= f.select :available, [true, false] %>
+
+    <%= f.submit action_name %>
+
+  </div>
+<% end  %>
+

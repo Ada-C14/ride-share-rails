@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+driver_one:
+  name: MyString
+  vin: MyString
+  available: false
+
+driver_two:
+  name: MyString
+  vin: MyString
+  available: false

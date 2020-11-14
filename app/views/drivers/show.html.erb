@@ -1,0 +1,75 @@
+<div class="scroll-top"></div>
+
+<h2 class="details-header">DRIVER DETAILS - <%= @driver.name.upcase %></h2>
+
+<div class="detail-layout">
+
+  <div class="details">
+    <ul>
+      <li>
+        <span class="detail-header">VIN: </span><%= @driver.vin %> </br>
+        <span class="detail-header">EARNINGS: </span><%= @driver.total_earnings %> </br>
+        <span class="detail-header">AVERAGE RATING: </span><%= @driver.avg_rating %> </br>
+        <span class="detail-header">STATUS:</span>
+        <% if @driver.available %>
+          <%= link_to "AVAILABLE", toggle_status_path(@driver), method: :patch, class: 'table-link', id: 'avail' %>
+        <% else %>
+          <%= link_to "UNAVAILABLE", toggle_status_path(@driver), method: :patch, class: 'table-link', id: 'unavail' %>
+        <% end %>
+        </br><span class="detail-header">DRIVER ID: </span><%= @driver.id %> </br>
+      </li>
+    </ul>
+  </div>
+
+  <div class="edit-delete">
+    <div><%= link_to "DELETE DRIVER", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete #{@driver.name}?"}, class: 'table-link' %></div>
+    <div><%= link_to "EDIT DRIVER", edit_driver_path, class: 'table-link' %></div>
+    <div><%= link_to "CHANGE AVAILABILITY", toggle_status_path(@driver), method: :patch, class: 'table-link' %></div>
+  </div>
+
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>TRIP ID </th>
+      <th>TRIP DATE </th>
+      <th>PASSENGER ID </th>
+      <th>PASSENGER NAME </th>
+      <th>DRIVER ID </th>
+      <th>DRIVER NAME </th>
+      <th>COST </th>
+      <th>RATING </th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip), class: 'table-link' %></td>
+      <td class="table-content"><%= trip.date %></td>
+
+      <% if Passenger.find_by(id: trip.passenger_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED PASSENGER</td>
+      <% else %>
+        <td class="table-content"><%= trip.passenger_id %></td>
+        <td class="table-content"><%= link_to trip.passenger.name, passenger_path(trip.passenger), class: 'table-link' %></td>
+      <% end %>
+
+      <% if Driver.find_by(id: trip.driver_id) == nil %>
+        <td class="table-content">N/A</td>
+        <td class="table-content">DELETED DRIVER</td>
+      <% else %>
+        <td class="table-content"><%= trip.driver_id %></td>
+        <td class="table-content"><%= link_to trip.driver.name, driver_path(trip.driver), class: 'table-link' %></td>
+      <% end %>
+
+      <td class="table-content"><%= trip.cost_to_string %></td>
+      <td class="table-content"><%= trip.rating %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>

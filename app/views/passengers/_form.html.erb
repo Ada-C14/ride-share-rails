@@ -1,0 +1,28 @@
+
+
+
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+
+<!--  We could not debug in order to show these errors. We stumped many a TA tutor and instructor. -->
+  <%# unless @passenger.errors.empty? %>
+<!--    <ul class="errors">-->
+    <%# @passenger.errors.each do |column, message| %>
+<!--      <li>-->
+<!--        <p><strong><%#= column.capitalize %></strong> <%#= message %></p>-->
+<!--      </li>-->
+    <%# end %>
+<!--    </ul>-->
+  <%# end %>
+
+  <div id="form-lines">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num %>
+
+    <%= f.submit "#{action_name} PASSENGER", class: "button" %>
+  </div>
+
+<% end %>
+

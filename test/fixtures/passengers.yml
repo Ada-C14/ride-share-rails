@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pass_one:
+  name: Becca
+  phone_num: MyString
+  available: false
+
+pass_two:
+  name: Schanen
+  phone_num: MyString
+  available: false
