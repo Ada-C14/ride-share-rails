@@ -27,7 +27,15 @@ describe Trip do
   end
 
   describe "relationships" do
+    it "belongs to a driver" do
+      expect(new_trip.driver).must_be_instance_of Driver
+      expect(new_trip.driver.name).must_equal "Kim Vitug"
+    end
 
+    it "belongs to a passenger" do
+      expect(new_trip.passenger).must_be_instance_of Passenger
+      expect(new_trip.passenger.name).must_equal "Kari"
+    end
   end
 
   describe "validations" do
@@ -70,10 +78,5 @@ describe Trip do
       expect(new_trip.errors.messages).must_include :driver_id
       expect(new_trip.errors.messages[:driver_id]).must_equal ["can't be blank", "is not a number"]
     end
-  end
-
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    # Your tests here
   end
 end

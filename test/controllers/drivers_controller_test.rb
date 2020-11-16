@@ -105,7 +105,7 @@ describe DriversController do
 
     end
   end
-  
+
   describe "edit" do
     before do
       @driver1 = Driver.create(name: "Kim Vitug", vin: "W23423SAFSE")
@@ -237,7 +237,6 @@ describe DriversController do
 
       # Assert
       must_respond_with :not_found
-
     end
   end
 end

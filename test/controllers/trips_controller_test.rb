@@ -26,6 +26,8 @@ describe TripsController do
     )
   end
 
+  # TODO: TEST index
+
   describe "show" do
     it "responds with success when showing an existing trip" do
 
@@ -47,6 +49,8 @@ describe TripsController do
       must_respond_with :not_found
     end
   end
+
+  # TODO: TEST new
 
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
@@ -206,4 +210,6 @@ describe TripsController do
       must_respond_with :not_found
     end
   end
+
+  # TODO: TEST find_by_id
 end

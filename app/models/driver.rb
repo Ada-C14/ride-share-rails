@@ -16,8 +16,4 @@ class Driver < ApplicationRecord
 
     return (self.trips.sum { |trip| (trip.cost.to_f / 100) - 1.65 } * 0.8).round(2)
   end
-
-  def num_of_rides
-    return self.trips.sum { |trip| trip }
-  end
 end
