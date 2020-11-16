@@ -23,7 +23,6 @@ puts "Added #{Driver.count} driver records"
 puts "#{driver_failures.length} drivers failed to save"
 
 
-
 PASSENGER_FILE = Rails.root.join('db', 'seed_data', 'passengers.csv')
 puts "Loading raw passenger data from #{PASSENGER_FILE}"
 
