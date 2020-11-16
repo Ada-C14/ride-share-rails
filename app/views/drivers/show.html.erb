@@ -9,13 +9,30 @@
   <p><strong>Rides Given: </strong><%= @driver.trips.length %></p>
 
 <br>
-
-<%= button_to "Edit driver", edit_driver_path(@driver.id), method: :get %>
-<%= button_to "Delete driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete driver #{@driver.name}?" }%>
-
+  <%= button_to "Edit driver", edit_driver_path(@driver.id), method: :get %>
+  <%= button_to "Delete driver", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete driver #{@driver.name}?" }%>
 <br>
-<strong><%= link_to "Trips for #{@driver.name}", driver_trips_path(@driver.id) %></strong>
 
-
-
-
+<h3><%= "Driver Trip List: #{@driver.name}" %></h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Date</th>
+      <th><%= "Driver" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+        <td><%= trip.rating %></td>
+        <td><%= number_to_currency(trip.cost.to_f / 100) %></td>
+        <td><%= trip.date %></td>
+        <td><%= link_to trip.passenger.nil? ? "" : "#{trip.passenger.name}", passenger_path(trip.passenger_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

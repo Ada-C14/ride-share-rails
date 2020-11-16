@@ -5,13 +5,32 @@
 <p><strong>Phone:</strong> <%= @passenger.phone_num %></p>
 <p><strong>Total spending:</strong> $<%= @passenger.total_spending %></p>
 
-
   <%= button_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
-
   <%= button_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete passenger #{@passenger.name}?" }%>
-
   <%= button_to "Request Trip", passenger_trips_path(@passenger.id), method: :post %>
-
 <br>
 
-<strong><%= link_to "Trips for #{@passenger.name}", passenger_trips_path(@passenger.id) %></strong>
+
+<h3><%= "Passenger Trip List: #{@passenger.name}" %></h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Date</th>
+      <th><%= "Driver" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @passenger.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+        <td><%= trip.rating %></td>
+        <td><%= number_to_currency(trip.cost.to_f / 100) %></td>
+        <td><%= trip.date %></td>
+        <td><%= link_to trip.driver.nil? ? "" : "#{trip.driver.name}", driver_path(trip.driver_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
