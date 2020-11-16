@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <h1><%= link_to "Welcome to RideShareRails", root_path %></h1>
+        <nav>
+          <div>
+            <%= link_to "Home", root_path %>
+            <%= link_to "Driver", drivers_path %>
+            <%= link_to "Passenger", passengers_path %>
+          </div>  
+        </nav>
+      </header>
+      <%= yield %>
+      <footer>
+        <p>Copyright 2020 Taylor & Ting-Yi @Ada Developers Academy</p>
+      </footer>
+    </div>  
+  </body>
+</html>

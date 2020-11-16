@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "TEST1234567123456")
   }
   it "can be instantiated" do
     # Assert
@@ -13,7 +13,7 @@ describe Driver do
     # Arrange
     new_driver.save
     driver = Driver.first
-    [:name, :vin, :available].each do |field|
+    [:name, :vin].each do |field|
 
       # Assert
       expect(driver).must_respond_to field
@@ -24,7 +24,7 @@ describe Driver do
     it "can have many trips" do
       # Arrange
       new_driver.save
-      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      new_passenger = Passenger.create(name: "Waldo", phone_num: "206-555-7354")
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
@@ -47,35 +47,52 @@ describe Driver do
       expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
     end
 
-    it "must have a VIN number" do
+    it "must have a vin number" do
       # Arrange
       new_driver.vin = nil
 
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
-      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank", "is the wrong length (should be 17 characters)"]
     end
   end
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "average rating" do
-      # Your code here
+    describe "total_earniings" do
+      it "calculates the total amount earned by a driver on all trips" do
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+        assert_equal(57.9, new_driver.total_earnings)
+      end
+
+      it "gives a total of nil if the driver has zero trips" do
+        no_trip_driver = Driver.create(name: "Mildred", vin: "TEST1234567891234")
+
+        assert_nil(no_trip_driver.total_earnings)
+      end
     end
 
-    describe "total earnings" do
-      # Your code here
-    end
+    describe "ave_rating" do
+      it "calculates the average rating of a driver based on all trips" do
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
 
-    describe "can go online" do
-      # Your code here
-    end
+        assert_equal(4, new_driver.ave_rating)
+      end
 
-    describe "can go offline" do
-      # Your code here
-    end
+      it "gives a total of nil if the driver has zero trips" do
+        no_trip_driver = Driver.create(name: "Mildred", vin: "TEST1234567891234")
 
-    # You may have additional methods to test
+        assert_nil(no_trip_driver.ave_rating)
+      end
+    end
+    # You may have additional methods to test here
   end
 end

@@ -1,0 +1,75 @@
+<section>
+  <a name="top"></a>
+  <article class="table-border">
+    <h2>Driver: <%= @driver.name %> </h2>
+    <table class="show-table">
+        <tr>
+            <th>Driver ID</th>
+            <th>VIN#</th>
+            <th>Driver availability</th>
+            <th>Total Revenue</th>
+            <th>Average Rating</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
+            <th><%= @driver.id %></th>
+            <th><%= @driver.vin %></th>
+
+            <th>
+                <% if @driver.available %>
+                    available 
+                <% else %>  
+                    unavailable 
+                <% end %>
+            </th>    
+
+            <th>
+                <%= @driver.total_earnings.nil? ? "No data": "$ #{@driver.total_earnings}" %>
+            </th>
+            <th>
+                <%= @driver.ave_rating.nil? ? "No data": @driver.ave_rating %>
+            </th>
+            <th>
+                <%= link_to "Edit", edit_driver_path(@driver) %> |
+                <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+            </th> 
+        </tr>   
+    </table> 
+  </article>
+  <br/>
+  <article class="table-border">
+    <h4><%= @driver.name %>'s Trips:</h4>
+    <table class="show-table">
+        <tr>
+            <th>Trip ID</th>
+            <th>Date</th>
+            <th>Passenger</th>
+            <th>Driver</th>
+            <th>Cost</th>
+            <th>Rating</th>
+        </tr>
+        <% @driver.trips.order(id: :asc).each do |trip| %>
+            <tr>
+                <th><%= link_to trip.id, trip_path(trip.id) %></th>
+                <th><%= trip.date %></th>
+                <th>
+                  <% if trip.passenger.isactive %>
+                    <%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %>
+                  <% else %>
+                    <%= trip.passenger.name %>
+                  <% end %>    
+                </th>
+
+                <th><%= @driver.name %></th>
+                <th>$ <%= trip.cost / 100 %></th>
+                <th><%= trip.rating %></th>
+            </tr>
+        <% end %>
+    </table>
+  </article>
+</section>
+<section class="bk-top-grid">
+  <a href="#top" class="bk-top">Back to Top</a>
+</section>
+
+

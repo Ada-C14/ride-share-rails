@@ -1,0 +1,39 @@
+<section>
+  <article class="form-border">  
+    <% if action_name == "Edit" %>
+      <h2>Edit Passenger - <%= @passenger.name %></h2>
+    <% else %>
+      <h2>Create a New Passenger</h2>
+    <% end %> 
+  </article>
+  <article class="form-border">
+    <p>Please provide the following information to <%= action_name %> passenger in our database.</p>
+    
+    <%= form_with model: @passenger, class: 'edit-form' do |f| %>
+      <table class="form-table">
+        <tr>  
+          <th>Passenger Name</th>
+          <th>Phone Number</th>
+        <tr> 
+        <tr>
+          <th><%= f.text_field :name %></th>
+          <th><%= f.text_field :phone_num %></th>
+        </tr>
+      </table>
+      <div>  
+        <%= f.submit "#{ action_name } Passenger", class: 'form-button' %>
+      </div>  
+    <% end %>
+  </article>
+  <article class="form-border">
+    <% if @passenger.errors.any? %>
+    <ul class="errors">
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </article>
+</section>      

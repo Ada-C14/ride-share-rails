@@ -1,0 +1,208 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "drivers.scss";
+@import "homepages.scss";
+@import "passengers.scss";
+@import "trips.scss";
+
+body, html {
+    overflow: auto;
+    height: 100%;
+}
+.main-container {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; /* height of the footer */
+    margin-bottom: -50px;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+    text-align: center;
+    color: #363636;
+    width: 100%;
+}
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 5rem;
+    padding: 1.5rem;
+}
+nav div {
+    background-color: #004ECC;
+    opacity: 0.4;
+    overflow: hidden;
+}
+nav {
+    font-size: 2rem;
+}
+nav div a {
+    float: center;
+    padding: 2rem;
+
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+}
+nav div a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #002B7A;
+    padding-top: 1rem;
+}
+
+// For list pages
+.index {
+    display: flex;
+    justify-content: right;
+    padding-bottom: .5rem;
+}
+.index > p {  
+    padding: 1rem;
+    border:  #0073E6 3px solid;
+    border-radius: 8px;
+    margin: 1rem;
+}
+
+.list-table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f2f2f2;
+    opacity: 0.8;
+    padding: 1rem;
+}
+.list-table th, td {
+    text-align: left;
+    padding: 8px;
+}
+.list-table tr:nth-child(even) {
+    background-color:#BEE3FA;
+    opacity: 0.7;
+}
+
+// For show pages
+.table-border {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+}
+.table-border > .list-table {
+    grid-column: 2 /3;
+    font-size: 1rem;
+}
+.table-border > h2, h4 {
+    grid-column: 2 /3;
+    color: #002B7A;
+}
+.table-border > .show-table {
+    grid-column: 2 /3;
+    font-size: 1rem;
+}
+.show-table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f2f2f2;
+    opacity: 0.8;
+    padding: 1rem;
+}
+.show-table th, td {
+    text-align: left;
+    padding: 8px;
+}
+.show-table tr:nth-child(even) {
+    background-color:#BEE3FA;
+    opacity: 0.7;
+}
+.table-border > div {
+    grid-column: 2 /3;
+    font-size: 1rem;
+    padding-top: 1rem;
+    text-align: right;
+}
+
+// For form pages
+.form-border {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+}
+.form-border > .form-table {
+    grid-column: 2 /3;
+    font-size: 1rem;
+}
+.form-border > h2, p {
+    padding-top: 1rem;
+    grid-column: 2 /3;
+    color: #002B7A;
+    text-align: center;
+}
+.form-border > .edit-form {
+    grid-column: 2 /3;
+    padding: 1rem;
+}
+.form-border > .form-button {
+    grid-column: 2 /3;
+    font-size: 1rem;
+    padding-top: 1rem;
+}
+.form-border > .errors {
+    grid-column: 2 /3;
+    padding: 1rem;
+    color: red;
+    text-align: center;
+    font-size: 2rem;
+}
+.edit-form > .form-table {
+    display: flex;
+    justify-content: center;
+}
+.form-table th {
+    padding-right: 1rem;
+}
+.edit-form > div {
+    padding-top: 2rem;
+    text-align: center;
+}
+
+// For flash msg
+.flash-msg {
+    grid-column: 2 /3;
+    padding: 1rem;
+    color: red;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+// For back to top button
+.bk-top-grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+}
+.bk-top {
+    grid-column: 2 /3;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}

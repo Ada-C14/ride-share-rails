@@ -1,0 +1,51 @@
+<section>
+  <article class="form-border">  
+    <% if action_name == "Edit" %>
+      <h2>Edit Driver - <%= @driver.name %></h2>
+    <% else %>
+      <h2>Create a New Driver </h2>
+    <% end %>      
+  </article>
+  <article class="form-border">
+    <% if action_name == "Edit" %>
+      <p>Please provide the following information to <%= action_name %> driver in our database.</p>
+    <% else %>  
+      <p>Please provide the following information to Add driver in our database.</p>
+    <% end %>  
+
+    <%= form_with model: @driver, class: 'edit-form' do |f| %>
+      <table class="form-table">
+        <tr>  
+          <th>Driver Name</th>
+          <th>VIN#</th>
+          <th>Available</th>
+        </tr> 
+        <tr>
+          <th><%= f.text_field :name %></th>
+          <th><%= f.text_field :vin %></th>
+          <th>
+            <% if action_name == "Edit" %>
+              <%= f.select :available, [["Yes", true],["No", false]], value: @driver.available %>
+            <% else %>
+              <%= f.select :available, [["Yes", true]], value: @driver.available %>
+            <% end %>  
+          </th>
+        </tr>
+      </table>
+      <div>    
+        <%= f.submit "#{ action_name } Driver", class: 'form-button' %>
+      </div>  
+    <% end %>
+  </article>
+  <article class="form-border">  
+    <% if @driver.errors.any? %>
+    <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </article>
+</section>    

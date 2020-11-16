@@ -1,0 +1,32 @@
+// Place all the styles related to the homepages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.homepage {
+    font-size: 1rem;
+}
+
+ul {
+    list-style-type: none;
+}
+.hp-box {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+.hp-box > li {  
+    display: flex;
+    justify-content: space-between;
+    color: #636363;
+    padding: 1rem;
+    border:  #0073E6 3px solid;
+    border-radius: 8px;
+    margin: 1rem;
+}
+.hp-img > li {
+    display: flex;
+    justify-content: center;
+}
+img {
+    width: 30%;
+}

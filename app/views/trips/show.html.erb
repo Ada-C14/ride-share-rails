@@ -1,0 +1,74 @@
+<section>
+  <article class="table-border">
+    <h2>Trip ID: <%= @trip.id %></h2>
+    <table class="show-table">
+        <tr>
+          <th>Date</th>
+          <th>Passenger</th>
+          <th>Driver</th>
+          <th>Cost</th>
+          <th>Rating</th>
+          <th>Complete?</th>
+          <th>Edit</th>
+        </tr>
+        <tr>  
+          <th><%= @trip.date %></th>
+
+          <th>
+            <% if @trip.passenger.isactive %>
+              <%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id) %>
+            <% else %>  
+              <%= @trip.passenger.name %>
+            <% end %>  
+          </th>
+
+          <th>
+            <% if @trip.driver.isactive %>
+              <%= link_to @trip.driver.name, driver_path(@trip.driver_id) %>
+            <% else %>  
+              <%= @trip.driver.name %>
+            <% end %>
+          </th>
+
+          <th>
+            $ <%= @trip.cost / 100 %>
+          </th>
+
+          <th>
+            <% if @trip.rating.nil? == false %>
+              <%= @trip.rating %>
+            <% elsif @trip.complete == true && @trip.rating.nil? %>
+              <%= form_for @trip do |f| %>
+                <%= f.select :rating, [[1],[2],[3],[4],[5]] %>
+                <%= f.submit "Add Rating" %>
+              <% end %>
+            <% end %>
+          </th>
+
+          <th>
+            <% if @trip.complete == false %>
+              <h5>**This trip is still in progress**</h5>
+              <%= form_with model: @trip, class: 'complete-trip', url: complete_trip_path(@trip.id) do |f| %>
+                <% f.submit "Complete Trip" %>
+              <% end %>
+            <% else %>
+              <p>Yes</p>
+            <% end %>
+          </th>
+
+          <th>
+            <%= link_to "Edit", edit_trip_path(@trip) %> |
+            <%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
+          </th>
+        </tr>  
+    </table>
+    <% flash.each do |type, msg| %>
+      <div class="flash-msg">
+        <%= msg %>
+      </div>
+    <% end %>
+  </article>
+</section>  
+
+
+

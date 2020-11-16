@@ -1,0 +1,52 @@
+<section>
+  <article class="form-border">  
+    <h2>Edit Trip ID: <%= @trip.id %></h2>
+  </article>
+  <article class="form-border">
+    <% if @trip.errors.any? %>
+      <ul class="errors">
+        <% @trip.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @trip, class: 'edit-form' do |f| %>
+      <table class="form-table">
+        <tr>  
+          <th>Date</th>
+          <th>Passenger</th>
+          <th>Driver</th>
+          <th>Cost</th>
+          <th>Rating</th>
+        <tr>  
+          <th>
+            <%= f.date_field :date, value: @trip.date %>
+          </th>
+          <th>
+            <%= f.select :passenger_id, Passenger.all.order(name: :asc).map { |passenger| [passenger.name, passenger.id] } %>
+          </th>  
+          <th>  
+            <%= f.select :driver_id, Driver.all.order(name: :asc).map{ |driver| [driver.name, driver.id] } %>
+          </th>  
+          <th> 
+            <%= f.text_field :cost %>
+          </th>
+          <th>
+            <% if @trip.complete %>
+              <%= f.select :rating, [1,2,3,4,5] %>
+            <% else %>
+              <%= f.select :rating, [["Trip in progress", nil]] %>
+            <% end %>  
+          </th>
+        </tr>
+      </table>
+      <div>
+        <%= f.submit "Edit Trip", class: 'form-button' %>
+      </div>  
+    <% end %>  
+  </article>
+</section>          
+
