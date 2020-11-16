@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+  <h1>Welcome to the RideShare App!!!</h1>
+  <nav class="nav-links">
+    <%= link_to "Home", root_path, class: 'nav-buttons' %> ||
+    <%= link_to "Driver's List", drivers_path, class: 'nav-buttons'  %> ||
+    <%= link_to "Passenger's List", passengers_path, class: 'nav-buttons'  %> ||
+    <%= link_to "Create a New Driver", new_driver_path, class: 'nav-buttons'  %> ||
+    <%= link_to "Create a New Passenger", new_passenger_path, class: 'nav-buttons'  %>
+  </nav>
+  </header>
+    <%= yield %>
+    <footer>©Ada 2020 Aimee & Emily</footer>
+  </body>
+</html>

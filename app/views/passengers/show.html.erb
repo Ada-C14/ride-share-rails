@@ -1,0 +1,24 @@
+<br>
+<h3><%= @passenger.name %>'s Details</h3>
+<br>
+<table class="table">
+  <tr>
+    <th>Passenger ID</th>
+    <th>Passenger Phone Number</th>
+    <th>Trips</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+  <td><%= @passenger.id %></td>
+  <td><%= @passenger.phone_num %></td>
+  <td><%= link_to "View All Trips", passenger_trips_path(@passenger.id) %></td>
+  <td><%= number_to_currency(@passenger.total_cost) %></td>
+  </tr>
+</table>
+<div class ="info">
+<%= link_to "Back", passengers_path %> ||
+<%= link_to "Edit", edit_passenger_path %> ||
+<%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {
+  confirm: "Are you sure you want to delete this passenger?" } %> ||
+<%= link_to "Add a Trip", new_passenger_trip_path(@passenger.id) %>
+</div>

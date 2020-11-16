@@ -1,0 +1,23 @@
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+  <p>Please fill in the details to add a new passenger:</p>
+
+  <% if @passenger.errors.any? %>
+    <ul>
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <%= column %> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end  %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num, required: true %>
+  </div>
+  <br>
+  <%= f.submit action_name, class: "button" %>
+<% end %>

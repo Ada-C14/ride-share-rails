@@ -1,0 +1,95 @@
+<br>
+<%= form_with model: @trip do |f| %>
+
+  <%# When Accessed from Passenger: %>
+  <% if @passenger %>
+    <h3><%= @passenger.name %>'s Trips:</h3>
+    <br>
+      <% if @trips.length >= 1 %>
+      <table class="table">
+      <tr>
+        <th>Trip ID</th>
+        <th>Driver Name</th>
+        <th>Date</th>
+        <th>Rating</th>
+        <th>Cost</th>
+      </tr>
+         <% @trips.each do |trip| %>
+          <tr>
+            <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
+              <% if trip.driver.nil? %>
+                <td>Driver Deleted</td>
+              <% else %>
+                <td><%= trip.driver.name %></td>
+              <% end %>
+                <td><%= trip.date %></td>
+              <% if trip.rating %>
+                <td><%= trip.rating %></td>
+              <%else %>
+                <td> <%= f.label :rating, "✨" %>
+                 <%= f.select :rating, [
+                    ['⭐️', 1],
+                    ['⭐⭐', 2],
+                    ['⭐⭐⭐', 3],
+                    ['⭐⭐⭐⭐', 4],
+                    ['⭐⭐⭐⭐⭐', 5],
+                  ] %> </td>
+              <% end %>
+            <td><%= number_to_currency(trip.cost / 100) %></td>
+          </tr>
+        <% end %>
+      </table>
+      <h5>Total amount charged: <%= number_to_currency(@passenger.total_cost) %></h5>
+      <%= link_to "Back", passengers_path %> ||
+      <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {
+        confirm: "Are you sure you want to delete this passenger?" } %> ||
+      <%= link_to "Add a Trip", new_passenger_trip_path(@passenger.id) %>
+    <% else %>
+      <h2>No Trips to Date</h2>
+    <% end %>
+  <%# When Accessed from Driver %>
+  <% elsif @driver %>
+    <h3><%= @driver.name %>'s Trips:</h3>
+    <br>
+    <% if @trips.length >= 1 %>
+      <div class="driver">
+        <table class="table">
+          <tr>
+            <th>Trip ID</th>
+            <th>Passenger Name</th>
+            <th>Trip Cost</th>
+            <th>Trip Rating</th>
+          </tr>
+          <% @trips.each do |trip| %>
+            <tr>
+              <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
+              <% if trip.passenger.nil? %>
+                <td>Deleted Passenger</td>
+              <% else %>
+                <td><%= trip.passenger.name %></td>
+              <% end %>
+              <td><%= number_to_currency(trip.cost / 100) %></td>
+              <td><%= trip.rating %></td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="info">
+          <h5>Gross Earnings:
+            <%= number_to_currency(@driver.gross_earnings)%></h5>
+          <h5>Net Earnings:
+            <%= number_to_currency(@driver.net_earnings) %></h5>
+          <h5>Average Rating:
+            <%= number_with_precision(@driver.average_rating, :precision => 2)%></h5>
+        </div>
+    <% else %>
+      <h2>No Trips to Date</h2>
+    <% end %>
+    <%= link_to 'Home', root_path %> ||
+    <%= link_to 'Back', drivers_path %> ||
+    <%= link_to 'Delete', driver_path(@driver.id), method: :delete, data:{
+        confirm: "Are you sure you want to delete this driver?"}%>
+    </div>
+  <% end %>
+<% end %>
+
+

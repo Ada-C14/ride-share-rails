@@ -1,0 +1,24 @@
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Please fill in the details to add a new driver:</p>
+
+  <div>
+    <%= f.label :name, "Driver Name" %>
+    <%= f.text_field :name, required: true %>
+  </div>
+  <div>
+    <%= f.label :vin, "VIN" %>
+    <%if @driver.errors.any? %>
+      <%= " requires 17 characters" %>
+    <% end %>
+    <%= f.text_field :vin, required: true%>
+  </div>
+
+  <div>
+    <%= f.label :available %>
+    <%= f.select :available, [['Yes', true], ['No', false]] %>
+  </div>
+
+  <%= f.submit button_name, class: "button"%>
+
+
+<% end %>

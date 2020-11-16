@@ -1,0 +1,14 @@
+<h3>Drivers:</h3>
+<%= link_to 'Add Driver', new_driver_path %>
+
+<ol>
+  <% if @drivers.length > 0 %>
+  <% @drivers.each do |driver| %>
+      <li>
+        <%= link_to driver.name, driver_path(driver) %>
+      </li>
+  <% end %>
+  <%else %>
+    No drivers
+  <% end %>
+</ol>
