@@ -1,0 +1,12 @@
+<h1>Drivers</h1>
+
+<h3><%= button_to "Add a Driver", new_driver_path, method: :get %></h3>
+<div>
+<ul>
+  <% @drivers.each do |driver|  %>
+    <li>
+      <%= link_to driver.name, driver_path(driver.id) %>
+    </li>
+  <% end %>
+</ul>
+</div>

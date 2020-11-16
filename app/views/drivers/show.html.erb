@@ -1,0 +1,42 @@
+<h2><%= @driver.name %></h2>
+<h3><%= @driver.vin %></h3>
+<h3><% if @driver.available %>
+      <%= "Status: Available" %>
+    <% else %>
+      <%= "Status: Unavailable" %>
+    <% end %>
+    </h3>
+
+<h4>List of Trips:</h4>
+<table>
+  <tr>
+    <th>Trip ID:</th>
+    <th>Passenger ID:</th>
+    <th>Date:</th>
+    <th>Cost:</th>
+    <th>Rating:</th>
+  </tr>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to trip.id, trip_path(trip.id) %></td>
+      <td><%= link_to trip.passenger_id, passenger_path(trip.passenger_id) %></td>
+      <td><%= trip.date %></td>
+      <td><%= number_to_currency trip.cost/100.00 %></td>
+      <td><%= trip.rating %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Total Earnings <%= @driver.total_earnings.nil? ? "0" : number_to_currency(@driver.total_earnings) %></h2>
+
+<h2>Average Rating <%= @driver.average_rating.nil? ? "0" : (@driver.average_rating).round(2) %> </h2>
+
+
+<ul>
+  <li><%= link_to "Edit Driver", edit_driver_path %></li>
+  <li><%= link_to "Delete Driver", driver_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+  <li><%= link_to "Back to Drivers", drivers_path %></li>
+</ul>
+
+
+

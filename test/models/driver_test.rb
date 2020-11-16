@@ -60,20 +60,35 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "average rating" do
-      # Your code here
+    before do
+      new_driver.save
+      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1230)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6330)
+    end
+    it "average rating" do
+      driver = Driver.first
+
+      expect(driver.average_rating).must_equal 4
     end
 
-    describe "total earnings" do
-      # Your code here
+    it "total earnings" do
+      driver = Driver.first
+      expect(driver.total_earnings).must_be_close_to 57.84
     end
 
-    describe "can go online" do
-      # Your code here
+    it "can go online" do
+      driver = Driver.first
+      driver.mark_available
+
+      expect(driver.available).must_equal true
     end
 
-    describe "can go offline" do
-      # Your code here
+    it "can go offline" do
+      driver = Driver.first
+      driver.mark_unavailable
+
+      expect(driver.available).must_equal false
     end
 
     # You may have additional methods to test

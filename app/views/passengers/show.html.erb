@@ -1,0 +1,32 @@
+<h2><%= @passengers.name %></h2>
+
+<h3><%= @passengers.phone_num %></h3>
+
+<div>
+<h3><%= button_to "Request a Trip", passenger_trips_path(@passengers.id) %></h3>
+</div>
+
+<h4>List of Trips:</h4>
+<table>
+<tr>
+<th>Trip ID:</th>
+<th>Date:</th>
+
+</tr>
+  <% @passengers.trips.each do |trip| %>
+  <tr>
+  <td><%= link_to trip.id, trip_path(trip.id) %> </td>
+  <td><%= trip.date %></td>
+  </tr>
+  <% end %>
+ 
+</table>
+
+   <h2>Total Charges <%= @passengers.total_charges.nil? ? "0" : number_to_currency(@passengers.total_charges) %>
+
+
+<ul>
+  <li><%= link_to "Edit Passenger", edit_passenger_path %></li>
+  <li><%= link_to "Delete Passenger", passenger_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+  <li><%= link_to "Back to Passengers", passengers_path %></li>
+</ul>
