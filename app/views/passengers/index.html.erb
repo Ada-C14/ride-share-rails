@@ -1,0 +1,30 @@
+<h1>Passengers</h1>
+
+<div class="pagination">
+  <%= will_paginate @drivers %>
+  <br>
+</div>
+
+<% if @passengers.length > 0 %>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Phone Number</th>
+    </tr>
+    <% @passengers.each do |passenger| %>
+      <tr>
+        <td><%= passenger.id %></td>
+        <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
+        <td><%= passenger.phone_num %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No passengers in the system!</p>
+<% end %>
+
+<br><br>
+<div class="buttons">
+  <li><%= button_to "New Passenger", new_passenger_path, method: :get, :class => "button" %></li>
+</div>

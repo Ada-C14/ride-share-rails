@@ -1,0 +1,39 @@
+<div>
+  <h1><%= @passenger.name %></h1>
+  <div class="avatar-image">
+    <%= image_tag("http://www.randomkittengenerator.com/cats/rotator.php", :alt => "a photo of our furry passenger cat friend") %>
+  </div>
+  <br>
+  <!--  <h2>By: <%#= @driver.author.name %></h2>-->
+  <h4><strong>Phone Number:</strong> <%= @passenger.phone_num %></h4>
+  <h4><strong>Total Spent:</strong> $<%= @passenger.to_currency(@passenger.total_spent) %></h4>
+  <li><%= button_to "Edit", edit_passenger_path(@passenger), :class => "button", method: :get %></li>
+  <li><%= button_to "Request New Trip", passenger_trips_path(@passenger.id), method: :post, :class => "button" %></li>
+  <li><%= button_to "Delete", passenger_path(@passenger), :class => "button", method: :delete, data: {confirm: "Are you sure?"}%></li>
+  <br><br>
+  <h3>Trips</h3>
+  <% if @passenger.trips.length == 0 %>
+    <p><i><%= "#{@passenger.name} does not have any trips in the system yet!" %></i></p>
+  <% else %>
+  <table>
+    <tr>
+      <th>Trip ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Cost</th>
+      <th>Rating</th>
+    </tr>
+      <% @passenger.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip.id) %></td>
+        <td><%= trip.date %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+        <td>$<%= trip.to_currency(trip.cost) %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+</div>
+<!--<div class="profile-spacer"></div>-->
+<!--<p><%#= link_to "Return to Book List", books_path %></p> -->

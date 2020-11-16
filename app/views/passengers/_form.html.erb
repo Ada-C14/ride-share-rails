@@ -1,0 +1,25 @@
+<% if @passenger.errors.any? %>
+  <p class="errors">
+    <i>Please adjust the following and try again!</i>
+    <br>
+    <% @passenger.errors.each do |column, message| %>
+      <strong>- <%= column.capitalize %></strong> <%= message %>
+      <br>
+    <% end %>
+  </p>
+<% end %>
+
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+  <h4><%= f.label "Passengers >> #{action_name}" %></h4>
+  <br>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+  <%#= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+  <%#= f.label :available %>
+  <%#= f.select :driver_id, Driver.all.map{ |driver| [driver.available, driver.id] } %>
+  <%#= f.select :available, [ 'true', 'false' ], :prompt => 'Select One' %>
+  <%= f.submit "Save", class: "button" %>
+  <div class="form-spacer"></div>
+<% end %>

@@ -1,0 +1,31 @@
+<h1>Drivers</h1>
+
+<div class="pagination">
+  <%= will_paginate @drivers %>
+</div>
+
+<% if @drivers.length > 0 %>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Vin</th>
+      <th>Status</th>
+    </tr>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= driver.id %></td>
+        <td><%= link_to driver.name, driver_path(driver.id)%></td>
+        <td><%= driver.vin %></td>
+        <td><%= ActiveModel::Type::Boolean.new.cast(driver.available) ? "Available" : "Unavailable" %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No drivers in the system!</p>
+<% end %>
+
+<br><br>
+<div class="buttons">
+  <li><%= button_to "New Driver", new_driver_path, method: :get, :class => "button" %></li>
+</div>
