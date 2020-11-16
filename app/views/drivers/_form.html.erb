@@ -1,0 +1,27 @@
+<%= form_with model: @driver do |f| %>
+
+  <% if @driver.errors.any? %>
+    <ul>
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <p><%= column %> <%= message %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :vin %>
+    <br>
+    <%= f.text_field :vin %>
+  </div>
+  <br>
+  <%= f.submit action_name %>
+
+<% end %>

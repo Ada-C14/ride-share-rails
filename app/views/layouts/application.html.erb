@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <header>
+    <h1><%= link_to "Ride Share on Rails", homepages_path %></h1>
+  </header>
+
+  <div class="menu">
+    <nav>
+      <p><%= link_to "Driver Dashboard", drivers_path %></p>
+      <p><%= link_to "Passenger Dashboard", passengers_path %></p>
+      <p><%= link_to "Add Driver", new_driver_path %></p>
+      <p><%= link_to "Add Passenger", new_passenger_path %></p>
+    </nav>
+  </div>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer>
+    <p>Copyright Kim & Sophie 2020</p>
+  </footer>
+
+  </body>
+</html>

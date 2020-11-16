@@ -58,15 +58,23 @@ describe Passenger do
     end
   end
 
-  # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
+    describe "total spending" do
+      it "returns passenger's total spending for all trips" do
+        passenger = Passenger.create(name: "Ed Sheeran", phone_num: "111-111-1211")
+        driver = Driver.create(name: "Taylor Swift", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, rating: 3, cost: 6334)
 
-    describe "complete trip" do
-      # Your code here
+        expect(passenger.total_spending).must_be_close_to 139.02
+      end
+
+      it "returns 0 if the passenger has no trips" do
+        passenger = Passenger.new(name: "Selena Gomez", phone_num: "111-111-1211")
+
+        expect(passenger.total_spending).must_equal 0
+      end
     end
-    # You may have additional methods to test here
   end
 end

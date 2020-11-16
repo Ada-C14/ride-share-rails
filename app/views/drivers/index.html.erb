@@ -1,0 +1,25 @@
+<h3>Drivers</h3>
+<br>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>VIN</th>
+      <th>Available</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= link_to "#{driver.id}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.name}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.vin}", driver_path(driver) %></td>
+        <td><%= link_to "#{driver.available}", driver_path(driver) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

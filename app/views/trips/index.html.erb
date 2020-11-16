@@ -1,0 +1,41 @@
+<% if @driver %>
+  <h3><%= "Driver Trip List: #{@driver.name}" %></h3>
+<% elsif @passenger %>
+  <h3><%= "Passenger Trip List: #{@passenger.name}" %></h3>
+<% else %>
+  <h3><%= "Trips" %></h3>
+<% end %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Date</th>
+      <th>
+        <% if @passenger %>
+          <%= "Driver" %>
+        <% elsif @driver %>
+          <%= "Passenger" %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+        <td><%= link_to "#{trip.id}", trip_path(trip.id) %></td>
+        <td><%= link_to "#{trip.rating}", trip_path(trip.id) %></td>
+        <td><%= link_to "#{number_to_currency(trip.cost.to_f / 100)}", trip_path(trip.id) %></td>
+        <td><%= link_to "#{trip.date}", trip_path(trip.id) %></td>
+        <td>
+          <% if @passenger %>
+            <%= link_to trip.driver.nil? ? "" : "#{trip.driver.name}", driver_path(trip.driver_id) %>
+          <% elsif @driver %>
+            <%= link_to trip.passenger.nil? ? "" : "#{trip.passenger.name}", passenger_path(trip.passenger_id) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

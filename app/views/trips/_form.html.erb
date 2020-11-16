@@ -1,0 +1,39 @@
+<%= form_with model: @trip do |f| %>
+
+  <% if @trip.errors.any? %>
+    <ul>
+      <% @trip.errors.each do |column, message| %>
+        <li>
+          <p><%= column %> <%= message %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :cost %>
+    <br>
+    <%= f.text_field :cost %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :rating %>
+    <br>
+    <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :driver %>
+    <br>
+    <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :passenger %>
+    <br>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+  </div>
+  <br>
+  <%= f.submit action_name %>
+
+<% end %>

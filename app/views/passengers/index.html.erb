@@ -1,0 +1,21 @@
+<h3>Passengers</h3>
+<br>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Phone</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td><%= link_to "#{passenger.id}", passenger_path(passenger) %></td>
+      <td><%= link_to "#{passenger.name}", passenger_path(passenger) %></td>
+      <td><%= link_to "#{passenger.phone_num}", passenger_path(passenger) %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
