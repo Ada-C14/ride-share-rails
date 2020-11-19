@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'merchants/index'
   # We do not need these nested routes because we don't use them. 
   # resources :drivers do
   #   resources :trips, only: [:index, :new]
