@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turπbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <header>
+    <h1>Ride Share</h1>
+    <nav>
+      <p><a href="<%= drivers_path %>">List all drivers</a></p>
+      <p><a href="<%= passengers_path %>">List all passengers</a></p>
+      <p><%= link_to "Add new driver", new_driver_path(@driver) %></p>  
+      <p><%=link_to "Add new passenger", new_passenger_path(@passenger)%></p>        
+    </nav>
+  </header>
+  <body>
+    <%= yield %>
+  </body>
+  <footer>
+    <p>Hanh Solo & Kareha @2020</p>
+  </footer>
+</html>

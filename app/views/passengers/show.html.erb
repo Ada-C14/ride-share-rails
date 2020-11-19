@@ -1,0 +1,28 @@
+<div>
+    <h4> Passenger Details</h4>
+    <br>
+    <ul>
+        <li>Name: <%= @passenger.name %> </li>
+        <br>
+        <li>Phone: <%= @passenger.phone_num %></li>
+        <br>
+        <li>Total spent: <%= @passenger.net_expenditures %></li>
+    </ul>
+    <h4>Trips<h4>
+        <% if @passenger.trips.length > 0 %>
+            <% @passenger.trips.each do |trip| %>
+            <ul>
+                <li><%= link_to "Trip id #{trip.id}", trip_path(trip.id) %></li>            
+            </ul>
+            <% end %>
+        <% end %>
+    </ul>
+    <div><%= link_to "Request trip", passenger_trips_path(@passenger.id), method: :post %></div>
+    <br>
+    <div><%= link_to "Edit #{@passenger.name}", edit_passenger_path(@passenger.id) %></div>
+    <br>
+    <div><%= link_to "Delete #{@passenger.name}", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure?"} %></div>
+    <br>
+</div>
+<p><%= link_to "Return to passenger list", passengers_path %></p>
+

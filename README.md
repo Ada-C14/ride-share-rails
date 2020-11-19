@@ -11,13 +11,13 @@
 A small community just created a Rideshare program for its local area. This project is to build a Rails app that manages that Rideshare program.
 
 The community needs the following main pieces of functionality:
-- New passengers and drivers can sign up for the service
-- Passengers' and drivers' information can be reviewed and edited
-- Passengers and drivers can be deleted
-- Passengers can request and rate trips
+- New passengers and drivers can sign up for the service (new-create)
+- Passengers' and drivers' information can be reviewed and edited (show and edit)
+- Passengers and drivers can be deleted (destroy)
+- Passengers can request and rate trips (new-create, edit)
 - Drivers can see their aggregated statistics:
-  - How many rides the driver has given
-  - Average rating of all rides the driver has given
+  - How many rides the driver has given(show)
+  - Average rating of all rides the driver has given(show)
 
 ### A Note About Project Design/Expectations
 
@@ -135,8 +135,8 @@ Please use this list as you decide what to work on (or at the end of the week as
 Overall, write functionality, so that a user can easily and consistently navigate to other pages from any other page. Also, write functionality so that a user can understand form errors and correct them.
 
 - As a user, from any page, I want to have a consistent, easily accessible navigation menu with different buttons/links. These links go to different pages that let me...
-  - View a list of all passengers
-  - View a list of all drivers
+  - View a list of all passengers(show html)
+  - View a list of all drivers(show html)
   - Create a new passenger
   - Create a new driver
 - As a user, when I fill out any form in the site and the processing of the form submission fails, I want to be politely informed of what went wrong and how I can correct it

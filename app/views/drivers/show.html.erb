@@ -1,0 +1,31 @@
+<div>
+    <h4> Driver Details</h4>
+    <br>
+    <ul>
+        <li>Name: <%= @driver.name %> </li>
+        <br>
+        <li>VIN: <%= @driver.vin %></li>
+        <br>
+        <li>Available: <%= @driver.available %></li>
+        <br>
+        <li>Revenue: <%= @driver.total_revenue %></li>
+        <br>
+        <li>Average Rating: <%= @driver.average_rating %></li>
+        <br>
+        <h4>Trips<h4>
+        <% if @driver.trips.length > 0 %>
+            <% @driver.trips.each do |trip| %>
+            <ul>
+                <li><%= link_to "Trip id #{trip.id}", trip_path(trip.id) %></li>
+            </ul>
+            <% end %>
+        <% end %>
+    </ul>
+
+    <div><%= link_to "Edit #{@driver.name}", edit_driver_path(@driver.id) %></div>
+    <br>
+    <div><%= link_to "Delete #{@driver.name}", driver_path(@driver), method: :delete, data: { confirm: "Are you sure?"} %></div>
+    <br>
+</div>
+<p><%= link_to "Return to Driver List", drivers_path %></p>
+

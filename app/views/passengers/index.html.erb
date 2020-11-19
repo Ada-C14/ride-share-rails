@@ -1,0 +1,17 @@
+<%# <h1>passengers#index</h1>
+<p>Find me in app/views/passengers/index.html.erb</p> %>
+
+
+<% if @passengers.length > 0 %>
+   <% @passengers.each do |passenger|%>
+    <ul>
+        <li><%= passenger.name %>  
+            <ul>
+                <li><%= link_to "Passenger details", passenger_path(passenger.id) %></li>            
+            </ul>
+        </li>
+    </ul>
+    <% end %>
+<% else %>
+    <h3> No passenger found! </h3>
+<% end %>
