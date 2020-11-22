@@ -1,0 +1,34 @@
+<h1>Passenger Details</h1>
+<br>
+<table id="details">
+  <tr>
+    <th> <%= @passenger.name %> </th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>Phone Number:</td>
+    <td> <%= @passenger.phone_num %> </td>
+
+  </tr>
+  <tr>
+    <td>Passenger's Trips:</td>
+    <td><% @passenger.trips.each do |trip| %>
+        <li>Trip: <%= link_to trip.date, trip_path(trip) %>
+      <% end %></li>
+    </td>
+  </tr>
+  <tr>
+    <td>Total charged</td>
+    <td><%= number_to_currency(@passenger.total_charged.to_f / 100) %></td>
+  </tr>
+
+  <th>
+    <li> <%= link_to "Request trip for this passenger", passenger_trips_path(@passenger.id), method: :post %></li>
+    <li> <%= link_to "Edit passenger info", edit_passenger_path(@passenger) %></li>
+    <li> <%= link_to "Delete passenger from database", passenger_path(@passenger), method: :delete,
+                     data: {confirm: 'Are you sure you would like to delete?'} %></li>
+  </th>
+  <th>
+    <li> <%= link_to "Back to Passenger List", passengers_path %></li>
+  </th>
+</table>

@@ -1,0 +1,38 @@
+<div>
+
+  <%= form_with model: @driver do |f| %>
+
+  <% if @driver.errors.any? %>
+    <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <p><%= column %> <%= message %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <br>
+
+    <div>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+    </div>
+    <br>
+
+    <div>
+    <% if @driver.persisted? %>
+    <%= f.label :available %>
+    <%= f.check_box :available %>
+    <% end %>
+    </div>
+    <br>
+
+    <%= f.submit action_name, class: "button" %>
+
+  <% end %>
+</div>

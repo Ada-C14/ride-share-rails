@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Trip do
   it "can be instantiated" do
-    # Your code here
+    (Trip.new).must_be_kind_of Trip
   end
 
   it "will have the required fields" do
