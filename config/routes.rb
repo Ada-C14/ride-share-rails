@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :rideshare, only: [:index]
 
   resources :drivers
-  patch 'drivers/availability', to: 'drivers#availability', as: 'availability'
+  patch 'drivers/:driver_id/availability', to: 'drivers#availability', as: 'availability'
   resources :trips
 
   resources :passengers do

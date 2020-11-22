@@ -13,7 +13,7 @@
   <tr>
     <td>Passenger's Trips:</td>
     <td><% @passenger.trips.each do |trip| %>
-        <li>Trip: <%= link_to trip.date, trip_path %>
+        <li>Trip: <%= link_to trip.date, trip_path(trip) %>
       <% end %></li>
     </td>
   </tr>
