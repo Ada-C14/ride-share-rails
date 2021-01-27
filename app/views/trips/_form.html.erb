@@ -1,0 +1,29 @@
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @trip do |f| %>
+
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.order(:name).map { |pass| [pass.name, pass.id] } %>
+  <br>
+  <%= f.label :driver_id %>
+  <%= f.select :driver_id, Driver.order(:id).map { |driver| [driver.id, driver.id] } %>
+  <br>
+  <%= f.label :date %>
+  <%= date_select :trip, :date %>
+  <br>
+  <%= f.label :rating %>
+  <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]] %>
+  <br>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <br>
+  <%= f.submit "#{button_name}" %>
+<% end %>

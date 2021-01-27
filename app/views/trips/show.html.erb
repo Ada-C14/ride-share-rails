@@ -1,0 +1,15 @@
+<h1>TRIP INFORMATION</h1>
+
+<ul>
+  <li>ID: <%= @trip.id %> </li>
+  <li>PASSENGER ID: <%= link_to "#{@trip.passenger_id}", passenger_path(@trip.passenger_id)  %></li>
+  <li>DRIVER ID: <%= link_to "#{@trip.driver_id}", driver_path(@trip.driver_id) %> </li>
+  <li>DATE: <%= @trip.date %> </li>
+  <li>RATING: <%= @trip.rating %> </li>
+  <li>COST: $<%= "#{'%.2f' % (@trip.cost.to_f/100)}" %> </li>
+</ul>
+
+<div class="buttons">
+<%= button_to "Edit", edit_trip_path(@trip.id), method: :get%>
+<%= button_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+</div>

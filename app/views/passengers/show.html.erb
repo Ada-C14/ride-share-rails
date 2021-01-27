@@ -1,0 +1,36 @@
+<h1>PASSENGER INFORMATION</h1>
+
+<ul>
+  <li>ID: <%= "#{@passenger.id}"%></li>
+  <li>NAME: <%= "#{@passenger.name}"%></li>
+  <li>PHONE NUMBER: <%= @passenger.phone_num %> </li>
+  <br>
+  <li>TOTAL SPENT: $<%='%.2f' % (@passenger.total_spent.to_f/100) %></li>
+</ul>
+
+<div class="buttons">
+<%= button_to "Edit", edit_passenger_path(@passenger.id), method: :get%>
+<%= button_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Confirm DELETE."}%>
+<div>
+
+<br>
+<h1>TRIPS TAKEN:</h1>
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Driver ID</th>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
+
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td><%= link_to "#{trip.id}", trip_path(trip.id) %> </td>
+      <td><%= link_to "#{trip.driver_id}", driver_path(trip.driver_id) %> </td>
+      <td><%= "#{trip.date}" %> </td>
+      <td><%= "#{trip.rating}" %> </td>
+      <td>$<%= "#{'%.2f' % (trip.cost.to_f/100)}" %> </td>
+    </tr>
+  <% end %>
+</table>

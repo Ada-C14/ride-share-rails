@@ -1,0 +1,20 @@
+<h1>PASSENGERS</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th class="mid_no_border"></th>
+    <th class="no_border"></th>
+  </tr>
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td><%= link_to "#{passenger.id}", passenger_path(passenger)%> </td>
+      <td><%=  "#{passenger.name}" %> </td>
+      <td><%=  "#{passenger.phone_num}" %> </td>
+      <td class="mid_no_border"><%= button_to "Edit", edit_passenger_path(passenger.id), method: :get%></td>
+      <td class="no_border"><%= button_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Confirm DELETE."}%> </td>
+    </tr>
+  <% end %>
+</table>

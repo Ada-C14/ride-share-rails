@@ -61,12 +61,18 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      # Your code here
+      # Tested in trips controller
     end
 
-    describe "complete trip" do
-      # Your code here
+    describe "total spent" do
+      it "can accurately calculate total each passenger spent" do
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+        expect(new_passenger.total_spent).must_equal 7568
+      end
     end
-    # You may have additional methods to test here
   end
 end
